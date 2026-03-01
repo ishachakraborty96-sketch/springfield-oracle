@@ -274,6 +274,64 @@
     text-align: center;
   }
 
+  /* ── CAROUSEL ── */
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+  }
+  .carousel-card {
+    min-width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: var(--blue);
+    color: var(--yellow);
+    border: none;
+    font-size: 22px;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-family: 'Bebas Neue', cursive;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .carousel-arrow:hover { opacity: 1; }
+  .carousel-prev { left: 8px; }
+  .carousel-next { right: 8px; }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+  }
+  .carousel-dot.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+  }
+
   .gap-num {
     font-family: 'Bebas Neue', cursive;
     font-size: 64px;
@@ -839,44 +897,118 @@
 <!-- TICKER -->
 <div class="ticker-bar">
   <div class="ticker-inner" id="ticker">
-    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 BREAKING 2026: US-Israel strikes Iran — S06E19 Lisa's Wedding predicted WW3 — 31 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: H3N2 Flu — 11M infected, 5K dead — S04E21 Osaka Flu — 33 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: UAP Disclosure goes mainstream — S08E10 — 29 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files drop — elite island scandal — S12E06 — DISPUTED</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup Final — S08E14 — viral score 9</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: First American Pope Leo XIV — S10E02 — 27 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: Elon Musk political rise and fall — S26E10 — 10 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: Trump Budget Crisis / shutdown — S11E17 — 25 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: AI mass job displacement — S23E17 — 13 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2028: Ivanka Trump presidential run — S27E16 — viral score 10</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Disney acquires Fox — S10E05 — 21 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Higgs Boson mass equation — S10E02 — 14 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 BREAKING 2026: US-Israel strikes Iran — S06E19 Lisa's Wedding predicted WW3 — 31 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: H3N2 Flu — 11M infected, 5K dead — S04E21 Osaka Flu — 33 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: UAP Disclosure goes mainstream — S08E10 — 29 years early</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files drop — elite island scandal — S12E06 — DISPUTED</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup Final — S08E14 — viral score 9</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: First American Pope Leo XIV — S10E02 — 27 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 BREAKING 2026: US-Israel strikes Iran — S06E19 Lisa's Wedding — Written in 1995</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: H3N2 Flu — 11M infected, 5K dead — S04E21 The Osaka Flu — Written in 1993</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: UAP Disclosure goes mainstream — S08E10 The Springfield Files — Written in 1997</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files — elite island running the world — S12E06 — DISPUTED</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup Final — S08E14 — Written in 1997</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: First American Pope Leo XIV — S10E02 — Written in 1998</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: Elon Musk's political rise and fall — S26E10 — Written in 2015</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: Trump Budget Crisis / Government Shutdown — S11E17 — Written in 2000</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: AI mass job displacement — S23E17 — Written in 2012</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2028: Ivanka Trump presidential run — S27E16 — Written in 2016</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Disney acquires Fox — S10E05 — Written in 1998</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Higgs Boson mass equation — S10E02 — Written in 1998</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 BREAKING 2026: US-Israel strikes Iran — S06E19 Lisa's Wedding — Written in 1995</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: H3N2 Flu — 11M infected, 5K dead — S04E21 The Osaka Flu — Written in 1993</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: UAP Disclosure goes mainstream — S08E10 The Springfield Files — Written in 1997</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files — elite island running the world — S12E06 — DISPUTED</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup Final — S08E14 — Written in 1997</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: First American Pope Leo XIV — S10E02 — Written in 1998</span>
   </div>
 </div>
 
-<!-- LATEST CONFIRMED -->
+<!-- CAROUSEL -->
 <div class="latest-section">
   <div class="section-label">
-    <span class="live-dot"></span> Latest Confirmed Prediction
+    <span class="live-dot"></span> 2026 — Top Predictions Unfolding Now
   </div>
-  <div class="latest-card">
-    <div class="latest-badge">🔴 FEB 28, 2026 — BREAKING</div>
-    <div class="latest-episode">
-      <div class="ep-season">S06E19</div>
-      <div class="ep-label">Season / Episode</div>
-      <div class="ep-year">Aired 1995</div>
-    </div>
-    <div class="latest-content">
-      <h2>They Put World War III In the Script. 31 Years Later, Here We Are.</h2>
-      <p>In "Lisa's Wedding" (1995), a British character tells an American: <em>"Well, we saved your ass in World War III."</em> No region. No date. Just a throwaway joke set in 2010 — aired 1995. On February 28, 2026, the US and Israel launched Operation Epic Fury — joint strikes across Iran, killing Supreme Leader Khamenei. Iran retaliated with missiles against Qatar, UAE, Kuwait, Jordan. The UN Security Council convened an emergency session.</p>
-      <p style="margin-top:12px; padding: 12px 16px; border-left: 4px solid #0B2D8F; background: rgba(11,45,143,0.15); font-size: 0.82rem; color: #0B2D8F; border-radius: 2px; font-weight:500; line-height:1.6;">⚠️ <strong>Deepfake Alert:</strong> Most viral "Simpsons predicted Iran war" TikToks are AI-generated fakes with no real episode. Springfield Oracle cites only verified S06E19 dialogue — confirmed by TVTropes, Simpsons Wiki, and YARN clip database.</p>
-    </div>
+
+  <div class="carousel-wrapper">
+    <button class="carousel-arrow carousel-prev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
+    <button class="carousel-arrow carousel-next" onclick="carouselMove(1)" aria-label="Next">&#8594;</button>
+
+    <div class="carousel-track" id="carousel-track">
+
+      <!-- CARD 1: WW3 / Iran -->
+      <div class="latest-card carousel-card">
+        <div class="latest-badge">🔴 FEB 28, 2026 — BREAKING</div>
+        <div class="latest-episode">
+          <div class="ep-season">S06E19</div>
+          <div class="ep-label">Season / Episode</div>
+          <div class="ep-year">Aired 1995</div>
+        </div>
+        <div class="latest-content">
+          <h2>They Put World War III In the Script. 31 Years Later, Here We Are.</h2>
+          <p>In "Lisa's Wedding" (S06E19, 1995), a British character casually references World War III in the Middle East — a throwaway line set in a future Springfield. On February 28, 2026, the US and Israel launched joint strikes on Iran. The UN Security Council convened an emergency session. The episode aired 31 years before the headline.</p>
+        </div>
+      </div>
+
+      <!-- CARD 2: UFO Declassification -->
+      <div class="latest-card carousel-card">
+        <div class="latest-badge">🟡 FEB 19, 2026 — CONFIRMED</div>
+        <div class="latest-episode">
+          <div class="ep-season">S08E10</div>
+          <div class="ep-label">Season / Episode</div>
+          <div class="ep-year">Aired 1997</div>
+        </div>
+        <div class="latest-content">
+          <h2>The Government Hid The Truth. Springfield Knew.</h2>
+          <p>In "The Springfield Files" (1997), the FBI and Men in Black arrive to suppress evidence of extraterrestrial contact — and the government denies everything. On February 19, 2026, President Trump ordered the Pentagon to declassify all UAP and alien-related files, citing "tremendous interest." Defense Secretary Hegseth confirmed his team is "digging in." Twenty-nine years after the episode aired, the cover-up is officially over.</p>
+        </div>
+      </div>
+
+      <!-- CARD 3: NSA Surveillance / Simpsons Movie -->
+      <div class="latest-card carousel-card">
+        <div class="latest-badge">🟡 2026 — CONFIRMED</div>
+        <div class="latest-episode">
+          <div class="ep-season">MOVIE</div>
+          <div class="ep-label">Simpsons Movie</div>
+          <div class="ep-year">Aired 2007</div>
+        </div>
+        <div class="latest-content">
+          <h2>Mass Government Surveillance. They Wrote It As A Joke.</h2>
+          <p>The Simpsons Movie (2007) depicted the NSA running a vast domestic wiretapping operation — listening to citizens' calls in real time. Edward Snowden confirmed it in 2013. In 2026, the Pentagon demanded unrestricted AI surveillance access over American citizens with no safeguards — the exact scenario the writers treated as absurd fiction nineteen years ago.</p>
+        </div>
+      </div>
+
+      <!-- CARD 4: Great Awakening / QAnon -->
+      <div class="latest-card carousel-card" style="background: #1a1a2e; color: #eee;">
+        <div class="latest-badge" style="background:#555;">⚠️ 2022 — DISPUTED</div>
+        <div class="latest-episode" style="background: #2d2d5e;">
+          <div class="ep-season">S24E09</div>
+          <div class="ep-label">Season / Episode</div>
+          <div class="ep-year">Aired 2013</div>
+        </div>
+        <div class="latest-content">
+          <h2 style="color:#FFD520;">The Great Awakening. QAnon's "Storm." Never Came.</h2>
+          <p style="color:#ccc;">"Homer Goes to Prep School" (2013) features doomsday preppers, an EMP device, and societal collapse. In 2022, QAnon's Great Awakening forum cited this exact episode — season 24, episode 9 — as proof that a "Storm" would restore Trump to power on September 24. They called it the "10 days of darkness." Nothing happened. Springfield Oracle logs it as disputed: the episode is real, the prediction was invented by the internet.</p>
+        </div>
+      </div>
+
+      <!-- CARD 5: H3N2 Flu -->
+      <div class="latest-card carousel-card">
+        <div class="latest-badge">🔴 2026 — CONFIRMED</div>
+        <div class="latest-episode">
+          <div class="ep-season">S04E21</div>
+          <div class="ep-label">Season / Episode</div>
+          <div class="ep-year">Aired 1993</div>
+        </div>
+        <div class="latest-content">
+          <h2>The Osaka Flu. Written In 1993. Confirmed In 2026.</h2>
+          <p>In "Marge in Chains" (1993), Springfield is overwhelmed by a flu virus from Japan — the "Osaka Flu" — that spreads through contact and panic-buying. By 2026, the H3N2 influenza strain had infected over 11 million people globally, with 5,000 confirmed deaths.</p>
+        </div>
+      </div>
+
+    </div><!-- /carousel-track -->
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="carousel-dot active" onclick="carouselGoTo(0)"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(1)"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(2)"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(3)"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(4)"></button>
     </div>
   </div>
 </div>
@@ -1183,7 +1315,34 @@ document.addEventListener('keydown', e => {
 renderTable(predictions);
 updateCounts();
 
-// ── PREDICTION KEYWORD MAP ────────────────────────────────────────────
+// ── CAROUSEL ─────────────────────────────────────────────────────────────
+let carouselIndex = 0;
+const carouselTotal = 5;
+let carouselTimer;
+
+function carouselGoTo(n) {
+  carouselIndex = (n + carouselTotal) % carouselTotal;
+  document.getElementById('carousel-track').style.transform = `translateX(-${carouselIndex * 100}%)`;
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselIndex));
+  resetCarouselTimer();
+}
+function carouselMove(dir) { carouselGoTo(carouselIndex + dir); }
+function resetCarouselTimer() {
+  clearInterval(carouselTimer);
+  carouselTimer = setInterval(() => carouselMove(1), 6000);
+}
+resetCarouselTimer();
+
+// Swipe support
+(function(){
+  const track = document.getElementById('carousel-track');
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) carouselMove(diff > 0 ? 1 : -1);
+  }, {passive:true});
+})();
 // Maps keywords in news headlines → prediction IDs
 const predictionKeywords = [
   { keys: ['iran','khamenei','operation epic fury','tehran','persian','irgc'], id: 'SP032' },
@@ -1274,25 +1433,6 @@ async function loadNewsFromAPI() {
     ...item,
     match: matchPrediction(item.title)
   }));
-
-  // ── UPDATE HERO CARD if top story matches a prediction ──────────────
-  const topMatch = itemsWithMatch.find(i => i.match);
-  if (topMatch && topMatch.match) {
-    const p = topMatch.match;
-    const yearsEarlyNum = p.trueYear ? p.trueYear - p.year : null;
-    const heroCard = document.querySelector('.latest-card');
-    const heroBadge = document.querySelector('.latest-badge');
-    const heroSection = document.querySelector('.section-label');
-    if (heroCard) {
-      const today = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }).toUpperCase();
-      if (heroBadge) heroBadge.textContent = `🔴 ${today} — BREAKING`;
-      if (heroSection) heroSection.innerHTML = `<span class="live-dot"></span> Live Match — Today's Top News`;
-      heroCard.querySelector('.ep-season').textContent = `${p.season}${p.episode}`;
-      heroCard.querySelector('.ep-year').textContent = `Aired ${p.year}`;
-      heroCard.querySelector('h2').textContent = p.title;
-      heroCard.querySelector('.latest-content p').innerHTML = `<strong style="color:#FFD520">${topMatch.title}</strong><br><br>${p.desc}`;
-    }
-  }
 
   // ── RENDER NEWS FEED ───────────────────────────────────────────────
   feedEl.innerHTML = itemsWithMatch.map(item => {
