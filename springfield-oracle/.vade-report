@@ -1,0 +1,45 @@
+# Vercel Web Analytics Implementation
+
+## Summary
+Successfully integrated Vercel Web Analytics into the Springfield Oracle project, a static HTML site that tracks Simpsons predictions.
+
+## Changes Made
+
+### Modified Files
+- **public/index.html** - Added Vercel Web Analytics script tags
+
+## Implementation Details
+
+Since this is a static HTML site (not using a framework like Next.js, React, or Vue), I implemented the HTML-specific version of Vercel Web Analytics as described in the provided documentation.
+
+### What was added:
+Added two script tags just before the closing `</head>` tag in `public/index.html`:
+
+1. **Analytics initialization script**: Initializes the `window.va` function and queue
+2. **Analytics tracking script**: Loads the Vercel insights script from `/_vercel/insights/script.js`
+
+These scripts enable:
+- Automatic page view tracking for visitors
+- Web analytics data collection
+- Integration with Vercel's Analytics dashboard
+
+## Why This Approach
+
+For plain HTML sites, Vercel provides a script-based implementation that:
+- Requires no package installation (no `@vercel/analytics` dependency needed)
+- Works without a build step
+- Automatically tracks page views once deployed to Vercel
+- Does not provide route support (as noted in the documentation, this is expected for HTML implementations)
+
+## Next Steps
+
+Once deployed to Vercel:
+1. Enable Web Analytics in the Vercel dashboard (Project → Analytics tab → Enable)
+2. The `/_vercel/insights/*` routes will be automatically added
+3. Analytics data will start appearing in the dashboard after visitors access the site
+4. Verify implementation by checking browser Network tab for `/_vercel/insights/view` requests
+
+## Notes
+- No dependencies were added to package.json (this is intentional for HTML implementations)
+- No build process required - the site is ready to deploy as-is
+- The analytics will only work when deployed to Vercel (not in local development)
