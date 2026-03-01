@@ -571,9 +571,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
-    opacity: 0.4;
+    opacity: 1;
   }
 
   footer a {
@@ -724,7 +724,7 @@
 <header>
   <div class="header-inner">
     <div class="logo-block">
-      <span class="logo-eyebrow">Open Source Intelligence</span>
+      <span class="logo-eyebrow">Open Source Intelligence · By Isha Godboley</span>
       <div class="logo-title">Springfield<br>Oracle</div>
       <div class="logo-sub">They knew. We track it.</div>
     </div>
@@ -787,9 +787,6 @@
       <p>In "Lisa's Wedding" (1995), a British character tells an American: <em>"Well, we saved your ass in World War III."</em> No region. No date. Just a throwaway joke set in 2010 — aired 1995. On February 28, 2026, the US and Israel launched Operation Epic Fury — joint strikes across Iran, killing Supreme Leader Khamenei. Iran retaliated with missiles against Qatar, UAE, Kuwait, Jordan. The UN Security Council convened an emergency session.</p>
       <p style="margin-top:12px; padding: 10px 14px; border-left: 4px solid #0B2D8F; background: rgba(11,45,143,0.12); font-size: 0.82rem; color: #111; border-radius: 2px; font-weight:500;">⚠️ <strong style="color:#0B2D8F;">Deepfake Alert:</strong> Most viral "Simpsons predicted Iran war" TikToks are AI-generated fakes with no real episode. Springfield Oracle cites only verified S06E19 dialogue — confirmed by TVTropes, Simpsons Wiki, and YARN clip database.</p>
     </div>
-    <div class="latest-year-gap">
-      <div class="gap-num">31</div>
-      <div class="gap-label">Years<br>Early</div>
     </div>
   </div>
 </div>
@@ -817,7 +814,6 @@
         <th>Prediction</th>
         <th>Status</th>
         <th>Category</th>
-        <th>Years Early</th>
         <th>Viral Score</th>
         <th>Share</th>
       </tr>
@@ -856,9 +852,9 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>Springfield Oracle — Open Source · Community Powered · No ads · No BS</span>
-  <span>Built with obsession. <a href="#">GitHub</a> · <a href="#">Submit a prediction</a></span>
-  <span>Data sourced & verified. Not affiliated with Fox or The Simpsons.</span>
+  <span style="color:#888;">Springfield Oracle · Built by <strong style="color:#FFD520;">Isha Godboley</strong> · <a href="https://www.linkedin.com/in/isha-godboley" target="_blank" rel="noopener" style="color:#FFD520;">Have feedback? DM me on LinkedIn ↗</a></span>
+  <span style="color:#444; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
+  <span style="color:#888;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:#FFD520;">GitHub ↗</a> · Data sourced & verified.</span>
 </footer>
 
 <!-- MODAL -->
@@ -951,10 +947,7 @@ function yearsEarly(year, trueYear) {
 }
 
 function shareOnX(p) {
-  const yearsEarlyNum = p.trueYear ? p.trueYear - p.year : null;
-  const text = yearsEarlyNum
-    ? `The Simpsons predicted "${p.title}" in ${p.year} — ${yearsEarlyNum} years early. (${p.season}${p.episode})\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle`
-    : `The Simpsons may have predicted "${p.title}" (${p.season}${p.episode})\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle`;
+  const text = `The Simpsons wrote "${p.title}" into a script in ${p.year}. (${p.season}${p.episode})\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle`;
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
 }
 
@@ -964,10 +957,7 @@ function shareOnLinkedIn(p) {
 }
 
 function copyShareLink(p, btn) {
-  const yearsEarlyNum = p.trueYear ? p.trueYear - p.year : null;
-  const text = yearsEarlyNum
-    ? `The Simpsons predicted "${p.title}" in ${p.year} — ${yearsEarlyNum} years early. (${p.season}${p.episode}) → springfield-oracle.vercel.app`
-    : `The Simpsons may have predicted "${p.title}" (${p.season}${p.episode}) → springfield-oracle.vercel.app`;
+  const text = `The Simpsons wrote "${p.title}" into a script in ${p.year}. (${p.season}${p.episode}) → springfield-oracle.vercel.app — Built by Isha Godboley`;
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = '✓';
     setTimeout(() => { btn.textContent = '🔗'; }, 1500);
@@ -992,7 +982,6 @@ function renderTable(data) {
       <td class="td-desc"><strong>${p.title}</strong><p>${p.desc.substring(0,90)}...</p></td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
-      <td>${yearsEarly(p.year, p.trueYear)}</td>
       <td>${viralDots(p.viral)}</td>
       <td class="td-share" onclick="event.stopPropagation()">
         <button onclick="shareOnX(predictions.find(x=>x.id==='${p.id}'))" title="Share on X" style="background:none;border:1px solid rgba(255,255,255,0.15);color:#ddd;padding:4px 7px;border-radius:4px;cursor:pointer;font-size:0.75rem;margin-bottom:4px;display:block;width:100%;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#ddd'">𝕏</button>
