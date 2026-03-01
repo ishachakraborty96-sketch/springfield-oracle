@@ -1037,8 +1037,8 @@ async function loadNewsFromAPI() {
   // Try Vercel API route first (server-side RSS parse, avoids CORS)
   // Falls back to Google News RSS via allOrigins proxy if running locally
   const endpoints = [
-    '/api/news',
-    'https://api.allorigins.win/get?url=' + encodeURIComponent('https://news.google.com/rss/search?q=simpsons+prediction&hl=en-US&gl=US&ceid=US:en')
+    'https://api.allorigins.win/get?url=' + encodeURIComponent('https://news.google.com/rss/search?q=simpsons+prediction&hl=en-US&gl=US&ceid=US:en'),
+    '/api/news'
   ];
 
   let items = [];
