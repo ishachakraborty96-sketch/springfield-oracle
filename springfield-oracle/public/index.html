@@ -1097,7 +1097,7 @@ async function loadNewsFromAPI() {
 }
 
 loadNewsFromAPI();
-setInterval(loadNewsFromAPI, 5 * 60 * 1000); // Refresh every 5 minutes
+setInterval(loadNewsFromAPI, 30 * 1000); // Refresh every 30 seconds
 
 // ── LOAD FROM JSON DATABASE (with fetch — works on Vercel) ────────────
 // This keeps the JS predictions array in sync with /data/predictions.json
