@@ -1072,9 +1072,15 @@
 <div class="submit-section">
   <h2>Spotted a New One?</h2>
   <p>This is open source and community-powered. If The Simpsons predicted something we haven't logged yet, tell us. Every submission is reviewed and sourced before it goes live.</p>
-  <div class="submit-form">
-    <input class="submit-input" type="text" placeholder="Describe the prediction + episode..." />
-    <button class="submit-btn">Submit</button>
+  <div class="submit-form" id="submit-form">
+    <input class="submit-input" id="submit-input" type="text" placeholder="Describe the prediction + episode..." maxlength="500" />
+    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Submit</button>
+  </div>
+  <div id="submit-success" style="display:none; color:#FFD520; font-family:'Space Mono',monospace; font-size:13px; margin-top:12px; letter-spacing:1px;">
+    ✓ Received. We'll review and source it before it goes live.
+  </div>
+  <div id="submit-error" style="display:none; color:#ff6b6b; font-family:'Space Mono',monospace; font-size:12px; margin-top:12px;">
+    Something went wrong. Email us directly at isha.chakraborty96@gmail.com
   </div>
 </div>
 
@@ -1395,6 +1401,33 @@ function openCarouselModal(index) {
   window._carouselShareTitle = d.shareTitle;
   window._carouselShareMode = true;
   document.getElementById('modal').classList.add('open');
+}
+
+// ── SUBMIT FORM ───────────────────────────────────────────────────────
+async function handleSubmit() {
+  const input = document.getElementById('submit-input');
+  const btn = document.getElementById('submit-btn');
+  const val = input.value.trim();
+  if (!val) { input.focus(); return; }
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/mkovapen', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ message: val, _subject: 'Springfield Oracle — New Prediction Submission' })
+    });
+    if (res.ok) {
+      document.getElementById('submit-form').style.display = 'none';
+      document.getElementById('submit-success').style.display = 'block';
+    } else { throw new Error(); }
+  } catch {
+    document.getElementById('submit-error').style.display = 'block';
+    btn.textContent = 'Submit';
+    btn.disabled = false;
+  }
 }
 
 // ── CAROUSEL ─────────────────────────────────────────────────────────────
