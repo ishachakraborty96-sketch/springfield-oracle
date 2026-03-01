@@ -4,6 +4,8 @@
 
 > *"If you throw enough darts, you're going to get some bullseyes."* — Al Jean, Simpsons Producer
 
+---
+
 ## What is this?
 
 Every TikTok about Simpsons predictions is 60 seconds with no sources. Every article is a listicle with no methodology. No one has built a proper, sourced, confidence-scored database — until now.
@@ -115,7 +117,9 @@ Or just open `public/index.html` directly in a browser — it works without a se
 
 ## License
 
-MIT. Fork it, build on it, credit it.
+© 2026 Isha Godboley. Licensed under [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+
+You are free to share and adapt this work for **non-commercial purposes**, provided you give appropriate credit to **Isha Godboley** and link back to the original. Commercial use, redistribution without attribution, or passing this off as your own work is not permitted.
 
 ---
 
