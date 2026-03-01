@@ -730,15 +730,15 @@
     </div>
     <div class="header-stats">
       <div class="stat-pill">
-        <span class="stat-num" id="total-count">30</span>
+        <span class="stat-num" id="total-count">43</span>
         <span class="stat-label">Predictions<br>Tracked</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-num" id="confirmed-count">14</span>
+        <span class="stat-num" id="confirmed-count">19</span>
         <span class="stat-label">Confirmed<br>True</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-num" id="pending-count">13</span>
+        <span class="stat-num" id="pending-count">21</span>
         <span class="stat-label">Still<br>Pending</span>
       </div>
     </div>
@@ -814,7 +814,6 @@
         <th>Prediction</th>
         <th>Status</th>
         <th>Category</th>
-        <th>Viral Score</th>
         <th>Share</th>
       </tr>
     </thead>
@@ -982,7 +981,6 @@ function renderTable(data) {
       <td class="td-desc"><strong>${p.title}</strong><p>${p.desc.substring(0,90)}...</p></td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
-      <td>${viralDots(p.viral)}</td>
       <td class="td-share" onclick="event.stopPropagation()">
         <button onclick="shareOnX(predictions.find(x=>x.id==='${p.id}'))" title="Share on X" style="background:none;border:1px solid rgba(255,255,255,0.15);color:#ddd;padding:4px 7px;border-radius:4px;cursor:pointer;font-size:0.75rem;margin-bottom:4px;display:block;width:100%;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#ddd'">𝕏</button>
         <button onclick="shareOnLinkedIn(predictions.find(x=>x.id==='${p.id}'))" title="Share on LinkedIn" style="background:none;border:1px solid rgba(255,255,255,0.15);color:#ddd;padding:4px 7px;border-radius:4px;cursor:pointer;font-size:0.75rem;margin-bottom:4px;display:block;width:100%;transition:all 0.2s;" onmouseover="this.style.borderColor='#0A66C2';this.style.color='#0A66C2'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#ddd'">in</button>
@@ -1158,7 +1156,6 @@ async function loadNewsFromAPI() {
       heroCard.querySelector('.ep-year').textContent = `Aired ${p.year}`;
       heroCard.querySelector('h2').textContent = p.title;
       heroCard.querySelector('.latest-content p').innerHTML = `<strong style="color:#FFD520">${topMatch.title}</strong><br><br>${p.desc}`;
-      if (yearsEarlyNum) heroCard.querySelector('.gap-num').textContent = yearsEarlyNum;
     }
   }
 
