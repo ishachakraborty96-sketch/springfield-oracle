@@ -340,7 +340,8 @@
   }
 
   .search-box::placeholder {
-    opacity: 0.3;
+    opacity: 0.6;
+    color: var(--white);
   }
 
   .search-box:focus {
@@ -747,8 +748,8 @@
       padding: 16px; 
       gap: 10px;
     }
-    .search-box { width: 100%; margin-left: 0; }
-    .filter-group { flex-wrap: wrap; gap: 6px; }
+    .search-box { width: 100%; margin-left: 0; box-sizing: border-box; background: #111; }
+    .filter-group { display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px; }
     .filter-btn { font-size: 9px; padding: 5px 10px; }
 
     /* TABLE */
@@ -875,14 +876,16 @@
 <!-- FILTERS -->
 <div class="filters-bar">
   <span class="filter-label">Filter:</span>
-  <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
-  <button class="filter-btn" onclick="filterTable('confirmed', this)">Confirmed</button>
-  <button class="filter-btn" onclick="filterTable('pending', this)">Pending</button>
-  <button class="filter-btn" onclick="filterTable('disputed', this)">Disputed</button>
-  <button class="filter-btn" onclick="filterTable('Technology', this)">Tech</button>
-  <button class="filter-btn" onclick="filterTable('Politics', this)">Politics</button>
-  <button class="filter-btn" onclick="filterTable('Science', this)">Science</button>
-  <button class="filter-btn" onclick="filterTable('Sports', this)">Sports</button>
+  <div class="filter-group">
+    <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
+    <button class="filter-btn" onclick="filterTable('confirmed', this)">Confirmed</button>
+    <button class="filter-btn" onclick="filterTable('pending', this)">Pending</button>
+    <button class="filter-btn" onclick="filterTable('disputed', this)">Disputed</button>
+    <button class="filter-btn" onclick="filterTable('Technology', this)">Tech</button>
+    <button class="filter-btn" onclick="filterTable('Politics', this)">Politics</button>
+    <button class="filter-btn" onclick="filterTable('Science', this)">Science</button>
+    <button class="filter-btn" onclick="filterTable('Sports', this)">Sports</button>
+  </div>
   <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
 </div>
 
