@@ -198,12 +198,12 @@
   .latest-card {
     background: var(--yellow);
     color: var(--dark);
-    padding: 32px 40px;
+    padding: 40px 48px;
     position: relative;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     gap: 40px;
-    align-items: center;
+    align-items: start;
     animation: fadeIn 0.8s ease;
   }
 
@@ -259,14 +259,15 @@
     font-size: 40px;
     line-height: 1;
     color: var(--blue);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   .latest-content p {
-    font-size: 13px;
-    line-height: 1.7;
-    opacity: 0.8;
-    max-width: 600px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #111;
+    max-width: 640px;
+    margin-bottom: 12px;
   }
 
   .latest-year-gap {
@@ -702,19 +703,99 @@
   }
 
   @media (max-width: 768px) {
-    .header-inner { flex-direction: column; gap: 24px; padding: 24px 20px; }
-    .logo-title { font-size: 48px; }
-    .header-stats { gap: 16px; }
-    .latest-section, .filters-bar, .table-section { padding-left: 20px; padding-right: 20px; }
-    .latest-card { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
-    .filters-bar { flex-direction: column; align-items: flex-start; }
+    /* HEADER */
+    .header-inner { flex-direction: column; gap: 20px; padding: 24px 16px; }
+    .logo-title { font-size: 52px; }
+    .logo-eyebrow { font-size: 9px; }
+    .header-stats { gap: 10px; width: 100%; justify-content: space-between; }
+    .stat-pill { flex: 1; padding: 12px 8px; text-align: center; }
+    .stat-num { font-size: 28px; }
+    .stat-label { font-size: 8px; }
+    .tv-graphic { display: none; }
+
+    /* TICKER */
+    .ticker-bar { font-size: 10px; padding: 8px 0; }
+
+    /* HERO CARD */
+    .latest-section { padding: 20px 16px; }
+    .latest-card { 
+      grid-template-columns: 1fr; 
+      gap: 16px; 
+      padding: 24px 20px; 
+    }
+    .latest-episode { 
+      display: flex; 
+      align-items: center; 
+      gap: 16px; 
+      text-align: left;
+      padding: 12px 16px;
+    }
+    .ep-season { font-size: 28px; }
+    .latest-content h2 { font-size: 28px; }
+    .latest-content p { font-size: 13px; }
+    .latest-badge { font-size: 11px; left: 20px; }
+
+    /* NEWS FEED */
+    .news-section { padding: 20px 16px; }
+    .news-item { padding: 12px 0; }
+    .news-share-btns { display: none; }
+
+    /* FILTERS */
+    .filters-bar { 
+      flex-direction: column; 
+      align-items: flex-start; 
+      padding: 16px; 
+      gap: 10px;
+    }
     .search-box { width: 100%; margin-left: 0; }
-    th:nth-child(4), td:nth-child(4),
-    th:nth-child(5), td:nth-child(5),
-    th:nth-child(6), td:nth-child(6) { display: none; }
+    .filter-group { flex-wrap: wrap; gap: 6px; }
+    .filter-btn { font-size: 9px; padding: 5px 10px; }
+
+    /* TABLE */
+    .table-section { padding: 16px; }
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { min-width: 340px; font-size: 11px; }
+    th { font-size: 9px; padding: 10px 8px; }
+    td { padding: 10px 8px; }
+    .td-desc p { display: none; }
+    .td-desc strong { font-size: 11px; }
+    .td-episode { font-size: 11px; }
+    .td-episode span { font-size: 9px; display: block; }
+    /* Hide category on mobile, keep episode/prediction/status/share */
+    th:nth-child(4), td:nth-child(4) { display: none; }
+    .share-btns { gap: 4px; }
+    .share-btn { font-size: 10px; padding: 4px 6px; }
+
+    /* MODAL */
+    .modal { 
+      width: 95vw; 
+      max-height: 85vh; 
+      overflow-y: auto;
+      padding: 24px 20px;
+    }
+    .modal-title { font-size: 28px; }
+    .modal-meta { flex-direction: column; gap: 12px; }
+
+    /* SUBMIT */
+    .submit-section { padding: 32px 16px; }
     .submit-form { flex-direction: column; }
-    .submit-input { border-right: 2px solid rgba(255,255,255,0.2); border-bottom: none; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .submit-input { border-right: none; border-bottom: 2px solid rgba(255,255,255,0.2); width: 100%; }
+
+    /* FOOTER */
+    footer { 
+      flex-direction: column; 
+      gap: 12px; 
+      text-align: center; 
+      padding: 24px 16px;
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .logo-title { font-size: 42px; }
+    .latest-content h2 { font-size: 22px; }
+    .stat-num { font-size: 22px; }
+    table { min-width: 300px; }
   }
 </style>
 </head>
@@ -785,7 +866,7 @@
     <div class="latest-content">
       <h2>They Put World War III In the Script. 31 Years Later, Here We Are.</h2>
       <p>In "Lisa's Wedding" (1995), a British character tells an American: <em>"Well, we saved your ass in World War III."</em> No region. No date. Just a throwaway joke set in 2010 — aired 1995. On February 28, 2026, the US and Israel launched Operation Epic Fury — joint strikes across Iran, killing Supreme Leader Khamenei. Iran retaliated with missiles against Qatar, UAE, Kuwait, Jordan. The UN Security Council convened an emergency session.</p>
-      <p style="margin-top:12px; padding: 10px 14px; border-left: 4px solid #0B2D8F; background: rgba(11,45,143,0.12); font-size: 0.82rem; color: #111; border-radius: 2px; font-weight:500;">⚠️ <strong style="color:#0B2D8F;">Deepfake Alert:</strong> Most viral "Simpsons predicted Iran war" TikToks are AI-generated fakes with no real episode. Springfield Oracle cites only verified S06E19 dialogue — confirmed by TVTropes, Simpsons Wiki, and YARN clip database.</p>
+      <p style="margin-top:12px; padding: 12px 16px; border-left: 4px solid #0B2D8F; background: rgba(11,45,143,0.15); font-size: 0.82rem; color: #0B2D8F; border-radius: 2px; font-weight:500; line-height:1.6;">⚠️ <strong>Deepfake Alert:</strong> Most viral "Simpsons predicted Iran war" TikToks are AI-generated fakes with no real episode. Springfield Oracle cites only verified S06E19 dialogue — confirmed by TVTropes, Simpsons Wiki, and YARN clip database.</p>
     </div>
     </div>
   </div>
@@ -807,6 +888,7 @@
 
 <!-- TABLE -->
 <div class="table-section">
+  <div class="table-wrapper">
   <table id="predictions-table">
     <thead>
       <tr>
@@ -820,6 +902,7 @@
     <tbody id="table-body">
     </tbody>
   </table>
+  </div>
 </div>
 
 <!-- LIVE NEWS FEED -->
@@ -972,7 +1055,12 @@ function updateCounts(data) {
 function renderTable(data) {
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
-  data.forEach((p, i) => {
+  const sorted = [...data].sort((a, b) => {
+    const aYear = a.trueYear || a.year;
+    const bYear = b.trueYear || b.year;
+    return bYear - aYear;
+  });
+  sorted.forEach((p, i) => {
     const tr = document.createElement('tr');
     tr.className = `${p.status} row-animate`;
     tr.style.animationDelay = `${i * 0.04}s`;
