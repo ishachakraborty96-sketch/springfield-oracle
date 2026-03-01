@@ -752,20 +752,28 @@
     .filter-group { display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px; }
     .filter-btn { font-size: 9px; padding: 5px 10px; }
 
-    /* TABLE */
+    /* TABLE — card layout on mobile */
     .table-section { padding: 16px; }
-    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    table { min-width: 340px; font-size: 11px; }
-    th { font-size: 9px; padding: 10px 8px; }
-    td { padding: 10px 8px; }
+    .table-wrapper { overflow: visible; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tbody tr {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      padding: 14px;
+      cursor: pointer;
+    }
+    tbody tr:hover { background: rgba(255,213,32,0.06); }
+    td { padding: 4px 0; border: none; font-size: 12px; }
+    td:empty { display: none; }
+    .td-episode { font-size: 22px; margin-bottom: 4px; }
+    .td-episode span { font-size: 9px; }
+    .td-desc strong { font-size: 13px; }
     .td-desc p { display: none; }
-    .td-desc strong { font-size: 11px; }
-    .td-episode { font-size: 11px; }
-    .td-episode span { font-size: 9px; display: block; }
-    /* Hide category on mobile, keep episode/prediction/status/share */
-    th:nth-child(4), td:nth-child(4) { display: none; }
-    .share-btns { gap: 4px; }
-    .share-btn { font-size: 10px; padding: 4px 6px; }
+    .share-btns { margin-top: 10px; display: flex; gap: 6px; }
+    .share-btn { font-size: 11px; padding: 5px 10px; }
 
     /* MODAL */
     .modal { 
