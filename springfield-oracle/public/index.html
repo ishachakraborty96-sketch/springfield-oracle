@@ -1505,28 +1505,49 @@ async function loadNewsFromAPI() {
   const tsEl   = document.getElementById('news-timestamp');
 
   // Global top news — not just Simpsons-specific
-  const rssUrl = `https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en&ts=${Date.now()}`;
+  const rssUrl = `https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en`;
   const proxies = [
-    `https://corsproxy.io/?url=${encodeURIComponent(rssUrl)}`,
+    `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`,
+    `https://corsproxy.io/?url=${encodeURIComponent(rssUrl + '&ts=' + Date.now())}`,
     `https://api.allorigins.win/raw?url=${encodeURIComponent('https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en')}`,
-    `https://api.allorigins.win/get?url=${encodeURIComponent('https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en')}`
+    `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(rssUrl)}`
   ];
 
   let items = [];
 
   for (const endpoint of proxies) {
     try {
-      const res  = await fetch(endpoint);
+      const res  = await fetch(endpoint, { signal: AbortSignal.timeout(6000) });
       const text = await res.text();
 
-      let xmlText = text;
+      // rss2json returns JSON with items array directly
       try {
         const json = JSON.parse(text);
-        if (json.contents) xmlText = json.contents;
+        if (json.items && json.items.length) {
+          items = json.items.slice(0, 15).map(i => ({
+            title:   i.title || '',
+            link:    i.link || '#',
+            pubDate: i.pubDate || ''
+          })).filter(i => i.title);
+          if (items.length) break;
+        }
+        if (json.contents) {
+          // allorigins wrapped JSON
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(json.contents, 'text/xml');
+          const entries = Array.from(xmlDoc.querySelectorAll('item')).slice(0, 15);
+          items = entries.map(el => ({
+            title:   el.querySelector('title')?.textContent || '',
+            link:    el.querySelector('link')?.textContent || el.querySelector('guid')?.textContent || '#',
+            pubDate: el.querySelector('pubDate')?.textContent || ''
+          })).filter(i => i.title);
+          if (items.length) break;
+        }
       } catch(e) { /* raw XML */ }
 
+      // Try parse as raw XML
       const parser  = new DOMParser();
-      const xmlDoc  = parser.parseFromString(xmlText, 'text/xml');
+      const xmlDoc  = parser.parseFromString(text, 'text/xml');
       const entries = Array.from(xmlDoc.querySelectorAll('item')).slice(0, 15);
       const parsed  = entries.map(el => ({
         title:   el.querySelector('title')?.textContent || '',
