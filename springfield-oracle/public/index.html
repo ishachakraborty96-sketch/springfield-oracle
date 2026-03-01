@@ -1084,6 +1084,16 @@ async function loadNewsFromAPI() {
   }).join('');
 
   tsEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
+
+  // Update ticker with live headlines
+  const tickerEl = document.getElementById('ticker');
+  if (tickerEl && items.length) {
+    const tickerHTML = [...items, ...items].map(item => {
+      const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '';
+      return `<span class="ticker-item"><span class="ticker-dot">●</span> ${date ? date + ' — ' : ''}${item.title}</span>`;
+    }).join('');
+    tickerEl.innerHTML = tickerHTML;
+  }
 }
 
 loadNewsFromAPI();
