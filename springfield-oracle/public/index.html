@@ -820,15 +820,15 @@
     </div>
     <div class="header-stats">
       <div class="stat-pill">
-        <span class="stat-num" id="total-count">43</span>
+        <span class="stat-num" id="total-count">31</span>
         <span class="stat-label">Predictions<br>Tracked</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-num" id="confirmed-count">19</span>
+        <span class="stat-num" id="confirmed-count">16</span>
         <span class="stat-label">Confirmed<br>True</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-num" id="pending-count">21</span>
+        <span class="stat-num" id="pending-count">13</span>
         <span class="stat-label">Still<br>Pending</span>
       </div>
     </div>
@@ -1057,10 +1057,10 @@ function copyShareLink(p, btn) {
   });
 }
 
-function updateCounts(data) {
-  document.getElementById('total-count').textContent = data.length;
-  document.getElementById('confirmed-count').textContent = data.filter(p => p.status === 'confirmed').length;
-  document.getElementById('pending-count').textContent = data.filter(p => p.status === 'pending').length;
+function updateCounts() {
+  document.getElementById('total-count').textContent = predictions.length;
+  document.getElementById('confirmed-count').textContent = predictions.filter(p => p.status === 'confirmed').length;
+  document.getElementById('pending-count').textContent = predictions.filter(p => p.status === 'pending').length;
 }
 
 function renderTable(data) {
@@ -1090,7 +1090,7 @@ function renderTable(data) {
     tbody.appendChild(tr);
   });
 
-  updateCounts(predictions);
+  updateCounts();
 }
 
 let currentFilter = 'all';
@@ -1145,7 +1145,7 @@ document.addEventListener('keydown', e => {
 });
 
 renderTable(predictions);
-updateCounts(predictions);
+updateCounts();
 
 // ── PREDICTION KEYWORD MAP ────────────────────────────────────────────
 // Maps keywords in news headlines → prediction IDs
@@ -1318,7 +1318,7 @@ async function syncWithDatabase() {
       }));
       // Merge: JSON entries take precedence, keep any JS-only extras
       renderTable(mapped);
-      updateCounts(mapped);
+      updateCounts();
     }
   } catch (e) {
     // Silent fail — JS array already rendered as fallback
