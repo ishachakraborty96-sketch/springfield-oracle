@@ -1,0 +1,9 @@
+{
+  "name": "springfield-oracle",
+  "version": "1.0.0",
+  "description": "The definitive Simpsons predictions tracker — sourced, scored, live.",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

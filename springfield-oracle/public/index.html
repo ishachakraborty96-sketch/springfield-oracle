@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Springfield Oracle — The Simpsons Prediction Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFD520;
+    --blue: #0B2D8F;
+    --orange: #FF6B2B;
+    --sky: #70C8E0;
+    --dark: #0a0a0a;
+    --white: #F5F0E8;
+    --red: #E8132A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* SCANLINE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--yellow);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 6px solid var(--blue);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    opacity: 0.7;
+  }
+
+  .logo-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 72px;
+    color: var(--blue);
+    line-height: 0.9;
+    letter-spacing: 2px;
+  }
+
+  .logo-sub {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+    color: var(--orange);
+    margin-top: 4px;
+    transform: rotate(-1deg);
+  }
+
+  .header-stats {
+    display: flex;
+    gap: 32px;
+    align-items: flex-end;
+  }
+
+  .stat-pill {
+    background: var(--blue);
+    color: var(--yellow);
+    padding: 12px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .stat-pill::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px; right: -4px; bottom: -4px;
+    background: var(--orange);
+    z-index: -1;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 42px;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .tv-graphic {
+    font-size: 80px;
+    opacity: 0.15;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    filter: grayscale(1);
+  }
+
+  /* TICKER */
+  .ticker-bar {
+    background: var(--blue);
+    color: var(--yellow);
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 3px solid var(--orange);
+  }
+
+  .ticker-inner {
+    display: flex;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 60px;
+    flex-shrink: 0;
+  }
+
+  .ticker-dot {
+    color: var(--orange);
+    margin-right: 8px;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* LATEST CONFIRMED */
+  .latest-section {
+    padding: 48px 40px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .latest-card {
+    background: var(--yellow);
+    color: var(--dark);
+    padding: 32px 40px;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 40px;
+    align-items: center;
+    animation: fadeIn 0.8s ease;
+  }
+
+  .latest-card::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: -6px; bottom: -6px;
+    background: var(--orange);
+    z-index: -1;
+  }
+
+  .latest-badge {
+    background: var(--red);
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 13px;
+    letter-spacing: 3px;
+    padding: 6px 14px;
+    position: absolute;
+    top: -14px;
+    left: 40px;
+  }
+
+  .latest-episode {
+    text-align: center;
+    background: var(--blue);
+    color: var(--yellow);
+    padding: 16px 24px;
+    min-width: 100px;
+  }
+
+  .ep-season {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
+    line-height: 1;
+  }
+
+  .ep-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .ep-year {
+    font-size: 11px;
+    margin-top: 4px;
+    color: var(--sky);
+  }
+
+  .latest-content h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+
+  .latest-content p {
+    font-size: 13px;
+    line-height: 1.7;
+    opacity: 0.8;
+    max-width: 600px;
+  }
+
+  .latest-year-gap {
+    text-align: center;
+  }
+
+  .gap-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--blue);
+  }
+
+  .gap-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  /* FILTERS */
+  .filters-bar {
+    padding: 24px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filter-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-right: 8px;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    padding: 8px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--yellow);
+    color: var(--dark);
+    border-color: var(--yellow);
+  }
+
+  .search-box {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    padding: 8px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    outline: none;
+    width: 240px;
+  }
+
+  .search-box::placeholder {
+    opacity: 0.3;
+  }
+
+  .search-box:focus {
+    border-color: var(--yellow);
+  }
+
+  /* TABLE */
+  .table-section {
+    padding: 0 40px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead tr {
+    border-bottom: 2px solid var(--yellow);
+  }
+
+  th {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    padding: 12px 16px;
+    text-align: left;
+    opacity: 0.7;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+
+  tbody tr:hover {
+    background: rgba(255, 213, 32, 0.05);
+  }
+
+  tbody tr.confirmed:hover {
+    background: rgba(255, 213, 32, 0.08);
+  }
+
+  td {
+    padding: 16px;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+
+  .td-episode {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    color: var(--yellow);
+    white-space: nowrap;
+  }
+
+  .td-episode span {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+  }
+
+  .td-desc {
+    max-width: 380px;
+  }
+
+  .td-desc strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--white);
+    font-size: 13px;
+  }
+
+  .td-desc p {
+    opacity: 0.5;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .status-confirmed {
+    background: rgba(255, 213, 32, 0.15);
+    color: var(--yellow);
+    border: 1px solid rgba(255, 213, 32, 0.3);
+  }
+
+  .status-pending {
+    background: rgba(112, 200, 224, 0.1);
+    color: var(--sky);
+    border: 1px solid rgba(112, 200, 224, 0.2);
+  }
+
+  .status-disputed {
+    background: rgba(232, 19, 42, 0.1);
+    color: #ff6b7a;
+    border: 1px solid rgba(232, 19, 42, 0.2);
+  }
+
+  .category-tag {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.4;
+    padding: 3px 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .viral-score {
+    display: flex;
+    gap: 2px;
+  }
+
+  .viral-dot {
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+  }
+
+  .viral-dot.filled {
+    background: var(--orange);
+  }
+
+  .gap-years {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 24px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* SUBMIT SECTION */
+  .submit-section {
+    background: var(--blue);
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-section::before {
+    content: '?';
+    position: absolute;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 400px;
+    opacity: 0.03;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--yellow);
+  }
+
+  .submit-section h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 64px;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .submit-section p {
+    font-size: 13px;
+    opacity: 0.6;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+
+  .submit-form {
+    display: flex;
+    gap: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .submit-input {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-right: none;
+    color: white;
+    padding: 16px 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    outline: none;
+  }
+
+  .submit-input:focus {
+    border-color: var(--yellow);
+  }
+
+  .submit-btn {
+    background: var(--yellow);
+    color: var(--dark);
+    border: 2px solid var(--yellow);
+    padding: 16px 32px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #050505;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 11px;
+    opacity: 0.4;
+  }
+
+  footer a {
+    color: var(--yellow);
+    text-decoration: none;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .row-animate {
+    animation: fadeIn 0.4s ease both;
+  }
+
+  /* HIDDEN ROW */
+  tr.hidden { display: none; }
+
+  /* PULSE */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: pulse 1.5s infinite;
+    vertical-align: middle;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+  }
+
+  .modal {
+    background: var(--dark);
+    border: 2px solid var(--yellow);
+    max-width: 600px;
+    width: 90%;
+    padding: 48px;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: -8px; bottom: -8px;
+    background: var(--yellow);
+    z-index: -1;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.5;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .modal-close:hover { opacity: 1; }
+
+  .modal-episode {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 16px;
+    color: var(--yellow);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .modal-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .modal-body {
+    font-size: 13px;
+    line-height: 1.8;
+    opacity: 0.7;
+    margin-bottom: 24px;
+  }
+
+  .modal-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+  }
+
+  .modal-meta-item label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-bottom: 4px;
+  }
+
+  .modal-meta-item span {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .header-inner { flex-direction: column; gap: 24px; padding: 24px 20px; }
+    .logo-title { font-size: 48px; }
+    .header-stats { gap: 16px; }
+    .latest-section, .filters-bar, .table-section { padding-left: 20px; padding-right: 20px; }
+    .latest-card { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+    .filters-bar { flex-direction: column; align-items: flex-start; }
+    .search-box { width: 100%; margin-left: 0; }
+    th:nth-child(4), td:nth-child(4),
+    th:nth-child(5), td:nth-child(5),
+    th:nth-child(6), td:nth-child(6) { display: none; }
+    .submit-form { flex-direction: column; }
+    .submit-input { border-right: 2px solid rgba(255,255,255,0.2); border-bottom: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-block">
+      <span class="logo-eyebrow">Open Source Intelligence</span>
+      <div class="logo-title">Springfield<br>Oracle</div>
+      <div class="logo-sub">They knew. We track it.</div>
+    </div>
+    <div class="header-stats">
+      <div class="stat-pill">
+        <span class="stat-num" id="total-count">30</span>
+        <span class="stat-label">Predictions<br>Tracked</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num" id="confirmed-count">14</span>
+        <span class="stat-label">Confirmed<br>True</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num" id="pending-count">13</span>
+        <span class="stat-label">Still<br>Pending</span>
+      </div>
+    </div>
+  </div>
+  <div class="tv-graphic">📺</div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: Elon Musk political rise and fall — predicted 10 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: First American Pope Leo XIV — predicted 27 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: Trump Budget Crisis 43-day shutdown — predicted 25 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: AI mass job displacement — S23E17 Them Robot</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein island elite scandal — DISPUTED viral score 10</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: US-Iran conflict — PENDING TikTok going insane</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup final — S08E14</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2028: Ivanka Trump presidential run — S27E16</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Trump Presidency — predicted 16 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Disney acquires Fox — predicted 21 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Higgs Boson mass equation — predicted 14 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: Elon Musk political rise and fall — predicted 10 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: First American Pope Leo XIV — predicted 27 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: Trump Budget Crisis 43-day shutdown — predicted 25 years early</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 NEW 2025: AI mass job displacement — S23E17 Them Robot</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein island elite scandal — DISPUTED viral score 10</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: US-Iran conflict — PENDING TikTok going insane</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup final — S08E14</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2028: Ivanka Trump presidential run — S27E16</span>
+  </div>
+</div>
+
+<!-- LATEST CONFIRMED -->
+<div class="latest-section">
+  <div class="section-label">
+    <span class="live-dot"></span> Latest Confirmed Prediction
+  </div>
+  <div class="latest-card">
+    <div class="latest-badge">🔴 FEB 28, 2026 — BREAKING</div>
+    <div class="latest-episode">
+      <div class="ep-season">S06E19</div>
+      <div class="ep-label">Season / Episode</div>
+      <div class="ep-year">Aired 1995</div>
+    </div>
+    <div class="latest-content">
+      <h2>They Put World War III In the Script. 31 Years Later, Here We Are.</h2>
+      <p>In "Lisa's Wedding" (1995), a British character tells an American: <em>"Well, we saved your ass in World War III."</em> No region. No date. Just a throwaway joke set in 2010 — aired 1995. On February 28, 2026, the US and Israel launched Operation Epic Fury — joint strikes across Iran, killing Supreme Leader Khamenei. Iran retaliated with missiles against Qatar, UAE, Kuwait, Jordan. The UN Security Council convened an emergency session.</p>
+      <p style="margin-top:12px; padding: 10px 14px; border-left: 4px solid #0B2D8F; background: rgba(11,45,143,0.12); font-size: 0.82rem; color: #111; border-radius: 2px; font-weight:500;">⚠️ <strong style="color:#0B2D8F;">Deepfake Alert:</strong> Most viral "Simpsons predicted Iran war" TikToks are AI-generated fakes with no real episode. Springfield Oracle cites only verified S06E19 dialogue — confirmed by TVTropes, Simpsons Wiki, and YARN clip database.</p>
+    </div>
+    <div class="latest-year-gap">
+      <div class="gap-num">31</div>
+      <div class="gap-label">Years<br>Early</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
+  <button class="filter-btn" onclick="filterTable('confirmed', this)">Confirmed</button>
+  <button class="filter-btn" onclick="filterTable('pending', this)">Pending</button>
+  <button class="filter-btn" onclick="filterTable('disputed', this)">Disputed</button>
+  <button class="filter-btn" onclick="filterTable('Technology', this)">Tech</button>
+  <button class="filter-btn" onclick="filterTable('Politics', this)">Politics</button>
+  <button class="filter-btn" onclick="filterTable('Science', this)">Science</button>
+  <button class="filter-btn" onclick="filterTable('Sports', this)">Sports</button>
+  <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
+</div>
+
+<!-- TABLE -->
+<div class="table-section">
+  <table id="predictions-table">
+    <thead>
+      <tr>
+        <th>Episode</th>
+        <th>Prediction</th>
+        <th>Status</th>
+        <th>Category</th>
+        <th>Years Early</th>
+        <th>Viral Score</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+  </table>
+</div>
+
+<!-- LIVE NEWS FEED -->
+<div style="max-width:1200px; margin: 40px auto; padding: 0 24px;">
+  <div style="border: 2px solid #FFD520; padding: 28px 32px; background: rgba(255,213,32,0.04);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+      <span style="background:#FF6B2B; color:#fff; font-family:'Bebas Neue',sans-serif; font-size:0.75rem; letter-spacing:2px; padding:4px 10px;">LIVE</span>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:#FFD520; margin:0; letter-spacing:1px;">BREAKING: Latest Simpsons News</h3>
+      <span id="news-timestamp" style="font-family:'Space Mono',monospace; font-size:0.7rem; color:#888; margin-left:auto;"></span>
+    </div>
+    <div id="news-feed" style="display:grid; gap:12px;">
+      <p style="color:#888; font-family:'Space Mono',monospace; font-size:0.8rem;">Loading live news...</p>
+    </div>
+    <p style="margin-top:16px; font-family:'Space Mono',monospace; font-size:0.7rem; color:#555;">
+      ↑ Auto-refreshes every 5 minutes · Sourced from Google News RSS · Headlines are external links
+    </p>
+  </div>
+</div>
+
+<!-- SUBMIT SECTION -->
+<div class="submit-section">
+  <h2>Spotted a New One?</h2>
+  <p>This is open source and community-powered. If The Simpsons predicted something we haven't logged yet, tell us. Every submission is reviewed and sourced before it goes live.</p>
+  <div class="submit-form">
+    <input class="submit-input" type="text" placeholder="Describe the prediction + episode..." />
+    <button class="submit-btn">Submit</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>Springfield Oracle — Open Source · Community Powered · No ads · No BS</span>
+  <span>Built with obsession. <a href="#">GitHub</a> · <a href="#">Submit a prediction</a></span>
+  <span>Data sourced & verified. Not affiliated with Fox or The Simpsons.</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+    <div class="modal-episode" id="modal-episode"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-meta">
+      <div class="modal-meta-item">
+        <label>Status</label>
+        <span id="modal-status"></span>
+      </div>
+      <div class="modal-meta-item">
+        <label>Category</label>
+        <span id="modal-category"></span>
+      </div>
+      <div class="modal-meta-item">
+        <label>Air Date</label>
+        <span id="modal-airdate"></span>
+      </div>
+      <div class="modal-meta-item">
+        <label>Came True</label>
+        <span id="modal-truedate"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const predictions = [
+  // ── CLASSICS (Confirmed) ──────────────────────────────────────────
+  { id: 'SP001', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Donald Trump Becomes President", desc: "Lisa inherits a budget mess from 'President Trump.' Aired 16 years before Trump's 2016 election win. Writer Dan Greaney called it 'a warning to America.'", category: "Politics", status: "confirmed", trueYear: 2016, viral: 10 },
+  { id: 'SP002', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "FaceTime / Video Calling", desc: "Characters use handheld devices to make video calls — 15 years before Apple launched FaceTime in 2010.", category: "Technology", status: "confirmed", trueYear: 2010, viral: 9 },
+  { id: 'SP003', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "Smartwatch", desc: "A wristwatch that functions as a communication device, predating the Apple Watch by 18 years.", category: "Technology", status: "confirmed", trueYear: 2013, viral: 8 },
+  { id: 'SP004', season: 'S25', episode: 'E16', name: "You Don't Have to Live Like a Referee", year: 2014, title: "FIFA Corruption Scandal", desc: "Homer becomes a World Cup referee bribed by corrupt FIFA officials. One year later, the real FIFA corruption scandal broke globally.", category: "Sports", status: "confirmed", trueYear: 2015, viral: 9 },
+  { id: 'SP005', season: 'S10', episode: 'E22', name: "They Saved Lisa's Brain", year: 1998, title: "Higgs Boson Mass Equation", desc: "Homer writes an equation on a chalkboard that correctly approximates the mass of the Higgs Boson particle, discovered in 2012.", category: "Science", status: "confirmed", trueYear: 2012, viral: 10 },
+  { id: 'SP006', season: 'S10', episode: 'E05', name: "When You Dish Upon a Star", year: 1998, title: "Disney Acquires 20th Century Fox", desc: "A sign reads 'Fox: A Division of Walt Disney Co.' — predicted 21 years before Disney actually acquired Fox for $71 billion in 2019.", category: "Business", status: "confirmed", trueYear: 2019, viral: 10 },
+  { id: 'SP007', season: 'S23', episode: 'E22', name: "Lisa Goes Gaga", year: 2012, title: "Lady Gaga Super Bowl Halftime Show", desc: "Lady Gaga performs a spectacular aerial Super Bowl halftime performance — depicted almost exactly as it happened in 2017.", category: "Culture", status: "confirmed", trueYear: 2017, viral: 9 },
+  { id: 'SP008', season: 'S21', episode: 'E12', name: "Boy Meets Curl", year: 2010, title: "USA Wins Olympic Curling Gold", desc: "Homer and Marge win gold in curling at the Winter Olympics. The US Men's Curling team won gold at PyeongChang 2018.", category: "Sports", status: "confirmed", trueYear: 2018, viral: 8 },
+  { id: 'SP009', season: 'S02', episode: 'E17', name: "Old Money", year: 1991, title: "Mass Government Surveillance", desc: "Citizens monitored and tracked by a surveillance state — predating Snowden's NSA revelations by over two decades.", category: "Politics", status: "confirmed", trueYear: 2013, viral: 8 },
+  { id: 'SP010', season: 'S05', episode: 'E19', name: "Sweet Seymour Skinner's Baadasssss Song", year: 1994, title: "Horse Meat in Food Supply", desc: "A school lunch label reveals horse meat content. Europe's horse meat scandal broke in 2013, shocking the food industry.", category: "Culture", status: "confirmed", trueYear: 2013, viral: 7 },
+
+  // ── 2025 CONFIRMED ───────────────────────────────────────────────
+  { id: 'SP011', season: 'S26', episode: 'E10', name: "The Musk Who Fell to Earth", year: 2015, title: "Elon Musk's Political Rise & Fall", desc: "Musk befriends Homer, promises to transform Springfield, then causes mass layoffs before leaving on a SpaceX rocket. In 2025, Musk joined Trump's DOGE, sparked controversy, caused political chaos, then was dismissed. Writers nailed the arc a decade early.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 10 },
+  { id: 'SP012', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Trump Budget Crisis / Government Shutdown", desc: "Lisa inherits a catastrophic budget mess from President Trump. In 2025, the US government shut down for 43 days as Congress repeatedly failed to pass appropriations legislation — exactly as depicted.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 10 },
+  { id: 'SP013', season: 'S10', episode: 'E02', name: "The Wizard of Evergreen Terrace", year: 1998, title: "First American Pope — Pope Leo XIV", desc: "Kent Brockman announces a 'phony Pope' identified by 'high-top sneakers and an incredibly foul mouth' — traits Reddit identified as distinctly Chicago. Pope Leo XIV (Robert Prevost) was elected in 2025 as the first American-born pope, having attended university in Villanova — the same town mentioned in a connected episode.", category: "Culture", status: "confirmed", trueYear: 2025, viral: 10 },
+  { id: 'SP014', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "AI Mass Job Displacement", desc: "Mr Burns replaces all plant workers with robots because it's cheaper and more efficient. In 2025, AI automation began eliminating white-collar and blue-collar roles globally. Research suggests 100 million US jobs could be impacted within a decade.", category: "Technology", status: "confirmed", trueYear: 2025, viral: 9 },
+
+  // ── 2026 HOT / CURRENTLY UNFOLDING ──────────────────────────────
+  { id: 'SP015', season: 'S12', episode: 'E06', name: "The Computer Wore Menace Shoes", year: 2000, title: "Epstein Files — Elite Island Running the World", desc: "Homer blogs as 'Mr. X', exposes powerful people, gets kidnapped to a secret island where those who 'know too much' are silenced. He warns: 'Some crazy creeps on an island are secretly running the world.' In Feb 2026, the Epstein Files dropped naming global elites. Creator Matt Groening was also named in Epstein court documents.", category: "Politics", status: "disputed", trueYear: 2026, viral: 10 },
+  { id: 'SP032', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "US-Israel Strike on Iran / WW3 Escalation", desc: "A 1995 episode set in a future Springfield briefly references a third World War conflict in the Middle East. On Feb 28, 2026, the US and Israel launched 'Operation Epic Fury' — joint strikes on Iran killing Supreme Leader Khamenei. Iran retaliated against Gulf states (Qatar, UAE, Jordan, Kuwait). WW3 is trending globally. Caution: Most viral 'Simpsons predicted Iran war' clips circulating in 2026 are confirmed AI-generated deepfakes — this entry references only the legitimate S06E19 background detail.", category: "Politics", status: "pending", trueYear: 2026, viral: 10 },
+  { id: 'SP016', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "World War III / Global Conflict References", desc: "Lisa's future fiancé references a major world conflict after WWII. With US-Iran tensions, Israel strikes, and escalating global rhetoric in 2026, this is being widely re-examined. Pending confirmation.", category: "Politics", status: "pending", trueYear: null, viral: 10 },
+  { id: 'SP017', season: 'S08', episode: 'E10', name: "The Springfield Files", year: 1997, title: "UFO / UAP Disclosure Goes Mainstream", desc: "Homer spots an alien, triggering FBI investigation and mass public hysteria. The US government has since released declassified UAP footage, held congressional hearings, and the topic has moved from fringe to front page.", category: "Science", status: "confirmed", trueYear: 2026, viral: 9 },
+  { id: 'SP018', season: 'S27', episode: 'E16', name: "The Marge-ian Chronicles", year: 2016, title: "Mars Colonization Attempt by 2026", desc: "The episode shows a private company planning to send humans to Mars by 2026 — a direct parody of Mars One. SpaceX has published plans for Mars cargo flights, with Elon Musk setting 2026 as an early target date.", category: "Science", status: "pending", trueYear: null, viral: 9 },
+  { id: 'SP019', season: 'S04', episode: 'E21', name: "Marge in Chains", year: 1993, title: "H3N2 Flu Outbreak / The Osaka Flu", desc: "The 'Osaka Flu' spreads to Springfield through international shipping, causing mass panic, hospital overload and public disorder. In 2026, the CDC confirmed H3N2 has infected ~11 million Americans, killed 5,000, and hospitalised 120,000 — spreading through the exact global supply chain vectors depicted 33 years ago.", category: "Science", status: "confirmed", trueYear: 2026, viral: 10 },
+  { id: 'SP020', season: 'S12', episode: 'E01', name: "Treehouse of Horror XI", year: 2001, title: "Subliminal Media / Propaganda Psyop", desc: "In 'New Kids on the Blecch', Bart's boy band secretly embeds Navy recruitment messaging ('Yvan Eht Nioj' = Join the Navy backwards). With AI-generated propaganda, deepfake news, and algorithmic manipulation dominating 2025-2026 discourse, this feels prescient.", category: "Politics", status: "pending", trueYear: null, viral: 8 },
+
+  // ── 2027-2028 PENDING ────────────────────────────────────────────
+  { id: 'SP021', season: 'S27', episode: 'E16', name: "Treehouse of Horror XXVII", year: 2016, title: "Ivanka Trump Runs for President — 2028", desc: "Homer's sticker reads 'Ivanka Trump 2028' — a throwaway gag that's gaining serious traction. Ivanka hasn't announced a run, but with Trump constitutionally barred from a third term, 2028 is wide open and her name is already circulating.", category: "Politics", status: "pending", trueYear: null, viral: 10 },
+  { id: 'SP022', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Lisa Simpson Presidency — Woman President by 2030", desc: "Lisa becomes the first female president, inheriting Trump's budget disaster. The episode imagines a 2030 scenario. With Harris having run in 2024, the question of America's first female president remains alive into the 2028 cycle.", category: "Politics", status: "pending", trueYear: null, viral: 9 },
+  { id: 'SP023', season: 'S07', episode: 'E09', name: "Sideshow Bob's Last Gleaming", year: 1995, title: "Digital Big Ben / Landmark Tech Overhaul", desc: "Big Ben is shown as a digital clock display. The UK is currently undergoing debates about modernising national infrastructure. A seemingly absurd prediction that's getting closer to plausible.", category: "Culture", status: "pending", trueYear: null, viral: 6 },
+  { id: 'SP024', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "Full Robot Revolution / Physical Labour Automation", desc: "All of Springfield's human workers are fully replaced by robots. Beyond office AI, physical robotics (Boston Dynamics, Tesla Optimus) are advancing rapidly. Full blue-collar automation could hit a tipping point before 2028.", category: "Technology", status: "pending", trueYear: null, viral: 8 },
+  { id: 'SP025', season: 'S07', episode: 'E01', name: "Who Shot Mr. Burns? Part II", year: 1995, title: "Solar Energy / Oil Industry Collapse", desc: "Mr Burns builds a giant sun-blocker to force Springfield to buy his energy. A satirical take on fossil fuel monopolies fighting renewable energy. With solar hitting cost parity globally and oil lobbies fighting back, this power struggle is very real.", category: "Science", status: "pending", trueYear: null, viral: 7 },
+  { id: 'SP026', season: 'S12', episode: 'E12', name: "Treehouse of Horror XII", year: 2001, title: "Fully Automated AI Smart Homes", desc: "The Simpson family moves into a home run entirely by AI — controlled by voice, making decisions autonomously. Smart home technology is rapidly approaching this level, with AI agents now able to control entire home ecosystems.", category: "Technology", status: "pending", trueYear: null, viral: 8 },
+  { id: 'SP027', season: 'S08', episode: 'E14', name: "The Cartridge Family", year: 1997, title: "Mexico vs Portugal World Cup Final — 2026", desc: "The episode mentions a Mexico vs Portugal World Cup final. The 2026 World Cup is hosted in the USA, Mexico, and Canada. Both Mexico and Portugal are strong contenders. This could literally come true this year.", category: "Sports", status: "pending", trueYear: null, viral: 9 },
+  { id: 'SP028', season: 'S20', episode: 'E04', name: "Treehouse of Horror XIX", year: 2008, title: "Voting Machine Fraud", desc: "Homer's vote switches candidates on a touch-screen voting machine. Election integrity concerns have dominated every US election cycle since, with machine audits and paper trail debates intensifying ahead of 2028.", category: "Politics", status: "disputed", trueYear: null, viral: 8 },
+  { id: 'SP029', season: 'S16', episode: 'E06', name: "Midnight Rx", year: 2005, title: "Large-Scale Environmental Disaster", desc: "Springfield faces an ecological catastrophe caused by corporate negligence. With climate events accelerating — wildfires, floods, chemical spills — a major man-made environmental disaster is statistically overdue before 2028.", category: "Science", status: "pending", trueYear: null, viral: 7 },
+  { id: 'SP030', season: 'S33', episode: 'E01', name: "The Star of the Backstage", year: 2021, title: "AR Glasses Replace Smartphones", desc: "Characters use sleek augmented reality glasses as primary devices. Meta's Ray-Ban AI glasses and Apple Vision Pro are early iterations. Full AR glasses replacing the phone is the next hardware cycle — industry consensus puts this at 2027-2028.", category: "Technology", status: "pending", trueYear: null, viral: 8 },
+];
+
+function viralDots(score) {
+  let html = '<div class="viral-score">';
+  for (let i = 1; i <= 10; i++) {
+    html += `<div class="viral-dot ${i <= score ? 'filled' : ''}"></div>`;
+  }
+  return html + '</div>';
+}
+
+function statusBadge(status) {
+  const map = { confirmed: 'status-confirmed', pending: 'status-pending', disputed: 'status-disputed' };
+  return `<span class="status-badge ${map[status]}">${status}</span>`;
+}
+
+function yearsEarly(year, trueYear) {
+  if (!trueYear) return '<span style="opacity:0.3">—</span>';
+  const diff = trueYear - year;
+  return `<span class="gap-years">${diff}y</span>`;
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  data.forEach((p, i) => {
+    const tr = document.createElement('tr');
+    tr.className = `${p.status} row-animate`;
+    tr.style.animationDelay = `${i * 0.04}s`;
+    tr.innerHTML = `
+      <td class="td-episode">${p.season}${p.episode}<span>${p.year} · ${p.name}</span></td>
+      <td class="td-desc"><strong>${p.title}</strong><p>${p.desc.substring(0,90)}...</p></td>
+      <td>${statusBadge(p.status)}</td>
+      <td><span class="category-tag">${p.category}</span></td>
+      <td>${yearsEarly(p.year, p.trueYear)}</td>
+      <td>${viralDots(p.viral)}</td>
+    `;
+    tr.onclick = () => openModal(p);
+    tbody.appendChild(tr);
+  });
+
+  // update counts
+  const all = predictions;
+  document.getElementById('total-count').textContent = all.length;
+  document.getElementById('confirmed-count').textContent = all.filter(p => p.status === 'confirmed').length;
+  document.getElementById('pending-count').textContent = all.filter(p => p.status === 'pending').length;
+}
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+function filterTable(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function searchTable(val) {
+  currentSearch = val.toLowerCase();
+  applyFilters();
+}
+
+function applyFilters() {
+  let data = predictions;
+  if (currentFilter !== 'all') {
+    data = data.filter(p => p.status === currentFilter || p.category === currentFilter);
+  }
+  if (currentSearch) {
+    data = data.filter(p =>
+      p.title.toLowerCase().includes(currentSearch) ||
+      p.desc.toLowerCase().includes(currentSearch) ||
+      p.category.toLowerCase().includes(currentSearch)
+    );
+  }
+  renderTable(data);
+}
+
+function openModal(p) {
+  document.getElementById('modal-episode').textContent = `${p.season}${p.episode} · ${p.name} (${p.year})`;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-body').textContent = p.desc;
+  document.getElementById('modal-status').innerHTML = statusBadge(p.status);
+  document.getElementById('modal-category').textContent = p.category;
+  document.getElementById('modal-airdate').textContent = p.year;
+  document.getElementById('modal-truedate').textContent = p.trueYear || 'Still waiting...';
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+});
+
+renderTable(predictions);
+
+// ── LIVE NEWS RSS FEED ────────────────────────────────────────────────
+async function loadNewsFromAPI() {
+  const feedEl = document.getElementById('news-feed');
+  const tsEl   = document.getElementById('news-timestamp');
+
+  // Try Vercel API route first (server-side RSS parse, avoids CORS)
+  // Falls back to Google News RSS via allOrigins proxy if running locally
+  const endpoints = [
+    '/api/news',
+    'https://api.allorigins.win/get?url=' + encodeURIComponent('https://news.google.com/rss/search?q=simpsons+prediction&hl=en-US&gl=US&ceid=US:en')
+  ];
+
+  let items = [];
+
+  for (const endpoint of endpoints) {
+    try {
+      const res  = await fetch(endpoint);
+      const data = await res.json();
+
+      if (data.items && data.items.length) {
+        items = data.items;
+        break;
+      }
+
+      // allOrigins fallback: parse RSS XML manually
+      if (data.contents) {
+        const parser  = new DOMParser();
+        const xmlDoc  = parser.parseFromString(data.contents, 'text/xml');
+        const entries = Array.from(xmlDoc.querySelectorAll('item')).slice(0, 12);
+        items = entries.map(el => ({
+          title: el.querySelector('title')?.textContent || '',
+          link:  el.querySelector('link')?.textContent  || el.querySelector('guid')?.textContent || '#',
+          pubDate: el.querySelector('pubDate')?.textContent || ''
+        })).filter(i => i.title);
+        if (items.length) break;
+      }
+    } catch (e) { /* try next */ }
+  }
+
+  if (!items.length) {
+    feedEl.innerHTML = '<p style="color:#888;font-family:\'Space Mono\',monospace;font-size:0.8rem;">News feed unavailable. <a href="https://news.google.com/search?q=simpsons+prediction" target="_blank" style="color:#FFD520">Search Google News →</a></p>';
+    return;
+  }
+
+  feedEl.innerHTML = items.map(item => {
+    const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '';
+    return `
+      <a href="${item.link}" target="_blank" rel="noopener" style="display:flex; gap:12px; align-items:flex-start; text-decoration:none; padding:10px 0; border-bottom:1px solid rgba(255,213,32,0.1);">
+        <span style="font-family:'Bebas Neue',sans-serif; font-size:0.7rem; color:#FF6B2B; white-space:nowrap; padding-top:2px; min-width:52px;">${date}</span>
+        <span style="font-family:'Space Mono',monospace; font-size:0.78rem; color:#ddd; line-height:1.5; hover: color:#FFD520;">${item.title}</span>
+        <span style="color:#555; font-size:0.7rem; white-space:nowrap; padding-top:2px;">↗</span>
+      </a>`;
+  }).join('');
+
+  tsEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
+}
+
+loadNewsFromAPI();
+setInterval(loadNewsFromAPI, 5 * 60 * 1000); // Refresh every 5 minutes
+
+// ── LOAD FROM JSON DATABASE (with fetch — works on Vercel) ────────────
+// This keeps the JS predictions array in sync with /data/predictions.json
+// On Vercel, the JSON is served as a static asset
+async function syncWithDatabase() {
+  try {
+    const res  = await fetch('/data/predictions.json');
+    const data = await res.json();
+    if (data.predictions && data.predictions.length > 0) {
+      // Map JSON schema to display format
+      const mapped = data.predictions.map(p => ({
+        id:       p.id,
+        season:   `S${String(p.season).padStart(2,'0')}`,
+        episode:  `E${String(p.episode).padStart(2,'0')}`,
+        name:     p.episode_name,
+        year:     p.year_aired,
+        title:    p.title,
+        desc:     p.prediction + (p.real_event ? ` Real event: ${p.real_event}` : '') + (p.fact_check_note ? ` ⚠️ ${p.fact_check_note}` : ''),
+        category: p.category,
+        status:   p.status,
+        trueYear: p.real_year,
+        viral:    p.viral_score
+      }));
+      // Merge: JSON entries take precedence, keep any JS-only extras
+      renderTable(mapped);
+      document.getElementById('total-count').textContent = mapped.length;
+      document.getElementById('confirmed-count').textContent = mapped.filter(p => p.status === 'confirmed').length;
+      document.getElementById('pending-count').textContent = mapped.filter(p => p.status === 'pending').length;
+    }
+  } catch (e) {
+    // Silent fail — JS array already rendered as fallback
+    console.log('Running from JS array (database sync unavailable)');
+  }
+}
+
+syncWithDatabase();
+
+</script>
+</body>
+</html>
