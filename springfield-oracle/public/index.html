@@ -975,6 +975,11 @@
         <span id="modal-truedate"></span>
       </div>
     </div>
+    <div id="modal-share" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="modal-share-x" onclick="modalShareX()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">𝕏 Share on X</button>
+      <button id="modal-share-li" onclick="modalShareLinkedIn()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#0A66C2';this.style.color='#0A66C2'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">in Share on LinkedIn</button>
+      <button id="modal-share-copy" onclick="modalCopyLink(this)" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">🔗 Copy</button>
+    </div>
   </div>
 </div>
 
@@ -1039,21 +1044,49 @@ function yearsEarly(year, trueYear) {
   return `<span class="gap-years">${diff}y</span>`;
 }
 
+let currentModalPrediction = null;
+
+function buildShareText(p, format = 'x') {
+  const status = p.status === 'confirmed' ? '✅ CONFIRMED' : p.status === 'disputed' ? '⚠️ DISPUTED' : '👀 UNFOLDING NOW';
+  const connection = `The Simpsons wrote this into ${p.name} (${p.season}${p.episode}) back in ${p.year}.`;
+  const cta = 'Every prediction tracked at springfield-oracle.vercel.app';
+
+  if (format === 'x') {
+    return `${status}: ${p.title}\n\n${connection}\n\n${cta}\n\n#TheSimpsons #SpringfieldOracle`;
+  } else {
+    return `${status}: ${p.title}\n\n${connection}\n\n${cta}`;
+  }
+}
+
 function shareOnX(p) {
-  const text = `The Simpsons wrote "${p.title}" into a script in ${p.year}. (${p.season}${p.episode})\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle`;
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(buildShareText(p, 'x'))}`, '_blank');
 }
 
 function shareOnLinkedIn(p) {
-  const url = 'https://springfield-oracle.vercel.app';
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://springfield-oracle.vercel.app')}`, '_blank');
 }
 
 function copyShareLink(p, btn) {
-  const text = `The Simpsons wrote "${p.title}" into a script in ${p.year}. (${p.season}${p.episode}) → springfield-oracle.vercel.app — Built by Isha Godboley`;
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(buildShareText(p, 'copy')).then(() => {
     btn.textContent = '✓';
     setTimeout(() => { btn.textContent = '🔗'; }, 1500);
+  });
+}
+
+function modalShareX() {
+  if (!currentModalPrediction) return;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(buildShareText(currentModalPrediction, 'x'))}`, '_blank');
+}
+
+function modalShareLinkedIn() {
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://springfield-oracle.vercel.app')}`, '_blank');
+}
+
+function modalCopyLink(btn) {
+  if (!currentModalPrediction) return;
+  navigator.clipboard.writeText(buildShareText(currentModalPrediction, 'copy')).then(() => {
+    btn.textContent = '✓ Copied';
+    setTimeout(() => { btn.textContent = '🔗 Copy'; }, 1500);
   });
 }
 
@@ -1124,6 +1157,7 @@ function applyFilters() {
 }
 
 function openModal(p) {
+  currentModalPrediction = p;
   document.getElementById('modal-episode').textContent = `${p.season}${p.episode} · ${p.name} (${p.year})`;
   document.getElementById('modal-title').textContent = p.title;
   document.getElementById('modal-body').textContent = p.desc;
