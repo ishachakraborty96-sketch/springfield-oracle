@@ -1036,36 +1036,38 @@ async function loadNewsFromAPI() {
 
   // Try Vercel API route first (server-side RSS parse, avoids CORS)
   // Falls back to Google News RSS via allOrigins proxy if running locally
-  const endpoints = [
-    'https://api.allorigins.win/get?url=' + encodeURIComponent('https://news.google.com/rss/search?q=simpsons+prediction&hl=en-US&gl=US&ceid=US:en'),
-    '/api/news'
+  const rssUrl = 'https://news.google.com/rss/search?q=simpsons+prediction&hl=en-US&gl=US&ceid=US:en';
+  const proxies = [
+    `https://corsproxy.io/?url=${encodeURIComponent(rssUrl)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
+    `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`
   ];
 
   let items = [];
 
-  for (const endpoint of endpoints) {
+  for (const endpoint of proxies) {
     try {
       const res  = await fetch(endpoint);
-      const data = await res.json();
+      const text = await res.text();
 
-      if (data.items && data.items.length) {
-        items = data.items;
-        break;
-      }
+      // Try parsing as JSON first (allOrigins /get wrapper)
+      let xmlText = text;
+      try {
+        const json = JSON.parse(text);
+        if (json.contents) xmlText = json.contents;
+      } catch(e) { /* raw XML, use as-is */ }
 
-      // allOrigins fallback: parse RSS XML manually
-      if (data.contents) {
-        const parser  = new DOMParser();
-        const xmlDoc  = parser.parseFromString(data.contents, 'text/xml');
-        const entries = Array.from(xmlDoc.querySelectorAll('item')).slice(0, 12);
-        items = entries.map(el => ({
-          title: el.querySelector('title')?.textContent || '',
-          link:  el.querySelector('link')?.textContent  || el.querySelector('guid')?.textContent || '#',
-          pubDate: el.querySelector('pubDate')?.textContent || ''
-        })).filter(i => i.title);
-        if (items.length) break;
-      }
-    } catch (e) { /* try next */ }
+      const parser  = new DOMParser();
+      const xmlDoc  = parser.parseFromString(xmlText, 'text/xml');
+      const entries = Array.from(xmlDoc.querySelectorAll('item')).slice(0, 12);
+      const parsed  = entries.map(el => ({
+        title:   el.querySelector('title')?.textContent || '',
+        link:    el.querySelector('link')?.textContent || el.querySelector('guid')?.textContent || '#',
+        pubDate: el.querySelector('pubDate')?.textContent || ''
+      })).filter(i => i.title);
+
+      if (parsed.length) { items = parsed; break; }
+    } catch (e) { /* try next proxy */ }
   }
 
   if (!items.length) {
