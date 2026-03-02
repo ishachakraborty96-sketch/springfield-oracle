@@ -812,6 +812,9 @@
       grid-template-columns: 1fr;
       gap: 14px;
       padding: 28px 16px 20px;
+      /* Square card on mobile — content aligns to top, empty space at bottom */
+      aspect-ratio: 1 / 1;
+      align-content: start;
     }
     .latest-episode {
       display: flex;
@@ -930,41 +933,54 @@
 
     /* MODAL — bottom sheet on mobile */
     .modal-overlay {
+      /* align-items: flex-end keeps the sheet anchored at the bottom.
+         No justify-content override — 'stretch' is invalid for flex,
+         was silently ignored; the default is fine since width:100% fills anyway. */
       align-items: flex-end;
-      justify-content: stretch;
     }
     .modal {
       width: 100%;
       max-width: 100%;
-      max-height: 88vh;
+      /* 78vh is conservative enough to stay inside the visible viewport
+         on iOS Safari, where 100vh includes the hidden browser chrome. */
+      max-height: 78vh;
       overflow-y: auto;
+      overflow-x: hidden; /* prevent wide content from bleeding left/right */
       -webkit-overflow-scrolling: touch;
-      padding: 24px 20px 32px;
+      /* bottom padding covers the iPhone home-indicator safe area */
+      padding: 24px 20px calc(28px + env(safe-area-inset-bottom, 0px));
       border-left: none;
       border-right: none;
       border-bottom: none;
       border-top: 3px solid var(--yellow);
       border-radius: 16px 16px 0 0;
-      /* remove the drop-shadow pseudo-element offset on mobile */
     }
     .modal::before { display: none; }
     .modal-close {
       font-size: 20px;
       top: 14px;
       right: 14px;
-      /* bigger tap target */
       padding: 8px;
       opacity: 0.7;
     }
-    .modal-title { font-size: 30px; }
+    .modal-title {
+      font-size: 26px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .modal-body {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
     .modal-meta {
-      display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
     /* SUBMIT */
     .submit-section { padding: 36px 16px; }
+    /* Hide the 400px watermark pseudo-element — too heavy to render on mobile */
+    .submit-section::before { display: none; }
     .submit-section h2 { font-size: 40px; }
     .submit-section p { font-size: 12px; margin-bottom: 24px; }
     .submit-form { flex-direction: column; gap: 0; }
@@ -997,6 +1013,10 @@
     .latest-content h2 { font-size: 20px; }
     .stat-num { font-size: 22px; }
     .ep-season { font-size: 22px; }
+    /* Modal title can be very long on small phones */
+    .modal-title { font-size: 22px; }
+    /* Stack the meta grid to single column on very small screens */
+    .modal-meta { grid-template-columns: 1fr; }
   }
 
   /* LIVE NEWS SECTION */
