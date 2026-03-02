@@ -780,7 +780,7 @@
     }
     .logo-block { align-items: center; text-align: center; }
     .logo-title { font-size: 48px; }
-    .logo-eyebrow { font-size: 8px; letter-spacing: 2px; }
+    .logo-eyebrow { font-size: 8px; letter-spacing: 2px; margin-bottom: 8px; }
     .logo-sub { font-size: 15px; }
     .header-stats {
       gap: 10px;
@@ -864,7 +864,7 @@
     .news-item { padding: 12px 0; }
     .news-share-btns { display: none; }
 
-    /* FILTERS — horizontal scroll, no wrapping */
+    /* FILTERS — wrap onto next line, no horizontal bleed */
     .filters-bar {
       flex-direction: column;
       align-items: stretch;
@@ -874,21 +874,13 @@
     .filter-group {
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       gap: 6px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
-      /* hide scrollbar visually */
-      scrollbar-width: none;
     }
-    .filter-group::-webkit-scrollbar { display: none; }
     .filter-btn {
       font-size: 10px;
       padding: 8px 14px;
       white-space: nowrap;
-      flex-shrink: 0;
-      /* minimum touch target height */
       min-height: 36px;
     }
     .search-box {
