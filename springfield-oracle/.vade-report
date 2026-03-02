@@ -1,0 +1,45 @@
+# Vercel Speed Insights Implementation
+
+## Overview
+Successfully implemented Vercel Speed Insights for the Springfield Oracle project, a static HTML-based Simpsons prediction tracker.
+
+## Changes Made
+
+### Modified Files:
+- **public/index.html** - Added Vercel Speed Insights tracking scripts before the closing `</body>` tag
+
+## Implementation Details
+
+Since this is a static HTML project (not using React, Next.js, or other JavaScript frameworks), I followed the HTML-specific implementation approach from the Vercel Speed Insights documentation:
+
+1. Added the Speed Insights initialization script that creates the `window.si` function
+2. Added the deferred loading script that points to `/_vercel/speed-insights/script.js`
+
+The scripts were placed just before the closing `</body>` tag, after all the existing application JavaScript, which is the recommended location according to the documentation.
+
+### Code Added:
+```html
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+```
+
+## No Package Installation Required
+
+For HTML-based projects, there is no need to install the `@vercel/speed-insights` npm package. The Speed Insights functionality is delivered directly through the Vercel platform's script injection system.
+
+## Next Steps
+
+After deploying this change to Vercel:
+1. Enable Speed Insights in the Vercel dashboard for this project
+2. The `/_vercel/speed-insights/script.js` route will be automatically available after deployment
+3. Performance metrics will start being collected once users visit the site
+4. Data will be viewable in the Speed Insights tab of the Vercel dashboard
+
+## Testing
+
+The HTML structure was verified to ensure:
+- Proper closing tags remain intact
+- Scripts are placed in the correct location
+- No syntax errors introduced
