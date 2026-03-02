@@ -279,17 +279,24 @@
   .carousel-wrapper {
     position: relative;
     overflow: hidden;
-    padding-top: 20px;
+    /* padding-top gives the badge (top:-14px) clearance;
+       padding-right/bottom let the card's ::before orange shadow
+       show instead of being clipped by overflow:hidden */
+    padding-top: 22px;
+    padding-right: 8px;
+    padding-bottom: 10px;
   }
   .carousel-track {
     display: flex;
-    transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
     will-change: transform;
   }
   .carousel-card {
-    min-width: 100%;
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
-    flex-shrink: 0;
     transition: filter 0.2s;
   }
   .carousel-card:hover { filter: brightness(0.95); }
@@ -427,7 +434,7 @@
   }
 
   th {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--yellow);
@@ -452,7 +459,7 @@
 
   td {
     padding: 16px;
-    font-size: 12px;
+    font-size: 14px;
     vertical-align: middle;
     line-height: 1.5;
   }
@@ -467,7 +474,7 @@
   .td-episode span {
     display: block;
     font-family: 'Space Mono', monospace;
-    font-size: 9px;
+    font-size: 11px;
     color: rgba(255,255,255,0.3);
     letter-spacing: 1px;
   }
@@ -480,12 +487,12 @@
     display: block;
     margin-bottom: 4px;
     color: var(--white);
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .td-desc p {
     opacity: 0.5;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.6;
   }
 
@@ -765,7 +772,48 @@
     font-size: 14px;
   }
 
+  /* PAGINATION — hidden on desktop, JS shows it on mobile */
+  .pagination-bar {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 16px 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .page-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 52px;
+    min-height: 44px;
+  }
+  .page-btn:disabled { opacity: 0.2; cursor: default; }
+  .page-btn:not(:disabled):hover,
+  .page-btn:not(:disabled):active {
+    background: var(--yellow);
+    color: var(--dark);
+    border-color: var(--yellow);
+  }
+  .page-info {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
   @media (max-width: 768px) {
+    /* Clamp the root element so iOS Safari rubber-band scroll can't
+       reveal empty space to the right of the page */
+    html { overflow-x: hidden; }
+
     /* HEADER — compact two-row layout */
     .header-inner {
       flex-direction: column;
@@ -774,22 +822,21 @@
     }
     .logo-block { align-items: center; text-align: center; }
     .logo-title { font-size: 48px; }
-    .logo-eyebrow { font-size: 8px; letter-spacing: 2px; }
+    .logo-eyebrow { font-size: 8px; letter-spacing: 2px; margin-bottom: 8px; }
     .logo-sub { font-size: 15px; }
     .header-stats {
-      gap: 8px;
+      gap: 10px;
       width: 100%;
-      justify-content: space-between;
     }
     .stat-pill {
       flex: 1;
-      padding: 10px 6px;
+      padding: 10px 8px;
       text-align: center;
-      /* fix drop-shadow offset so it doesn't bleed off-edge */
-      margin-right: 6px;
     }
-    .stat-pill:last-child { margin-right: 0; }
-    .stat-num { font-size: 26px; }
+    /* Hide the offset drop-shadow on mobile — pills are only 10px apart
+       so the ::before bleed (right:-4px) overlaps the neighbouring pill */
+    .stat-pill::before { display: none; }
+    .stat-num { font-size: 28px; }
     .stat-label { font-size: 7px; letter-spacing: 1px; }
     .tv-graphic { display: none; }
 
@@ -797,11 +844,22 @@
     .ticker-bar { font-size: 10px; padding: 8px 0; }
 
     /* HERO CAROUSEL CARD */
-    .latest-section { padding: 20px 16px 16px; }
+    .latest-section { padding: 24px 16px 16px; }
+    /* Remove desktop shadow clearance padding — on mobile the shadow pseudo
+       is already hidden, so padding-right/bottom only add extra scroll width */
+    .carousel-wrapper { padding-right: 0; padding-bottom: 4px; }
+
+    /* Remove the offset drop-shadow on mobile — it bleeds outside the card
+       and can confuse the flex/grid sizing calculation in mobile browsers */
+    .latest-card::before { display: none; }
+
     .latest-card {
       grid-template-columns: 1fr;
       gap: 14px;
-      padding: 28px 18px 20px;
+      padding: 28px 16px 20px;
+      /* Square card on mobile — content aligns to top, empty space at bottom */
+      aspect-ratio: 1 / 1;
+      align-content: start;
     }
     .latest-episode {
       display: flex;
@@ -811,37 +869,41 @@
       padding: 10px 14px;
     }
     .ep-season { font-size: 26px; }
-    .latest-content h2 { font-size: 26px; line-height: 1.05; }
+
+    /* Prevent h2 from blowing out the grid column */
+    .latest-content {
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    .latest-content h2 {
+      font-size: 24px;
+      line-height: 1.1;
+      /* Allow long words to wrap rather than overflow */
+      word-break: break-word;
+    }
     .latest-content p {
       font-size: 12px;
-      line-height: 1.7;
-      /* Limit to 4 lines so card stays compact */
+      line-height: 1.65;
+      /* Clamp to 3 lines to keep card height predictable */
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .latest-badge { font-size: 10px; left: 18px; padding: 5px 10px; }
+    .latest-badge { font-size: 10px; left: 16px; padding: 5px 10px; }
 
-    /* CAROUSEL ARROWS — bigger touch targets */
-    .carousel-arrow {
-      width: 48px;
-      height: 48px;
-      font-size: 20px;
-      /* keep arrows clear of card edges */
-      opacity: 0.9;
-    }
-    .carousel-prev { left: 4px; }
-    .carousel-next { right: 4px; }
+    /* CAROUSEL ARROWS — hide on mobile, users swipe instead.
+       Arrows at top:50% would sit over the card text in the taller
+       single-column layout, making them awkward and obstructive. */
+    .carousel-arrow { display: none; }
 
-    /* CAROUSEL DOTS — larger tap area */
-    .carousel-dots { gap: 12px; margin-top: 16px; padding-bottom: 4px; }
+    /* CAROUSEL DOTS */
+    .carousel-dots { gap: 10px; margin-top: 16px; padding-bottom: 6px; }
     .carousel-dot {
-      width: 12px;
-      height: 12px;
-      /* bigger invisible tap target */
-      padding: 8px;
-      background-clip: content-box;
+      width: 10px;
+      height: 10px;
+      padding: 0;
       border-radius: 50%;
     }
 
@@ -850,7 +912,7 @@
     .news-item { padding: 12px 0; }
     .news-share-btns { display: none; }
 
-    /* FILTERS — horizontal scroll, no wrapping */
+    /* FILTERS — wrap onto next line, no horizontal bleed */
     .filters-bar {
       flex-direction: column;
       align-items: stretch;
@@ -860,21 +922,13 @@
     .filter-group {
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       gap: 6px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
-      /* hide scrollbar visually */
-      scrollbar-width: none;
     }
-    .filter-group::-webkit-scrollbar { display: none; }
     .filter-btn {
       font-size: 10px;
       padding: 8px 14px;
       white-space: nowrap;
-      flex-shrink: 0;
-      /* minimum touch target height */
       min-height: 36px;
     }
     .search-box {
@@ -924,41 +978,54 @@
 
     /* MODAL — bottom sheet on mobile */
     .modal-overlay {
+      /* align-items: flex-end keeps the sheet anchored at the bottom.
+         No justify-content override — 'stretch' is invalid for flex,
+         was silently ignored; the default is fine since width:100% fills anyway. */
       align-items: flex-end;
-      justify-content: stretch;
     }
     .modal {
       width: 100%;
       max-width: 100%;
-      max-height: 88vh;
+      /* 78vh is conservative enough to stay inside the visible viewport
+         on iOS Safari, where 100vh includes the hidden browser chrome. */
+      max-height: 78vh;
       overflow-y: auto;
+      overflow-x: hidden; /* prevent wide content from bleeding left/right */
       -webkit-overflow-scrolling: touch;
-      padding: 24px 20px 32px;
+      /* bottom padding covers the iPhone home-indicator safe area */
+      padding: 24px 20px calc(28px + env(safe-area-inset-bottom, 0px));
       border-left: none;
       border-right: none;
       border-bottom: none;
       border-top: 3px solid var(--yellow);
       border-radius: 16px 16px 0 0;
-      /* remove the drop-shadow pseudo-element offset on mobile */
     }
     .modal::before { display: none; }
     .modal-close {
       font-size: 20px;
       top: 14px;
       right: 14px;
-      /* bigger tap target */
       padding: 8px;
       opacity: 0.7;
     }
-    .modal-title { font-size: 30px; }
+    .modal-title {
+      font-size: 26px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .modal-body {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
     .modal-meta {
-      display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
     /* SUBMIT */
     .submit-section { padding: 36px 16px; }
+    /* Hide the 400px watermark pseudo-element — too heavy to render on mobile */
+    .submit-section::before { display: none; }
     .submit-section h2 { font-size: 40px; }
     .submit-section p { font-size: 12px; margin-bottom: 24px; }
     .submit-form { flex-direction: column; gap: 0; }
@@ -988,10 +1055,13 @@
   @media (max-width: 420px) {
     .logo-title { font-size: 40px; }
     .logo-sub { font-size: 13px; }
-    .latest-content h2 { font-size: 22px; }
+    .latest-content h2 { font-size: 20px; }
     .stat-num { font-size: 22px; }
     .ep-season { font-size: 22px; }
-    .carousel-arrow { width: 40px; height: 40px; font-size: 16px; }
+    /* Modal title can be very long on small phones */
+    .modal-title { font-size: 22px; }
+    /* Stack the meta grid to single column on very small screens */
+    .modal-meta { grid-template-columns: 1fr; }
   }
 
   /* LIVE NEWS SECTION */
@@ -1237,6 +1307,7 @@
     </tbody>
   </table>
   </div>
+  <div id="pagination-bar" class="pagination-bar"></div>
 </div>
 
 <!-- LIVE NEWS FEED -->
@@ -1437,15 +1508,35 @@ function updateCounts() {
   document.getElementById('pending-count').textContent = predictions.filter(p => p.status === 'pending').length;
 }
 
+// ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
+const MOBILE_PAGE_SIZE  = 6;
+const DESKTOP_PAGE_SIZE = 10;
+let currentFilteredData = [];
+let currentPage = 1;
+let currentFilter = 'all';
+let currentSearch = '';
+
+// Sort + store the full filtered dataset, reset to page 1, then draw.
 function renderTable(data) {
-  const tbody = document.getElementById('table-body');
-  tbody.innerHTML = '';
-  const sorted = [...data].sort((a, b) => {
+  currentFilteredData = [...data].sort((a, b) => {
     const aYear = a.trueYear || a.year;
     const bYear = b.trueYear || b.year;
     return bYear - aYear;
   });
-  sorted.forEach((p, i) => {
+  currentPage = 1;
+  renderCurrentPage();
+  updateCounts();
+}
+
+// Draw the current page slice.
+function renderCurrentPage() {
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  const mobile = window.innerWidth <= 768;
+  const pageSize = mobile ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE;
+  const pageData = currentFilteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+  pageData.forEach((p, i) => {
     const tr = document.createElement('tr');
     tr.className = `${p.status} row-animate`;
     tr.style.animationDelay = `${i * 0.04}s`;
@@ -1466,11 +1557,24 @@ function renderTable(data) {
     tbody.appendChild(tr);
   });
 
-  updateCounts();
+  // Pagination bar
+  const bar = document.getElementById('pagination-bar');
+  if (!bar) return;
+  const totalPages = Math.ceil(currentFilteredData.length / pageSize);
+  if (totalPages <= 1) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  bar.innerHTML = `
+    <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>←</button>
+    <span class="page-info">${currentPage} / ${totalPages}</span>
+    <button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>→</button>
+  `;
 }
 
-let currentFilter = 'all';
-let currentSearch = '';
+function changePage(n) {
+  currentPage = n;
+  renderCurrentPage();
+  document.getElementById('predictions-table').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 function filterTable(filter, btn) {
   currentFilter = filter;
@@ -1632,7 +1736,7 @@ function carouselGoTo(n) {
 function carouselMove(dir) { carouselGoTo(carouselIndex + dir); }
 function resetCarouselTimer() {
   clearInterval(carouselTimer);
-  carouselTimer = setInterval(() => carouselMove(1), 6000);
+  carouselTimer = setInterval(() => carouselMove(1), 12000);
 }
 resetCarouselTimer();
 
