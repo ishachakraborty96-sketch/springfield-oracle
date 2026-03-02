@@ -812,8 +812,6 @@
       grid-template-columns: 1fr;
       gap: 14px;
       padding: 28px 16px 20px;
-      /* Prevent grid children from overflowing the card */
-      overflow: hidden;
     }
     .latest-episode {
       display: flex;
@@ -852,14 +850,12 @@
        single-column layout, making them awkward and obstructive. */
     .carousel-arrow { display: none; }
 
-    /* CAROUSEL DOTS — larger tap area, more visible */
-    .carousel-dots { gap: 14px; margin-top: 18px; padding-bottom: 4px; }
+    /* CAROUSEL DOTS */
+    .carousel-dots { gap: 10px; margin-top: 16px; padding-bottom: 6px; }
     .carousel-dot {
-      width: 12px;
-      height: 12px;
-      /* invisible padding enlarges the tap target to ~32px */
-      padding: 8px;
-      background-clip: content-box;
+      width: 10px;
+      height: 10px;
+      padding: 0;
       border-radius: 50%;
     }
 
@@ -1649,7 +1645,7 @@ function carouselGoTo(n) {
 function carouselMove(dir) { carouselGoTo(carouselIndex + dir); }
 function resetCarouselTimer() {
   clearInterval(carouselTimer);
-  carouselTimer = setInterval(() => carouselMove(1), 9000);
+  carouselTimer = setInterval(() => carouselMove(1), 12000);
 }
 resetCarouselTimer();
 
