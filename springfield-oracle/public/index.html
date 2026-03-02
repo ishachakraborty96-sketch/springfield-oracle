@@ -771,7 +771,48 @@
     font-size: 14px;
   }
 
+  /* PAGINATION — hidden on desktop, JS shows it on mobile */
+  .pagination-bar {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 16px 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .page-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 52px;
+    min-height: 44px;
+  }
+  .page-btn:disabled { opacity: 0.2; cursor: default; }
+  .page-btn:not(:disabled):hover,
+  .page-btn:not(:disabled):active {
+    background: var(--yellow);
+    color: var(--dark);
+    border-color: var(--yellow);
+  }
+  .page-info {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
   @media (max-width: 768px) {
+    /* Clamp the root element so iOS Safari rubber-band scroll can't
+       reveal empty space to the right of the page */
+    html { overflow-x: hidden; }
+
     /* HEADER — compact two-row layout */
     .header-inner {
       flex-direction: column;
@@ -803,6 +844,9 @@
 
     /* HERO CAROUSEL CARD */
     .latest-section { padding: 24px 16px 16px; }
+    /* Remove desktop shadow clearance padding — on mobile the shadow pseudo
+       is already hidden, so padding-right/bottom only add extra scroll width */
+    .carousel-wrapper { padding-right: 0; padding-bottom: 4px; }
 
     /* Remove the offset drop-shadow on mobile — it bleeds outside the card
        and can confuse the flex/grid sizing calculation in mobile browsers */
@@ -1262,6 +1306,7 @@
     </tbody>
   </table>
   </div>
+  <div id="pagination-bar" class="pagination-bar"></div>
 </div>
 
 <!-- LIVE NEWS FEED -->
@@ -1462,15 +1507,35 @@ function updateCounts() {
   document.getElementById('pending-count').textContent = predictions.filter(p => p.status === 'pending').length;
 }
 
+// ── TABLE RENDERING + MOBILE PAGINATION ───────────────────────────────
+const MOBILE_PAGE_SIZE = 6;
+let currentFilteredData = [];
+let currentPage = 1;
+let currentFilter = 'all';
+let currentSearch = '';
+
+// Sort + store the full filtered dataset, reset to page 1, then draw.
 function renderTable(data) {
-  const tbody = document.getElementById('table-body');
-  tbody.innerHTML = '';
-  const sorted = [...data].sort((a, b) => {
+  currentFilteredData = [...data].sort((a, b) => {
     const aYear = a.trueYear || a.year;
     const bYear = b.trueYear || b.year;
     return bYear - aYear;
   });
-  sorted.forEach((p, i) => {
+  currentPage = 1;
+  renderCurrentPage();
+  updateCounts();
+}
+
+// Draw the current page slice (or all rows on desktop).
+function renderCurrentPage() {
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  const mobile = window.innerWidth <= 768;
+  const pageData = mobile
+    ? currentFilteredData.slice((currentPage - 1) * MOBILE_PAGE_SIZE, currentPage * MOBILE_PAGE_SIZE)
+    : currentFilteredData;
+
+  pageData.forEach((p, i) => {
     const tr = document.createElement('tr');
     tr.className = `${p.status} row-animate`;
     tr.style.animationDelay = `${i * 0.04}s`;
@@ -1491,11 +1556,24 @@ function renderTable(data) {
     tbody.appendChild(tr);
   });
 
-  updateCounts();
+  // Pagination bar
+  const bar = document.getElementById('pagination-bar');
+  if (!bar) return;
+  const totalPages = Math.ceil(currentFilteredData.length / MOBILE_PAGE_SIZE);
+  if (!mobile || totalPages <= 1) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  bar.innerHTML = `
+    <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>←</button>
+    <span class="page-info">${currentPage} / ${totalPages}</span>
+    <button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>→</button>
+  `;
 }
 
-let currentFilter = 'all';
-let currentSearch = '';
+function changePage(n) {
+  currentPage = n;
+  renderCurrentPage();
+  document.getElementById('predictions-table').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 function filterTable(filter, btn) {
   currentFilter = filter;
