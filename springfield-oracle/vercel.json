@@ -6,6 +6,7 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/_vercel/(.*)", "dest": "/_vercel/$1" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
