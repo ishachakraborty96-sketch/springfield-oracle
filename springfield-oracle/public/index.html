@@ -433,7 +433,7 @@
   }
 
   th {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--yellow);
@@ -458,7 +458,7 @@
 
   td {
     padding: 16px;
-    font-size: 12px;
+    font-size: 14px;
     vertical-align: middle;
     line-height: 1.5;
   }
@@ -473,7 +473,7 @@
   .td-episode span {
     display: block;
     font-family: 'Space Mono', monospace;
-    font-size: 9px;
+    font-size: 11px;
     color: rgba(255,255,255,0.3);
     letter-spacing: 1px;
   }
@@ -486,12 +486,12 @@
     display: block;
     margin-bottom: 4px;
     color: var(--white);
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .td-desc p {
     opacity: 0.5;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.6;
   }
 
@@ -1507,8 +1507,9 @@ function updateCounts() {
   document.getElementById('pending-count').textContent = predictions.filter(p => p.status === 'pending').length;
 }
 
-// ── TABLE RENDERING + MOBILE PAGINATION ───────────────────────────────
-const MOBILE_PAGE_SIZE = 6;
+// ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
+const MOBILE_PAGE_SIZE  = 6;
+const DESKTOP_PAGE_SIZE = 10;
 let currentFilteredData = [];
 let currentPage = 1;
 let currentFilter = 'all';
@@ -1526,14 +1527,13 @@ function renderTable(data) {
   updateCounts();
 }
 
-// Draw the current page slice (or all rows on desktop).
+// Draw the current page slice.
 function renderCurrentPage() {
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
   const mobile = window.innerWidth <= 768;
-  const pageData = mobile
-    ? currentFilteredData.slice((currentPage - 1) * MOBILE_PAGE_SIZE, currentPage * MOBILE_PAGE_SIZE)
-    : currentFilteredData;
+  const pageSize = mobile ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE;
+  const pageData = currentFilteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   pageData.forEach((p, i) => {
     const tr = document.createElement('tr');
@@ -1559,8 +1559,8 @@ function renderCurrentPage() {
   // Pagination bar
   const bar = document.getElementById('pagination-bar');
   if (!bar) return;
-  const totalPages = Math.ceil(currentFilteredData.length / MOBILE_PAGE_SIZE);
-  if (!mobile || totalPages <= 1) { bar.style.display = 'none'; return; }
+  const totalPages = Math.ceil(currentFilteredData.length / pageSize);
+  if (totalPages <= 1) { bar.style.display = 'none'; return; }
   bar.style.display = 'flex';
   bar.innerHTML = `
     <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>←</button>
