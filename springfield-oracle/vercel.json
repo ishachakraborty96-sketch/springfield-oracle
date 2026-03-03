@@ -9,7 +9,7 @@
     { "src": "/_vercel/(.*)", "dest": "/_vercel/$1" },
     { "src": "/about", "dest": "/public/about.html" },
     { "src": "/faq", "dest": "/public/faq.html" },
-    { "src": "/sitemap.xml", "dest": "/public/sitemap.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
+    { "src": "/sitemap.xml", "dest": "/api/sitemap" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
