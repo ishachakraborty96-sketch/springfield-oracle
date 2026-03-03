@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Springfield Oracle</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ7MZKWWQ6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-RZ7MZKWWQ6');
+    </script>
+    
+    <!-- GTM -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MND7HQ3K');</script>
+
+    <style>
+        :root {
+            --yellow: #FFD520;
+            --blue: #0B2D8F;
+            --orange: #FF6B2B;
+            --sky: #70C8E0;
+            --dark: #0a0a0a;
+            --white: #F5F0E8;
+            --red: #E8132A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--white);
+            font-family: 'Space Mono', monospace;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Scanline Overlay */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        h1, h2, h3, .logo, .faq-question {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 2px solid var(--blue);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--dark);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            text-decoration: none;
+            text-shadow: 2px 2px 0 var(--blue);
+            transition: text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover {
+            text-shadow: 4px 4px 0 var(--orange);
+            transform: translate(-2px, -2px);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--yellow);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--yellow);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--sky);
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            color: var(--yellow);
+            text-shadow: 4px 4px 0 var(--blue);
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .stat-pill {
+            display: inline-block;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            padding: 0.25rem 1rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 213, 32, 0.1);
+            font-weight: bold;
+        }
+
+        /* FAQ Accordion */
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            border: 2px solid var(--blue);
+            background: var(--dark);
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0 var(--blue);
+            border-color: var(--sky);
+        }
+
+        .faq-item.active {
+            border-color: var(--orange);
+            box-shadow: 6px 6px 0 var(--orange);
+            transform: translate(-4px, -4px);
+        }
+
+        .faq-button {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem 2rem;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .faq-question {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item:hover .faq-question {
+            color: var(--yellow);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--orange);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--sky);
+            font-weight: bold;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: var(--orange);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(11, 45, 143, 0.1);
+        }
+
+        .faq-answer {
+            padding: 0 2rem 2rem 2rem;
+            color: #d1d5db;
+            font-size: 1rem;
+        }
+
+        .faq-answer strong {
+            color: var(--yellow);
+            font-weight: normal;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 2px solid var(--blue);
+            padding: 3rem 2rem;
+            background: var(--dark);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        footer nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .copyright {
+            color: var(--sky);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            
+            nav {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                padding: 3rem 1.5rem;
+            }
+
+            .faq-button {
+                padding: 1.25rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem 1.5rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.875rem;
+            }
+
+            .faq-button {
+                padding: 1rem;
+            }
+
+            .faq-answer {
+                padding: 0 1rem 1rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- GTM (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MND7HQ3K"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header>
+        <a href="/" class="logo">SPRINGFIELD ORACLE</a>
+        <nav>
+            <a href="/">HOME</a>
+            <a href="/about.html">ABOUT</a>
+            <a href="/faq.html" class="active">FAQ</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="section-header">
+            <span class="section-label">KNOWLEDGE BASE</span>
+            <h1 class="page-title">FREQUENTLY ASKED<br>QUESTIONS</h1>
+            <div class="stat-pill">10 ENTRIES</div>
+        </div>
+
+        <div class="faq-accordion">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">What is Springfield Oracle?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        Springfield Oracle is the definitive open-source tracker for Simpsons predictions. Every prediction is logged with verified episode references, real-world event citations, and honest fact-checks. No clickbait, no AI-generated fakes — just sourced data.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">Is this affiliated with Fox or Disney?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        No. Springfield Oracle is an independent, community-powered project. It is not affiliated with Fox, Disney, The Simpsons, or any official entity.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">How do you verify predictions?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        Each prediction requires: a verifiable season number and episode code, an original air date, at least one external source for the real-world event, and an honest status assessment. Predictions without a verified episode source are not accepted.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">What do the statuses mean?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        <strong>Confirmed</strong> = The prediction has occurred. Sourced and verified.<br><br>
+                        <strong>Pending</strong> = Has not yet occurred, or is currently unfolding.<br><br>
+                        <strong>Disputed</strong> = The connection is contested, or the viral version misrepresents the source.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">How can I submit a prediction?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        You can submit predictions directly on the homepage using the submission form, or open a Pull Request on GitHub adding to the predictions database. Every submission is reviewed and sourced before it goes live.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">Are those viral Simpsons clips real?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        Many viral clips circulating on TikTok and X/Twitter claiming "The Simpsons predicted [event]" are AI-generated deepfakes or taken out of context. Springfield Oracle verifies every claim against the actual episode. If a prediction is misleading, we flag it as Disputed.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">What is the viral score?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        The viral score (1-10) represents how widely discussed a prediction is on social media. It does not indicate accuracy — only cultural reach and engagement.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">Is Springfield Oracle open source?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        Yes. The full source code is on GitHub at github.com/ishachakraborty96-sketch/springfield-oracle. Community contributions are welcome.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">How often is the data updated?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        The predictions database is updated as new events unfold and new matches are identified. The live news feed auto-refreshes every 30 seconds, matching breaking headlines to existing predictions.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 10 -->
+            <div class="faq-item">
+                <button class="faq-button" aria-expanded="false">
+                    <span class="faq-question">Who built this?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-answer">
+                        Springfield Oracle was built by Isha Godboley — a fact-checker who got tired of watching viral Simpsons clips with no sources. Contact: isha.chakraborty96@gmail.com
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <nav>
+            <a href="/">HOME</a>
+            <a href="/about.html">ABOUT</a>
+            <a href="/faq.html">FAQ</a>
+        </nav>
+        <p class="copyright">© 2026 SPRINGFIELD ORACLE. NOT AFFILIATED WITH FOX OR DISNEY.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const button = item.querySelector('.faq-button');
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.faq-icon');
+
+                button.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+
+                    // Close all items
+                    faqItems.forEach(faq => {
+                        faq.classList.remove('active');
+                        faq.querySelector('.faq-button').setAttribute('aria-expanded', 'false');
+                        faq.querySelector('.faq-content').style.maxHeight = null;
+                        faq.querySelector('.faq-icon').textContent = '+';
+                    });
+
+                    // If the clicked item wasn't active, open it
+                    if (!isActive) {
+                        item.classList.add('active');
+                        button.setAttribute('aria-expanded', 'true');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.textContent = '-';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
