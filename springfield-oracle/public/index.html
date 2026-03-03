@@ -130,6 +130,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transform: rotate(-1deg);
   }
 
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
   .header-stats {
     display: flex;
     gap: 32px;
@@ -863,6 +876,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .logo-title { font-size: 48px; }
     .logo-eyebrow { font-size: 8px; letter-spacing: 2px; margin-bottom: 8px; }
     .logo-sub { font-size: 15px; }
+    .header-right {
+      align-items: center;
+      width: 100%;
+    }
+    .header-nav {
+      justify-content: center;
+    }
     .header-stats {
       gap: 10px;
       width: 100%;
@@ -1205,11 +1225,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="logo-title">Springfield<br>Oracle</div>
       <div class="logo-sub">They knew. We track it.</div>
     </div>
-    <nav style="display:flex;gap:20px;align-items:center;">
-      <a href="/about.html" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;opacity:0.7;">About</a>
-      <a href="/faq.html" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;opacity:0.7;">FAQ</a>
-    </nav>
-    <div class="header-stats">
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="/about.html" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;opacity:0.7;">About</a>
+        <a href="/faq.html" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;opacity:0.7;">FAQ</a>
+      </nav>
+      <div class="header-stats">
       <div class="stat-pill" onclick="scrollToTable('all')" style="cursor:pointer;" title="View all predictions">
         <span class="stat-num" id="total-count">31</span>
         <span class="stat-label">Predictions<br>Tracked</span>
@@ -1221,6 +1242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="stat-pill" onclick="scrollToTable('pending')" style="cursor:pointer;" title="View pending predictions">
         <span class="stat-num" id="pending-count">13</span>
         <span class="stat-label">Still<br>Pending</span>
+      </div>
       </div>
     </div>
   </div>
