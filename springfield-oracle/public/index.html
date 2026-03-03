@@ -1862,11 +1862,22 @@ async function handleSubmit() {
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ email, message: val, _subject: 'Springfield Oracle — New Prediction Submission' })
     });
+    const data = await res.json().catch(() => ({}));
     if (res.ok) {
       document.getElementById('submit-form').style.display = 'none';
       document.getElementById('submit-success').style.display = 'block';
-    } else { throw new Error(); }
-  } catch {
+    } else {
+      const errEl = document.getElementById('submit-error');
+      const detail = data?.errors?.[0]?.message || data?.error || '';
+      errEl.textContent = detail
+        ? `Error: ${detail}`
+        : 'Something went wrong. Email us directly at isha.chakraborty96@gmail.com';
+      errEl.style.display = 'block';
+      btn.textContent = 'Submit';
+      btn.disabled = false;
+    }
+  } catch (e) {
+    document.getElementById('submit-error').textContent = 'Something went wrong. Email us directly at isha.chakraborty96@gmail.com';
     document.getElementById('submit-error').style.display = 'block';
     btn.textContent = 'Submit';
     btn.disabled = false;
