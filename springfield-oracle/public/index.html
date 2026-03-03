@@ -647,10 +647,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .submit-form {
     display: flex;
+    flex-direction: column;
     gap: 0;
     max-width: 600px;
     margin: 0 auto;
     position: relative;
+  }
+  .submit-row {
+    display: flex;
   }
 
   .submit-input {
@@ -663,6 +667,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Space Mono', monospace;
     font-size: 13px;
     outline: none;
+  }
+  .submit-input--email {
+    border-right: 2px solid rgba(255,255,255,0.2);
+    border-bottom: none;
   }
 
   .submit-input:focus {
@@ -1088,6 +1096,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .submit-section h2 { font-size: 40px; }
     .submit-section p { font-size: 12px; margin-bottom: 24px; }
     .submit-form { flex-direction: column; gap: 0; }
+    .submit-row { flex-direction: column; }
     .submit-input {
       border-right: 2px solid rgba(255,255,255,0.2);
       border-bottom: none;
@@ -1427,9 +1436,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>Spotted a New One?</h2>
   <p>This is open source and community-powered. If The Simpsons predicted something we haven't logged yet, tell us. Every submission is reviewed and sourced before it goes live.</p>
   <div class="submit-form" id="submit-form">
-    <input class="submit-input" id="submit-email" type="email" placeholder="Your email address..." />
-    <input class="submit-input" id="submit-input" type="text" placeholder="Describe the prediction + episode..." maxlength="500" />
-    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Submit</button>
+    <input class="submit-input submit-input--email" id="submit-email" type="email" placeholder="Your email address..." />
+    <div class="submit-row">
+      <input class="submit-input" id="submit-input" type="text" placeholder="Describe the prediction + episode..." maxlength="500" />
+      <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Submit</button>
+    </div>
   </div>
   <div id="submit-success" style="display:none; color:#FFD520; font-family:'Space Mono',monospace; font-size:13px; margin-top:12px; letter-spacing:1px;">
     ✓ Received. We'll review and source it before it goes live.
