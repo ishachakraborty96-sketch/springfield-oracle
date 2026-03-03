@@ -1953,13 +1953,13 @@ async function loadNewsFromAPI() {
   const feedEl = document.getElementById('news-feed');
   const tsEl   = document.getElementById('news-timestamp');
 
-  // Global top news — not just Simpsons-specific
-  const rssUrl = `https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en`;
+  // Global top news — server-side proxy first (avoids CORS), then fallbacks
+  const rssUrl = `https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en`;
   const proxies = [
+    `/api/news`,
     `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`,
     `https://corsproxy.io/?url=${encodeURIComponent(rssUrl + '&ts=' + Date.now())}`,
-    `https://api.allorigins.win/raw?url=${encodeURIComponent('https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en')}`,
-    `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(rssUrl)}`
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
   ];
 
   let items = [];
