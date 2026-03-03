@@ -1471,6 +1471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span id="modal-truedate"></span>
       </div>
     </div>
+    <div id="modal-live-news" style="display:none;margin-top:16px;padding:10px 14px;background:rgba(255,107,43,0.1);border:1px solid rgba(255,107,43,0.4);border-radius:4px;"></div>
     <div id="modal-share" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; gap:10px; flex-wrap:wrap;">
       <button id="modal-share-x" onclick="modalShareX()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">𝕏 Share on X</button>
       <button id="modal-share-li" onclick="modalShareLinkedIn()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#0A66C2';this.style.color='#0A66C2'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">in Share on LinkedIn</button>
@@ -1658,11 +1659,16 @@ function renderCurrentPage() {
 
   pageData.forEach((p, i) => {
     const tr = document.createElement('tr');
+    tr.id = `pred-${p.id}`;
     tr.className = `${p.status} row-animate`;
     tr.style.animationDelay = `${i * 0.04}s`;
+    const liveNews = window.liveNewsMatches?.[p.id];
+    const liveBadge = liveNews
+      ? `<a href="${liveNews.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
+      : '';
     tr.innerHTML = `
       <td class="td-episode">${p.season}${p.episode}<span>${p.year} · ${p.name}</span></td>
-      <td class="td-desc"><strong>${p.title}</strong><p>${p.desc.substring(0,90)}...</p></td>
+      <td class="td-desc"><strong>${p.title}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
       <td class="td-share" onclick="event.stopPropagation()">
@@ -1733,6 +1739,15 @@ function openModal(p) {
   document.getElementById('modal-category').textContent = p.category;
   document.getElementById('modal-airdate').textContent = p.year;
   document.getElementById('modal-truedate').textContent = p.trueYear || 'Still waiting...';
+  const liveNewsEl = document.getElementById('modal-live-news');
+  const liveNews = window.liveNewsMatches?.[p.id];
+  if (liveNews) {
+    const date = liveNews.pubDate ? new Date(liveNews.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
+    liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${liveNews.link}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${liveNews.title}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${date}</span>` : ''}`;
+    liveNewsEl.style.display = 'block';
+  } else {
+    liveNewsEl.style.display = 'none';
+  }
   document.getElementById('modal').classList.add('open');
 }
 
@@ -2004,12 +2019,23 @@ async function loadNewsFromAPI() {
     match: matchPrediction(item.title)
   }));
 
+  // Build reverse map: predictionId → first matching news item
+  // Used to show live news badges on prediction table rows
+  const liveNewsMap = {};
+  for (const item of itemsWithMatch) {
+    if (item.match && !liveNewsMap[item.match.id]) {
+      liveNewsMap[item.match.id] = { title: item.title, link: item.link, pubDate: item.pubDate };
+    }
+  }
+  window.liveNewsMatches = liveNewsMap;
+  renderCurrentPage(); // Refresh table rows to show/clear live badges
+
   // ── RENDER NEWS FEED ───────────────────────────────────────────────
   feedEl.innerHTML = itemsWithMatch.map(item => {
     const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '';
     const matchTag = item.match
-      ? `<span style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-family:'Bebas Neue',sans-serif;font-size:0.72rem;letter-spacing:1px;color:#FFD520;">
-           📺 ${item.match.season}${item.match.episode} · ${item.match.title} · ${viralDotsInline(item.match.viral)}
+      ? `<span onclick="event.preventDefault();event.stopPropagation();(function(){const el=document.getElementById('pred-${item.match.id}');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid #FFD520';setTimeout(()=>el.style.outline='',2000);}})();" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-family:'Bebas Neue',sans-serif;font-size:0.72rem;letter-spacing:1px;color:#FFD520;cursor:pointer;" title="Jump to prediction in table">
+           📺 ${item.match.season}${item.match.episode} · ${item.match.title} · ${viralDotsInline(item.match.viral)} <span style="font-size:0.65rem;opacity:0.7;">↓ view</span>
          </span>`
       : '';
     return `
