@@ -1095,6 +1095,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 14px 18px;
       font-size: 12px;
     }
+    #submit-email { border-bottom: 2px solid rgba(255,255,255,0.1); }
     .submit-btn {
       width: 100%;
       padding: 14px;
@@ -1426,6 +1427,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>Spotted a New One?</h2>
   <p>This is open source and community-powered. If The Simpsons predicted something we haven't logged yet, tell us. Every submission is reviewed and sourced before it goes live.</p>
   <div class="submit-form" id="submit-form">
+    <input class="submit-input" id="submit-email" type="email" placeholder="Your email address..." />
     <input class="submit-input" id="submit-input" type="text" placeholder="Describe the prediction + episode..." maxlength="500" />
     <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Submit</button>
   </div>
@@ -1832,9 +1834,12 @@ function openCarouselModal(index) {
 
 // ── SUBMIT FORM ───────────────────────────────────────────────────────
 async function handleSubmit() {
+  const emailInput = document.getElementById('submit-email');
   const input = document.getElementById('submit-input');
   const btn = document.getElementById('submit-btn');
+  const email = emailInput.value.trim();
   const val = input.value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailInput.focus(); return; }
   if (!val) { input.focus(); return; }
 
   btn.textContent = 'Sending...';
@@ -1844,7 +1849,7 @@ async function handleSubmit() {
     const res = await fetch('https://formspree.io/f/mkovapen', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ message: val, _subject: 'Springfield Oracle — New Prediction Submission' })
+      body: JSON.stringify({ email, message: val, _subject: 'Springfield Oracle — New Prediction Submission' })
     });
     if (res.ok) {
       document.getElementById('submit-form').style.display = 'none';
