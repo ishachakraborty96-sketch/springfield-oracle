@@ -7,16 +7,9 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/_vercel/(.*)", "dest": "/_vercel/$1" },
-    {
-      "src": "/sitemap.xml",
-      "dest": "/public/sitemap.xml",
-      "headers": { "Content-Type": "application/xml; charset=utf-8" }
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/public/robots.txt",
-      "headers": { "Content-Type": "text/plain; charset=utf-8" }
-    },
+    { "src": "/about", "dest": "/public/about.html" },
+    { "src": "/faq", "dest": "/public/faq.html" },
+    { "src": "/sitemap.xml", "dest": "/public/sitemap.xml" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
