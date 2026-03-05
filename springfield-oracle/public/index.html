@@ -1240,16 +1240,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </nav>
       <div class="header-stats">
       <div class="stat-pill" onclick="scrollToTable('all')" style="cursor:pointer;" title="View all predictions">
-        <span class="stat-num" id="total-count">31</span>
+        <span class="stat-num" id="total-count">—</span>
         <span class="stat-label">Predictions<br>Tracked</span>
       </div>
       <div class="stat-pill" onclick="scrollToTable('confirmed')" style="cursor:pointer;" title="View confirmed predictions">
-        <span class="stat-num" id="confirmed-count">16</span>
+        <span class="stat-num" id="confirmed-count">—</span>
         <span class="stat-label">Confirmed<br>True</span>
       </div>
       <div class="stat-pill" onclick="scrollToTable('pending')" style="cursor:pointer;" title="View pending predictions">
-        <span class="stat-num" id="pending-count">13</span>
+        <span class="stat-num" id="pending-count">—</span>
         <span class="stat-label">Still<br>Pending</span>
+      </div>
+      <div class="stat-pill" onclick="scrollToTable('disputed')" style="cursor:pointer;" title="View disputed predictions">
+        <span class="stat-num" id="disputed-count">—</span>
+        <span class="stat-label">Disputed</span>
       </div>
       </div>
     </div>
@@ -1270,7 +1274,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: Trump Budget Crisis / Government Shutdown — S11E17 — Written in 2000</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: AI mass job displacement — S23E17 — Written in 2012</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2028: Ivanka Trump presidential run — S27E16 — Written in 2016</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Disney acquires Fox — S10E05 — Written in 1998</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Disney acquires Fox — S10E11 — Written in 1998</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED: Higgs Boson mass equation — S10E02 — Written in 1998</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 BREAKING 2026: US-Israel strikes Iran — S06E19 Lisa's Wedding — Written in 1995</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: H3N2 Flu — 11M infected, 5K dead — S04E21 The Osaka Flu — Written in 1993</span>
@@ -1441,7 +1445,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ✓ Received. We'll review and source it before it goes live.
   </div>
   <div id="submit-error" style="display:none; color:#ff6b6b; font-family:'Space Mono',monospace; font-size:12px; margin-top:12px;">
-    Something went wrong. Email us directly at isha.chakraborty96@gmail.com
+    Something went wrong. <a href="https://www.linkedin.com/in/isha-godboley" target="_blank" rel="noopener" style="color:#ff6b6b;">Contact us on LinkedIn ↗</a>
   </div>
 </div>
 
@@ -1495,11 +1499,11 @@ const predictions = [
   { id: 'SP002', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "FaceTime / Video Calling", desc: "Characters use handheld devices to make video calls — 15 years before Apple launched FaceTime in 2010.", category: "Technology", status: "confirmed", trueYear: 2010, viral: 9 },
   { id: 'SP003', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "Smartwatch", desc: "A wristwatch that functions as a communication device, predating the Apple Watch by 18 years.", category: "Technology", status: "confirmed", trueYear: 2013, viral: 8 },
   { id: 'SP004', season: 'S25', episode: 'E16', name: "You Don't Have to Live Like a Referee", year: 2014, title: "FIFA Corruption Scandal", desc: "Homer becomes a World Cup referee bribed by corrupt FIFA officials. One year later, the real FIFA corruption scandal broke globally.", category: "Sports", status: "confirmed", trueYear: 2015, viral: 9 },
-  { id: 'SP005', season: 'S10', episode: 'E22', name: "They Saved Lisa's Brain", year: 1998, title: "Higgs Boson Mass Equation", desc: "Homer writes an equation on a chalkboard that correctly approximates the mass of the Higgs Boson particle, discovered in 2012.", category: "Science", status: "confirmed", trueYear: 2012, viral: 10 },
-  { id: 'SP006', season: 'S10', episode: 'E05', name: "When You Dish Upon a Star", year: 1998, title: "Disney Acquires 20th Century Fox", desc: "A sign reads 'Fox: A Division of Walt Disney Co.' — predicted 21 years before Disney actually acquired Fox for $71 billion in 2019.", category: "Business", status: "confirmed", trueYear: 2019, viral: 10 },
+  { id: 'SP005', season: 'S10', episode: 'E02', name: "The Wizard of Evergreen Terrace", year: 1998, title: "Higgs Boson Mass Equation", desc: "Homer writes an equation on a chalkboard that correctly approximates the mass of the Higgs Boson particle, discovered in 2012.", category: "Science", status: "confirmed", trueYear: 2012, viral: 10 },
+  { id: 'SP006', season: 'S10', episode: 'E11', name: "When You Dish Upon a Star", year: 1998, title: "Disney Acquires 20th Century Fox", desc: "A sign reads 'Fox: A Division of Walt Disney Co.' — predicted 21 years before Disney actually acquired Fox for $71 billion in 2019.", category: "Business", status: "confirmed", trueYear: 2019, viral: 10 },
   { id: 'SP007', season: 'S23', episode: 'E22', name: "Lisa Goes Gaga", year: 2012, title: "Lady Gaga Super Bowl Halftime Show", desc: "Lady Gaga performs a spectacular aerial Super Bowl halftime performance — depicted almost exactly as it happened in 2017.", category: "Culture", status: "confirmed", trueYear: 2017, viral: 9 },
   { id: 'SP008', season: 'S21', episode: 'E12', name: "Boy Meets Curl", year: 2010, title: "USA Wins Olympic Curling Gold", desc: "Homer and Marge win gold in curling at the Winter Olympics. The US Men's Curling team won gold at PyeongChang 2018.", category: "Sports", status: "confirmed", trueYear: 2018, viral: 8 },
-  { id: 'SP009', season: 'S02', episode: 'E17', name: "Old Money", year: 1991, title: "Mass Government Surveillance", desc: "Citizens monitored and tracked by a surveillance state — predating Snowden's NSA revelations by over two decades.", category: "Politics", status: "confirmed", trueYear: 2013, viral: 8 },
+  { id: 'SP009', season: 'MOVIE', episode: '', name: "The Simpsons Movie", year: 2007, title: "Mass Government Surveillance", desc: "The NSA operates a room full of monitors listening to citizens' phone calls in real time — predating Snowden's NSA revelations by 6 years.", category: "Politics", status: "confirmed", trueYear: 2013, viral: 8 },
   { id: 'SP010', season: 'S05', episode: 'E19', name: "Sweet Seymour Skinner's Baadasssss Song", year: 1994, title: "Horse Meat in Food Supply", desc: "A school lunch label reveals horse meat content. Europe's horse meat scandal broke in 2013, shocking the food industry.", category: "Culture", status: "confirmed", trueYear: 2013, viral: 7 },
 
   // ── 2025 CONFIRMED ───────────────────────────────────────────────
@@ -1511,8 +1515,7 @@ const predictions = [
   // ── 2026 HOT / CURRENTLY UNFOLDING ──────────────────────────────
   { id: 'SP015', season: 'S12', episode: 'E06', name: "The Computer Wore Menace Shoes", year: 2000, title: "Epstein Files — Elite Island Running the World", desc: "Homer blogs as 'Mr. X', exposes powerful people, gets kidnapped to a secret island where those who 'know too much' are silenced. He warns: 'Some crazy creeps on an island are secretly running the world.' In Feb 2026, the Epstein Files dropped naming global elites. Creator Matt Groening was also named in Epstein court documents.", category: "Politics", status: "disputed", trueYear: 2026, viral: 10 },
   { id: 'SP032', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "US-Israel Strike on Iran / WW3 Escalation", desc: "A 1995 episode set in a future Springfield briefly references a third World War conflict in the Middle East. On Feb 28, 2026, the US and Israel launched 'Operation Epic Fury' — joint strikes on Iran killing Supreme Leader Khamenei. Iran retaliated against Gulf states (Qatar, UAE, Jordan, Kuwait). WW3 is trending globally. Caution: Most viral 'Simpsons predicted Iran war' clips circulating in 2026 are confirmed AI-generated deepfakes — this entry references only the legitimate S06E19 background detail.", category: "Politics", status: "pending", trueYear: 2026, viral: 10 },
-  { id: 'SP016', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "World War III / Global Conflict References", desc: "Lisa's future fiancé references a major world conflict after WWII. With US-Iran tensions, Israel strikes, and escalating global rhetoric in 2026, this is being widely re-examined. Pending confirmation.", category: "Politics", status: "pending", trueYear: null, viral: 10 },
-  { id: 'SP017', season: 'S08', episode: 'E10', name: "The Springfield Files", year: 1997, title: "UFO / UAP Disclosure Goes Mainstream", desc: "Homer spots an alien, triggering FBI investigation and mass public hysteria. The US government has since released declassified UAP footage, held congressional hearings, and the topic has moved from fringe to front page.", category: "Science", status: "confirmed", trueYear: 2026, viral: 9 },
+{ id: 'SP017', season: 'S08', episode: 'E10', name: "The Springfield Files", year: 1997, title: "UFO / UAP Disclosure Goes Mainstream", desc: "Homer spots an alien, triggering FBI investigation and mass public hysteria. The US government has since released declassified UAP footage, held congressional hearings, and the topic has moved from fringe to front page.", category: "Science", status: "confirmed", trueYear: 2026, viral: 9 },
   { id: 'SP018', season: 'S27', episode: 'E16', name: "The Marge-ian Chronicles", year: 2016, title: "Mars Colonization Attempt by 2026", desc: "The episode shows a private company planning to send humans to Mars by 2026 — a direct parody of Mars One. SpaceX has published plans for Mars cargo flights, with Elon Musk setting 2026 as an early target date.", category: "Science", status: "pending", trueYear: null, viral: 9 },
   { id: 'SP019', season: 'S04', episode: 'E21', name: "Marge in Chains", year: 1993, title: "H3N2 Flu Outbreak / The Osaka Flu", desc: "The 'Osaka Flu' spreads to Springfield through international shipping, causing mass panic, hospital overload and public disorder. In 2026, the CDC confirmed H3N2 has infected ~11 million Americans, killed 5,000, and hospitalised 120,000 — spreading through the exact global supply chain vectors depicted 33 years ago.", category: "Science", status: "confirmed", trueYear: 2026, viral: 10 },
   { id: 'SP020', season: 'S12', episode: 'E01', name: "Treehouse of Horror XI", year: 2001, title: "Subliminal Media / Propaganda Psyop", desc: "In 'New Kids on the Blecch', Bart's boy band secretly embeds Navy recruitment messaging ('Yvan Eht Nioj' = Join the Navy backwards). With AI-generated propaganda, deepfake news, and algorithmic manipulation dominating 2025-2026 discourse, this feels prescient.", category: "Politics", status: "pending", trueYear: null, viral: 8 },
@@ -1635,6 +1638,7 @@ function updateCounts() {
   document.getElementById('total-count').textContent = predictions.length;
   document.getElementById('confirmed-count').textContent = predictions.filter(p => p.status === 'confirmed').length;
   document.getElementById('pending-count').textContent = predictions.filter(p => p.status === 'pending').length;
+  document.getElementById('disputed-count').textContent = predictions.filter(p => p.status === 'disputed').length;
 }
 
 // ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
@@ -1784,7 +1788,7 @@ const carouselData = [
   {
     badge: '🔴 FEB 28, 2026 — BREAKING',
     episode: 'S06E19 · Lisa\'s Wedding (1995)',
-    status: 'confirmed',
+    status: 'pending',
     title: 'S06E19 — Lisa\'s Wedding (1995) Referenced World War III in the Middle East',
     body: `In "Lisa's Wedding" (Season 6, Episode 19, 1995), a British character tells an American: "Well, we saved your ass in World War III." The line is set in a future version of Springfield, framed as a throwaway joke with no specific country or date named.\n\nOn February 28, 2026, the United States and Israel launched Operation Epic Fury — a coordinated series of strikes on Iran. Supreme Leader Khamenei was killed. Iran retaliated with missile strikes on Gulf states including Qatar, UAE, Jordan, and Kuwait. The UN Security Council convened an emergency session.\n\nThe episode aired 31 years before the event. The WW3 reference was incidental — a background detail in a story about Lisa's future wedding. It was never presented as a prediction.`,
     shareTitle: 'S06E19 Lisa\'s Wedding (1995) referenced World War III in the Middle East. On Feb 28 2026, US-Israel launched joint strikes on Iran.'
@@ -2096,9 +2100,10 @@ async function syncWithDatabase() {
         trueYear: p.real_year,
         viral:    p.viral_score
       }));
-      // Merge: JSON entries take precedence, keep any JS-only extras
+      // Update global predictions array so filters and counts stay consistent
+      predictions.length = 0;
+      mapped.forEach(p => predictions.push(p));
       renderTable(mapped);
-      updateCounts();
     }
   } catch (e) {
     // Silent fail — JS array already rendered as fallback

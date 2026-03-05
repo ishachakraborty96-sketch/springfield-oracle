@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     const response = await fetch(rssUrl, {
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; SpringfieldOracle/1.0)' }
     });
+    if (!response.ok) throw new Error(`HTTP error ${response.status}`);
     const xml = await response.text();
 
     const itemMatches = xml.match(/<item>([\s\S]*?)<\/item>/g) || [];
