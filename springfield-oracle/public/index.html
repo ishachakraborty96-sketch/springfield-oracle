@@ -1720,7 +1720,7 @@ function renderCurrentPage() {
     tr.style.animationDelay = `${i * 0.04}s`;
     const liveNews = window.liveNewsMatches?.[p.id];
     const liveBadge = liveNews
-      ? `<a href="${liveNews.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
+      ? `<a href="${safeUrl(liveNews.link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
       : '';
     tr.innerHTML = `
       <td class="td-episode">${p.season}${p.episode}<span>${p.year} · ${p.name}</span></td>
@@ -1799,7 +1799,7 @@ function openModal(p) {
   const liveNews = window.liveNewsMatches?.[p.id];
   if (liveNews) {
     const date = liveNews.pubDate ? new Date(liveNews.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
-    liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${liveNews.link}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${liveNews.title}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${date}</span>` : ''}`;
+    liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${safeUrl(liveNews.link)}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${escHtml(liveNews.title)}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${escHtml(date)}</span>` : ''}`;
     liveNewsEl.style.display = 'block';
   } else {
     liveNewsEl.style.display = 'none';
@@ -2004,6 +2004,19 @@ function viralDotsInline(score) {
   return html + '</span>';
 }
 
+// ── SECURITY HELPERS ─────────────────────────────────────────────────
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+function safeUrl(u) {
+  return /^https?:\/\//i.test(u) ? u : '#';
+}
+
 // ── LIVE NEWS RSS FEED ────────────────────────────────────────────────
 async function loadNewsFromAPI() {
   const feedEl = document.getElementById('news-feed');
@@ -2091,14 +2104,14 @@ async function loadNewsFromAPI() {
     const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '';
     const matchTag = item.match
       ? `<span onclick="event.preventDefault();event.stopPropagation();(function(){const el=document.getElementById('pred-${item.match.id}');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid #FFD520';setTimeout(()=>el.style.outline='',2000);}})();" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-family:'Bebas Neue',sans-serif;font-size:0.72rem;letter-spacing:1px;color:#FFD520;cursor:pointer;" title="Jump to prediction in table">
-           📺 ${item.match.season}${item.match.episode} · ${item.match.title} · ${viralDotsInline(item.match.viral)} <span style="font-size:0.65rem;opacity:0.7;">↓ view</span>
+           📺 ${escHtml(item.match.season)}${escHtml(item.match.episode)} · ${escHtml(item.match.title)} · ${viralDotsInline(item.match.viral)} <span style="font-size:0.65rem;opacity:0.7;">↓ view</span>
          </span>`
       : '';
     return `
-      <a href="${item.link}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:4px;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,213,32,0.1);">
+      <a href="${safeUrl(item.link)}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:4px;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,213,32,0.1);">
         <div style="display:flex;gap:12px;align-items:flex-start;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;color:#FF6B2B;white-space:nowrap;padding-top:2px;min-width:52px;">${date}</span>
-          <span style="font-family:'Space Mono',monospace;font-size:0.78rem;color:${item.match ? '#fff' : '#ddd'};line-height:1.5;font-weight:${item.match ? '700' : '400'};">${item.title}</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;color:#FF6B2B;white-space:nowrap;padding-top:2px;min-width:52px;">${escHtml(date)}</span>
+          <span style="font-family:'Space Mono',monospace;font-size:0.78rem;color:${item.match ? '#fff' : '#ddd'};line-height:1.5;font-weight:${item.match ? '700' : '400'};">${escHtml(item.title)}</span>
           <span style="color:#555;font-size:0.7rem;white-space:nowrap;padding-top:2px;">↗</span>
         </div>
         ${matchTag ? `<div style="padding-left:64px;">${matchTag}</div>` : ''}
@@ -2112,8 +2125,8 @@ async function loadNewsFromAPI() {
   if (tickerEl && items.length) {
     const tickerHTML = [...itemsWithMatch, ...itemsWithMatch].map(item => {
       const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '';
-      const flag = item.match ? `📺 ${item.match.season}${item.match.episode} · ` : '';
-      return `<span class="ticker-item"><span class="ticker-dot">●</span> ${flag}${date ? date + ' — ' : ''}${item.title}</span>`;
+      const flag = item.match ? `📺 ${escHtml(item.match.season)}${escHtml(item.match.episode)} · ` : '';
+      return `<span class="ticker-item"><span class="ticker-dot">●</span> ${flag}${date ? escHtml(date) + ' — ' : ''}${escHtml(item.title)}</span>`;
     }).join('');
     tickerEl.innerHTML = tickerHTML;
   }

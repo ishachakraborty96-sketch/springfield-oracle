@@ -3,6 +3,9 @@
 // Used as primary news source by the frontend live-match feature
 
 export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
 
@@ -36,6 +39,6 @@ export default async function handler(req, res) {
 
     res.status(200).json({ items, cached_at: new Date().toISOString() });
   } catch (err) {
-    res.status(500).json({ error: err.message, items: [] });
+    res.status(500).json({ error: 'Internal server error', items: [] });
   }
 }
