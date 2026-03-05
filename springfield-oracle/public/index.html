@@ -23,6 +23,7 @@ fbq('track', 'PageView'); </script>
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-RZ7MZKWWQ6');
+  gtag('config', 'AW-17990385961');
 </script>
 <meta charset="UTF-8">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -160,9 +161,11 @@ fbq('track', 'PageView'); </script>
   .stat-pill {
     background: var(--blue);
     color: var(--yellow);
-    padding: 12px 20px;
+    padding: 14px 12px;
     text-align: center;
     position: relative;
+    width: 130px;
+    flex-shrink: 0;
   }
 
   .stat-pill::before {
@@ -175,16 +178,19 @@ fbq('track', 'PageView'); </script>
 
   .stat-num {
     font-family: 'Bebas Neue', cursive;
-    font-size: 42px;
+    font-size: 44px;
     line-height: 1;
     display: block;
   }
 
   .stat-label {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
     opacity: 0.8;
+    line-height: 1.4;
+    display: block;
+    margin-top: 4px;
   }
 
   .tv-graphic {
@@ -897,14 +903,16 @@ fbq('track', 'PageView'); </script>
     }
     .stat-pill {
       flex: 1;
-      padding: 10px 8px;
+      width: auto;
+      min-width: 0;
+      padding: 12px 8px;
       text-align: center;
     }
     /* Hide the offset drop-shadow on mobile — pills are only 10px apart
        so the ::before bleed (right:-4px) overlaps the neighbouring pill */
     .stat-pill::before { display: none; }
-    .stat-num { font-size: 28px; }
-    .stat-label { font-size: 7px; letter-spacing: 1px; }
+    .stat-num { font-size: 30px; }
+    .stat-label { font-size: 8px; letter-spacing: 1px; margin-top: 3px; }
     .tv-graphic { display: none; }
 
     /* TICKER */
@@ -1123,7 +1131,7 @@ fbq('track', 'PageView'); </script>
     .logo-title { font-size: 40px; }
     .logo-sub { font-size: 13px; }
     .latest-content h2 { font-size: 20px; }
-    .stat-num { font-size: 22px; }
+    .stat-num { font-size: 24px; }
     .ep-season { font-size: 22px; }
     /* Modal title can be very long on small phones */
     .modal-title { font-size: 22px; }
@@ -1240,15 +1248,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </nav>
       <div class="header-stats">
       <div class="stat-pill" onclick="scrollToTable('all')" style="cursor:pointer;" title="View all predictions">
-        <span class="stat-num" id="total-count">31</span>
+        <span class="stat-num" id="total-count">43</span>
         <span class="stat-label">Predictions<br>Tracked</span>
       </div>
       <div class="stat-pill" onclick="scrollToTable('confirmed')" style="cursor:pointer;" title="View confirmed predictions">
-        <span class="stat-num" id="confirmed-count">16</span>
+        <span class="stat-num" id="confirmed-count">34</span>
         <span class="stat-label">Confirmed<br>True</span>
       </div>
       <div class="stat-pill" onclick="scrollToTable('pending')" style="cursor:pointer;" title="View pending predictions">
-        <span class="stat-num" id="pending-count">13</span>
+        <span class="stat-num" id="pending-count">4</span>
         <span class="stat-label">Still<br>Pending</span>
       </div>
       </div>
@@ -1510,7 +1518,7 @@ const predictions = [
 
   // ── 2026 HOT / CURRENTLY UNFOLDING ──────────────────────────────
   { id: 'SP015', season: 'S12', episode: 'E06', name: "The Computer Wore Menace Shoes", year: 2000, title: "Epstein Files — Elite Island Running the World", desc: "Homer blogs as 'Mr. X', exposes powerful people, gets kidnapped to a secret island where those who 'know too much' are silenced. He warns: 'Some crazy creeps on an island are secretly running the world.' In Feb 2026, the Epstein Files dropped naming global elites. Creator Matt Groening was also named in Epstein court documents.", category: "Politics", status: "disputed", trueYear: 2026, viral: 10 },
-  { id: 'SP032', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "US-Israel Strike on Iran / WW3 Escalation", desc: "A 1995 episode set in a future Springfield briefly references a third World War conflict in the Middle East. On Feb 28, 2026, the US and Israel launched 'Operation Epic Fury' — joint strikes on Iran killing Supreme Leader Khamenei. Iran retaliated against Gulf states (Qatar, UAE, Jordan, Kuwait). WW3 is trending globally. Caution: Most viral 'Simpsons predicted Iran war' clips circulating in 2026 are confirmed AI-generated deepfakes — this entry references only the legitimate S06E19 background detail.", category: "Politics", status: "pending", trueYear: 2026, viral: 10 },
+  { id: 'SP032', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "US-Israel Strike on Iran / WW3 Escalation", desc: "A 1995 episode set in a future Springfield briefly references a third World War conflict in the Middle East. On Feb 28, 2026, the US and Israel launched 'Operation Epic Fury' — joint strikes on Iran killing Supreme Leader Khamenei. Iran retaliated against Gulf states (Qatar, UAE, Jordan, Kuwait). WW3 is trending globally. Caution: Most viral 'Simpsons predicted Iran war' clips circulating in 2026 are confirmed AI-generated deepfakes — this entry references only the legitimate S06E19 background detail.", category: "Politics", status: "pending", trueYear: null, viral: 10 },
   { id: 'SP016', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "World War III / Global Conflict References", desc: "Lisa's future fiancé references a major world conflict after WWII. With US-Iran tensions, Israel strikes, and escalating global rhetoric in 2026, this is being widely re-examined. Pending confirmation.", category: "Politics", status: "pending", trueYear: null, viral: 10 },
   { id: 'SP017', season: 'S08', episode: 'E10', name: "The Springfield Files", year: 1997, title: "UFO / UAP Disclosure Goes Mainstream", desc: "Homer spots an alien, triggering FBI investigation and mass public hysteria. The US government has since released declassified UAP footage, held congressional hearings, and the topic has moved from fringe to front page.", category: "Science", status: "confirmed", trueYear: 2026, viral: 9 },
   { id: 'SP018', season: 'S27', episode: 'E16', name: "The Marge-ian Chronicles", year: 2016, title: "Mars Colonization Attempt by 2026", desc: "The episode shows a private company planning to send humans to Mars by 2026 — a direct parody of Mars One. SpaceX has published plans for Mars cargo flights, with Elon Musk setting 2026 as an early target date.", category: "Science", status: "pending", trueYear: null, viral: 9 },
@@ -1631,10 +1639,14 @@ function modalCopyLink(btn) {
   });
 }
 
+// Single source of truth for the full active dataset.
+// Starts as the JS fallback array; replaced by JSON when sync succeeds.
+let activeData = predictions;
+
 function updateCounts() {
-  document.getElementById('total-count').textContent = predictions.length;
-  document.getElementById('confirmed-count').textContent = predictions.filter(p => p.status === 'confirmed').length;
-  document.getElementById('pending-count').textContent = predictions.filter(p => p.status === 'pending').length;
+  document.getElementById('total-count').textContent = activeData.length;
+  document.getElementById('confirmed-count').textContent = activeData.filter(p => p.status === 'confirmed').length;
+  document.getElementById('pending-count').textContent = activeData.filter(p => p.status === 'pending').length;
 }
 
 // ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
@@ -1723,7 +1735,7 @@ function searchTable(val) {
 }
 
 function applyFilters() {
-  let data = predictions;
+  let data = activeData;
   if (currentFilter !== 'all') {
     data = data.filter(p => p.status === currentFilter || p.category === currentFilter);
   }
@@ -1746,7 +1758,7 @@ function openModal(p) {
   document.getElementById('modal-status').innerHTML = statusBadge(p.status);
   document.getElementById('modal-category').textContent = p.category;
   document.getElementById('modal-airdate').textContent = p.year;
-  document.getElementById('modal-truedate').textContent = p.trueYear || 'Still waiting...';
+  document.getElementById('modal-truedate').textContent = (p.status === 'pending' || !p.trueYear) ? 'Still waiting...' : p.trueYear;
   const liveNewsEl = document.getElementById('modal-live-news');
   const liveNews = window.liveNewsMatches?.[p.id];
   if (liveNews) {
@@ -2096,7 +2108,8 @@ async function syncWithDatabase() {
         trueYear: p.real_year,
         viral:    p.viral_score
       }));
-      // Merge: JSON entries take precedence, keep any JS-only extras
+      // JSON is now the active dataset — all filters and counts use it
+      activeData = mapped;
       renderTable(mapped);
       updateCounts();
     }
