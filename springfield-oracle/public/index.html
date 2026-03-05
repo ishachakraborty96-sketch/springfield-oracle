@@ -1639,11 +1639,14 @@ function modalCopyLink(btn) {
   });
 }
 
-function updateCounts(data) {
-  const src = data || predictions;
-  document.getElementById('total-count').textContent = src.length;
-  document.getElementById('confirmed-count').textContent = src.filter(p => p.status === 'confirmed').length;
-  document.getElementById('pending-count').textContent = src.filter(p => p.status === 'pending').length;
+// Single source of truth for the full active dataset.
+// Starts as the JS fallback array; replaced by JSON when sync succeeds.
+let activeData = predictions;
+
+function updateCounts() {
+  document.getElementById('total-count').textContent = activeData.length;
+  document.getElementById('confirmed-count').textContent = activeData.filter(p => p.status === 'confirmed').length;
+  document.getElementById('pending-count').textContent = activeData.filter(p => p.status === 'pending').length;
 }
 
 // ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
@@ -1732,7 +1735,7 @@ function searchTable(val) {
 }
 
 function applyFilters() {
-  let data = predictions;
+  let data = activeData;
   if (currentFilter !== 'all') {
     data = data.filter(p => p.status === currentFilter || p.category === currentFilter);
   }
@@ -2105,9 +2108,10 @@ async function syncWithDatabase() {
         trueYear: p.real_year,
         viral:    p.viral_score
       }));
-      // Merge: JSON entries take precedence, keep any JS-only extras
+      // JSON is now the active dataset — all filters and counts use it
+      activeData = mapped;
       renderTable(mapped);
-      updateCounts(mapped);
+      updateCounts();
     }
   } catch (e) {
     // Silent fail — JS array already rendered as fallback
