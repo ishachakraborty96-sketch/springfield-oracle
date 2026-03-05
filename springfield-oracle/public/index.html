@@ -771,6 +771,8 @@ fbq('track', 'PageView'); </script>
     padding: 48px;
     position: relative;
     animation: fadeIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
   }
 
   .modal::before {
@@ -1796,6 +1798,7 @@ const carouselData = [
     badge: '🔴 FEB 28, 2026 — BREAKING',
     episode: 'S06E19 · Lisa\'s Wedding (1995)',
     status: 'confirmed',
+    predId: 'SP032',
     title: 'S06E19 — Lisa\'s Wedding (1995) Referenced World War III in the Middle East',
     body: `In "Lisa's Wedding" (Season 6, Episode 19, 1995), a British character tells an American: "Well, we saved your ass in World War III." The line is set in a future version of Springfield, framed as a throwaway joke with no specific country or date named.\n\nOn February 28, 2026, the United States and Israel launched Operation Epic Fury — a coordinated series of strikes on Iran. Supreme Leader Khamenei was killed. Iran retaliated with missile strikes on Gulf states including Qatar, UAE, Jordan, and Kuwait. The UN Security Council convened an emergency session.\n\nThe episode aired 31 years before the event. The WW3 reference was incidental — a background detail in a story about Lisa's future wedding. It was never presented as a prediction.`,
     shareTitle: 'S06E19 Lisa\'s Wedding (1995) referenced World War III in the Middle East. On Feb 28 2026, US-Israel launched joint strikes on Iran.'
@@ -1804,6 +1807,7 @@ const carouselData = [
     badge: '🟡 FEB 19, 2026 — CONFIRMED',
     episode: 'S08E10 · The Springfield Files (1997)',
     status: 'confirmed',
+    predId: 'SP017',
     title: 'S08E10 — The Springfield Files (1997) Depicted Government Suppression of UFO Evidence',
     body: `In "The Springfield Files" (Season 8, Episode 10, 1997), Homer witnesses an alien in the woods. FBI Agent Mulder and government officials arrive and systematically suppress and deny the evidence — warning Springfield residents that what they saw was not real.\n\nOn February 19, 2026, President Trump posted on Truth Social directing the Pentagon and all relevant federal agencies to begin identifying and releasing classified government files related to UFOs, UAPs, and extraterrestrial life. Defense Secretary Pete Hegseth confirmed his team was "digging in." The directive came one day after former President Obama stated in a podcast interview that aliens are "real."\n\nThe episode aired 29 years before the declassification directive. No confirmed extraterrestrial contact has been officially acknowledged.`,
     shareTitle: 'S08E10 The Springfield Files (1997) depicted government suppression of UFO evidence. On Feb 19 2026, Trump ordered Pentagon to declassify all UAP files.'
@@ -1812,6 +1816,7 @@ const carouselData = [
     badge: '🟡 2026 — CONFIRMED',
     episode: 'The Simpsons Movie (2007)',
     status: 'confirmed',
+    predId: 'SP009',
     title: 'The Simpsons Movie (2007) Depicted Mass Government Surveillance of Citizens',
     body: `In The Simpsons Movie (2007), a scene depicts the NSA operating a large surveillance room, monitoring citizens' phone calls in real time. Marge and the family are spied on as part of a broad government operation with no oversight shown.\n\nIn 2013, Edward Snowden leaked classified NSA documents confirming that the US government had been running exactly this kind of mass domestic surveillance program — collecting call records, internet activity, and personal communications from millions of Americans without individual warrants.\n\nIn 2026, the Pentagon's negotiations with Anthropic revealed that the government sought unrestricted AI access to American citizens' data — including geolocation, browsing history, and financial records — with no safeguards required by contract. The film aired 6 years before Snowden's confirmation, and 19 years before the AI surveillance dispute.`,
     shareTitle: 'The Simpsons Movie (2007) depicted mass NSA surveillance of citizens. Snowden confirmed it in 2013. In 2026, the Pentagon demanded unrestricted AI access to citizen data.'
@@ -1820,6 +1825,7 @@ const carouselData = [
     badge: '⚠️ 2022 — DISPUTED',
     episode: 'S24E09 · Homer Goes to Prep School (2013)',
     status: 'disputed',
+    predId: null,
     title: 'S24E09 — Homer Goes to Prep School (2013) Depicted Societal Collapse via EMP',
     body: `"Homer Goes to Prep School" (Season 24, Episode 9, 2013) features Homer joining a group of doomsday preppers who believe civilisation is about to collapse. The episode depicts an electromagnetic pulse (EMP) device triggering a breakdown of society and rule of law, referred to in survivalist circles as WROL — Without Rule of Law.\n\nIn September 2022, QAnon's Great Awakening forum cited this episode — noting that Season 24, Episode 9 numerically maps to "9/24" — as evidence that a government-orchestrated event called "The Storm" would occur on September 24, 2022. Followers predicted Trump's return to power, mass arrests, and "10 days of darkness."\n\nThe prediction was sourced from a misreading of a German politician's speech, combined with numerological interpretation of the episode number. Nothing occurred on September 24, 2022. The episode is real and accurately described. The prediction it supposedly contains was not in the episode.`,
     shareTitle: 'S24E09 Homer Goes to Prep School (2013) depicted doomsday preppers and EMP collapse. QAnon cited it as proof of a "Storm" on Sep 24 2022. Nothing happened. Logged as Disputed.'
@@ -1828,6 +1834,7 @@ const carouselData = [
     badge: '🔴 2026 — CONFIRMED',
     episode: 'S04E21 · Marge in Chains (1993)',
     status: 'confirmed',
+    predId: 'SP019',
     title: 'S04E21 — Marge in Chains (1993) Depicted a Flu Pandemic from Japan',
     body: `In "Marge in Chains" (Season 4, Episode 21, 1993), Springfield is struck by the "Osaka Flu" — a highly contagious influenza virus originating in Japan. The virus spreads rapidly through contact with contaminated packages, overwhelms the local hospital, and triggers panic-buying across the town.\n\nBy early 2026, the H3N2 influenza strain had infected over 11 million people globally, with more than 5,000 confirmed deaths. The outbreak was concentrated in Asia before spreading internationally, triggering hospital capacity alerts in multiple countries and renewed stockpiling of antiviral medications.\n\nThe episode aired in 1993 — 33 years before the H3N2 outbreak. The "Osaka Flu" was written as satire of media-driven health panics, not as a specific prediction of H3N2.`,
     shareTitle: 'S04E21 Marge in Chains (1993) depicted a flu pandemic from Japan overwhelming hospitals. In 2026, H3N2 infected 11M+ people globally.'
@@ -1843,6 +1850,16 @@ function openCarouselModal(index) {
   document.getElementById('modal-category').textContent = '—';
   document.getElementById('modal-airdate').textContent = d.episode.match(/\d{4}/)?.[0] || '—';
   document.getElementById('modal-truedate').textContent = d.badge.match(/\d{4}/)?.[0] || 'Ongoing';
+  // Live news link from RSS feed
+  const liveNewsEl = document.getElementById('modal-live-news');
+  const liveNews = d.predId ? window.liveNewsMatches?.[d.predId] : null;
+  if (liveNews) {
+    const date = liveNews.pubDate ? new Date(liveNews.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
+    liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${liveNews.link}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${liveNews.title}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${date}</span>` : ''}`;
+    liveNewsEl.style.display = 'block';
+  } else {
+    liveNewsEl.style.display = 'none';
+  }
   // store share data
   window._carouselShareTitle = d.shareTitle;
   window._carouselShareMode = true;
