@@ -161,9 +161,11 @@ fbq('track', 'PageView'); </script>
   .stat-pill {
     background: var(--blue);
     color: var(--yellow);
-    padding: 12px 20px;
+    padding: 14px 12px;
     text-align: center;
     position: relative;
+    width: 130px;
+    flex-shrink: 0;
   }
 
   .stat-pill::before {
@@ -176,16 +178,19 @@ fbq('track', 'PageView'); </script>
 
   .stat-num {
     font-family: 'Bebas Neue', cursive;
-    font-size: 42px;
+    font-size: 44px;
     line-height: 1;
     display: block;
   }
 
   .stat-label {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
     opacity: 0.8;
+    line-height: 1.4;
+    display: block;
+    margin-top: 4px;
   }
 
   .tv-graphic {
@@ -898,14 +903,16 @@ fbq('track', 'PageView'); </script>
     }
     .stat-pill {
       flex: 1;
-      padding: 10px 8px;
+      width: auto;
+      min-width: 0;
+      padding: 12px 8px;
       text-align: center;
     }
     /* Hide the offset drop-shadow on mobile — pills are only 10px apart
        so the ::before bleed (right:-4px) overlaps the neighbouring pill */
     .stat-pill::before { display: none; }
-    .stat-num { font-size: 28px; }
-    .stat-label { font-size: 7px; letter-spacing: 1px; }
+    .stat-num { font-size: 30px; }
+    .stat-label { font-size: 8px; letter-spacing: 1px; margin-top: 3px; }
     .tv-graphic { display: none; }
 
     /* TICKER */
@@ -1124,7 +1131,7 @@ fbq('track', 'PageView'); </script>
     .logo-title { font-size: 40px; }
     .logo-sub { font-size: 13px; }
     .latest-content h2 { font-size: 20px; }
-    .stat-num { font-size: 22px; }
+    .stat-num { font-size: 24px; }
     .ep-season { font-size: 22px; }
     /* Modal title can be very long on small phones */
     .modal-title { font-size: 22px; }
