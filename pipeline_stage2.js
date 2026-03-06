@@ -186,17 +186,9 @@ function applyGuardrails(candidate, scene) {
   return flags;
 }
 
-// ── MAIN PIPELINE ───────────────────────────────────────────────────────────────
+// ── FILTER + BOOST FOR A SINGLE EPISODE'S SCENES ────────────────────────────
 
-function main() {
-  console.log(`Mode: ${MOCK_MODE ? 'MOCK (heuristic)' : 'LIVE (Claude API)'}`);
-
-  const scenesData = JSON.parse(fs.readFileSync('scenes.json', 'utf-8'));
-  const scenes = scenesData.scenes;
-  console.log(`Loaded ${scenes.length} scenes from scenes.json`);
-
-  // Step 1: Filter
-  console.log('\n── STEP 1: HIGH-SIGNAL FILTER ──');
+function filterEpisodeScenes(scenes) {
   const filtered = [];
   let yesCount = 0, maybeCount = 0, noCount = 0;
 
@@ -211,17 +203,14 @@ function main() {
     } else {
       noCount++;
     }
-    process.stdout.write(`  ${scene.scene_id}: ${verdict.substring(0, 5)}\r`);
   }
 
-  // Second pass: if pass rate is below target, boost high-keyword NO scenes to MAYBE
+  // Keyword boost if pass rate below target
   const targetMinRate = 0.08;
-  const targetMaxRate = 0.18;
-  if (filtered.length / scenes.length < targetMinRate) {
+  if (scenes.length > 0 && filtered.length / scenes.length < targetMinRate) {
     const noScenes = scenes.filter((s) =>
       !filtered.some((f) => f.scene.scene_id === s.scene_id)
     );
-    // Score each NO scene by prediction keyword density
     const scored = noScenes.map((s) => {
       const text = s.dialogue_lines.map((l) => l.text).join(' ').toLowerCase();
       const hits = PREDICTION_KEYWORDS.filter((kw) => text.includes(kw));
@@ -237,64 +226,119 @@ function main() {
         filtered.push({ scene: scored[i].scene, trigger: scored[i].trigger, verdict: 'MAYBE' });
         maybeCount++;
         noCount--;
-        console.log(`  Boosted ${scored[i].scene.scene_id} to MAYBE (keyword score: ${scored[i].score})`);
       }
     }
   }
 
-  const passRate = ((filtered.length / scenes.length) * 100).toFixed(1);
-  console.log(`\nFilter results: YES=${yesCount} MAYBE=${maybeCount} NO=${noCount}`);
-  console.log(`Pass rate: ${filtered.length}/${scenes.length} (${passRate}%)`);
+  return { filtered, yesCount, maybeCount, noCount };
+}
 
-  // Step 2: Extract predictions
-  console.log('\n── STEP 2: WORLD-STATE EXTRACTION ──');
-  const candidates = [];
+// ── MAIN PIPELINE ───────────────────────────────────────────────────────────────
 
-  for (const { scene, trigger, verdict } of filtered) {
-    const predictions = extractPredictions(scene, trigger);
-    for (const pred of predictions) {
-      const flags = applyGuardrails(pred, scene);
-      candidates.push({
-        prediction_id: crypto.randomUUID(),
-        episode_id: scene.episode_id,
-        scene_id: scene.scene_id,
-        description: pred.description,
-        category: pred.category,
-        source_quote: pred.source_quote,
-        filter_response: verdict,
-        flags: flags.length > 0 ? flags : undefined,
-      });
+function main() {
+  console.log(`Mode: ${MOCK_MODE ? 'MOCK (heuristic)' : 'LIVE (Claude API)'}`);
+
+  const scenesData = JSON.parse(fs.readFileSync('scenes.json', 'utf-8'));
+  const episodes = scenesData.episodes || [];
+  const totalScenes = episodes.reduce((sum, ep) => sum + ep.scenes.length, 0);
+  console.log(`Loaded ${episodes.length} episodes, ${totalScenes} total scenes from scenes.json`);
+
+  // Load existing predictions for incremental processing
+  let existingPredictions = [];
+  const processedEpisodes = new Set();
+  if (fs.existsSync('prediction_candidates.json')) {
+    try {
+      const prev = JSON.parse(fs.readFileSync('prediction_candidates.json', 'utf-8'));
+      existingPredictions = prev.predictions || [];
+      for (const p of existingPredictions) processedEpisodes.add(p.episode_id);
+      console.log(`Loaded ${existingPredictions.length} existing predictions from ${processedEpisodes.size} episodes`);
+    } catch (e) {
+      console.warn('Could not load existing prediction_candidates.json, starting fresh');
     }
-    console.log(`  ${scene.scene_id}: ${predictions.length} prediction(s) extracted`);
   }
 
-  // Step 3: Output
-  console.log('\n── STEP 3: OUTPUT ──');
+  const toProcess = episodes.filter((ep) => !processedEpisodes.has(ep.episode_id));
+  console.log(`Episodes to process: ${toProcess.length} (${processedEpisodes.size} already done)\n`);
 
-  const filterMeta = {
-    total_scenes: scenes.length,
-    filtered_scenes: filtered.length,
-    pass_rate: parseFloat(((filtered.length / scenes.length) * 100).toFixed(1)),
-  };
+  let allCandidates = [...existingPredictions];
+  let globalYes = 0, globalMaybe = 0, globalNo = 0;
+  let globalFilteredScenes = existingPredictions.length > 0
+    ? new Set(existingPredictions.map((p) => p.scene_id)).size
+    : 0;
 
-  fs.writeFileSync('prediction_candidates.json', JSON.stringify({ meta: filterMeta, predictions: candidates }, null, 2));
-  console.log(`Saved prediction_candidates.json`);
-  console.log(`Total predictions: ${candidates.length}`);
-  console.log(`Episode: ${scenesData.episode_id}`);
+  for (let i = 0; i < toProcess.length; i++) {
+    const ep = toProcess[i];
+    const progress = `[${i + 1}/${toProcess.length}]`;
+    console.log(`${progress} ${ep.episode_id} "${ep.title}" (${ep.scenes.length} scenes)`);
 
-  const flagged = candidates.filter((c) => c.flags && c.flags.length > 0);
+    // Step 1: Filter
+    const { filtered, yesCount, maybeCount, noCount } = filterEpisodeScenes(ep.scenes);
+    globalYes += yesCount;
+    globalMaybe += maybeCount;
+    globalNo += noCount;
+    globalFilteredScenes += filtered.length;
+    console.log(`  Filter: YES=${yesCount} MAYBE=${maybeCount} NO=${noCount}`);
+
+    // Step 2: Extract
+    for (const { scene, trigger, verdict } of filtered) {
+      const predictions = extractPredictions(scene, trigger);
+      for (const pred of predictions) {
+        const flags = applyGuardrails(pred, scene);
+        allCandidates.push({
+          prediction_id: crypto.randomUUID(),
+          episode_id: scene.episode_id,
+          scene_id: scene.scene_id,
+          description: pred.description,
+          category: pred.category,
+          source_quote: pred.source_quote,
+          filter_response: verdict,
+          flags: flags.length > 0 ? flags : undefined,
+        });
+      }
+    }
+
+    const epPredCount = allCandidates.filter((c) => c.episode_id === ep.episode_id).length;
+    console.log(`  Extracted: ${epPredCount} predictions`);
+
+    // Incremental save every 5 episodes
+    if ((i + 1) % 5 === 0) {
+      saveOutput(allCandidates, totalScenes, globalFilteredScenes);
+      console.log(`  (incremental save: ${allCandidates.length} total predictions)`);
+    }
+  }
+
+  // Final save
+  saveOutput(allCandidates, totalScenes, globalFilteredScenes);
+
+  console.log('\n── SUMMARY ──');
+  console.log(`Total episodes: ${episodes.length}`);
+  console.log(`Total scenes: ${totalScenes}`);
+  console.log(`Filtered scenes: ${globalFilteredScenes}`);
+  console.log(`Total predictions: ${allCandidates.length}`);
+  console.log(`Filter: YES=${globalYes} MAYBE=${globalMaybe} NO=${globalNo}`);
+
+  const flagged = allCandidates.filter((c) => c.flags && c.flags.length > 0);
   if (flagged.length > 0) {
     console.log(`Flagged candidates: ${flagged.length}`);
   }
 
-  // Tests
   console.log('\n── TEST RESULTS ──');
-  runTests(scenes.length);
+  runTests(totalScenes, globalFilteredScenes);
+}
+
+function saveOutput(candidates, totalScenes, filteredScenes) {
+  const passRate = totalScenes > 0 ? parseFloat(((filteredScenes / totalScenes) * 100).toFixed(1)) : 0;
+  const filterMeta = {
+    total_scenes: totalScenes,
+    filtered_scenes: filteredScenes,
+    pass_rate: passRate,
+  };
+  fs.writeFileSync('prediction_candidates.json', JSON.stringify({ meta: filterMeta, predictions: candidates }, null, 2));
 }
 
 // ── TEST RUNNER ─────────────────────────────────────────────────────────────────
 
-function runTests(totalScenes) {
+function runTests(totalScenes, filteredScenes) {
   let allPassed = true;
 
   function test(name, fn) {

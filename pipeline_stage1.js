@@ -303,40 +303,138 @@ function detectScenes(transcript) {
   return buildScenes(episode_id, transcript_lines, boundaries);
 }
 
+// ── EPISODE DISCOVERY ────────────────────────────────────────────────────────
+
+const BASE_URL = 'https://www.springfieldspringfield.co.uk';
+const LISTING_URL = `${BASE_URL}/episode_scripts.php?tv-show=the-simpsons`;
+
+function discoverEpisodes() {
+  console.log('Discovering episode URLs from listing page...');
+  const html = fetchPage(LISTING_URL);
+  const matches = [...html.matchAll(/episode=(s(\d+)e(\d+))/gi)];
+  const seen = new Set();
+  const episodes = [];
+  for (const m of matches) {
+    const id = m[1].toLowerCase();
+    if (seen.has(id)) continue;
+    seen.add(id);
+    episodes.push({
+      episode_id: id,
+      season: parseInt(m[2], 10),
+      episode_num: parseInt(m[3], 10),
+      url: `${BASE_URL}/view_episode_scripts.php?tv-show=the-simpsons&episode=${id}`,
+    });
+  }
+  episodes.sort((a, b) => a.season - b.season || a.episode_num - b.episode_num);
+  return episodes;
+}
+
+function parseRange(flag, args) {
+  const idx = args.indexOf(flag);
+  if (idx === -1 || idx + 1 >= args.length) return null;
+  const val = args[idx + 1];
+  if (val.includes('-')) {
+    const [lo, hi] = val.split('-').map(Number);
+    return { lo, hi };
+  }
+  return { lo: Number(val), hi: Number(val) };
+}
+
 // ── STEP 3: OUTPUT & TEST ──────────────────────────────────────────────────────
 
 function main() {
-  const url = 'https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s01e01';
+  const args = process.argv.slice(2);
+  const seasonRange = parseRange('--season', args);
+  const episodeRange = parseRange('--episode', args);
 
-  console.log(`Fetching transcript from: ${url}`);
-  const transcript = ingestTranscript(url);
+  let allEpisodes = discoverEpisodes();
+  console.log(`Discovered ${allEpisodes.length} total episodes`);
 
-  if (transcript.error) {
-    console.error(`Error: ${transcript.error} for ${transcript.url}`);
-    process.exit(1);
+  if (seasonRange) {
+    allEpisodes = allEpisodes.filter((e) => e.season >= seasonRange.lo && e.season <= seasonRange.hi);
+    console.log(`Filtered to seasons ${seasonRange.lo}-${seasonRange.hi}: ${allEpisodes.length} episodes`);
+  }
+  if (episodeRange) {
+    allEpisodes = allEpisodes.filter((e) => e.episode_num >= episodeRange.lo && e.episode_num <= episodeRange.hi);
+    console.log(`Filtered to episodes ${episodeRange.lo}-${episodeRange.hi}: ${allEpisodes.length} episodes`);
   }
 
-  console.log(`Episode: ${transcript.title} (${transcript.episode_id})`);
-  console.log(`Transcript lines: ${transcript.transcript_lines.length}`);
+  // Load existing scenes.json for incremental processing
+  let existing = [];
+  const existingIds = new Set();
+  if (fs.existsSync('scenes.json')) {
+    try {
+      const prev = JSON.parse(fs.readFileSync('scenes.json', 'utf-8'));
+      existing = prev.episodes || [];
+      for (const ep of existing) existingIds.add(ep.episode_id);
+      console.log(`Loaded ${existing.length} previously processed episodes from scenes.json`);
+    } catch (e) {
+      console.warn('Could not load existing scenes.json, starting fresh');
+    }
+  }
 
-  const scenes = detectScenes(transcript);
-  console.log(`Scenes detected: ${scenes.length}`);
+  const toProcess = allEpisodes.filter((e) => !existingIds.has(e.episode_id));
+  console.log(`Episodes to process: ${toProcess.length} (${existingIds.size} already done)\n`);
 
-  const output = {
-    episode_id: transcript.episode_id,
-    title: transcript.title,
-    season: transcript.season,
-    episode_num: transcript.episode_num,
-    total_scenes: scenes.length,
-    scenes,
-  };
+  const errors = [];
+  let totalNewScenes = 0;
 
-  fs.writeFileSync('scenes.json', JSON.stringify(output, null, 2));
-  console.log('Saved scenes.json');
+  for (let i = 0; i < toProcess.length; i++) {
+    const ep = toProcess[i];
+    const progress = `[${i + 1}/${toProcess.length}]`;
+    process.stdout.write(`${progress} ${ep.episode_id}...`);
 
-  // ── TEST RUNNER ────────────────────────────────────────────────────────────
+    const transcript = ingestTranscript(ep.url);
+    if (transcript.error) {
+      console.log(` ERROR: ${transcript.error}`);
+      errors.push({ episode_id: ep.episode_id, url: ep.url, error: transcript.error });
+      continue;
+    }
+
+    const scenes = detectScenes(transcript);
+    totalNewScenes += scenes.length;
+
+    existing.push({
+      episode_id: transcript.episode_id,
+      title: transcript.title,
+      season: transcript.season,
+      episode_num: transcript.episode_num,
+      total_scenes: scenes.length,
+      scenes,
+    });
+
+    console.log(` "${transcript.title}" — ${transcript.transcript_lines.length} lines, ${scenes.length} scenes`);
+
+    // Save incrementally every 10 episodes
+    if ((i + 1) % 10 === 0) {
+      saveOutput(existing, errors);
+      console.log(`  (incremental save at ${existing.length} episodes)`);
+    }
+  }
+
+  saveOutput(existing, errors);
+
+  console.log(`\n── SUMMARY ──`);
+  console.log(`Total episodes in scenes.json: ${existing.length}`);
+  console.log(`New episodes processed: ${toProcess.length - errors.length}`);
+  console.log(`New scenes created: ${totalNewScenes}`);
+  if (errors.length > 0) {
+    console.log(`Errors: ${errors.length}`);
+    for (const err of errors) console.log(`  ${err.episode_id}: ${err.error}`);
+  }
+
   console.log('\n── TEST RESULTS ──');
   runTests();
+}
+
+function saveOutput(episodes, errors) {
+  const output = {
+    total_episodes: episodes.length,
+    total_scenes: episodes.reduce((sum, ep) => sum + ep.total_scenes, 0),
+    errors: errors.length > 0 ? errors : undefined,
+    episodes,
+  };
+  fs.writeFileSync('scenes.json', JSON.stringify(output, null, 2));
 }
 
 function runTests() {
@@ -360,7 +458,8 @@ function runTests() {
   // Test 1: scenes.json is valid JSON
   test('scenes.json is valid JSON', () => {
     const raw = fs.readFileSync('scenes.json', 'utf-8');
-    JSON.parse(raw);
+    const data = JSON.parse(raw);
+    if (!data.episodes || !Array.isArray(data.episodes)) return 'Expected { episodes: [] } structure';
     return true;
   });
 
@@ -368,22 +467,26 @@ function runTests() {
   test('Each scene has required fields', () => {
     const data = JSON.parse(fs.readFileSync('scenes.json', 'utf-8'));
     const required = ['scene_id', 'episode_id', 'seq', 'location', 'characters', 'dialogue_lines'];
-    for (const scene of data.scenes) {
-      for (const field of required) {
-        if (!(field in scene)) {
-          return `Scene ${scene.scene_id || '?'} missing field: ${field}`;
+    for (const ep of data.episodes) {
+      for (const scene of ep.scenes) {
+        for (const field of required) {
+          if (!(field in scene)) {
+            return `Scene ${scene.scene_id || '?'} missing field: ${field}`;
+          }
         }
       }
     }
     return true;
   });
 
-  // Test 3: Scene count between 30–50
-  test('Scene count is between 30-50', () => {
+  // Test 3: Scene count between 30–50 per episode
+  test('Scene count is between 30-50 per episode', () => {
     const data = JSON.parse(fs.readFileSync('scenes.json', 'utf-8'));
-    const count = data.scenes.length;
-    if (count < 30 || count > 50) {
-      return `Scene count is ${count}, expected 30-50`;
+    for (const ep of data.episodes) {
+      const count = ep.scenes.length;
+      if (count < 30 || count > 50) {
+        return `${ep.episode_id} has ${count} scenes, expected 30-50`;
+      }
     }
     return true;
   });
@@ -391,9 +494,11 @@ function runTests() {
   // Test 4: No empty dialogue_lines arrays
   test('No empty dialogue_lines arrays', () => {
     const data = JSON.parse(fs.readFileSync('scenes.json', 'utf-8'));
-    for (const scene of data.scenes) {
-      if (!scene.dialogue_lines || scene.dialogue_lines.length === 0) {
-        return `Scene ${scene.scene_id} has empty dialogue_lines`;
+    for (const ep of data.episodes) {
+      for (const scene of ep.scenes) {
+        if (!scene.dialogue_lines || scene.dialogue_lines.length === 0) {
+          return `Scene ${scene.scene_id} has empty dialogue_lines`;
+        }
       }
     }
     return true;
