@@ -11,5 +11,36 @@
     { "src": "/faq", "dest": "/public/faq.html" },
     { "src": "/sitemap.xml", "dest": "/public/sitemap.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
     { "src": "/(.*)", "dest": "/public/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://api.producthunt.com https://springfield-oracle.vercel.app; connect-src 'self' https://api.rss2json.com https://corsproxy.io https://api.allorigins.win https://formspree.io https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net; frame-src https://www.googletagmanager.com; frame-ancestors 'none';"
+        }
+      ]
+    }
   ]
 }

@@ -2,7 +2,7 @@
 // Proxies Google News RSS server-side to avoid browser CORS restrictions
 // Used as primary news source by the frontend live-match feature
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
 
