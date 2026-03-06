@@ -1,30 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MND7HQ3K');</script>
-<!-- End Google Tag Manager -->
-<!-- Meta Pixel Code --> 
-<script> !function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; 
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; 
-s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js'); fbq('init', '841657298932259'); 
-fbq('track', 'PageView'); </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=841657298932259&ev=PageView&noscript=1" /></noscript>
-
-<!-- End Meta Pixel Code -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ7MZKWWQ6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RZ7MZKWWQ6');
-  gtag('config', 'AW-17990385961');
-</script>
 <meta charset="UTF-8">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -53,9 +29,12 @@ fbq('track', 'PageView'); </script>
 <meta name="twitter:description" content="Every Simpsons prediction that came true — sourced, fact-checked, and tracked in real time. No clickbait. No AI fakes. Just verified data.">
 <meta name="twitter:image" content="https://springfield-oracle.vercel.app/og-image.png">
 <title>Springfield Oracle — The Simpsons Prediction Tracker</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap"></noscript>
 <style>
-  :root {
+:root {
     --yellow: #FFD520;
     --blue: #0B2D8F;
     --orange: #FF6B2B;
@@ -75,7 +54,7 @@ fbq('track', 'PageView'); </script>
     cursor: default;
   }
 
-  /* SCANLINE OVERLAY */
+
   body::before {
     content: '';
     position: fixed;
@@ -91,7 +70,7 @@ fbq('track', 'PageView'); </script>
     z-index: 9999;
   }
 
-  /* HEADER */
+
   header {
     background: var(--yellow);
     padding: 0;
@@ -119,8 +98,7 @@ fbq('track', 'PageView'); </script>
     font-size: 11px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--blue);
-    opacity: 0.7;
+    color: #0a2070;
   }
 
   .logo-title {
@@ -203,7 +181,7 @@ fbq('track', 'PageView'); </script>
     filter: grayscale(1);
   }
 
-  /* TICKER */
+
   .ticker-bar {
     background: var(--blue);
     color: var(--yellow);
@@ -237,7 +215,7 @@ fbq('track', 'PageView'); </script>
     to { transform: translateX(-50%); }
   }
 
-  /* LATEST CONFIRMED */
+
   .latest-section {
     padding: 48px 40px 32px;
     max-width: 1400px;
@@ -318,7 +296,7 @@ fbq('track', 'PageView'); </script>
   .ep-year {
     font-size: 11px;
     margin-top: 4px;
-    color: var(--sky);
+    color: #a8e4f4;
   }
 
   .latest-content h2 {
@@ -341,13 +319,11 @@ fbq('track', 'PageView'); </script>
     text-align: center;
   }
 
-  /* ── CAROUSEL ── */
+
   .carousel-wrapper {
     position: relative;
     overflow: hidden;
-    /* padding-top gives the badge (top:-14px) clearance;
-       padding-right/bottom let the card's ::before orange shadow
-       show instead of being clipped by overflow:hidden */
+
     padding-top: 22px;
     padding-right: 8px;
     padding-bottom: 10px;
@@ -391,10 +367,11 @@ fbq('track', 'PageView'); </script>
   .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
+    gap: 0;
+    margin-top: 2px;
   }
   .carousel-dot {
+
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -402,11 +379,15 @@ fbq('track', 'PageView'); </script>
     background: transparent;
     cursor: pointer;
     transition: all 0.2s;
-    padding: 0;
+    padding: 19px;
+    background-clip: content-box;
+    box-sizing: content-box;
+    flex-shrink: 0;
   }
   .carousel-dot.active {
     background: var(--yellow);
     border-color: var(--yellow);
+    background-clip: content-box;
   }
 
   .gap-num {
@@ -423,7 +404,7 @@ fbq('track', 'PageView'); </script>
     opacity: 0.6;
   }
 
-  /* FILTERS */
+
   .filters-bar {
     padding: 24px 40px;
     max-width: 1400px;
@@ -438,7 +419,7 @@ fbq('track', 'PageView'); </script>
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.4;
+    color: rgba(245,240,232,0.7);
     margin-right: 8px;
   }
 
@@ -483,7 +464,7 @@ fbq('track', 'PageView'); </script>
     border-color: var(--yellow);
   }
 
-  /* TABLE */
+
   .table-section {
     padding: 0 40px 80px;
     max-width: 1400px;
@@ -593,9 +574,9 @@ fbq('track', 'PageView'); </script>
     font-size: 9px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    opacity: 0.4;
+    color: rgba(245,240,232,0.7);
     padding: 3px 8px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
   }
 
   .viral-score {
@@ -620,7 +601,7 @@ fbq('track', 'PageView'); </script>
     color: rgba(255,255,255,0.3);
   }
 
-  /* SUBMIT SECTION */
+
   .submit-section {
     background: var(--blue);
     padding: 60px 40px;
@@ -701,7 +682,7 @@ fbq('track', 'PageView'); </script>
     border-color: var(--orange);
   }
 
-  /* FOOTER */
+
   footer {
     background: #050505;
     padding: 32px 40px;
@@ -710,15 +691,15 @@ fbq('track', 'PageView'); </script>
     align-items: center;
     border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
-    opacity: 1;
+    color: #aaa;
   }
 
   footer a {
-    color: var(--yellow);
+    color: #FFD520;
     text-decoration: none;
   }
 
-  /* ANIMATIONS */
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
@@ -728,10 +709,10 @@ fbq('track', 'PageView'); </script>
     animation: fadeIn 0.4s ease both;
   }
 
-  /* HIDDEN ROW */
+
   tr.hidden { display: none; }
 
-  /* PULSE */
+
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
@@ -748,7 +729,7 @@ fbq('track', 'PageView'); </script>
     vertical-align: middle;
   }
 
-  /* MODAL */
+
   .modal-overlay {
     display: none;
     position: fixed;
@@ -840,7 +821,7 @@ fbq('track', 'PageView'); </script>
     font-size: 14px;
   }
 
-  /* PAGINATION — hidden on desktop, JS shows it on mobile */
+
   .pagination-bar {
     display: none;
     align-items: center;
@@ -878,11 +859,10 @@ fbq('track', 'PageView'); </script>
   }
 
   @media (max-width: 768px) {
-    /* Clamp the root element so iOS Safari rubber-band scroll can't
-       reveal empty space to the right of the page */
+
     html { overflow-x: hidden; }
 
-    /* HEADER — compact two-row layout */
+
     .header-inner {
       flex-direction: column;
       gap: 12px;
@@ -910,31 +890,28 @@ fbq('track', 'PageView'); </script>
       padding: 12px 8px;
       text-align: center;
     }
-    /* Hide the offset drop-shadow on mobile — pills are only 10px apart
-       so the ::before bleed (right:-4px) overlaps the neighbouring pill */
+
     .stat-pill::before { display: none; }
     .stat-num { font-size: 30px; }
     .stat-label { font-size: 8px; letter-spacing: 1px; margin-top: 3px; }
     .tv-graphic { display: none; }
 
-    /* TICKER */
+
     .ticker-bar { font-size: 10px; padding: 8px 0; }
 
-    /* HERO CAROUSEL CARD */
+
     .latest-section { padding: 24px 16px 16px; }
-    /* Remove desktop shadow clearance padding — on mobile the shadow pseudo
-       is already hidden, so padding-right/bottom only add extra scroll width */
+
     .carousel-wrapper { padding-right: 0; padding-bottom: 4px; }
 
-    /* Remove the offset drop-shadow on mobile — it bleeds outside the card
-       and can confuse the flex/grid sizing calculation in mobile browsers */
+
     .latest-card::before { display: none; }
 
     .latest-card {
       grid-template-columns: 1fr;
       gap: 14px;
       padding: 28px 16px 20px;
-      /* Square card on mobile — content aligns to top, empty space at bottom */
+
       aspect-ratio: 1 / 1;
       align-content: start;
     }
@@ -947,7 +924,7 @@ fbq('track', 'PageView'); </script>
     }
     .ep-season { font-size: 26px; }
 
-    /* Prevent h2 from blowing out the grid column */
+
     .latest-content {
       min-width: 0;
       overflow-wrap: break-word;
@@ -956,13 +933,13 @@ fbq('track', 'PageView'); </script>
     .latest-content h2 {
       font-size: 24px;
       line-height: 1.1;
-      /* Allow long words to wrap rather than overflow */
+
       word-break: break-word;
     }
     .latest-content p {
       font-size: 12px;
       line-height: 1.65;
-      /* Clamp to 3 lines to keep card height predictable */
+
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
@@ -970,26 +947,24 @@ fbq('track', 'PageView'); </script>
     }
     .latest-badge { font-size: 10px; left: 16px; padding: 5px 10px; }
 
-    /* CAROUSEL ARROWS — hide on mobile, users swipe instead.
-       Arrows at top:50% would sit over the card text in the taller
-       single-column layout, making them awkward and obstructive. */
+
     .carousel-arrow { display: none; }
 
-    /* CAROUSEL DOTS */
-    .carousel-dots { gap: 10px; margin-top: 16px; padding-bottom: 6px; }
+
+    .carousel-dots { gap: 0; margin-top: -2px; padding-bottom: 6px; }
     .carousel-dot {
       width: 10px;
       height: 10px;
-      padding: 0;
+      padding: 19px;
       border-radius: 50%;
     }
 
-    /* NEWS FEED */
+
     .news-section { padding: 20px 16px; }
     .news-item { padding: 12px 0; }
     .news-share-btns { display: none; }
 
-    /* FILTERS — wrap onto next line, no horizontal bleed */
+
     .filters-bar {
       flex-direction: column;
       align-items: stretch;
@@ -1017,7 +992,7 @@ fbq('track', 'PageView'); </script>
       font-size: 12px;
     }
 
-    /* TABLE — card layout on mobile */
+
     .table-section { padding: 12px 16px 48px; }
     .table-wrapper { overflow: visible; }
     table, thead, tbody, th, td, tr { display: block; }
@@ -1029,7 +1004,7 @@ fbq('track', 'PageView'); </script>
       margin-bottom: 10px;
       padding: 14px 14px 12px;
       cursor: pointer;
-      /* ensure minimum tap target */
+
       min-height: 64px;
     }
     tbody tr:hover,
@@ -1039,7 +1014,7 @@ fbq('track', 'PageView'); </script>
     .td-episode { font-size: 20px; margin-bottom: 4px; }
     .td-episode span { font-size: 9px; }
     .td-desc strong { font-size: 13px; line-height: 1.4; display: block; margin-bottom: 6px; }
-    /* Show a brief excerpt of the description on mobile */
+
     .td-desc p {
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -1053,23 +1028,20 @@ fbq('track', 'PageView'); </script>
     .share-btns { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
     .share-btn { font-size: 10px; padding: 7px 12px; min-height: 34px; }
 
-    /* MODAL — bottom sheet on mobile */
+
     .modal-overlay {
-      /* align-items: flex-end keeps the sheet anchored at the bottom.
-         No justify-content override — 'stretch' is invalid for flex,
-         was silently ignored; the default is fine since width:100% fills anyway. */
+
       align-items: flex-end;
     }
     .modal {
       width: 100%;
       max-width: 100%;
-      /* 78vh is conservative enough to stay inside the visible viewport
-         on iOS Safari, where 100vh includes the hidden browser chrome. */
+
       max-height: 78vh;
       overflow-y: auto;
-      overflow-x: hidden; /* prevent wide content from bleeding left/right */
+      overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
-      /* bottom padding covers the iPhone home-indicator safe area */
+
       padding: 24px 20px calc(28px + env(safe-area-inset-bottom, 0px));
       border-left: none;
       border-right: none;
@@ -1099,9 +1071,9 @@ fbq('track', 'PageView'); </script>
       gap: 12px;
     }
 
-    /* SUBMIT */
+
     .submit-section { padding: 36px 16px; }
-    /* Hide the 400px watermark pseudo-element — too heavy to render on mobile */
+
     .submit-section::before { display: none; }
     .submit-section h2 { font-size: 40px; }
     .submit-section p { font-size: 12px; margin-bottom: 24px; }
@@ -1119,7 +1091,7 @@ fbq('track', 'PageView'); </script>
       font-size: 18px;
     }
 
-    /* FOOTER */
+
     footer {
       flex-direction: column;
       gap: 10px;
@@ -1135,13 +1107,13 @@ fbq('track', 'PageView'); </script>
     .latest-content h2 { font-size: 20px; }
     .stat-num { font-size: 24px; }
     .ep-season { font-size: 22px; }
-    /* Modal title can be very long on small phones */
+
     .modal-title { font-size: 22px; }
-    /* Stack the meta grid to single column on very small screens */
+
     .modal-meta { grid-template-columns: 1fr; }
   }
 
-  /* LIVE NEWS SECTION */
+
   .news-outer {
     max-width: 1200px;
     margin: 40px auto;
@@ -1230,11 +1202,6 @@ fbq('track', 'PageView'); </script>
 </script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MND7HQ3K"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <!-- HEADER -->
 <header>
   <div class="header-inner">
@@ -1267,6 +1234,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="tv-graphic">📺</div>
 </header>
 
+<main>
 <!-- TICKER -->
 <div class="ticker-bar">
   <div class="ticker-inner" id="ticker">
@@ -1377,11 +1345,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Dots -->
     <div class="carousel-dots" id="carousel-dots">
-      <button class="carousel-dot active" onclick="carouselGoTo(0)"></button>
-      <button class="carousel-dot" onclick="carouselGoTo(1)"></button>
-      <button class="carousel-dot" onclick="carouselGoTo(2)"></button>
-      <button class="carousel-dot" onclick="carouselGoTo(3)"></button>
-      <button class="carousel-dot" onclick="carouselGoTo(4)"></button>
+      <button class="carousel-dot active" onclick="carouselGoTo(0)" aria-label="Go to slide 1"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(1)" aria-label="Go to slide 2"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(2)" aria-label="Go to slide 3"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(3)" aria-label="Go to slide 4"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(4)" aria-label="Go to slide 5"></button>
     </div>
   </div>
 </div>
@@ -1455,12 +1423,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
-  <span style="color:#888;">Springfield Oracle · Built by <strong style="color:#FFD520;">Isha Godboley</strong> · <a href="https://www.linkedin.com/in/isha-godboley" target="_blank" rel="noopener" style="color:#FFD520;">Have feedback? DM me on LinkedIn ↗</a></span>
-  <span style="color:#444; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
-  <span style="color:#888;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:#FFD520;">GitHub ↗</a> · Data sourced & verified.</span>
-  <span style="color:#888;"><a href="/about.html" style="color:#FFD520;text-decoration:none;">About</a> · <a href="/faq.html" style="color:#FFD520;text-decoration:none;">FAQ</a></span>
+  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha Godboley</strong> · <a href="https://www.linkedin.com/in/isha-godboley" target="_blank" rel="noopener">Have feedback? DM me on LinkedIn ↗</a></span>
+  <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
+  <span><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub ↗</a> · Data sourced &amp; verified.</span>
+  <span><a href="/about.html" style="text-decoration:none;">About</a> · <a href="/faq.html" style="text-decoration:none;">FAQ</a></span>
   <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Every Simpsons prediction. Sourced, scored, fact-checked. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
 </footer>
 
@@ -1672,9 +1642,9 @@ function renderTable(data) {
 
 // Draw the current page slice.
 function renderCurrentPage() {
+  const mobile = window.innerWidth <= 768;
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
-  const mobile = window.innerWidth <= 768;
   const pageSize = mobile ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE;
   const pageData = currentFilteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
@@ -2142,5 +2112,47 @@ syncWithDatabase();
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
+
+<!-- Google Tag Manager (deferred) -->
+<script>
+window.addEventListener('load', function() {
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MND7HQ3K');
+});
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google tag (gtag.js) (deferred) -->
+<script>
+window.addEventListener('load', function() {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-RZ7MZKWWQ6';
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RZ7MZKWWQ6');
+  gtag('config', 'AW-17990385961');
+});
+</script>
+
+<!-- Meta Pixel Code (deferred) -->
+<script>
+window.addEventListener('load', function() {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','841657298932259');fbq('track','PageView');
+});
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=841657298932259&ev=PageView&noscript=1" /></noscript>
+<!-- End Meta Pixel Code -->
 </body>
 </html>
