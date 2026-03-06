@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "total_scenes": 40,
+    "filtered_scenes": 4,
+    "pass_rate": 10
+  },
+  "predictions": [
+    {
+      "prediction_id": "61f49041-130c-4010-9f96-239ed09a748f",
+      "episode_id": "s01e01",
+      "scene_id": "s01e01_sc002",
+      "description": "A cultural tradition exists where parental discipline of children is publicly validated through gift-giving ceremonies, with implements of corporal punishment distributed as ceremonial objects.",
+      "category": "culture",
+      "source_quote": "In Germany, Santa's servant Ruprecht gives presents to good children and whipping rods to the parents of bad ones.",
+      "filter_response": "MAYBE"
+    },
+    {
+      "prediction_id": "5170e933-84d2-4a72-bc6e-f3378ca0d90d",
+      "episode_id": "s01e01",
+      "scene_id": "s01e01_sc012",
+      "description": "Corporate safety improvements are funded by reducing worker compensation rather than adjusting consumer prices or executive pay.",
+      "category": "corporate",
+      "source_quote": "we've been able to increase safety here at the plant without increasing the cost to the consumer or affecting management payraises",
+      "filter_response": "MAYBE"
+    },
+    {
+      "prediction_id": "43862c51-814c-482b-b374-379555ee71f4",
+      "episode_id": "s01e01",
+      "scene_id": "s01e01_sc012",
+      "description": "Corporations prioritize maintaining executive compensation and consumer pricing over worker benefits when allocating resources for operational improvements.",
+      "category": "economics",
+      "source_quote": "we've been able to increase safety here at the plant without increasing the cost to the consumer or affecting management payraises",
+      "filter_response": "MAYBE"
+    },
+    {
+      "prediction_id": "dbab3653-91f6-4a24-945e-d65e6c0b5e3e",
+      "episode_id": "s01e01",
+      "scene_id": "s01e01_sc029",
+      "description": "Employers deduct multiple mandatory and discretionary fees from worker paychecks including social security, unemployment insurance, costume rentals, and seasonal training costs, resulting in substantial reductions from gross pay.",
+      "category": "economics",
+      "source_quote": "$120 gross. Less Social Security, less unemployment insurance, less Santa training, less costume purchase, less beard rental, less Christmas club.",
+      "filter_response": "YES",
+      "flags": [
+        "UNVERIFIED_QUOTE"
+      ]
+    },
+    {
+      "prediction_id": "186ddb53-8453-4047-aeb9-6d8b46c94d6e",
+      "episode_id": "s01e01",
+      "scene_id": "s01e01_sc029",
+      "description": "Seasonal workers in costume-based employment face fragmented income streams with employment gaps between seasonal contracts.",
+      "category": "economics",
+      "source_quote": "See ya next year.",
+      "filter_response": "YES"
+    }
+  ]
+}
