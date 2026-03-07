@@ -1500,156 +1500,12 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     100% { opacity: 0; transform: translateY(10px); }
   }
 
-  .oracle-chat-container {
-    position: fixed;
-    bottom: 110px;
-    right: 30px;
-    width: 380px;
-    height: 420px;
-    background: linear-gradient(135deg, #FFD520 0%, #FFC900 100%);
-    border: 3px solid #0B2D8F;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    display: none;
-    flex-direction: column;
-    z-index: 999;
-    overflow: hidden;
-  }
-
-  .oracle-chat-container.active {
-    display: flex;
-  }
-
-  .oracle-chat-header {
-    background: #0B2D8F;
-    color: #FFD520;
-    padding: 12px 16px;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 16px;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-transform: uppercase;
-  }
-
-  .oracle-close-btn {
-    background: none;
-    border: none;
-    color: #FFD520;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-  }
-
-  .oracle-close-btn:hover {
-    transform: rotate(90deg);
-  }
-
-  .oracle-chat-content {
-    padding: 16px;
-    flex: 1;
-    overflow-y: auto;
-    color: #0B2D8F;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-  }
-
-  .oracle-chat-prompt {
-    margin-bottom: 12px;
-    font-weight: bold;
-    line-height: 1.4;
-  }
-
-  .oracle-user-question {
-    background: #0B2D8F;
-    color: #FFD520;
-    padding: 10px 14px;
-    border-radius: 8px;
-    margin-top: 12px;
-    line-height: 1.4;
-    font-weight: 600;
-  }
-
-  .oracle-response {
-    background: #FFF;
-    padding: 12px;
-    border-radius: 8px;
-    margin-top: 10px;
-    border-left: 4px solid #0B2D8F;
-    line-height: 1.5;
-    font-style: italic;
-  }
-
-  .oracle-input-area {
-    padding: 12px;
-    border-top: 2px solid #0B2D8F;
-    display: flex;
-    gap: 8px;
-  }
-
-  .oracle-input {
-    flex: 1;
-    padding: 8px 12px;
-    border: 2px solid #0B2D8F;
-    border-radius: 6px;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    background: #FFF;
-    color: #0B2D8F;
-  }
-
-  .oracle-input::placeholder {
-    color: #0B2D8F;
-    opacity: 0.6;
-  }
-
-  .oracle-input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(11, 45, 143, 0.3);
-  }
-
-  .oracle-submit-btn {
-    background: #0B2D8F;
-    color: #FFD520;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 12px;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-  }
-
-  .oracle-submit-btn:hover {
-    background: #0A1F6F;
-    box-shadow: 0 2px 8px rgba(11, 45, 143, 0.4);
-  }
-
-  .oracle-submit-btn:active {
-    transform: translateY(1px);
-  }
-
   @media (max-width: 480px) {
     .oracle-button {
       width: 60px;
       height: 60px;
       font-size: 28px;
       bottom: 20px;
-      right: 20px;
-    }
-
-    .oracle-chat-container {
-      width: calc(100vw - 40px);
-      height: 480px;
-      bottom: 90px;
       right: 20px;
     }
   }
@@ -2792,42 +2648,6 @@ const oracleResponses = [
   { catchphrase: 'Absolutely certain...', hint: 'Business forecasts ring true.' }
 ];
 
-function toggleOracleChat() {
-  const oracleChat = document.getElementById('oracleChat');
-  oracleChat.classList.toggle('active');
-  if (oracleChat.classList.contains('active')) {
-    document.getElementById('oracleInput').focus();
-  }
-}
-
-function submitOracleQuestion() {
-  const input = document.getElementById('oracleInput');
-  const question = input.value.trim();
-
-  if (!question) return;
-
-  const randomResponse = oracleResponses[Math.floor(Math.random() * oracleResponses.length)];
-  const responseDiv = document.getElementById('oracleResponse');
-  const contentDiv = document.querySelector('.oracle-chat-content');
-
-  responseDiv.innerHTML = `
-    <div class="oracle-user-question">Q: ${question}</div>
-    <div class="oracle-response">${randomResponse}</div>
-  `;
-  input.value = '';
-
-  // Scroll to bottom to show latest response
-  setTimeout(() => {
-    contentDiv.scrollTop = contentDiv.scrollHeight;
-  }, 0);
-}
-
-function handleOracleKeypress(event) {
-  if (event.key === 'Enter') {
-    submitOracleQuestion();
-  }
-}
-
 // Crystal Ball Click Handler
 document.addEventListener('DOMContentLoaded', () => {
   const oracleButton = document.querySelector('.oracle-button');
@@ -2910,27 +2730,6 @@ window.addEventListener('load', function() {
 <!-- End Meta Pixel Code -->
 
 <!-- ASK THE ORACLE WIDGET -->
-<button class="oracle-button" onclick="toggleOracleChat()">🔮</button>
-<div class="oracle-chat-container" id="oracleChat">
-  <div class="oracle-chat-header">
-    Ask the Oracle
-    <button class="oracle-close-btn" onclick="toggleOracleChat()">✕</button>
-  </div>
-  <div class="oracle-chat-content">
-    <div class="oracle-chat-prompt">Ask the Oracle a yes/no question about your future...</div>
-    <div id="oracleResponse"></div>
-  </div>
-  <div class="oracle-input-area">
-    <input
-      type="text"
-      class="oracle-input"
-      id="oracleInput"
-      placeholder="Your question..."
-      onkeypress="handleOracleKeypress(event)"
-    >
-    <button class="oracle-submit-btn" onclick="submitOracleQuestion()">Ask</button>
-  </div>
-</div>
-
+<button class="oracle-button">🔮</button>
 </body>
 </html>
