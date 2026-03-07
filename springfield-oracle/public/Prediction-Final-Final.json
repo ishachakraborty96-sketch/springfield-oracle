@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "last_updated": "2026-03-07",
+    "total": 51,
+    "status_update": "DISPUTED records renamed to DEBUNKED",
+    "engine": "Gemini 3 Flash Scraper Ready"
+  },
+  "predictions": [
+    {
+      "id": "SP001",
+      "season": 2,
+      "episode_code": "S02E04",
+      "title": "Three-Eyed Fish",
+      "year_aired": 1990,
+      "prediction": "Blinky, a three-eyed fish, lives near Springfield's nuclear plant.",
+      "real_event": "A three-eyed fish was caught near a nuclear power plant in Argentina.",
+      "real_year": 2011,
+      "category": "Science",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "SP006",
+      "season": 4,
+      "episode_code": "S04E21",
+      "title": "Osaka / Superflu Pandemic",
+      "year_aired": 1993,
+      "prediction": "The 'Osaka Flu' arrives via packages shipped from Japan, spreading rapidly.",
+      "real_event": "COVID-19 pandemic (2020) and the H3N2 outbreak in 2026.",
+      "real_year": 2020,
+      "category": "Science",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "GAP-S06E01-01",
+      "season": 6,
+      "episode_code": "S06E01",
+      "title": "Neighborhood Surveillance",
+      "year_aired": 1994,
+      "prediction": "Proliferation of neighborhood-level surveillance via consumer optics.",
+      "category": "Technology",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "SP010",
+      "season": 6,
+      "episode_code": "S06E19",
+      "title": "Smartwatches & Video Calls",
+      "year_aired": 1995,
+      "prediction": "Characters wear phone-watches and communicate via video screens in 2010.",
+      "real_event": "Apple Watch (2015) and FaceTime (2010).",
+      "real_year": 2015,
+      "category": "Technology",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "SP078",
+      "season": 8,
+      "episode_code": "S08E10",
+      "title": "The Springfield Files (UAPs)",
+      "year_aired": 1997,
+      "prediction": "Government agencies tracking and mass-surveillance of alien encounters.",
+      "real_event": "2023 Congressional hearings on UAPs and the launch of AARO.",
+      "real_year": 2023,
+      "category": "Government",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "SP042",
+      "season": 10,
+      "episode_code": "S10E02",
+      "title": "9/11 Twin Towers Flyer",
+      "year_aired": 1997,
+      "prediction": "A flyer for New York shows the number 9 next to the Twin Towers.",
+      "status": "DEBUNKED",
+      "reason": "Show producers confirmed this was a visual coincidence."
+    },
+    {
+      "id": "SP018",
+      "season": 10,
+      "episode_code": "S10E11",
+      "title": "20th Century Fox Acquired by Disney",
+      "year_aired": 1998,
+      "prediction": "A studio sign reads '20th Century Fox — A Division of Walt Disney Co.'",
+      "real_event": "Disney acquired Fox for $71.3 billion in 2019.",
+      "real_year": 2019,
+      "category": "Business",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "SP019",
+      "season": 11,
+      "episode_code": "S11E05",
+      "title": "Donald Trump Presidency",
+      "year_aired": 2000,
+      "prediction": "Lisa mentions inheriting a budget crunch from President Trump.",
+      "real_event": "Donald Trump elected 45th President in 2016.",
+      "real_year": 2016,
+      "category": "Politics",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "SP031",
+      "season": 23,
+      "episode_code": "S23E17",
+      "title": "AI / Robots Replace Human Workers",
+      "year_aired": 2012,
+      "prediction": "Mr. Burns replaces his workforce with robots.",
+      "status": "PENDING",
+      "likelihood_pct": 85,
+      "likelihood_components": {
+        "category_base_rate": 0.72,
+        "plausibility_score": 0.85,
+        "specificity_score": 0.8,
+        "news_velocity_score": 0.0
+      }
+    },
+    {
+      "id": "SP034",
+      "season": 26,
+      "episode_code": "S26E10",
+      "title": "Elon Musk Tech/Political Influence",
+      "year_aired": 2015,
+      "prediction": "Elon Musk appears as a tech billionaire with political ambitions.",
+      "real_event": "Musk's political rise and DOGE appointment in 2025.",
+      "real_year": 2025,
+      "category": "Business",
+      "status": "CONFIRMED"
+    }
+  ]
+}
