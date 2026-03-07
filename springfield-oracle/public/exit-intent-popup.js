@@ -560,31 +560,78 @@ const ExitIntentPopup = (() => {
       }
     });
 
-    // Mobile: swipe up detection
+    // Mobile: swipe up detection + fast upward scroll
     let touchStartY = 0;
+    let touchStartTime = 0;
+    let lastScrollY = 0;
+    let lastScrollTime = 0;
+
     document.addEventListener('touchstart', (e) => {
       touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
     });
 
     document.addEventListener('touchmove', (e) => {
       if (exitTriggered || sessionStorage.getItem('exit_intent_dismissed')) return;
       const touchCurrentY = e.touches[0].clientY;
+      const touchDuration = Date.now() - touchStartTime;
       // Detect upward swipe at top of screen (moving up more than 50px from top)
       if (touchStartY < 100 && (touchStartY - touchCurrentY) > 50) {
         triggerPopup();
       }
     });
 
-    // Mobile: scroll past top (pulldown on iOS)
-    let lastScrollY = 0;
+    // Fast upward scroll detection (URL bar appearing behavior)
     document.addEventListener('scroll', () => {
       if (exitTriggered || sessionStorage.getItem('exit_intent_dismissed')) return;
       const currentScrollY = window.scrollY;
-      // Detect if user is at top and scrolls up (negative scroll = pull to refresh)
+      const currentTime = Date.now();
+      const timeDelta = currentTime - lastScrollTime;
+      const scrollDelta = lastScrollY - currentScrollY;
+
+      // Detect fast upward scrolling (velocity > 2px/ms)
+      if (scrollDelta > 0 && timeDelta > 0) {
+        const scrollVelocity = scrollDelta / timeDelta;
+        if (scrollVelocity > 2 && window.scrollY < 50) {
+          triggerPopup();
+        }
+      }
+
+      // Detect pull-to-refresh (negative scroll = iOS)
       if (currentScrollY < 0 && lastScrollY >= 0) {
         triggerPopup();
       }
+
       lastScrollY = currentScrollY;
+      lastScrollTime = currentTime;
+    });
+
+    // Back button / swipe back gesture detection
+    window.addEventListener('popstate', () => {
+      if (!exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
+        triggerPopup();
+      }
+    });
+
+    // Tab/window close, visibility change (app switcher, home button, tab switcher)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && !exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
+        triggerPopup();
+      }
+    });
+
+    // Before unload (back button on Android, tab close)
+    window.addEventListener('beforeunload', () => {
+      if (!exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
+        triggerPopup();
+      }
+    });
+
+    // Pagehide event (iOS Safari back gesture, switching apps)
+    window.addEventListener('pagehide', () => {
+      if (!exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
+        triggerPopup();
+      }
     });
   };
 
