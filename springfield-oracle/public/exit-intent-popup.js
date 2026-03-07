@@ -40,11 +40,15 @@ const ExitIntentPopup = (() => {
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
         z-index: 1000;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         padding: 20px;
         opacity: 0;
+      }
+
+      .exit-intent-overlay.visible {
+        display: flex;
         animation: exitIntentFadeIn 0.4s ease 0.1s forwards;
       }
 
@@ -434,7 +438,11 @@ const ExitIntentPopup = (() => {
     // document.addEventListener('mouseleave', (e) => {
     //   if (e.clientY < 10 && !exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
     //     exitTriggered = true;
-    //     document.getElementById('exit-intent-overlay').style.display = 'flex';
+    //     const overlay = document.getElementById('exit-intent-overlay');
+    //     if (overlay) {
+    //       overlay.style.opacity = '1';
+    //       overlay.classList.add('visible');
+    //     }
     //   }
     // });
   };
@@ -475,7 +483,7 @@ const ExitIntentPopup = (() => {
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.3s ease';
     setTimeout(() => {
-      overlay.style.display = 'none';
+      overlay.classList.remove('visible');
       sessionStorage.setItem('exit_intent_dismissed', '1');
     }, 300);
   };
@@ -497,7 +505,10 @@ const ExitIntentPopup = (() => {
       close,
       show: () => {
         const overlay = document.getElementById('exit-intent-overlay');
-        if (overlay) overlay.style.display = 'flex';
+        if (overlay) {
+          overlay.style.opacity = '1';
+          overlay.classList.add('visible');
+        }
       }
     };
   };
@@ -508,7 +519,10 @@ const ExitIntentPopup = (() => {
     close,
     show: () => {
       const overlay = document.getElementById('exit-intent-overlay');
-      if (overlay) overlay.style.display = 'flex';
+      if (overlay) {
+        overlay.style.opacity = '1';
+        overlay.classList.add('visible');
+      }
     }
   };
 })();

@@ -113,6 +113,7 @@ export default function ExitIntentPopup({
       {/* Overlay */}
       <div
         className="fixed inset-0 z-1000 flex items-center justify-center bg-black/88 backdrop-blur-md p-5"
+        style={{ animation: 'slideIn 0.4s ease 0.1s forwards' }}
         onClick={(e) => {
           if (e.target === e.currentTarget) close();
         }}
@@ -294,6 +295,14 @@ export default function ExitIntentPopup({
 
       {/* Animations */}
       <style>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
         @keyframes slideUp {
           to {
             transform: translateY(0) scale(1);
