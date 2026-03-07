@@ -10,8 +10,9 @@
       "https://simpsons.fandom.com/wiki/The_Simpsons_future_predictions"
     ],
     "show_status": "Renewed through Season 40 (2029). ~790 episodes as of March 2026.",
-    "status_update": "Weekly automation update: 0 predictions recalculated",
-    "last_automated_update": "2026-03-07T19:30:33.116527"
+    "status_update": "SP011 REACTIVATED: World War III prediction now heating up due to 2026 geopolitical crisis risks",
+    "last_automated_update": "2026-03-07T19:30:33.116527",
+    "total_heating_predictions": 3
   },
   "predictions": [
     {
@@ -201,12 +202,23 @@
       "viral_score": 10,
       "verified_source": "TVTropes S06E19 recap; Simpsons Fandom wiki; Wikipedia 2026 Iran-US strikes; PBS News live updates Feb 28 2026",
       "fact_check_note": "WW3 in episode has no Middle East specificity. Majority of viral TikTok clips claiming Simpsons 'predicted Iran war' are AI-generated deepfakes per Boatos.org fact-check (June 2025). This entry cites only the verified S06E19 dialogue.",
-      "likelihood_pct": 65,
+      "likelihood_pct": 78,
       "likelihood_components": {
         "supporting_links": 0,
         "counter_arguments": 0
       },
-      "last_updated": "2026-03-07T19:30:33.116440"
+      "last_updated": "2026-03-07T19:33:14.543545",
+      "heating_rank": 1,
+      "heating_level": 3,
+      "heating_note": "CRITICAL: Russia-NATO tensions, Ukraine war escalation, Taiwan strait risks, Middle East conflicts - 50/50 major conflict chance in 2026",
+      "status_update": "REACTIVATED: Original timeline expired but core prediction mirrors current crises",
+      "current_context": {
+        "russia_nato_tensions": "Escalating - 50/50 even chance of armed clash in 2026",
+        "ukraine_war": "Ongoing with infrastructure destruction, no resolution path",
+        "taiwan_strait": "Tensions rising - rated high impact contingency",
+        "middle_east": "Multiple active conflicts",
+        "expert_assessment": "CFR/ICG: Multiple flashpoints creating WWIII-scale risk"
+      }
     },
     {
       "id": "SP012",
