@@ -1325,8 +1325,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     position: fixed;
     bottom: 110px;
     right: 30px;
-    width: 320px;
-    max-height: 500px;
+    width: 380px;
+    height: 520px;
     background: linear-gradient(135deg, #FFD520 0%, #FFC900 100%);
     border: 3px solid #0B2D8F;
     border-radius: 12px;
@@ -1458,7 +1458,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     }
 
     .oracle-chat-container {
-      width: 280px;
+      width: calc(100vw - 40px);
+      height: 480px;
       bottom: 90px;
       right: 20px;
     }
@@ -2570,9 +2571,15 @@ function submitOracleQuestion() {
 
   const randomResponse = oracleResponses[Math.floor(Math.random() * oracleResponses.length)];
   const responseDiv = document.getElementById('oracleResponse');
+  const contentDiv = document.querySelector('.oracle-chat-content');
 
   responseDiv.innerHTML = `<div class="oracle-response">${randomResponse}</div>`;
   input.value = '';
+
+  // Scroll to show both prompt and response
+  setTimeout(() => {
+    contentDiv.scrollTop = 0;
+  }, 0);
 }
 
 function handleOracleKeypress(event) {
