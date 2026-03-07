@@ -592,6 +592,36 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     border: 1px solid rgba(232, 19, 42, 0.2);
   }
 
+  /* Likelihood Score Pills */
+  .likelihood-pill {
+    padding: 4px 12px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 4px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .likelihood-high {
+    background: rgba(154, 255, 61, 0.15);
+    color: #9AFF3D;
+    border: 1px solid rgba(154, 255, 61, 0.4);
+  }
+
+  .likelihood-medium {
+    background: rgba(255, 213, 32, 0.15);
+    color: #FFD520;
+    border: 1px solid rgba(255, 213, 32, 0.4);
+  }
+
+  .likelihood-low {
+    background: rgba(232, 19, 42, 0.15);
+    color: #ff6b7a;
+    border: 1px solid rgba(232, 19, 42, 0.4);
+  }
+
   .category-tag {
     font-size: 9px;
     letter-spacing: 1px;
@@ -1670,10 +1700,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   <table id="predictions-table">
     <thead>
       <tr>
-        <th>Episode</th>
-        <th>Prediction</th>
-        <th>Status</th>
-        <th>Category</th>
+        <th onclick="sortTable('episode')">Episode ↕</th>
+        <th onclick="sortTable('prediction')">Prediction ↕</th>
+        <th onclick="sortTable('status')">Status ↕</th>
+        <th onclick="sortTable('category')">Category ↕</th>
+        <th onclick="sortTable('likelihood')" style="cursor: pointer;">Likelihood ↕</th>
         <th>Share</th>
       </tr>
     </thead>
@@ -1847,6 +1878,61 @@ function yearsEarly(year, trueYear) {
   return `<span class="gap-years">${diff}y</span>`;
 }
 
+function likelihoodBadge(likelihood) {
+  if (!likelihood && likelihood !== 0) return '<span class="likelihood-pill likelihood-low">—</span>';
+  const pct = parseInt(likelihood);
+  let className = 'likelihood-low';
+  if (pct >= 70) className = 'likelihood-high';
+  else if (pct >= 40) className = 'likelihood-medium';
+  return `<span class="likelihood-pill ${className}">${pct}%</span>`;
+}
+
+function applySortField(a, b, field, direction) {
+  let aVal, bVal;
+
+  switch(field) {
+    case 'episode':
+      aVal = a.season * 1000 + a.episode;
+      bVal = b.season * 1000 + b.episode;
+      break;
+    case 'likelihood':
+      aVal = (a.likelihood_pct || 0);
+      bVal = (b.likelihood_pct || 0);
+      break;
+    case 'status':
+      aVal = a.status || '';
+      bVal = b.status || '';
+      break;
+    case 'category':
+      aVal = (a.category || '').toLowerCase();
+      bVal = (b.category || '').toLowerCase();
+      break;
+    case 'prediction':
+      aVal = (a.title || '').toLowerCase();
+      bVal = (b.title || '').toLowerCase();
+      break;
+    default:
+      aVal = a[field];
+      bVal = b[field];
+  }
+
+  if (typeof aVal === 'string') {
+    return direction === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+  }
+
+  return direction === 'asc' ? aVal - bVal : bVal - aVal;
+}
+
+function sortTable(field) {
+  if (currentSort.field === field) {
+    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+  } else {
+    currentSort = { field, direction: 'desc' };
+  }
+  renderTable(predictions);
+  renderCurrentPage();
+}
+
 let currentModalPrediction = null;
 
 const BASE_URL = 'https://springfield-oracle.vercel.app';
@@ -1952,11 +2038,17 @@ let currentFilteredData = [];
 let currentPage = 1;
 let currentFilter = 'all';
 let currentSearch = '';
+let currentSort = { field: 'recency', direction: 'desc' };
 
 // Sort + store the full filtered dataset, reset to page 1, then draw.
 // Sort by recency of news: still-developing (no trueYear) first, then by trueYear desc.
 function renderTable(data) {
   currentFilteredData = [...data].sort((a, b) => {
+    // Apply current sort if not default recency
+    if (currentSort.field !== 'recency') {
+      return applySortField(a, b, currentSort.field, currentSort.direction);
+    }
+    // Default recency sort
     if (!a.trueYear && !b.trueYear) return b.year - a.year;
     if (!a.trueYear) return -1;
     if (!b.trueYear) return 1;
@@ -2055,6 +2147,7 @@ function renderCurrentPage() {
       <td class="td-desc"><strong>${p.title}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
+      <td>${likelihoodBadge(p.likelihood_pct)}</td>
       <td class="td-share" onclick="event.stopPropagation()">
         <div style="display:flex;flex-direction:row;gap:6px;flex-wrap:nowrap;">
         <button onclick="shareOnX(predictions.find(x=>x.id==='${p.id}'))" title="Share on X" style="background:none;border:1px solid rgba(255,255,255,0.15);color:#ddd;padding:6px 10px;border-radius:4px;cursor:pointer;font-size:0.75rem;transition:all 0.2s;white-space:nowrap;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#ddd'">𝕏</button>
