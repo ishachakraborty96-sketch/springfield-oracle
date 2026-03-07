@@ -73,6 +73,14 @@ npx vercel dev
 
 Or open `public/index.html` directly in a browser. The news feed requires the Vercel function to run.
 
+### Environment Variables
+
+For the newsletter subscription feature to work with BeehivIV, you need to set the following environment variable on Vercel:
+
+- `BEEHIIV_API_KEY` - Your BeehivIV API key (obtain from https://app.beehiiv.com/settings/api)
+
+Add this in your Vercel project settings under Environment Variables.
+
 ---
 
 ## License

@@ -1558,6 +1558,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         <button class="newsletter-btn" type="submit">Get Updates</button>
       </form>
       <div id="newsletter-success" style="display:none; color:#0B2D8F; font-family:'Space Mono',monospace; font-size:12px; margin-top:10px; letter-spacing:1px;">✓ You're in. First issue lands soon.</div>
+      <div id="newsletter-error" style="display:none; color:#ff6b6b; font-family:'Space Mono',monospace; font-size:12px; margin-top:10px; letter-spacing:1px;"></div>
     </div>
   </div>
 </div>
@@ -2334,21 +2335,45 @@ async function handleNewsletterSubmit(e) {
   const email = document.getElementById('newsletter-email').value.trim();
   if (!email) return;
   const btn = e.target.querySelector('.newsletter-btn');
-  btn.textContent = 'Sending...';
+  const form = document.getElementById('newsletter-form');
+  const successEl = document.getElementById('newsletter-success');
+  const errorEl = document.getElementById('newsletter-error');
+
+  btn.textContent = 'Subscribing...';
   btn.disabled = true;
+
   try {
-    const res = await fetch('https://app.beehiiv.com/api/v1/subscriptions', {
+    const res = await fetch('/api/newsletter', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email, publication_id: '62cfda32-7031-4c9d-9972-fb9b355cd4ec', double_opt_in: false })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
     });
+
+    const data = await res.json();
+
     if (res.ok) {
-      document.getElementById('newsletter-form').style.display = 'none';
-      document.getElementById('newsletter-success').style.display = 'block';
-    } else { throw new Error(); }
-  } catch {
+      form.style.display = 'none';
+      successEl.style.display = 'block';
+      if (errorEl) errorEl.style.display = 'none';
+    } else {
+      throw new Error(data.error || 'Subscription failed');
+    }
+  } catch (error) {
+    console.error('Newsletter error:', error);
     btn.textContent = 'Get Updates';
     btn.disabled = false;
+
+    // Show error message
+    if (!errorEl) {
+      const newErrorEl = document.createElement('div');
+      newErrorEl.id = 'newsletter-error';
+      newErrorEl.style.cssText = 'display:block; color:#ff6b6b; font-family:"Space Mono",monospace; font-size:12px; margin-top:10px; letter-spacing:1px;';
+      newErrorEl.textContent = error.message || 'Something went wrong. Please try again.';
+      form.parentNode.insertBefore(newErrorEl, form.nextSibling);
+    } else {
+      errorEl.textContent = error.message || 'Something went wrong. Please try again.';
+      errorEl.style.display = 'block';
+    }
   }
 }
 
