@@ -1923,7 +1923,7 @@ function openCarouselModal(index) {
   const d = carouselData[index];
   document.getElementById('modal-episode').textContent = d.episode;
   document.getElementById('modal-title').textContent = d.title;
-  document.getElementById('modal-body').innerHTML = d.body.replace(/\n\n/g, '<br><br>');
+  document.getElementById('modal-body').textContent = d.body.replace(/\n\n/g, ' ');
   document.getElementById('modal-status').innerHTML = statusBadge(d.status);
   document.getElementById('modal-category').textContent = d.category || '—';
   document.getElementById('modal-airdate').textContent = d.episode.match(/\d{4}/)?.[0] || '—';
