@@ -539,7 +539,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     display: block;
     font-family: 'Space Mono', monospace;
     font-size: 11px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.6);
     letter-spacing: 1px;
   }
 
@@ -591,9 +591,9 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     font-size: 9px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.7);
+    color: rgba(245,240,232,0.9);
     padding: 3px 8px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
   }
 
   .viral-score {
@@ -928,8 +928,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       grid-template-columns: 1fr;
       gap: 14px;
       padding: 28px 16px 20px;
-
-      aspect-ratio: 1 / 1;
       align-content: start;
     }
     .latest-episode {
@@ -956,11 +954,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     .latest-content p {
       font-size: 12px;
       line-height: 1.65;
-
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
     }
     .latest-badge { font-size: 10px; left: 16px; padding: 5px 10px; }
 
@@ -1042,18 +1035,16 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 
     .modal-overlay {
-
       align-items: flex-end;
     }
     .modal {
       width: 100%;
       max-width: 100%;
-
-      max-height: 78vh;
+      max-height: 92vh;
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
-
+      overscroll-behavior: contain;
       padding: 24px 20px calc(28px + env(safe-area-inset-bottom, 0px));
       border-left: none;
       border-right: none;
@@ -1185,6 +1176,92 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     .news-heading { font-size: 1.1rem; }
     .news-timestamp { width: 100%; margin-left: 0; }
   }
+
+  /* ── NEWSLETTER SECTION ── */
+  .newsletter-section {
+    background: var(--yellow);
+    padding: 48px 40px;
+    position: relative;
+  }
+  .newsletter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+  .newsletter-left {
+    flex: 1;
+    min-width: 0;
+  }
+  .newsletter-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .newsletter-heading {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
+    color: var(--blue);
+    line-height: 1.05;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .newsletter-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #111;
+    line-height: 1.7;
+    opacity: 0.75;
+    max-width: 460px;
+  }
+  .newsletter-right {
+    flex-shrink: 0;
+    width: 360px;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+  }
+  .newsletter-input {
+    flex: 1;
+    background: rgba(0,0,0,0.08);
+    border: 2px solid var(--blue);
+    border-right: none;
+    color: var(--blue);
+    padding: 14px 18px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    min-width: 0;
+  }
+  .newsletter-input::placeholder { color: rgba(11,45,143,0.5); }
+  .newsletter-input:focus { background: rgba(0,0,0,0.12); }
+  .newsletter-btn {
+    background: var(--blue);
+    color: var(--yellow);
+    border: 2px solid var(--blue);
+    padding: 14px 22px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .newsletter-btn:hover { background: #0a2070; border-color: #0a2070; }
+  @media (max-width: 768px) {
+    .newsletter-section { padding: 32px 16px; }
+    .newsletter-inner { flex-direction: column; gap: 20px; }
+    .newsletter-right { width: 100%; }
+    .newsletter-heading { font-size: 28px; }
+    .newsletter-input { font-size: 13px; padding: 12px 14px; }
+    .newsletter-btn { font-size: 16px; padding: 12px 16px; }
+  }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
@@ -1285,7 +1362,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
       <!-- CARD 1: WW3 / Iran -->
       <div class="latest-card carousel-card" onclick="openCarouselModal(0)" style="cursor:pointer;">
-        <div class="latest-badge">🔴 FEB 28, 2026 — BREAKING</div>
+        <div class="latest-badge" style="background:#555;">🟡 FEB 28, 2026 — PENDING</div>
         <div class="latest-episode">
           <div class="ep-season">S06E19</div>
           <div class="ep-label">Season / Episode</div>
@@ -1416,6 +1493,24 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <p class="news-footer-note">
       ↑ Auto-refreshes every 30 seconds · Global News RSS · Simpsons matches auto-detected · Headlines are external links
     </p>
+  </div>
+</div>
+
+<!-- EMAIL NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="newsletter-left">
+      <div class="newsletter-eyebrow">Springfield Oracle — Weekly Intel</div>
+      <h3 class="newsletter-heading">New Predictions. Live Matches. Before Anyone Else.</h3>
+      <p class="newsletter-sub">Every week: new Simpsons predictions added, real-world matches flagged, and the ones currently unfolding — direct to your inbox. No spam. Unsubscribe anytime.</p>
+    </div>
+    <div class="newsletter-right">
+      <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <input class="newsletter-input" type="email" id="newsletter-email" placeholder="your@email.com" required autocomplete="email" />
+        <button class="newsletter-btn" type="submit">Get Updates</button>
+      </form>
+      <div id="newsletter-success" style="display:none; color:#FFD520; font-family:'Space Mono',monospace; font-size:12px; margin-top:10px; letter-spacing:1px;">✓ You're in. First issue lands soon.</div>
+    </div>
   </div>
 </div>
 
@@ -1642,11 +1737,13 @@ let currentFilter = 'all';
 let currentSearch = '';
 
 // Sort + store the full filtered dataset, reset to page 1, then draw.
+// Sort by recency of news: still-developing (no trueYear) first, then by trueYear desc.
 function renderTable(data) {
   currentFilteredData = [...data].sort((a, b) => {
-    const aYear = a.trueYear || a.year;
-    const bYear = b.trueYear || b.year;
-    return bYear - aYear;
+    if (!a.trueYear && !b.trueYear) return b.year - a.year;
+    if (!a.trueYear) return -1;
+    if (!b.trueYear) return 1;
+    return b.trueYear - a.trueYear;
   });
   currentPage = 1;
   renderCurrentPage();
@@ -1777,9 +1874,11 @@ function scrollToTable(filter) {
 // ── CAROUSEL CARD MODALS ──────────────────────────────────────────────
 const carouselData = [
   {
-    badge: '🔴 FEB 28, 2026 — BREAKING',
+    badge: '🟡 FEB 28, 2026 — PENDING',
     episode: 'S06E19 · Lisa\'s Wedding (1995)',
-    status: 'confirmed',
+    status: 'pending',
+    category: 'Politics',
+    trueDate: 'Still Developing...',
     predId: 'SP032',
     title: 'S06E19 — Lisa\'s Wedding (1995) Referenced World War III in the Middle East',
     body: `In "Lisa's Wedding" (Season 6, Episode 19, 1995), a British character tells an American: "Well, we saved your ass in World War III." The line is set in a future version of Springfield, framed as a throwaway joke with no specific country or date named.\n\nOn February 28, 2026, the United States and Israel launched Operation Epic Fury — a coordinated series of strikes on Iran. Supreme Leader Khamenei was killed. Iran retaliated with missile strikes on Gulf states including Qatar, UAE, Jordan, and Kuwait. The UN Security Council convened an emergency session.\n\nThe episode aired 31 years before the event. The WW3 reference was incidental — a background detail in a story about Lisa's future wedding. It was never presented as a prediction.`,
@@ -1829,9 +1928,9 @@ function openCarouselModal(index) {
   document.getElementById('modal-title').textContent = d.title;
   document.getElementById('modal-body').innerHTML = d.body.replace(/\n\n/g, '<br><br>');
   document.getElementById('modal-status').innerHTML = statusBadge(d.status);
-  document.getElementById('modal-category').textContent = '—';
+  document.getElementById('modal-category').textContent = d.category || '—';
   document.getElementById('modal-airdate').textContent = d.episode.match(/\d{4}/)?.[0] || '—';
-  document.getElementById('modal-truedate').textContent = d.badge.match(/\d{4}/)?.[0] || 'Ongoing';
+  document.getElementById('modal-truedate').textContent = d.trueDate || d.badge.match(/\d{4}/)?.[0] || 'Ongoing';
   // Live news link from RSS feed
   const liveNewsEl = document.getElementById('modal-live-news');
   const liveNews = d.predId ? window.liveNewsMatches?.[d.predId] : null;
@@ -2083,6 +2182,30 @@ async function loadNewsFromAPI() {
 
 loadNewsFromAPI();
 setInterval(loadNewsFromAPI, 30 * 1000); // Refresh every 30 seconds
+
+// ── NEWSLETTER SIGNUP ─────────────────────────────────────────────────
+async function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('newsletter-email').value.trim();
+  if (!email) return;
+  const btn = e.target.querySelector('.newsletter-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/mkovapen', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email, _subject: 'Springfield Oracle — Newsletter Signup' })
+    });
+    if (res.ok) {
+      document.getElementById('newsletter-form').style.display = 'none';
+      document.getElementById('newsletter-success').style.display = 'block';
+    } else { throw new Error(); }
+  } catch {
+    btn.textContent = 'Get Updates';
+    btn.disabled = false;
+  }
+}
 
 // ── LOAD FROM JSON DATABASE (with fetch — works on Vercel) ────────────
 // This keeps the JS predictions array in sync with /data/predictions.json
