@@ -1291,6 +1291,178 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       font-size: 12px;
     }
   }
+
+  /* ── ASK THE ORACLE WIDGET ─────────────────────────────────────────────── */
+  .oracle-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFD520 0%, #FFC900 100%);
+    border: 3px solid #0B2D8F;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 4px 16px rgba(255, 213, 32, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  .oracle-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(255, 213, 32, 0.6);
+  }
+
+  .oracle-button:active {
+    transform: scale(0.95);
+  }
+
+  .oracle-chat-container {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 320px;
+    max-height: 500px;
+    background: linear-gradient(135deg, #FFD520 0%, #FFC900 100%);
+    border: 3px solid #0B2D8F;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+    overflow: hidden;
+  }
+
+  .oracle-chat-container.active {
+    display: flex;
+  }
+
+  .oracle-chat-header {
+    background: #0B2D8F;
+    color: #FFD520;
+    padding: 12px 16px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+  }
+
+  .oracle-close-btn {
+    background: none;
+    border: none;
+    color: #FFD520;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+
+  .oracle-close-btn:hover {
+    transform: rotate(90deg);
+  }
+
+  .oracle-chat-content {
+    padding: 16px;
+    flex: 1;
+    overflow-y: auto;
+    color: #0B2D8F;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+  }
+
+  .oracle-chat-prompt {
+    margin-bottom: 12px;
+    font-weight: bold;
+    line-height: 1.4;
+  }
+
+  .oracle-response {
+    background: #FFF;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+    border-left: 4px solid #0B2D8F;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .oracle-input-area {
+    padding: 12px;
+    border-top: 2px solid #0B2D8F;
+    display: flex;
+    gap: 8px;
+  }
+
+  .oracle-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #0B2D8F;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    background: #FFF;
+    color: #0B2D8F;
+  }
+
+  .oracle-input::placeholder {
+    color: #0B2D8F;
+    opacity: 0.6;
+  }
+
+  .oracle-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(11, 45, 143, 0.3);
+  }
+
+  .oracle-submit-btn {
+    background: #0B2D8F;
+    color: #FFD520;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+
+  .oracle-submit-btn:hover {
+    background: #0A1F6F;
+    box-shadow: 0 2px 8px rgba(11, 45, 143, 0.4);
+  }
+
+  .oracle-submit-btn:active {
+    transform: translateY(1px);
+  }
+
+  @media (max-width: 480px) {
+    .oracle-button {
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .oracle-chat-container {
+      width: 280px;
+      bottom: 90px;
+      right: 20px;
+    }
+  }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
@@ -2372,6 +2544,43 @@ function releaseTheHounds() {
   });
 }
 
+// ── ASK THE ORACLE WIDGET ─────────────────────────────────────────
+const oracleResponses = [
+  'Outlook good! Everything\'s coming up Milhouse!',
+  'Excellent... The outcome is proceeding exactly as I planned.',
+  'Worst. Outcome. Ever.',
+  'Highly doubtful. The Stonecutters have already rigged it against you.',
+  'Reply hazy. The Oracle is currently distracted by a forbidden donut. Try again.',
+  'Glayvin! The probability matrix is overloading! You\'ll have to ask again later, with the clicking and the typing!'
+];
+
+function toggleOracleChat() {
+  const oracleChat = document.getElementById('oracleChat');
+  oracleChat.classList.toggle('active');
+  if (oracleChat.classList.contains('active')) {
+    document.getElementById('oracleInput').focus();
+  }
+}
+
+function submitOracleQuestion() {
+  const input = document.getElementById('oracleInput');
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  const randomResponse = oracleResponses[Math.floor(Math.random() * oracleResponses.length)];
+  const responseDiv = document.getElementById('oracleResponse');
+
+  responseDiv.innerHTML = `<div class="oracle-response">${randomResponse}</div>`;
+  input.value = '';
+}
+
+function handleOracleKeypress(event) {
+  if (event.key === 'Enter') {
+    submitOracleQuestion();
+  }
+}
+
 </script>
 <script>
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -2419,5 +2628,29 @@ window.addEventListener('load', function() {
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=841657298932259&ev=PageView&noscript=1" /></noscript>
 <!-- End Meta Pixel Code -->
+
+<!-- ASK THE ORACLE WIDGET -->
+<button class="oracle-button" onclick="toggleOracleChat()">🔮</button>
+<div class="oracle-chat-container" id="oracleChat">
+  <div class="oracle-chat-header">
+    Ask the Oracle
+    <button class="oracle-close-btn" onclick="toggleOracleChat()">✕</button>
+  </div>
+  <div class="oracle-chat-content">
+    <div class="oracle-chat-prompt">Ask the Oracle a yes/no question about your future...</div>
+    <div id="oracleResponse"></div>
+  </div>
+  <div class="oracle-input-area">
+    <input
+      type="text"
+      class="oracle-input"
+      id="oracleInput"
+      placeholder="Your question..."
+      onkeypress="handleOracleKeypress(event)"
+    >
+    <button class="oracle-submit-btn" onclick="submitOracleQuestion()">Ask</button>
+  </div>
+</div>
+
 </body>
 </html>
