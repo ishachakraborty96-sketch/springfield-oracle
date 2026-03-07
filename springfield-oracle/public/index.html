@@ -1407,6 +1407,45 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     transform: scale(0.95);
   }
 
+  @keyframes shimmer {
+    0% { box-shadow: 0 4px 16px rgba(255, 213, 32, 0.4), inset 0 0 10px rgba(255, 213, 32, 0); }
+    50% { box-shadow: 0 4px 16px rgba(255, 213, 32, 0.8), inset 0 0 20px rgba(255, 213, 32, 0.6); }
+    100% { box-shadow: 0 4px 16px rgba(255, 213, 32, 0.4), inset 0 0 10px rgba(255, 213, 32, 0); }
+  }
+
+  .oracle-button.shimmer {
+    animation: shimmer 0.6s ease-in-out;
+  }
+
+  .oracle-hint-overlay {
+    position: fixed;
+    bottom: 120px;
+    right: 30px;
+    background: rgba(11, 45, 143, 0.95);
+    border: 2px solid #FFD520;
+    border-radius: 8px;
+    padding: 16px 20px;
+    max-width: 280px;
+    z-index: 1000;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 16px;
+    color: #FFD520;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInOut 4s ease-in-out forwards;
+    box-shadow: 0 4px 20px rgba(255, 213, 32, 0.3);
+    pointer-events: none;
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(10px); }
+    15% { opacity: 1; transform: translateY(0); }
+    85% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(10px); }
+  }
+
   .oracle-chat-container {
     position: fixed;
     bottom: 110px;
@@ -2677,12 +2716,18 @@ function releaseTheHounds() {
 
 // ── ASK THE ORACLE WIDGET ─────────────────────────────────────────
 const oracleResponses = [
-  'Outlook good! Everything\'s coming up Milhouse!',
-  'Excellent... The outcome is proceeding exactly as I planned.',
-  'Worst. Outcome. Ever.',
-  'Highly doubtful. The Stonecutters have already rigged it against you.',
-  'Reply hazy. The Oracle is currently distracted by a forbidden donut. Try again.',
-  'Glayvin! The probability matrix is overloading! You\'ll have to ask again later, with the clicking and the typing!'
+  { catchphrase: 'Excellent...', hint: 'the Tech archives hold the key.' },
+  { catchphrase: 'Outlook good!', hint: 'Politics will reveal the truth.' },
+  { catchphrase: 'Indeed... the future is clear.', hint: 'Check the Culture predictions.' },
+  { catchphrase: 'Highly likely...', hint: 'Science & Markets converge.' },
+  { catchphrase: 'As planned...', hint: 'The Business world awaits.' },
+  { catchphrase: 'Without question...', hint: 'Sports destiny is sealed.' },
+  { catchphrase: 'Most certain...', hint: 'Entertainment prophecies await.' },
+  { catchphrase: 'The path is clear...', hint: 'Technology reshapes tomorrow.' },
+  { catchphrase: 'Undoubtedly...', hint: 'Politics holds your answers.' },
+  { catchphrase: 'Imminent...', hint: 'Culture predictions are unfolding.' },
+  { catchphrase: 'The cards align...', hint: 'Science breakthroughs beckon.' },
+  { catchphrase: 'Absolutely certain...', hint: 'Business forecasts ring true.' }
 ];
 
 function toggleOracleChat() {
@@ -2720,6 +2765,39 @@ function handleOracleKeypress(event) {
     submitOracleQuestion();
   }
 }
+
+// Crystal Ball Click Handler
+document.addEventListener('DOMContentLoaded', () => {
+  const oracleButton = document.querySelector('.oracle-button');
+
+  oracleButton.addEventListener('click', (e) => {
+    // Play shimmer animation
+    oracleButton.classList.remove('shimmer');
+    void oracleButton.offsetWidth; // Trigger reflow
+    oracleButton.classList.add('shimmer');
+
+    // Get random response
+    const response = oracleResponses[Math.floor(Math.random() * oracleResponses.length)];
+    const hint = `${response.catchphrase} ${response.hint}`;
+
+    // Remove existing overlay if present
+    const existingOverlay = document.querySelector('.oracle-hint-overlay');
+    if (existingOverlay) {
+      existingOverlay.remove();
+    }
+
+    // Create and display hint overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'oracle-hint-overlay';
+    overlay.textContent = hint;
+    document.body.appendChild(overlay);
+
+    // Remove overlay after animation completes
+    setTimeout(() => {
+      overlay.remove();
+    }, 4000);
+  });
+});
 
 </script>
 <script>
