@@ -2,8 +2,10 @@
   "meta": {
     "last_updated": "2026-03-07",
     "total": 51,
-    "status_update": "DISPUTED records renamed to DEBUNKED",
-    "engine": "Gemini 3 Flash Scraper Ready"
+    "status_update": "DISPUTED records renamed to DEBUNKED. Metadata cleaned.",
+    "engine": "Gemini 3 Flash Scraper Ready",
+    "version": "2.0",
+    "last_maintenance": "2026-03-07T19:18:27.512262"
   },
   "predictions": [
     {
@@ -80,7 +82,7 @@
       "episode_code": "S10E11",
       "title": "20th Century Fox Acquired by Disney",
       "year_aired": 1998,
-      "prediction": "A studio sign reads '20th Century Fox — A Division of Walt Disney Co.'",
+      "prediction": "A studio sign reads '20th Century Fox \u2014 A Division of Walt Disney Co.'",
       "real_event": "Disney acquired Fox for $71.3 billion in 2019.",
       "real_year": 2019,
       "category": "Business",
