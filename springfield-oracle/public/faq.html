@@ -56,7 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:description" content="Answers to the most common questions about Simpsons predictions — sourced, fact-checked, and verified.">
 <meta name="twitter:image" content="https://springfield-oracle.vercel.app/og-image.png">
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -161,25 +161,102 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   header {
     background: var(--yellow);
-    padding: 24px 40px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
     border-bottom: 6px solid var(--blue);
+  }
+  .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 40px;
+    position: relative;
+    z-index: 2;
   }
-  .logo {
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #0a2070;
+  }
+  .logo-title {
     font-family: 'Bebas Neue', cursive;
-    font-size: 48px;
+    font-size: 72px;
     color: var(--blue);
+    line-height: 0.9;
+    letter-spacing: 2px;
     text-decoration: none;
   }
-  .back-link {
-    font-size: 11px;
+  .logo-sub {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+    color: var(--orange);
+    margin-top: 4px;
+    transform: rotate(-1deg);
+  }
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+  }
+  .header-nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .header-stats {
+    display: flex;
+    gap: 32px;
+    align-items: flex-end;
+  }
+  .stat-pill {
+    background: var(--blue);
+    color: var(--yellow);
+    padding: 14px 12px;
+    text-align: center;
+    position: relative;
+    width: 130px;
+    flex-shrink: 0;
+    text-decoration: none;
+    display: block;
+  }
+  .stat-pill::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px; right: -4px; bottom: -4px;
+    background: var(--orange);
+    z-index: -1;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 44px;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--blue);
-    text-decoration: none;
-    border-bottom: 1px solid var(--blue);
+    opacity: 0.8;
+    line-height: 1.4;
+    display: block;
+    margin-top: 4px;
+  }
+  .tv-graphic {
+    font-size: 80px;
+    opacity: 0.15;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    filter: grayscale(1);
   }
   .hero {
     background: var(--blue);
@@ -251,8 +328,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   footer a { color: var(--yellow); text-decoration: none; }
   @media (max-width: 768px) {
-    header { padding: 16px 20px; }
-    .logo { font-size: 32px; }
+    header { padding: 0; }
+    .header-inner { flex-direction: column; gap: 12px; padding: 16px 16px 20px; }
+    .logo-block { align-items: center; text-align: center; }
+    .logo-title { font-size: 48px; }
+    .logo-eyebrow { font-size: 8px; letter-spacing: 2px; }
+    .logo-sub { font-size: 15px; }
+    .header-right { align-items: center; width: 100%; }
+    .header-nav { justify-content: center; }
+    .header-stats { gap: 10px; width: 100%; }
+    .stat-pill { flex: 1; width: auto; min-width: 0; padding: 12px 8px; }
+    .stat-pill::before { display: none; }
+    .stat-num { font-size: 30px; }
+    .stat-label { font-size: 8px; letter-spacing: 1px; margin-top: 3px; }
+    .tv-graphic { display: none; }
     .hero { padding: 40px 20px; }
     .hero h1 { font-size: 48px; }
     .faq-section { padding: 0 20px 60px; margin: 40px auto; }
@@ -266,8 +355,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header>
-  <a href="/" class="logo">Springfield Oracle</a>
-  <a href="/" class="back-link">&larr; Back to tracker</a>
+  <div class="header-inner">
+    <div class="logo-block">
+      <span class="logo-eyebrow">Open Source Intelligence</span>
+      <a href="/" class="logo-title">Springfield<br>Oracle</a>
+      <div class="logo-sub">They knew. We track it.</div>
+    </div>
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="/about.html" style="font-family:'Space Mono',monospace;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;opacity:0.7;">About</a>
+        <a href="/faq.html" style="font-family:'Space Mono',monospace;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);text-decoration:none;">FAQ</a>
+      </nav>
+      <div class="header-stats">
+        <a href="/" class="stat-pill" title="View all predictions">
+          <span class="stat-num" id="total-count">—</span>
+          <span class="stat-label">Predictions<br>Tracked</span>
+        </a>
+        <a href="/" class="stat-pill" title="View confirmed predictions">
+          <span class="stat-num" id="confirmed-count">—</span>
+          <span class="stat-label">Confirmed<br>True</span>
+        </a>
+        <a href="/" class="stat-pill" title="View pending predictions">
+          <span class="stat-num" id="pending-count">—</span>
+          <span class="stat-label">Still<br>Pending</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="tv-graphic">📺</div>
 </header>
 
 <div class="hero">
@@ -353,5 +468,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="/">&larr; Springfield Oracle</a> &middot; Free, open-source, ad-free &middot; &copy; 2026 Isha Godboley
 </footer>
 
+<script>
+(async () => {
+  try {
+    const res = await fetch('/data/predictions.json');
+    const data = await res.json();
+    const active = data.filter(p => !p.hidden);
+    document.getElementById('total-count').textContent = active.length;
+    document.getElementById('confirmed-count').textContent = active.filter(p => p.status === 'confirmed').length;
+    document.getElementById('pending-count').textContent = active.filter(p => p.status === 'pending').length;
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
