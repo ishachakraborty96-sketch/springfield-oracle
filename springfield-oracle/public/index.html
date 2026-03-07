@@ -1895,6 +1895,25 @@ function renderCurrentPage() {
     return;
   }
 
+  // Check for Bort easter egg
+  if (currentSearch.toLowerCase() === 'bort') {
+    tbody.innerHTML = `
+      <tr style="border: none; background: none;">
+        <td colspan="5" style="border: none; padding: 0;">
+          <div style="text-align: center; padding: 60px 20px; color: #888; font-family: 'Space Mono', monospace;">
+            <div style="font-size: 1.5rem; margin-bottom: 20px; color: #FFD520;">∅</div>
+            <div style="font-size: 1rem; margin-bottom: 10px; color: #ddd;">We are currently out of 'Bort' prediction plates.</div>
+            <div style="font-size: 0.9rem; color: #666;">Please check back later.</div>
+          </div>
+        </td>
+      </tr>
+    `;
+    // Hide pagination for easter egg
+    const bar = document.getElementById('pagination-bar');
+    if (bar) bar.style.display = 'none';
+    return;
+  }
+
   const pageSize = mobile ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE;
   const pageData = currentFilteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
