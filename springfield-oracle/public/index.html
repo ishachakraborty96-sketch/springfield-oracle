@@ -2724,9 +2724,8 @@ window.addEventListener('load', function() {
 <script src="/exit-intent-popup.js"></script>
 <script>
   // Initialize the exit intent popup
-  // Uncomment enableExitIntent: true once you've tested the popup locally
   ExitIntentPopup.init({
-    enableExitIntent: false,  // Set to true after testing
+    enableExitIntent: true,
     onSubscribe: async (email) => {
       try {
         const response = await fetch('/api/subscribe', {

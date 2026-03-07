@@ -434,17 +434,16 @@ const ExitIntentPopup = (() => {
   };
 
   const attachExitIntent = () => {
-    // Uncomment this section once you've tested the popup locally
-    // document.addEventListener('mouseleave', (e) => {
-    //   if (e.clientY < 10 && !exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
-    //     exitTriggered = true;
-    //     const overlay = document.getElementById('exit-intent-overlay');
-    //     if (overlay) {
-    //       overlay.style.opacity = '1';
-    //       overlay.classList.add('visible');
-    //     }
-    //   }
-    // });
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY < 10 && !exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
+        exitTriggered = true;
+        const overlay = document.getElementById('exit-intent-overlay');
+        if (overlay) {
+          overlay.style.opacity = '1';
+          overlay.classList.add('visible');
+        }
+      }
+    });
   };
 
   const submit = (onSubscribe) => {
