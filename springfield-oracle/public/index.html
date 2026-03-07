@@ -628,35 +628,26 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
   footer {
     background: #050505;
-    padding: 24px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    padding: 16px 40px;
     border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
     color: #aaa;
   }
 
-  footer > div {
+  footer .footer-main {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
-
-  footer .footer-top {
-    justify-content: flex-start;
-    gap: 32px;
-  }
-
-  footer .footer-center {
-    justify-content: center;
-  }
-
-  footer .footer-bottom {
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
     gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  footer .footer-info {
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    opacity: 0.7;
+    line-height: 1.4;
   }
 
   footer a {
@@ -668,22 +659,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    white-space: nowrap;
   }
 
-  footer .footer-links {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-
-  footer .footer-copyright {
-    font-size: 10px;
-    opacity: 0.6;
-  }
-
-  footer .footer-legal {
-    font-size: 9px;
-    opacity: 0.5;
+  footer .footer-sep {
+    opacity: 0.4;
   }
 
   .complaints-btn {
@@ -1201,32 +1181,23 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 
     footer {
-      gap: 12px;
-      padding: 20px 16px;
-      font-size: 10px;
+      padding: 12px 16px;
+      font-size: 9px;
     }
 
-    footer > div {
-      flex-direction: column;
+    footer .footer-main {
+      justify-content: center;
       gap: 8px;
+      margin-bottom: 8px;
     }
 
-    footer .footer-top {
-      justify-content: center;
-      align-items: center;
+    footer .footer-sep {
+      display: none;
+    }
+
+    footer .footer-info {
       text-align: center;
-      gap: 16px;
-    }
-
-    footer .footer-links {
-      gap: 16px;
-      justify-content: center;
-    }
-
-    footer .footer-bottom {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      font-size: 9px;
     }
   }
 
@@ -1777,22 +1748,18 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-main">
     <span class="footer-credit">Springfield Oracle · <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
-    <div class="footer-links">
-      <a href="/about.html">About</a>
-      <a href="/faq.html">FAQ</a>
-    </div>
-  </div>
-
-  <div class="footer-center">
+    <span class="footer-sep">·</span>
+    <a href="/about.html">About</a>
+    <span class="footer-sep">·</span>
+    <a href="/faq.html">FAQ</a>
+    <span class="footer-sep">·</span>
+    <a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a>
     <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button>
   </div>
-
-  <div class="footer-bottom">
-    <span class="footer-copyright">© 2026. All rights reserved. <a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a> · Data sourced &amp; verified.</span>
-    <span class="footer-legal">Not affiliated with Fox, Disney, or The Simpsons.</span>
-    <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Product Hunt" width="200" height="43" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
+  <div class="footer-info">
+    <span>© 2026. Data sourced &amp; verified. Not affiliated with Fox, Disney, or The Simpsons.</span>
   </div>
 </footer>
 
