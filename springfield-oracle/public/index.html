@@ -632,22 +632,54 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
     color: #aaa;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+    gap: 32px;
   }
 
-  footer .footer-main {
+  footer .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  footer .footer-links-section {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 10px;
   }
 
-  footer .footer-info {
+  footer .footer-center {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 60px;
+  }
+
+  footer .footer-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-right: 60px;
+  }
+
+  footer .footer-ph-badge {
+    display: block;
+  }
+
+  footer .footer-ph-badge img {
+    height: 40px;
+    width: auto;
+  }
+
+  footer .footer-legal {
     font-size: 10px;
     opacity: 0.7;
-    line-height: 1.4;
+    line-height: 1.5;
+    max-width: 300px;
   }
 
   footer a {
@@ -1181,23 +1213,43 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 
     footer {
+      grid-template-columns: 1fr;
+      gap: 12px;
       padding: 12px 16px;
       font-size: 9px;
     }
 
-    footer .footer-main {
-      justify-content: center;
+    footer .footer-left {
+      align-items: center;
       gap: 8px;
-      margin-bottom: 8px;
+    }
+
+    footer .footer-links-section {
+      justify-content: center;
     }
 
     footer .footer-sep {
       display: none;
     }
 
-    footer .footer-info {
+    footer .footer-center {
       text-align: center;
+      min-height: auto;
+    }
+
+    footer .footer-legal {
       font-size: 9px;
+      max-width: 100%;
+    }
+
+    footer .footer-right {
+      justify-content: center;
+      padding-right: 0;
+    }
+
+    footer .footer-ph-badge img {
+      width: 140px;
+      height: auto;
     }
   }
 
@@ -1748,18 +1800,27 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-main">
-    <span class="footer-credit">Springfield Oracle · <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
-    <span class="footer-sep">·</span>
-    <a href="/about.html">About</a>
-    <span class="footer-sep">·</span>
-    <a href="/faq.html">FAQ</a>
-    <span class="footer-sep">·</span>
-    <a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a>
-    <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button>
+  <div class="footer-left">
+    <div class="footer-links-section">
+      <span class="footer-credit">Springfield Oracle · <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
+      <span class="footer-sep">·</span>
+      <a href="/about.html">About</a>
+      <span class="footer-sep">·</span>
+      <a href="/faq.html">FAQ</a>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer" class="footer-ph-badge">
+      <img alt="Springfield Oracle - Product Hunt" width="180" height="40" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762">
+    </a>
   </div>
-  <div class="footer-info">
-    <span>© 2026. Data sourced &amp; verified. Not affiliated with Fox, Disney, or The Simpsons.</span>
+
+  <div class="footer-center">
+    <span class="footer-legal">© 2026. Data sourced &amp; verified. Not affiliated with Fox, Disney, or The Simpsons.</span>
+  </div>
+
+  <div class="footer-right">
+    <button class="complaints-btn" onclick="releaseTheHounds()">Complain</button>
   </div>
 </footer>
 
