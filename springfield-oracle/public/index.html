@@ -41,8 +41,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 <title>Springfield Oracle — The Simpsons Prediction Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap"></noscript>
 <style>
 :root {
     --yellow: #FFD520;
@@ -2719,6 +2719,33 @@ window.addEventListener('load', function() {
     <button class="oracle-submit-btn" onclick="submitOracleQuestion()">Ask</button>
   </div>
 </div>
+
+<!-- Exit Intent Popup -->
+<script src="/exit-intent-popup.js"></script>
+<script>
+  // Initialize the exit intent popup
+  // Uncomment enableExitIntent: true once you've tested the popup locally
+  ExitIntentPopup.init({
+    enableExitIntent: false,  // Set to true after testing
+    onSubscribe: async (email) => {
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        if (!response.ok) {
+          console.error('Subscribe failed:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Subscribe error:', error);
+      }
+    }
+  });
+
+  // Optional: You can manually trigger the popup for testing like this:
+  // setTimeout(() => ExitIntentPopup.show(), 5000); // Show after 5 seconds
+</script>
 
 </body>
 </html>
