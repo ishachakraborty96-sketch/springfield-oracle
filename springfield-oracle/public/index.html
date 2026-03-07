@@ -917,24 +917,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     transform: scale(1.3) rotate(5deg);
   }
 
-  /* Idle Bird Easter Egg */
-  .idle-bird-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    display: none;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 120px;
-    height: 120px;
-  }
-
-  .idle-bird-container.active {
-    display: block;
-  }
-
   .pagination-bar {
     display: none;
     align-items: center;
@@ -1890,9 +1872,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   </div>
 </div>
 
-<!-- IDLE BIRD EASTER EGG -->
-<div class="idle-bird-container" id="idle-bird-container"></div>
-
 <script>
 const predictions = [
   // ── CLASSICS (Confirmed) ──────────────────────────────────────────
@@ -2296,57 +2275,6 @@ function closeBlinkyModal(e) {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
 });
-
-// ── IDLE BIRD EASTER EGG ──────────────────────────────────────
-let idleTimer = null;
-let idleTimeout = 10000; // 10 seconds
-let isIdle = false;
-let birdTimer = null;
-let birdClickSoundTimer = null;
-const birdContainer = document.getElementById('idle-bird-container');
-
-function resetIdleTimer() {
-  clearTimeout(idleTimer);
-  clearInterval(birdTimer);
-  clearInterval(birdClickSoundTimer);
-
-  // Hide bird immediately
-  if (isIdle) {
-    birdContainer.classList.remove('active');
-    isIdle = false;
-  }
-
-  // Start the idle timer again
-  idleTimer = setTimeout(() => {
-    isIdle = true;
-    birdContainer.classList.add('active');
-    birdContainer.style.backgroundImage = 'url(/bird.gif)';
-
-    // Play sound and scroll every 2 seconds
-    birdClickSoundTimer = setInterval(() => {
-      if (isIdle) {
-        // Play sound
-        const audio = new Audio('/clack.mp3');
-        audio.play().catch(e => console.log('Audio play failed:', e));
-
-        // Scroll down
-        window.scrollBy({ top: 200, behavior: 'smooth' });
-      }
-    }, 2000);
-  }, idleTimeout);
-}
-
-// Track mouse movement
-document.addEventListener('mousemove', resetIdleTimer);
-
-// Track mouse clicks
-document.addEventListener('click', resetIdleTimer);
-
-// Track scrolling
-window.addEventListener('scroll', resetIdleTimer, true);
-
-// Initialize timer on page load
-resetIdleTimer();
 
 renderTable(predictions);
 // Counts update only after JSON syncs — keeps pills at the correct hardcoded values until then
