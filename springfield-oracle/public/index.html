@@ -648,9 +648,15 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     gap: 32px;
   }
 
+  footer .footer-center {
+    justify-content: center;
+  }
+
   footer .footer-bottom {
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   footer a {
@@ -673,6 +679,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   footer .footer-copyright {
     font-size: 10px;
     opacity: 0.6;
+  }
+
+  footer .footer-legal {
+    font-size: 9px;
+    opacity: 0.5;
   }
 
   .complaints-btn {
@@ -1771,12 +1782,16 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <div class="footer-links">
       <a href="/about.html">About</a>
       <a href="/faq.html">FAQ</a>
-      <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button>
     </div>
+  </div>
+
+  <div class="footer-center">
+    <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button>
   </div>
 
   <div class="footer-bottom">
     <span class="footer-copyright">© 2026. All rights reserved. <a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a> · Data sourced &amp; verified.</span>
+    <span class="footer-legal">Not affiliated with Fox, Disney, or The Simpsons.</span>
     <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Product Hunt" width="200" height="43" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
   </div>
 </footer>
