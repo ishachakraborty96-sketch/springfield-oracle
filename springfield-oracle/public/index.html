@@ -2630,6 +2630,57 @@ const oracleResponses = [
   { catchphrase: 'Absolutely certain...', hint: 'Business forecasts ring true.' }
 ];
 
+// ── GA4 GLOBAL CLICK TRACKING ──────────────────────────────────────
+document.addEventListener('click', (event) => {
+  const target = event.target.closest('a, button, [onclick]');
+
+  if (!target) return;
+
+  // Extract relevant click data
+  const clickData = {
+    element_type: target.tagName.toLowerCase(),
+    element_class: target.className || '(no class)',
+    element_id: target.id || '(no id)',
+    element_text: (target.textContent || '').substring(0, 100).trim(),
+    href: target.href || null,
+    page_path: window.location.pathname,
+    page_title: document.title,
+  };
+
+  // Determine element category for better organization
+  let element_category = 'general_click';
+  if (target.classList.contains('complaints-btn')) {
+    element_category = 'button_complaints';
+  } else if (target.classList.contains('oracle-button')) {
+    element_category = 'button_crystal_ball';
+  } else if (target.classList.contains('modal-close')) {
+    element_category = 'modal_close';
+  } else if (target.classList.contains('page-btn')) {
+    element_category = 'pagination_button';
+  } else if (target.classList.contains('filter-btn')) {
+    element_category = 'filter_button';
+  } else if (target.tagName === 'A') {
+    element_category = 'link_click';
+  } else if (target.tagName === 'BUTTON') {
+    element_category = 'button_click';
+  }
+
+  // Send event to GA4
+  if (window.gtag) {
+    window.gtag('event', 'click', {
+      element_category: element_category,
+      element_type: clickData.element_type,
+      element_id: clickData.element_id,
+      element_text: clickData.element_text,
+      element_class: clickData.element_class,
+      page_path: clickData.page_path,
+      page_title: clickData.page_title,
+      target_url: clickData.href || '(no link)',
+      timestamp: new Date().toISOString(),
+    });
+  }
+}, true); // Use capture phase to catch all clicks
+
 // Crystal Ball Click Handler
 document.addEventListener('DOMContentLoaded', () => {
   const oracleButton = document.querySelector('.oracle-button');
