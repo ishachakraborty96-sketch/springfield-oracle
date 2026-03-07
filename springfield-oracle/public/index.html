@@ -1388,11 +1388,21 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     line-height: 1.4;
   }
 
+  .oracle-user-question {
+    background: #0B2D8F;
+    color: #FFD520;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-top: 12px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
   .oracle-response {
     background: #FFF;
     padding: 12px;
     border-radius: 8px;
-    margin-top: 12px;
+    margin-top: 10px;
     border-left: 4px solid #0B2D8F;
     line-height: 1.5;
     font-style: italic;
@@ -2573,12 +2583,15 @@ function submitOracleQuestion() {
   const responseDiv = document.getElementById('oracleResponse');
   const contentDiv = document.querySelector('.oracle-chat-content');
 
-  responseDiv.innerHTML = `<div class="oracle-response">${randomResponse}</div>`;
+  responseDiv.innerHTML = `
+    <div class="oracle-user-question">Q: ${question}</div>
+    <div class="oracle-response">${randomResponse}</div>
+  `;
   input.value = '';
 
-  // Scroll to show both prompt and response
+  // Scroll to bottom to show latest response
   setTimeout(() => {
-    contentDiv.scrollTop = 0;
+    contentDiv.scrollTop = contentDiv.scrollHeight;
   }, 0);
 }
 
