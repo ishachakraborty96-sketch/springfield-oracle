@@ -1723,14 +1723,14 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
   <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
   <span style="opacity:0.4; font-size:10px;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:inherit;">GitHub</a> · Data sourced &amp; verified.</span>
-  <span><a href="/about.html" style="text-decoration:none;">About</a> · <a href="/faq.html" style="text-decoration:none;">FAQ</a> · <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button></span>
+  <span><a href="/about.html" style="text-decoration:none;" onclick="trackEvent('link_click', {page: 'about'})">About</a> · <a href="/faq.html" style="text-decoration:none;" onclick="trackEvent('link_click', {page: 'faq'})">FAQ</a> · <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button></span>
   <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Every Simpsons prediction. Sourced, scored, fact-checked. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
 </footer>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+    <button class="modal-close" onclick="trackEvent('modal_close', {method: 'close_button'}); document.getElementById('modal').classList.remove('open')">✕</button>
     <div class="modal-episode" id="modal-episode"></div>
     <div class="modal-title" id="modal-title"></div>
     <div class="modal-body" id="modal-body"></div>
@@ -1885,14 +1885,17 @@ function buildCarouselShareText(d, format = 'x') {
 
 function shareOnX(p) {
   const text = buildShareText(p, 'x');
+  trackEvent('button_click', { action: 'share', platform: 'x', prediction_id: p.id });
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
 }
 
 function shareOnLinkedIn(p) {
+  trackEvent('button_click', { action: 'share', platform: 'linkedin', prediction_id: p.id });
   window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrl(p))}`, '_blank');
 }
 
 function copyShareLink(p, btn) {
+  trackEvent('button_click', { action: 'share', platform: 'copy_link', prediction_id: p.id });
   navigator.clipboard.writeText(getShareUrl(p)).then(() => {
     btn.textContent = '✓';
     setTimeout(() => { btn.textContent = '🔗'; }, 1500);
@@ -1901,34 +1904,40 @@ function copyShareLink(p, btn) {
 
 function modalShareX() {
   let text;
+  let predId = currentModalPrediction?.id || window._currentCarouselData?.predId;
   if (window._carouselShareMode) {
     text = buildCarouselShareText(window._currentCarouselData, 'x');
   } else {
     if (!currentModalPrediction) return;
     text = buildShareText(currentModalPrediction, 'x');
   }
+  trackEvent('button_click', { action: 'modal_share', platform: 'x', prediction_id: predId });
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
 }
 
 function modalShareLinkedIn() {
   let url;
+  let predId = currentModalPrediction?.id || window._currentCarouselData?.predId;
   if (window._carouselShareMode) {
     url = getCarouselShareUrl(window._currentCarouselData);
   } else {
     if (!currentModalPrediction) return;
     url = getShareUrl(currentModalPrediction);
   }
+  trackEvent('button_click', { action: 'modal_share', platform: 'linkedin', prediction_id: predId });
   window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
 }
 
 function modalCopyLink(btn) {
   let url;
+  let predId = currentModalPrediction?.id || window._currentCarouselData?.predId;
   if (window._carouselShareMode) {
     url = getCarouselShareUrl(window._currentCarouselData);
   } else {
     if (!currentModalPrediction) return;
     url = getShareUrl(currentModalPrediction);
   }
+  trackEvent('button_click', { action: 'modal_share', platform: 'copy_link', prediction_id: predId });
   navigator.clipboard.writeText(url).then(() => {
     btn.textContent = '✓ Copied';
     setTimeout(() => { btn.textContent = '🔗 Copy'; }, 1500);
@@ -2048,7 +2057,7 @@ function renderCurrentPage() {
     tr.style.animationDelay = `${i * 0.04}s`;
     const liveNews = window.liveNewsMatches?.[p.id];
     const liveBadge = liveNews
-      ? `<a href="${liveNews.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
+      ? `<a href="${liveNews.link}" target="_blank" rel="noopener" onclick="event.stopPropagation(); trackEvent('link_click', {type: 'live_news', prediction_id: '${p.id}'})" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
       : '';
     tr.innerHTML = `
       <td class="td-episode">${p.season}${p.episode}<span>${p.year} · ${p.name}</span></td>
@@ -2082,6 +2091,10 @@ function renderCurrentPage() {
 
 function changePage(n) {
   currentPage = n;
+
+  // Track pagination button click
+  trackEvent('pagination_button', { page_number: n });
+
   renderCurrentPage();
   document.getElementById('predictions-table').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -2090,11 +2103,19 @@ function filterTable(filter, btn) {
   currentFilter = filter;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+
+  // Track filter button click
+  trackEvent('filter_button', { filter_type: filter });
+
   applyFilters();
 }
 
 function searchTable(val) {
   currentSearch = val.toLowerCase();
+  // Track search/filter interactions
+  if (currentSearch) {
+    trackEvent('button_click', { action: 'search', query: currentSearch });
+  }
   applyFilters();
 }
 
@@ -2132,11 +2153,17 @@ function openModal(p) {
   } else {
     liveNewsEl.style.display = 'none';
   }
+
+  // Track prediction modal open
+  trackEvent('general_click', { action: 'prediction_opened', prediction_id: p.id, status: p.status, category: p.category });
+
   document.getElementById('modal').classList.add('open');
 }
 
 function closeModal(e) {
   if (e.target === document.getElementById('modal')) {
+    // Track modal close via overlay click
+    trackEvent('modal_close', { method: 'overlay_click' });
     document.getElementById('modal').classList.remove('open');
   }
 }
@@ -2229,6 +2256,10 @@ function openCarouselModal(index) {
   window._currentCarouselData = d;
   window._carouselShareTitle = d.shareTitle;
   window._carouselShareMode = true;
+
+  // Track carousel card click
+  trackEvent('general_click', { action: 'carousel_card_clicked', card_index: index, prediction_id: d.predId });
+
   document.getElementById('modal').classList.add('open');
 }
 
@@ -2241,9 +2272,13 @@ function carouselGoTo(n) {
   carouselIndex = (n + carouselTotal) % carouselTotal;
   document.getElementById('carousel-track').style.transform = `translateX(-${carouselIndex * 100}%)`;
   document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselIndex));
+  trackEvent('button_click', { action: 'carousel_navigate', slide_number: carouselIndex + 1 });
   resetCarouselTimer();
 }
-function carouselMove(dir) { carouselGoTo(carouselIndex + dir); }
+function carouselMove(dir) {
+  trackEvent('button_click', { action: 'carousel_arrow', direction: dir > 0 ? 'next' : 'prev' });
+  carouselGoTo(carouselIndex + dir);
+}
 function resetCarouselTimer() {
   clearInterval(carouselTimer);
   carouselTimer = setInterval(() => carouselMove(1), 12000);
@@ -2384,7 +2419,7 @@ async function loadNewsFromAPI() {
   }
 
   if (!items.length) {
-    feedEl.innerHTML = '<p style="color:#888;font-family:\'Space Mono\',monospace;font-size:0.8rem;">News feed unavailable. <a href="https://news.google.com/search?q=simpsons+prediction" target="_blank" style="color:#FFD520">Search Google News →</a></p>';
+    feedEl.innerHTML = '<p style="color:#888;font-family:\'Space Mono\',monospace;font-size:0.8rem;">News feed unavailable. <a href="https://news.google.com/search?q=simpsons+prediction" target="_blank" onclick="trackEvent(\'link_click\', {type: \'google_news_search\'})" style="color:#FFD520">Search Google News →</a></p>';
     return;
   }
 
@@ -2409,12 +2444,12 @@ async function loadNewsFromAPI() {
   feedEl.innerHTML = itemsWithMatch.map(item => {
     const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '';
     const matchTag = item.match
-      ? `<span onclick="event.preventDefault();event.stopPropagation();(function(){const el=document.getElementById('pred-${item.match.id}');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid #FFD520';setTimeout(()=>el.style.outline='',2000);}})();" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-family:'Bebas Neue',sans-serif;font-size:0.72rem;letter-spacing:1px;color:#FFD520;cursor:pointer;" title="Jump to prediction in table">
+      ? `<span onclick="event.preventDefault();event.stopPropagation();trackEvent('general_click', {action: 'jump_to_prediction', prediction_id: '${item.match.id}'});(function(){const el=document.getElementById('pred-${item.match.id}');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid #FFD520';setTimeout(()=>el.style.outline='',2000);}})();" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-family:'Bebas Neue',sans-serif;font-size:0.72rem;letter-spacing:1px;color:#FFD520;cursor:pointer;" title="Jump to prediction in table">
            📺 ${item.match.season}${item.match.episode} · ${item.match.title} · ${viralDotsInline(item.match.viral)} <span style="font-size:0.65rem;opacity:0.7;">↓ view</span>
          </span>`
       : '';
     return `
-      <a href="${item.link}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:4px;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,213,32,0.1);">
+      <a href="${item.link}" target="_blank" rel="noopener" onclick="trackEvent('link_click', {type: 'news_article', matched_prediction: ${item.match ? `'${item.match.id}'` : 'null'}})" style="display:flex;flex-direction:column;gap:4px;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,213,32,0.1);">
         <div style="display:flex;gap:12px;align-items:flex-start;">
           <span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;color:#FF6B2B;white-space:nowrap;padding-top:2px;min-width:52px;">${date}</span>
           <span style="font-family:'Space Mono',monospace;font-size:0.78rem;color:${item.match ? '#fff' : '#ddd'};line-height:1.5;font-weight:${item.match ? '700' : '400'};">${item.title}</span>
@@ -2521,6 +2556,9 @@ syncWithDatabase();
 
 // ── COMPLAINTS BUTTON ─────────────────────────────────────────
 function releaseTheHounds() {
+  // Track event
+  trackEvent('button_complaints', { action: 'complaints_clicked' });
+
   // Play the audio
   const audio = new Audio('./release-the-hounds-release-the-hounds-attack-dogs-simpsons-mr-burns-get-em.mp3');
   audio.play().catch(() => {});
@@ -2556,9 +2594,13 @@ const oracleResponses = [
 
 function toggleOracleChat() {
   const oracleChat = document.getElementById('oracleChat');
+  const isOpening = !oracleChat.classList.contains('active');
   oracleChat.classList.toggle('active');
   if (oracleChat.classList.contains('active')) {
     document.getElementById('oracleInput').focus();
+    trackEvent('button_crystal_ball', { action: 'oracle_opened' });
+  } else {
+    trackEvent('button_crystal_ball', { action: 'oracle_closed' });
   }
 }
 
@@ -2567,6 +2609,9 @@ function submitOracleQuestion() {
   const question = input.value.trim();
 
   if (!question) return;
+
+  // Track oracle submission
+  trackEvent('button_click', { action: 'oracle_submit', question_length: question.length });
 
   const randomResponse = oracleResponses[Math.floor(Math.random() * oracleResponses.length)];
   const responseDiv = document.getElementById('oracleResponse');
@@ -2578,6 +2623,29 @@ function submitOracleQuestion() {
 function handleOracleKeypress(event) {
   if (event.key === 'Enter') {
     submitOracleQuestion();
+  }
+}
+
+// ── EVENT TRACKING INFRASTRUCTURE ──────────────────────────────────────────
+// Universal event tracking function that works with gtag and fbq
+function trackEvent(eventName, eventData = {}) {
+  try {
+    // Google Analytics via gtag
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, eventData);
+    }
+    // Facebook Pixel
+    if (typeof fbq !== 'undefined') {
+      // Map custom event to Facebook standard events
+      if (eventName === 'button_click' || eventName === 'general_click' || eventName === 'link_click') {
+        fbq('track', 'ViewContent', eventData);
+      } else if (eventName === 'button_complaints' || eventName === 'button_crystal_ball') {
+        fbq('track', 'CustomEvent', { event_name: eventName, ...eventData });
+      }
+    }
+    console.log(`[Analytics] ${eventName}`, eventData);
+  } catch (e) {
+    // Silently fail if analytics not ready
   }
 }
 
