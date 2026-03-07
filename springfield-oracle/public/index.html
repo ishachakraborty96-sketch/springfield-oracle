@@ -460,8 +460,13 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     border-color: var(--yellow);
   }
 
+  .search-bar-row {
+    padding: 16px 40px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
   .search-box {
-    margin-left: auto;
     background: transparent;
     border: 1px solid rgba(255,255,255,0.2);
     color: var(--white);
@@ -469,7 +474,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     outline: none;
-    width: 240px;
+    width: 320px;
   }
 
   .search-box::placeholder {
@@ -988,9 +993,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       white-space: nowrap;
       min-height: 36px;
     }
+    .search-bar-row {
+      padding: 12px 16px 0;
+    }
     .search-box {
       width: 100%;
-      margin-left: 0;
       box-sizing: border-box;
       background: #111;
       padding: 10px 16px;
@@ -1444,6 +1451,9 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 </div>
 
 <!-- FILTERS -->
+<div class="search-bar-row">
+  <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
+</div>
 <div class="filters-bar">
   <span class="filter-label">Filter:</span>
   <div class="filter-group">
@@ -1458,7 +1468,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <button class="filter-btn" onclick="filterTable('Culture', this)">Culture</button>
     <button class="filter-btn" onclick="filterTable('Business', this)">Business</button>
   </div>
-  <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
 </div>
 
 <!-- TABLE -->
@@ -1653,7 +1662,8 @@ function viralDots(score) {
 
 function statusBadge(status) {
   const map = { confirmed: 'status-confirmed', pending: 'status-pending', debunked: 'status-disputed' };
-  return `<span class="status-badge ${map[status]}">${status}</span>`;
+  const labels = { confirmed: 'Confirmed', pending: 'Pending', debunked: 'Debunked' };
+  return `<span class="status-badge ${map[status] || 'status-pending'}">${labels[status] || status}</span>`;
 }
 
 function yearsEarly(year, trueYear) {
