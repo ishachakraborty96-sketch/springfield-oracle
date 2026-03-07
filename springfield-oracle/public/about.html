@@ -438,11 +438,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="tv-graphic">📺</div>
 </header>
 
-<div class="hero">
-  <h1>About Springfield Oracle</h1>
-  <p>The internet's most sourced, fact-checked database of Simpsons predictions. Built because the alternative was 60-second TikToks with no receipts.</p>
-</div>
-
 <div class="content">
 
   <!-- WHY -->
@@ -552,10 +547,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="section">
     <div class="section-label">The Builder</div>
     <div class="builder-card">
-      <h3>Built by Isha Godboley</h3>
-      <p>I'm a marketer by trade. I built Springfield Oracle because I got tired of watching viral Simpsons clips with no sources, no episode references, and no accountability. Someone had to build the receipts database. It turned out to be me.</p>
+      <h3>Built by Isha &amp; Tejas</h3>
+      <p>We're marketers by trade. We built Springfield Oracle because we got tired of watching viral Simpsons clips with no sources, no episode references, and no accountability. Someone had to build the receipts database. It turned out to be us.</p>
       <p>Springfield Oracle is open source. The community can submit predictions, flag errors, and contribute sources. If you find a prediction we've missed or a claim we've got wrong, tell us.</p>
-      <a href="https://www.linkedin.com/in/isha-godboley" target="_blank" rel="noopener">Connect on LinkedIn &nearr;</a>
     </div>
   </div>
 
@@ -570,7 +564,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   try {
     const res = await fetch('/data/predictions.json');
     const data = await res.json();
-    const active = data.filter(p => !p.hidden);
+    const active = (data.predictions || []).filter(p => !p.hidden);
     document.getElementById('total-count').textContent = active.length;
     document.getElementById('confirmed-count').textContent = active.filter(p => p.status === 'confirmed').length;
     document.getElementById('pending-count').textContent = active.filter(p => p.status === 'pending').length;

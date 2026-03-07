@@ -460,8 +460,13 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     border-color: var(--yellow);
   }
 
+  .search-bar-row {
+    padding: 16px 40px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
   .search-box {
-    margin-left: auto;
     background: transparent;
     border: 1px solid rgba(255,255,255,0.2);
     color: var(--white);
@@ -469,7 +474,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     outline: none;
-    width: 240px;
+    width: 320px;
   }
 
   .search-box::placeholder {
@@ -483,7 +488,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 
   .table-section {
-    padding: 0 40px 80px;
+    padding: 0 40px 24px;
     max-width: 1400px;
     margin: 0 auto;
   }
@@ -988,9 +993,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       white-space: nowrap;
       min-height: 36px;
     }
+    .search-bar-row {
+      padding: 12px 16px 0;
+    }
     .search-box {
       width: 100%;
-      margin-left: 0;
       box-sizing: border-box;
       background: #111;
       padding: 10px 16px;
@@ -1330,7 +1337,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 BREAKING 2026: US-Israel strikes Iran — S06E19 Lisa's Wedding — Written in 1995</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: H3N2 Flu — 11M infected, 5K dead — S04E21 The Osaka Flu — Written in 1993</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: UAP Disclosure goes mainstream — S08E10 The Springfield Files — Written in 1997</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files — elite island running the world — S12E06 — DISPUTED</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files — elite island running the world — S12E06 — DEBUNKED</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup Final — S08E14 — Written in 1997</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: First American Pope Leo XIV — S10E02 — Written in 1998</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: Elon Musk's political rise and fall — S26E10 — Written in 2015</span>
@@ -1342,7 +1349,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 BREAKING 2026: US-Israel strikes Iran — S06E19 Lisa's Wedding — Written in 1995</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: H3N2 Flu — 11M infected, 5K dead — S04E21 The Osaka Flu — Written in 1993</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> 🔴 CONFIRMED 2026: UAP Disclosure goes mainstream — S08E10 The Springfield Files — Written in 1997</span>
-    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files — elite island running the world — S12E06 — DISPUTED</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> HOT 2026: Epstein Files — elite island running the world — S12E06 — DEBUNKED</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> WATCH 2026: Mexico vs Portugal World Cup Final — S08E14 — Written in 1997</span>
     <span class="ticker-item"><span class="ticker-dot">●</span> CONFIRMED 2025: First American Pope Leo XIV — S10E02 — Written in 1998</span>
   </div>
@@ -1404,7 +1411,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
       <!-- CARD 4: Great Awakening / QAnon -->
       <div class="latest-card carousel-card" onclick="openCarouselModal(3)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
-        <div class="latest-badge" style="background:#555;">⚠️ 2022 — DISPUTED</div>
+        <div class="latest-badge" style="background:#555;">⚠️ 2022 — DEBUNKED</div>
         <div class="latest-episode" style="background: #2d2d5e;">
           <div class="ep-season">S24E09</div>
           <div class="ep-label">Season / Episode</div>
@@ -1444,19 +1451,23 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 </div>
 
 <!-- FILTERS -->
+<div class="search-bar-row">
+  <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
+</div>
 <div class="filters-bar">
   <span class="filter-label">Filter:</span>
   <div class="filter-group">
     <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
     <button class="filter-btn" onclick="filterTable('confirmed', this)">Confirmed</button>
     <button class="filter-btn" onclick="filterTable('pending', this)">Pending</button>
-    <button class="filter-btn" onclick="filterTable('disputed', this)">Disputed</button>
+    <button class="filter-btn" onclick="filterTable('debunked', this)">Debunked</button>
     <button class="filter-btn" onclick="filterTable('Technology', this)">Tech</button>
     <button class="filter-btn" onclick="filterTable('Politics', this)">Politics</button>
     <button class="filter-btn" onclick="filterTable('Science', this)">Science</button>
     <button class="filter-btn" onclick="filterTable('Sports', this)">Sports</button>
+    <button class="filter-btn" onclick="filterTable('Culture', this)">Culture</button>
+    <button class="filter-btn" onclick="filterTable('Business', this)">Business</button>
   </div>
-  <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
 </div>
 
 <!-- TABLE -->
@@ -1479,6 +1490,24 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   <div id="pagination-bar" class="pagination-bar"></div>
 </div>
 
+<!-- EMAIL NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="newsletter-left">
+      <div class="newsletter-eyebrow">Springfield Oracle — Weekly Intel</div>
+      <h3 class="newsletter-heading">New Predictions. Before Anyone Else.</h3>
+      <p class="newsletter-sub">Every week: new Simpsons predictions added, real-world matches flagged, and the ones currently unfolding — direct to your inbox. No spam. Unsubscribe anytime.</p>
+    </div>
+    <div class="newsletter-right">
+      <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <input class="newsletter-input" type="email" id="newsletter-email" placeholder="your@email.com" required autocomplete="email" />
+        <button class="newsletter-btn" type="submit">Get Updates</button>
+      </form>
+      <div id="newsletter-success" style="display:none; color:#0B2D8F; font-family:'Space Mono',monospace; font-size:12px; margin-top:10px; letter-spacing:1px;">✓ You're in. First issue lands soon.</div>
+    </div>
+  </div>
+</div>
+
 <!-- LIVE NEWS FEED -->
 <div class="news-outer">
   <div class="news-inner">
@@ -1493,24 +1522,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <p class="news-footer-note">
       ↑ Auto-refreshes every 30 seconds · Global News RSS · Simpsons matches auto-detected · Headlines are external links
     </p>
-  </div>
-</div>
-
-<!-- EMAIL NEWSLETTER -->
-<div class="newsletter-section">
-  <div class="newsletter-inner">
-    <div class="newsletter-left">
-      <div class="newsletter-eyebrow">Springfield Oracle — Weekly Intel</div>
-      <h3 class="newsletter-heading">New Predictions. Live Matches. Before Anyone Else.</h3>
-      <p class="newsletter-sub">Every week: new Simpsons predictions added, real-world matches flagged, and the ones currently unfolding — direct to your inbox. No spam. Unsubscribe anytime.</p>
-    </div>
-    <div class="newsletter-right">
-      <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-        <input class="newsletter-input" type="email" id="newsletter-email" placeholder="your@email.com" required autocomplete="email" />
-        <button class="newsletter-btn" type="submit">Get Updates</button>
-      </form>
-      <div id="newsletter-success" style="display:none; color:#FFD520; font-family:'Space Mono',monospace; font-size:12px; margin-top:10px; letter-spacing:1px;">✓ You're in. First issue lands soon.</div>
-    </div>
   </div>
 </div>
 
@@ -1534,9 +1545,9 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 <!-- FOOTER -->
 <footer>
-  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha Godboley</strong> · <a href="https://www.linkedin.com/in/isha-godboley" target="_blank" rel="noopener">Have feedback? DM me on LinkedIn ↗</a></span>
+  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
   <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
-  <span><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub ↗</a> · Data sourced &amp; verified.</span>
+  <span style="opacity:0.4; font-size:10px;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:inherit;">GitHub</a> · Data sourced &amp; verified.</span>
   <span><a href="/about.html" style="text-decoration:none;">About</a> · <a href="/faq.html" style="text-decoration:none;">FAQ</a></span>
   <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Every Simpsons prediction. Sourced, scored, fact-checked. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
 </footer>
@@ -1592,7 +1603,7 @@ const predictions = [
   // ── 2025 CONFIRMED ───────────────────────────────────────────────
   { id: 'SP011', season: 'S26', episode: 'E10', name: "The Musk Who Fell to Earth", year: 2015, title: "Elon Musk's Political Rise & Fall", desc: "Musk befriends Homer, promises to transform Springfield, then causes mass layoffs before leaving on a SpaceX rocket. In 2025, Musk joined Trump's DOGE, sparked controversy, caused political chaos, then was dismissed. Writers nailed the arc a decade early.", category: "Politics", status: "pending", trueYear: 2025, viral: 10 },
   { id: 'SP012', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Trump Budget Crisis / Government Shutdown", desc: "Lisa inherits a catastrophic budget mess from President Trump. In 2025, the US government shut down for 43 days as Congress repeatedly failed to pass appropriations legislation — exactly as depicted.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 10 },
-  { id: 'SP013', season: 'S10', episode: 'E02', name: "The Wizard of Evergreen Terrace", year: 1998, title: "First American Pope — Pope Leo XIV", desc: "Kent Brockman announces a 'phony Pope' identified by 'high-top sneakers and an incredibly foul mouth' — traits Reddit identified as distinctly Chicago. Pope Leo XIV (Robert Prevost) was elected in 2025 as the first American-born pope, having attended university in Villanova — the same town mentioned in a connected episode.", category: "Culture", status: "disputed", trueYear: 2025, viral: 10 },
+  { id: 'SP013', season: 'S10', episode: 'E02', name: "The Wizard of Evergreen Terrace", year: 1998, title: "First American Pope — Pope Leo XIV", desc: "Kent Brockman announces a 'phony Pope' identified by 'high-top sneakers and an incredibly foul mouth' — traits Reddit identified as distinctly Chicago. Pope Leo XIV (Robert Prevost) was elected in 2025 as the first American-born pope, having attended university in Villanova — the same town mentioned in a connected episode.", category: "Culture", status: "debunked", trueYear: 2025, viral: 10 },
   { id: 'SP014', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "AI Mass Job Displacement", desc: "Mr Burns replaces all plant workers with robots because it's cheaper and more efficient. In 2025, AI automation began eliminating white-collar and blue-collar roles globally. Research suggests 100 million US jobs could be impacted within a decade.", category: "Technology", status: "confirmed", trueYear: 2025, viral: 9 },
 
   // ── 2026 HOT / CURRENTLY UNFOLDING ──────────────────────────────
@@ -1605,9 +1616,9 @@ const predictions = [
   { id: 'SP020', season: 'S12', episode: 'E01', name: "Treehouse of Horror XI", year: 2001, title: "Subliminal Media / Propaganda Psyop", desc: "In 'New Kids on the Blecch', Bart's boy band secretly embeds Navy recruitment messaging ('Yvan Eht Nioj' = Join the Navy backwards). With AI-generated propaganda, deepfake news, and algorithmic manipulation dominating 2025-2026 discourse, this feels prescient.", category: "Politics", status: "confirmed", trueYear: null, viral: 8 },
 
   // ── 2027-2028 PENDING ────────────────────────────────────────────
-  { id: 'SP021', season: 'S27', episode: 'E16', name: "Treehouse of Horror XXVII", year: 2016, title: "Ivanka Trump Runs for President — 2028", desc: "Homer's sticker reads 'Ivanka Trump 2028' — a throwaway gag that's gaining serious traction. Ivanka hasn't announced a run, but with Trump constitutionally barred from a third term, 2028 is wide open and her name is already circulating.", category: "Politics", status: "disputed", trueYear: null, viral: 10 },
+  { id: 'SP021', season: 'S27', episode: 'E16', name: "Treehouse of Horror XXVII", year: 2016, title: "Ivanka Trump Runs for President — 2028", desc: "Homer's sticker reads 'Ivanka Trump 2028' — a throwaway gag that's gaining serious traction. Ivanka hasn't announced a run, but with Trump constitutionally barred from a third term, 2028 is wide open and her name is already circulating.", category: "Politics", status: "debunked", trueYear: null, viral: 10 },
   { id: 'SP022', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Lisa Simpson Presidency — Woman President by 2030", desc: "Lisa becomes the first female president, inheriting Trump's budget disaster. The episode imagines a 2030 scenario. With Harris having run in 2024, the question of America's first female president remains alive into the 2028 cycle.", category: "Politics", status: "confirmed", trueYear: null, viral: 9 },
-  { id: 'SP023', season: 'S07', episode: 'E09', name: "Sideshow Bob's Last Gleaming", year: 1995, title: "Digital Big Ben / Landmark Tech Overhaul", desc: "Big Ben is shown as a digital clock display. The UK is currently undergoing debates about modernising national infrastructure. A seemingly absurd prediction that's getting closer to plausible.", category: "Culture", status: "disputed", trueYear: null, viral: 6 },
+  { id: 'SP023', season: 'S07', episode: 'E09', name: "Sideshow Bob's Last Gleaming", year: 1995, title: "Digital Big Ben / Landmark Tech Overhaul", desc: "Big Ben is shown as a digital clock display. The UK is currently undergoing debates about modernising national infrastructure. A seemingly absurd prediction that's getting closer to plausible.", category: "Culture", status: "debunked", trueYear: null, viral: 6 },
   { id: 'SP024', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "Full Robot Revolution / Physical Labour Automation", desc: "All of Springfield's human workers are fully replaced by robots. Beyond office AI, physical robotics (Boston Dynamics, Tesla Optimus) are advancing rapidly. Full blue-collar automation could hit a tipping point before 2028.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
   { id: 'SP025', season: 'S07', episode: 'E01', name: "Who Shot Mr. Burns? Part II", year: 1995, title: "Solar Energy / Oil Industry Collapse", desc: "Mr Burns builds a giant sun-blocker to force Springfield to buy his energy. A satirical take on fossil fuel monopolies fighting renewable energy. With solar hitting cost parity globally and oil lobbies fighting back, this power struggle is very real.", category: "Science", status: "confirmed", trueYear: null, viral: 7 },
   { id: 'SP026', season: 'S12', episode: 'E12', name: "Treehouse of Horror XII", year: 2001, title: "Fully Automated AI Smart Homes", desc: "The Simpson family moves into a home run entirely by AI — controlled by voice, making decisions autonomously. Smart home technology is rapidly approaching this level, with AI agents now able to control entire home ecosystems.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
@@ -1625,8 +1636,8 @@ const predictions = [
   { id: 'SP038', season: 'S16', episode: 'E02', name: "On a Clear Day I Can't See My Sister", year: 2005, title: "Glacier Melt / Climate Crisis Warning", desc: "Lisa gives a speech about a Springfield glacier rapidly disappearing due to climate change. Swiss Alps, Greenland, and Himalayan glaciers reached record melt rates in 2025–2026, with scientists warning the pace is outrunning every climate model.", category: "Science", status: "pending", trueYear: 2025, viral: 7 },
   { id: 'SP039', season: 'S13', episode: 'E22', name: "Poppa's Got a Brand New Badge", year: 2002, title: "Catastrophic Urban Heat Wave", desc: "Springfield is hit by a catastrophic heat wave — a butterfly melts, a sunflower catches fire. NOAA forecasts summer 2026 to break global temperature records for the fourth consecutive year. Heat domes and extreme urban heat events are now the dominant summer news story.", category: "Science", status: "confirmed", trueYear: null, viral: 8 },
   { id: 'SP040', season: 'S07', episode: 'E07', name: "King-Size Homer", year: 1995, title: "Obesity Epidemic & Working From Home", desc: "Homer deliberately gains weight to qualify as disabled and work from home via a computer terminal. US obesity rates hit record highs in 2025; ~28% of Americans now work from home post-COVID; and GLP-1 drugs like Ozempic and Wegovy dominate health news as the first mass market obesity treatment.", category: "Science", status: "confirmed", trueYear: 2020, viral: 8 },
-  { id: 'SP041', season: 'S07', episode: 'E06', name: "Treehouse of Horror VI", year: 1995, title: "Homer Enters 3D Virtual World — The Metaverse", desc: "In the 'Homer³' segment, Homer falls into a photorealistic 3D computer-generated world — an immersive digital environment indistinguishable from reality. Meta launched its Metaverse in 2021; Apple Vision Pro launched in 2024. The episode nailed both the technology and the existential disorientation.", category: "Technology", status: "disputed", trueYear: 2021, viral: 9 },
-  { id: 'SP042', season: 'S25', episode: 'E18', name: "Days of Future Future", year: 2014, title: "Autonomous Delivery Drones", desc: "Set 30 years in the future, Springfield's sky is filled with autonomous drones delivering packages. Amazon Prime Air, Google Wing, and Zipline began commercial drone deliveries in the US by 2024. The FAA approved expanded drone delivery corridors in 2025, with package drones now operating in dozens of US cities.", category: "Technology", status: "disputed", trueYear: 2022, viral: 7 },
+  { id: 'SP041', season: 'S07', episode: 'E06', name: "Treehouse of Horror VI", year: 1995, title: "Homer Enters 3D Virtual World — The Metaverse", desc: "In the 'Homer³' segment, Homer falls into a photorealistic 3D computer-generated world — an immersive digital environment indistinguishable from reality. Meta launched its Metaverse in 2021; Apple Vision Pro launched in 2024. The episode nailed both the technology and the existential disorientation.", category: "Technology", status: "debunked", trueYear: 2021, viral: 9 },
+  { id: 'SP042', season: 'S25', episode: 'E18', name: "Days of Future Future", year: 2014, title: "Autonomous Delivery Drones", desc: "Set 30 years in the future, Springfield's sky is filled with autonomous drones delivering packages. Amazon Prime Air, Google Wing, and Zipline began commercial drone deliveries in the US by 2024. The FAA approved expanded drone delivery corridors in 2025, with package drones now operating in dozens of US cities.", category: "Technology", status: "debunked", trueYear: 2022, viral: 7 },
   { id: 'SP043', season: 'S06', episode: 'E17', name: "Homer vs. Patty and Selma", year: 1995, title: "Commodity Speculation Crash", desc: "Homer invests everything in pumpkin futures — prices spike, then crash overnight on November 1st, leaving him bankrupt. From Bitcoin crashes (2022) to meme stocks (GameStop 2021) to tariff-driven commodity volatility in 2026, the cycle of retail speculation and sudden collapse is now a fixture of financial news.", category: "Business", status: "confirmed", trueYear: 2021, viral: 7 },
   { id: 'SP044', season: 'S06', episode: 'E05', name: "Sideshow Bob Roberts", year: 1994, title: "Celebrity-to-Politician Pipeline", desc: "Sideshow Bob — a TV celebrity — runs for Mayor of Springfield using media manipulation and corporate backing to defeat an incumbent politician. The celebrity-to-politician pipeline has defined politics from Trump (2016) to Zelensky (2019) to a wave of influencer-turned-candidates in 2025–2026 midterm races.", category: "Politics", status: "confirmed", trueYear: 2016, viral: 8 },
   { id: 'SP045', season: 'S06', episode: 'E09', name: "Homer Badman", year: 1994, title: "Media Frenzy / Cancel Culture", desc: "Homer is accused of harassment; cable TV runs unverified allegations as fact; protesters camp outside his house; he is tried and convicted by public opinion before any court verdict. The #MeToo movement (2017–) and cancel culture cycle — viral accusations, social media mobs, reputational destruction before due process — followed this script exactly.", category: "Culture", status: "confirmed", trueYear: 2017, viral: 8 },
@@ -1650,8 +1661,9 @@ function viralDots(score) {
 }
 
 function statusBadge(status) {
-  const map = { confirmed: 'status-confirmed', pending: 'status-pending', disputed: 'status-disputed' };
-  return `<span class="status-badge ${map[status]}">${status}</span>`;
+  const map = { confirmed: 'status-confirmed', pending: 'status-pending', debunked: 'status-disputed' };
+  const labels = { confirmed: 'Confirmed', pending: 'Pending', debunked: 'Debunked' };
+  return `<span class="status-badge ${map[status] || 'status-pending'}">${labels[status] || status}</span>`;
 }
 
 function yearsEarly(year, trueYear) {
@@ -1662,28 +1674,51 @@ function yearsEarly(year, trueYear) {
 
 let currentModalPrediction = null;
 
+const BASE_URL = 'https://springfield-oracle.vercel.app';
+
+function getShareUrl(p) {
+  if (!p || !p.id) return BASE_URL;
+  return `${BASE_URL}/share?id=${encodeURIComponent(p.id)}`;
+}
+
 function buildShareText(p, format = 'x') {
-  const status = p.status === 'confirmed' ? '✅ CONFIRMED' : p.status === 'disputed' ? '⚠️ DISPUTED' : '👀 UNFOLDING NOW';
-  const connection = `The Simpsons wrote this into ${p.name} (${p.season}${p.episode}) back in ${p.year}.`;
-  const cta = 'Every prediction tracked at springfield-oracle.vercel.app';
+  const status     = p.status === 'confirmed' ? '✅ CONFIRMED' : p.status === 'debunked' ? '⚠️ DEBUNKED' : '👀 UNFOLDING NOW';
+  const yearsEarly = p.year && p.trueYear ? ` — called it ${p.trueYear - p.year} years early` : '';
+  const episode    = `${p.season}${p.episode} · ${p.name} (${p.year})`;
+  const shareUrl   = getShareUrl(p);
 
   if (format === 'x') {
-    return `${status}: ${p.title}\n\n${connection}\n\n${cta}\n\n#TheSimpsons #SpringfieldOracle`;
+    // Craft punchy tweet: status + title + episode + url + tags
+    return `${status}: "${p.title}"${yearsEarly}\n\nWritten into ${episode}.\n\n${shareUrl}\n\n#TheSimpsons #SpringfieldOracle #CalledIt`;
   } else {
-    return `${status}: ${p.title}\n\n${connection}\n\n${cta}`;
+    return `${status}: "${p.title}"${yearsEarly}\n\nWritten into ${episode}.\n\n${shareUrl}`;
   }
 }
 
+function getCarouselShareUrl(d) {
+  if (d && d.predId) return `${BASE_URL}/share?id=${encodeURIComponent(d.predId)}`;
+  return BASE_URL;
+}
+
+function buildCarouselShareText(d, format = 'x') {
+  const url = getCarouselShareUrl(d);
+  if (format === 'x') {
+    return `${d.shareTitle}\n\n${url}\n\n#TheSimpsons #SpringfieldOracle #CalledIt`;
+  }
+  return `${d.shareTitle}\n\n${url}`;
+}
+
 function shareOnX(p) {
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(buildShareText(p, 'x'))}`, '_blank');
+  const text = buildShareText(p, 'x');
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
 }
 
 function shareOnLinkedIn(p) {
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://springfield-oracle.vercel.app')}`, '_blank');
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrl(p))}`, '_blank');
 }
 
 function copyShareLink(p, btn) {
-  navigator.clipboard.writeText(buildShareText(p, 'copy')).then(() => {
+  navigator.clipboard.writeText(getShareUrl(p)).then(() => {
     btn.textContent = '✓';
     setTimeout(() => { btn.textContent = '🔗'; }, 1500);
   });
@@ -1692,7 +1727,7 @@ function copyShareLink(p, btn) {
 function modalShareX() {
   let text;
   if (window._carouselShareMode) {
-    text = window._carouselShareTitle + '\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle';
+    text = buildCarouselShareText(window._currentCarouselData, 'x');
   } else {
     if (!currentModalPrediction) return;
     text = buildShareText(currentModalPrediction, 'x');
@@ -1701,18 +1736,25 @@ function modalShareX() {
 }
 
 function modalShareLinkedIn() {
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://springfield-oracle.vercel.app')}`, '_blank');
+  let url;
+  if (window._carouselShareMode) {
+    url = getCarouselShareUrl(window._currentCarouselData);
+  } else {
+    if (!currentModalPrediction) return;
+    url = getShareUrl(currentModalPrediction);
+  }
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
 }
 
 function modalCopyLink(btn) {
-  let text;
+  let url;
   if (window._carouselShareMode) {
-    text = window._carouselShareTitle + '\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle';
+    url = getCarouselShareUrl(window._currentCarouselData);
   } else {
     if (!currentModalPrediction) return;
-    text = buildShareText(currentModalPrediction, 'copy');
+    url = getShareUrl(currentModalPrediction);
   }
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(url).then(() => {
     btn.textContent = '✓ Copied';
     setTimeout(() => { btn.textContent = '🔗 Copy'; }, 1500);
   });
@@ -1903,13 +1945,13 @@ const carouselData = [
     shareTitle: 'The Simpsons Movie (2007) depicted mass NSA surveillance of citizens. Snowden confirmed it in 2013. In 2026, the Pentagon demanded unrestricted AI access to citizen data.'
   },
   {
-    badge: '⚠️ 2022 — DISPUTED',
+    badge: '⚠️ 2022 — DEBUNKED',
     episode: 'S24E09 · Homer Goes to Prep School (2013)',
-    status: 'disputed',
+    status: 'debunked',
     predId: null,
     title: 'S24E09 — Homer Goes to Prep School (2013) Depicted Societal Collapse via EMP',
     body: `"Homer Goes to Prep School" (Season 24, Episode 9, 2013) features Homer joining a group of doomsday preppers who believe civilisation is about to collapse. The episode depicts an electromagnetic pulse (EMP) device triggering a breakdown of society and rule of law, referred to in survivalist circles as WROL — Without Rule of Law.\n\nIn September 2022, QAnon's Great Awakening forum cited this episode — noting that Season 24, Episode 9 numerically maps to "9/24" — as evidence that a government-orchestrated event called "The Storm" would occur on September 24, 2022. Followers predicted Trump's return to power, mass arrests, and "10 days of darkness."\n\nThe prediction was sourced from a misreading of a German politician's speech, combined with numerological interpretation of the episode number. Nothing occurred on September 24, 2022. The episode is real and accurately described. The prediction it supposedly contains was not in the episode.`,
-    shareTitle: 'S24E09 Homer Goes to Prep School (2013) depicted doomsday preppers and EMP collapse. QAnon cited it as proof of a "Storm" on Sep 24 2022. Nothing happened. Logged as Disputed.'
+    shareTitle: 'S24E09 Homer Goes to Prep School (2013) depicted doomsday preppers and EMP collapse. QAnon cited it as proof of a "Storm" on Sep 24 2022. Nothing happened. Logged as Debunked.'
   },
   {
     badge: '🔴 2026 — CONFIRMED',
@@ -1926,7 +1968,7 @@ function openCarouselModal(index) {
   const d = carouselData[index];
   document.getElementById('modal-episode').textContent = d.episode;
   document.getElementById('modal-title').textContent = d.title;
-  document.getElementById('modal-body').innerHTML = d.body.replace(/\n\n/g, '<br><br>');
+  document.getElementById('modal-body').textContent = d.body.replace(/\n\n/g, ' ');
   document.getElementById('modal-status').innerHTML = statusBadge(d.status);
   document.getElementById('modal-category').textContent = d.category || '—';
   document.getElementById('modal-airdate').textContent = d.episode.match(/\d{4}/)?.[0] || '—';
@@ -1942,6 +1984,7 @@ function openCarouselModal(index) {
     liveNewsEl.style.display = 'none';
   }
   // store share data
+  window._currentCarouselData = d;
   window._carouselShareTitle = d.shareTitle;
   window._carouselShareMode = true;
   document.getElementById('modal').classList.add('open');
@@ -2192,10 +2235,10 @@ async function handleNewsletterSubmit(e) {
   btn.textContent = 'Sending...';
   btn.disabled = true;
   try {
-    const res = await fetch('https://formspree.io/f/mkovapen', {
+    const res = await fetch('https://app.beehiiv.com/api/v1/subscriptions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email, _subject: 'Springfield Oracle — Newsletter Signup' })
+      body: JSON.stringify({ email, publication_id: '62cfda32-7031-4c9d-9972-fb9b355cd4ec', double_opt_in: false })
     });
     if (res.ok) {
       document.getElementById('newsletter-form').style.display = 'none';
@@ -2241,6 +2284,25 @@ async function syncWithDatabase() {
 }
 
 syncWithDatabase();
+
+// ── DEEP LINK HANDLER ─────────────────────────────────────────────────
+// Opens the correct prediction modal when landing on /#SP013 or /share?id=SP013
+(function checkDeepLink() {
+  const hash   = window.location.hash.slice(1);
+  const params = new URLSearchParams(window.location.search);
+  const id     = hash || params.get('id') || params.get('p');
+  if (!id) return;
+  // Try immediately (JS array); if not found yet, retry after JSON sync
+  function tryOpen() {
+    const p = activeData.find(x => x.id === id);
+    if (p) {
+      openModal(p);
+    } else {
+      setTimeout(tryOpen, 300);
+    }
+  }
+  tryOpen();
+})();
 
 </script>
 <script>
