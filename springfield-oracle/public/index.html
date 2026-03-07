@@ -624,85 +624,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   }
 
 
-  .submit-section {
-    background: var(--blue);
-    padding: 60px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .submit-section::before {
-    content: '?';
-    position: absolute;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 400px;
-    opacity: 0.03;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--yellow);
-  }
-
-  .submit-section h2 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 64px;
-    color: var(--yellow);
-    margin-bottom: 16px;
-    position: relative;
-  }
-
-  .submit-section p {
-    font-size: 13px;
-    opacity: 0.6;
-    margin-bottom: 32px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
-  }
-
-  .submit-form {
-    display: flex;
-    gap: 0;
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .submit-input {
-    flex: 1;
-    background: rgba(255,255,255,0.08);
-    border: 2px solid rgba(255,255,255,0.2);
-    border-right: none;
-    color: white;
-    padding: 16px 24px;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    outline: none;
-  }
-
-  .submit-input:focus {
-    border-color: var(--yellow);
-  }
-
-  .submit-btn {
-    background: var(--yellow);
-    color: var(--dark);
-    border: 2px solid var(--yellow);
-    padding: 16px 32px;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 20px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  .submit-btn:hover {
-    background: var(--orange);
-    border-color: var(--orange);
-  }
 
 
   footer {
@@ -1081,25 +1002,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       gap: 12px;
     }
 
-
-    .submit-section { padding: 36px 16px; }
-
-    .submit-section::before { display: none; }
-    .submit-section h2 { font-size: 40px; }
-    .submit-section p { font-size: 12px; margin-bottom: 24px; }
-    .submit-form { flex-direction: column; gap: 0; }
-    .submit-input {
-      border-right: 2px solid rgba(255,255,255,0.2);
-      border-bottom: none;
-      width: 100%;
-      padding: 14px 18px;
-      font-size: 12px;
-    }
-    .submit-btn {
-      width: 100%;
-      padding: 14px;
-      font-size: 18px;
-    }
 
 
     footer {
@@ -1573,22 +1475,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <p class="news-footer-note">
       ↑ Auto-refreshes every 30 seconds · Global News RSS · Simpsons matches auto-detected · Headlines are external links
     </p>
-  </div>
-</div>
-
-<!-- SUBMIT SECTION -->
-<div class="submit-section">
-  <h2>Spotted a New One?</h2>
-  <p>This is open source and community-powered. If The Simpsons predicted something we haven't logged yet, tell us. Every submission is reviewed and sourced before it goes live.</p>
-  <div class="submit-form" id="submit-form">
-    <input class="submit-input" id="submit-input" type="text" placeholder="Describe the prediction + episode..." maxlength="500" />
-    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Submit</button>
-  </div>
-  <div id="submit-success" style="display:none; color:#FFD520; font-family:'Space Mono',monospace; font-size:13px; margin-top:12px; letter-spacing:1px;">
-    ✓ Received. We'll review and source it before it goes live.
-  </div>
-  <div id="submit-error" style="display:none; color:#ff6b6b; font-family:'Space Mono',monospace; font-size:12px; margin-top:12px;">
-    Something went wrong. Email us directly at isha.chakraborty96@gmail.com
   </div>
 </div>
 
@@ -2106,33 +1992,6 @@ function openCarouselModal(index) {
   window._carouselShareTitle = d.shareTitle;
   window._carouselShareMode = true;
   document.getElementById('modal').classList.add('open');
-}
-
-// ── SUBMIT FORM ───────────────────────────────────────────────────────
-async function handleSubmit() {
-  const input = document.getElementById('submit-input');
-  const btn = document.getElementById('submit-btn');
-  const val = input.value.trim();
-  if (!val) { input.focus(); return; }
-
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  try {
-    const res = await fetch('https://formspree.io/f/mkovapen', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ message: val, _subject: 'Springfield Oracle — New Prediction Submission' })
-    });
-    if (res.ok) {
-      document.getElementById('submit-form').style.display = 'none';
-      document.getElementById('submit-success').style.display = 'block';
-    } else { throw new Error(); }
-  } catch {
-    document.getElementById('submit-error').style.display = 'block';
-    btn.textContent = 'Submit';
-    btn.disabled = false;
-  }
 }
 
 // ── CAROUSEL ─────────────────────────────────────────────────────────────
