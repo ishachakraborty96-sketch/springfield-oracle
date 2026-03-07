@@ -1674,28 +1674,51 @@ function yearsEarly(year, trueYear) {
 
 let currentModalPrediction = null;
 
+const BASE_URL = 'https://springfield-oracle.vercel.app';
+
+function getShareUrl(p) {
+  if (!p || !p.id) return BASE_URL;
+  return `${BASE_URL}/share?id=${encodeURIComponent(p.id)}`;
+}
+
 function buildShareText(p, format = 'x') {
-  const status = p.status === 'confirmed' ? '✅ CONFIRMED' : p.status === 'debunked' ? '⚠️ DEBUNKED' : '👀 UNFOLDING NOW';
-  const connection = `The Simpsons wrote this into ${p.name} (${p.season}${p.episode}) back in ${p.year}.`;
-  const cta = 'Every prediction tracked at springfield-oracle.vercel.app';
+  const status     = p.status === 'confirmed' ? '✅ CONFIRMED' : p.status === 'debunked' ? '⚠️ DEBUNKED' : '👀 UNFOLDING NOW';
+  const yearsEarly = p.year && p.trueYear ? ` — called it ${p.trueYear - p.year} years early` : '';
+  const episode    = `${p.season}${p.episode} · ${p.name} (${p.year})`;
+  const shareUrl   = getShareUrl(p);
 
   if (format === 'x') {
-    return `${status}: ${p.title}\n\n${connection}\n\n${cta}\n\n#TheSimpsons #SpringfieldOracle`;
+    // Craft punchy tweet: status + title + episode + url + tags
+    return `${status}: "${p.title}"${yearsEarly}\n\nWritten into ${episode}.\n\n${shareUrl}\n\n#TheSimpsons #SpringfieldOracle #CalledIt`;
   } else {
-    return `${status}: ${p.title}\n\n${connection}\n\n${cta}`;
+    return `${status}: "${p.title}"${yearsEarly}\n\nWritten into ${episode}.\n\n${shareUrl}`;
   }
 }
 
+function getCarouselShareUrl(d) {
+  if (d && d.predId) return `${BASE_URL}/share?id=${encodeURIComponent(d.predId)}`;
+  return BASE_URL;
+}
+
+function buildCarouselShareText(d, format = 'x') {
+  const url = getCarouselShareUrl(d);
+  if (format === 'x') {
+    return `${d.shareTitle}\n\n${url}\n\n#TheSimpsons #SpringfieldOracle #CalledIt`;
+  }
+  return `${d.shareTitle}\n\n${url}`;
+}
+
 function shareOnX(p) {
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(buildShareText(p, 'x'))}`, '_blank');
+  const text = buildShareText(p, 'x');
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
 }
 
 function shareOnLinkedIn(p) {
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://springfield-oracle.vercel.app')}`, '_blank');
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrl(p))}`, '_blank');
 }
 
 function copyShareLink(p, btn) {
-  navigator.clipboard.writeText(buildShareText(p, 'copy')).then(() => {
+  navigator.clipboard.writeText(getShareUrl(p)).then(() => {
     btn.textContent = '✓';
     setTimeout(() => { btn.textContent = '🔗'; }, 1500);
   });
@@ -1704,7 +1727,7 @@ function copyShareLink(p, btn) {
 function modalShareX() {
   let text;
   if (window._carouselShareMode) {
-    text = window._carouselShareTitle + '\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle';
+    text = buildCarouselShareText(window._currentCarouselData, 'x');
   } else {
     if (!currentModalPrediction) return;
     text = buildShareText(currentModalPrediction, 'x');
@@ -1713,18 +1736,25 @@ function modalShareX() {
 }
 
 function modalShareLinkedIn() {
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://springfield-oracle.vercel.app')}`, '_blank');
+  let url;
+  if (window._carouselShareMode) {
+    url = getCarouselShareUrl(window._currentCarouselData);
+  } else {
+    if (!currentModalPrediction) return;
+    url = getShareUrl(currentModalPrediction);
+  }
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
 }
 
 function modalCopyLink(btn) {
-  let text;
+  let url;
   if (window._carouselShareMode) {
-    text = window._carouselShareTitle + '\n\nspringfield-oracle.vercel.app\n\n#TheSimpsons #SpringfieldOracle';
+    url = getCarouselShareUrl(window._currentCarouselData);
   } else {
     if (!currentModalPrediction) return;
-    text = buildShareText(currentModalPrediction, 'copy');
+    url = getShareUrl(currentModalPrediction);
   }
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(url).then(() => {
     btn.textContent = '✓ Copied';
     setTimeout(() => { btn.textContent = '🔗 Copy'; }, 1500);
   });
@@ -1954,6 +1984,7 @@ function openCarouselModal(index) {
     liveNewsEl.style.display = 'none';
   }
   // store share data
+  window._currentCarouselData = d;
   window._carouselShareTitle = d.shareTitle;
   window._carouselShareMode = true;
   document.getElementById('modal').classList.add('open');
@@ -2253,6 +2284,25 @@ async function syncWithDatabase() {
 }
 
 syncWithDatabase();
+
+// ── DEEP LINK HANDLER ─────────────────────────────────────────────────
+// Opens the correct prediction modal when landing on /#SP013 or /share?id=SP013
+(function checkDeepLink() {
+  const hash   = window.location.hash.slice(1);
+  const params = new URLSearchParams(window.location.search);
+  const id     = hash || params.get('id') || params.get('p');
+  if (!id) return;
+  // Try immediately (JS array); if not found yet, retry after JSON sync
+  function tryOpen() {
+    const p = activeData.find(x => x.id === id);
+    if (p) {
+      openModal(p);
+    } else {
+      setTimeout(tryOpen, 300);
+    }
+  }
+  tryOpen();
+})();
 
 </script>
 <script>
