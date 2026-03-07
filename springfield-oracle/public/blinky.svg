@@ -1,0 +1,30 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Body -->
+  <ellipse cx="100" cy="110" rx="70" ry="60" fill="#FFB800" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- Tail fins -->
+  <polygon points="30,110 10,80 15,110 10,140" fill="#FFB800" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="170,110 190,80 185,110 190,140" fill="#FFB800" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- Back fin -->
+  <polygon points="100,50 85,30 115,30" fill="#FFB800" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- Eyes (stacked) -->
+  <!-- Top eye -->
+  <circle cx="125" cy="55" r="20" fill="#B0D0E8" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="125" cy="55" r="10" fill="#000"/>
+  <circle cx="128" cy="52" r="3" fill="#fff"/>
+
+  <!-- Middle eye -->
+  <circle cx="125" cy="100" r="20" fill="#B0D0E8" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="125" cy="100" r="10" fill="#000"/>
+  <circle cx="128" cy="97" r="3" fill="#fff"/>
+
+  <!-- Bottom eye -->
+  <circle cx="125" cy="145" r="20" fill="#C4B5E0" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="125" cy="145" r="10" fill="#000"/>
+  <circle cx="128" cy="142" r="3" fill="#fff"/>
+
+  <!-- Mouth -->
+  <path d="M 85 130 Q 100 140 115 130" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+</svg>
