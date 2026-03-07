@@ -74,6 +74,8 @@ const ExitIntentPopup = (() => {
         overflow: hidden;
         transform: translateY(24px) scale(0.97);
         animation: exitIntentSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+        max-height: 90vh;
+        overflow-y: auto;
       }
 
       @keyframes exitIntentSlideUp {
@@ -329,6 +331,123 @@ const ExitIntentPopup = (() => {
         95% { opacity: 1; }
         100% { top: 100%; opacity: 0; }
       }
+
+      /* Mobile Responsive Design */
+      @media (max-width: 640px) {
+        .exit-intent-overlay {
+          padding: 16px;
+        }
+
+        .exit-intent-modal {
+          max-width: 100%;
+        }
+
+        .exit-intent-modal-inner {
+          padding: 32px 24px 28px;
+        }
+
+        .exit-intent-close-btn {
+          top: 12px;
+          right: 12px;
+          font-size: 10px;
+        }
+
+        .exit-intent-eye-icon {
+          width: 36px;
+          height: 36px;
+          margin-bottom: 16px;
+        }
+
+        .exit-intent-headline {
+          font-size: 24px;
+          line-height: 1.25;
+          margin-bottom: 12px;
+        }
+
+        .exit-intent-subtext {
+          font-size: 13px;
+          line-height: 1.6;
+          margin-bottom: 22px;
+          max-width: 100%;
+        }
+
+        .exit-intent-form-row {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .exit-intent-email-input {
+          width: 100%;
+          font-size: 16px;
+          padding: 12px 14px;
+        }
+
+        .exit-intent-submit-btn {
+          width: 100%;
+          padding: 12px 16px;
+          font-size: 10px;
+        }
+
+        .exit-intent-social-proof {
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 14px;
+        }
+
+        .exit-intent-divider {
+          margin-bottom: 20px;
+        }
+
+        .exit-intent-dismiss-link {
+          font-size: 10px;
+          margin-top: 14px;
+        }
+
+        .exit-intent-success-title {
+          font-size: 18px;
+          margin-bottom: 6px;
+        }
+
+        .exit-intent-success-check {
+          font-size: 24px;
+          margin-bottom: 8px;
+        }
+
+        .exit-intent-success-sub {
+          font-size: 12px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .exit-intent-modal-inner {
+          padding: 24px 16px 20px;
+        }
+
+        .exit-intent-headline {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+
+        .exit-intent-eyebrow-label {
+          font-size: 9px;
+          margin-bottom: 10px;
+        }
+
+        .exit-intent-subtext {
+          font-size: 12px;
+          margin-bottom: 18px;
+        }
+
+        .exit-intent-email-input {
+          font-size: 16px;
+          padding: 11px 12px;
+        }
+
+        .exit-intent-submit-btn {
+          padding: 11px 14px;
+          font-size: 9px;
+        }
+      }
     `;
     document.head.appendChild(style);
   };
@@ -434,16 +553,48 @@ const ExitIntentPopup = (() => {
   };
 
   const attachExitIntent = () => {
+    // Desktop: mouseleave detection
     document.addEventListener('mouseleave', (e) => {
       if (e.clientY < 10 && !exitTriggered && !sessionStorage.getItem('exit_intent_dismissed')) {
-        exitTriggered = true;
-        const overlay = document.getElementById('exit-intent-overlay');
-        if (overlay) {
-          overlay.style.opacity = '1';
-          overlay.classList.add('visible');
-        }
+        triggerPopup();
       }
     });
+
+    // Mobile: swipe up detection
+    let touchStartY = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if (exitTriggered || sessionStorage.getItem('exit_intent_dismissed')) return;
+      const touchCurrentY = e.touches[0].clientY;
+      // Detect upward swipe at top of screen (moving up more than 50px from top)
+      if (touchStartY < 100 && (touchStartY - touchCurrentY) > 50) {
+        triggerPopup();
+      }
+    });
+
+    // Mobile: scroll past top (pulldown on iOS)
+    let lastScrollY = 0;
+    document.addEventListener('scroll', () => {
+      if (exitTriggered || sessionStorage.getItem('exit_intent_dismissed')) return;
+      const currentScrollY = window.scrollY;
+      // Detect if user is at top and scrolls up (negative scroll = pull to refresh)
+      if (currentScrollY < 0 && lastScrollY >= 0) {
+        triggerPopup();
+      }
+      lastScrollY = currentScrollY;
+    });
+  };
+
+  const triggerPopup = () => {
+    exitTriggered = true;
+    const overlay = document.getElementById('exit-intent-overlay');
+    if (overlay) {
+      overlay.style.opacity = '1';
+      overlay.classList.add('visible');
+    }
   };
 
   const submit = (onSubscribe) => {
