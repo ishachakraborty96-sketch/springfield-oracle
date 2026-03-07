@@ -570,7 +570,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   try {
     const res = await fetch('/data/predictions.json');
     const data = await res.json();
-    const active = data.filter(p => !p.hidden);
+    const active = (data.predictions || []).filter(p => !p.hidden);
     document.getElementById('total-count').textContent = active.length;
     document.getElementById('confirmed-count').textContent = active.filter(p => p.status === 'confirmed').length;
     document.getElementById('pending-count').textContent = active.filter(p => p.status === 'pending').length;
