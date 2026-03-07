@@ -1,0 +1,67 @@
+name: Weekly Predictions Update
+
+# Run every Sunday at midnight UTC
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+
+  # Allow manual trigger via GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  update-predictions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "oracle@springfield.local"
+          git config --local user.name "Springfield Oracle Bot"
+
+      - name: Run weekly update script
+        run: |
+          cd springfield-oracle
+          python3 scripts/weekly-update.py
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          cd springfield-oracle
+          if git diff --quiet data/predictions.json; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          cd springfield-oracle
+          git add data/predictions.json
+          git commit -m "data: weekly automation update ($(date '+%Y-%m-%d'))
+
+          Automated prediction likelihood recalculation based on latest news trends.
+          Updated PENDING predictions with refreshed supporting links."
+          git push
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✓ Weekly predictions update completed successfully"
+          echo "Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "✗ Weekly predictions update failed"
+          exit 1

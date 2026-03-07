@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-03-01",
+    "last_updated": "2026-03-07",
     "total": 75,
     "sources": [
       "https://en.wikipedia.org/wiki/The_Simpsons_future_predictions",
@@ -9,7 +9,9 @@
       "https://tvtropes.org/pmwiki/pmwiki.php/Recap/TheSimpsonsS6E19LisasWedding",
       "https://simpsons.fandom.com/wiki/The_Simpsons_future_predictions"
     ],
-    "show_status": "Renewed through Season 40 (2029). ~790 episodes as of March 2026."
+    "show_status": "Renewed through Season 40 (2029). ~790 episodes as of March 2026.",
+    "status_update": "Weekly automation update: 0 predictions recalculated",
+    "last_automated_update": "2026-03-07T19:30:33.116527"
   },
   "predictions": [
     {
@@ -198,7 +200,13 @@
       "status": "pending",
       "viral_score": 10,
       "verified_source": "TVTropes S06E19 recap; Simpsons Fandom wiki; Wikipedia 2026 Iran-US strikes; PBS News live updates Feb 28 2026",
-      "fact_check_note": "WW3 in episode has no Middle East specificity. Majority of viral TikTok clips claiming Simpsons 'predicted Iran war' are AI-generated deepfakes per Boatos.org fact-check (June 2025). This entry cites only the verified S06E19 dialogue."
+      "fact_check_note": "WW3 in episode has no Middle East specificity. Majority of viral TikTok clips claiming Simpsons 'predicted Iran war' are AI-generated deepfakes per Boatos.org fact-check (June 2025). This entry cites only the verified S06E19 dialogue.",
+      "likelihood_pct": 65,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "last_updated": "2026-03-07T19:30:33.116440"
     },
     {
       "id": "SP012",
@@ -472,7 +480,16 @@
       "category": "Politics",
       "status": "pending",
       "viral_score": 8,
-      "verified_source": "Hollywood Reporter; TVLine"
+      "verified_source": "Hollywood Reporter; TVLine",
+      "likelihood_pct": 65,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "heating_rank": 2,
+      "heating_level": 2,
+      "heating_note": "2028 election cycle active",
+      "last_updated": "2026-03-07T19:30:33.116452"
     },
     {
       "id": "SP028",
@@ -608,7 +625,16 @@
       "category": "Politics",
       "status": "pending",
       "viral_score": 8,
-      "verified_source": "Hollywood Reporter"
+      "verified_source": "Hollywood Reporter",
+      "likelihood_pct": 65,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "heating_rank": 3,
+      "heating_level": 1,
+      "heating_note": "Ivanka stated \"out of politics\" (Dec 2024)",
+      "last_updated": "2026-03-07T19:30:33.116459"
     },
     {
       "id": "SP036",
@@ -659,7 +685,16 @@
       "category": "Sports",
       "status": "pending",
       "viral_score": 8,
-      "verified_source": "Fan databases; note \u2014 exact match disputed"
+      "verified_source": "Fan databases; note \u2014 exact match disputed",
+      "likelihood_pct": 70,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "heating_rank": 1,
+      "heating_level": 3,
+      "heating_note": "Tournament happening NOW (Jun-Jul 2026)",
+      "last_updated": "2026-03-07T19:30:33.116470"
     },
     {
       "id": "SP039",
