@@ -109,7 +109,7 @@ module.exports = async function handler(req, res) {
 
   <!-- Divider before URL -->
   <line x1="60" y1="570" x2="640" y2="570" stroke="#0B2D8F" stroke-width="1" opacity="0.25"/>
-  <text x="60" y="598" font-family="Courier New,monospace" font-size="14" fill="#0B2D8F" opacity="0.55" letter-spacing="1">springfield-oracle.vercel.app</text>
+  <text x="60" y="598" font-family="Courier New,monospace" font-size="14" fill="#0B2D8F" opacity="0.55" letter-spacing="1">springfieldoracle.com</text>
 
   <!-- Right panel: decorative "CALLED IT." -->
   <text x="800" y="260" font-family="Arial Black,Impact,sans-serif" font-size="110" font-weight="900" fill="#FFD520" opacity="0.08" transform="rotate(-8,800,260)">CALLED</text>

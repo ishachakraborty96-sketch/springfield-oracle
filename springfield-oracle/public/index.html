@@ -2001,14 +2001,15 @@ function copyShareLink(p, btn) {
 }
 
 function modalShareX() {
-  let text;
+  let url;
   if (window._carouselShareMode) {
-    text = buildCarouselShareText(window._currentCarouselData, 'x');
+    url = getCarouselShareUrl(window._currentCarouselData);
   } else {
     if (!currentModalPrediction) return;
-    text = buildShareText(currentModalPrediction, 'x');
+    url = getShareUrl(currentModalPrediction);
   }
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+  // Twitter will crawl the URL and pull the og:image automatically
+  window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`, '_blank');
 }
 
 function modalShareLinkedIn() {
