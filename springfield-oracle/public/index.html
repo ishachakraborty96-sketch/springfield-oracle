@@ -2764,7 +2764,7 @@ async function syncWithDatabase() {
           id:       p.id,
           season:   parseInt(episodeMatch[1]),
           episode:  parseInt(episodeMatch[2]),
-          name:     p.name || 'Unknown',
+          name:     p.episode_name || 'Unknown',
           year:     p.year_aired,
           title:    p.title,
           desc:     p.prediction + (p.real_event ? ` Real: ${p.real_event}` : ''),
