@@ -792,6 +792,24 @@
       "status": "confirmed",
       "viral_score": 6,
       "verified_source": "Fan databases"
+    },
+    {
+      "id": "SP044",
+      "season": null,
+      "episode": null,
+      "episode_code": "UNKNOWN",
+      "title": "Trump Death Prediction / Coffin Scene Viral Hoax",
+      "episode_name": "Unknown (Viral False Claim)",
+      "year_aired": null,
+      "prediction": "A viral TikTok/X claim spreads in March 2026 alleging The Simpsons 'predicted' Donald Trump's death through a coffin scene. AI-generated deepfake videos and false episode clips circulate claiming the show 'predicted his death for March 2026'.",
+      "real_event": "No such Simpsons scene exists. Viral claim debunked by SnopesWikipedia, and fact-checkers. Likely AI-generated deepfakes. Trump remains alive as of March 2026.",
+      "real_year": 2026,
+      "years_early": null,
+      "category": "Politics",
+      "status": "debunked",
+      "viral_score": 9,
+      "verified_source": "Snopes (March 2026 fact-check pending); TikTok viral claim; identified as deepfake/AI-generated hoax",
+      "fact_check_note": "This is a meta-prediction about a FALSE viral claim, not a genuine Simpsons prediction. No verifiable episode or scene supports this claim. Documented to track misinformation and AI deepfake spread."
     }
   ],
   "update_log": [
