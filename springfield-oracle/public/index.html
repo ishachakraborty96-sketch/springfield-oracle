@@ -1635,10 +1635,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         <span class="stat-num" id="pending-count">4</span>
         <span class="stat-label">Still<br>Pending</span>
       </div>
-      <div class="stat-pill" onclick="scrollToTable('debunked')" style="cursor:pointer;" title="View debunked predictions">
-        <span class="stat-num" id="debunked-count">5</span>
-        <span class="stat-label">Debunked /<br>Disputed</span>
-      </div>
       </div>
     </div>
   </div>
@@ -2168,7 +2164,6 @@ function updateCounts() {
   document.getElementById('total-count').textContent = activeData.length;
   document.getElementById('confirmed-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'CONFIRMED').length;
   document.getElementById('pending-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'PENDING').length;
-  document.getElementById('debunked-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'DEBUNKED').length;
 }
 
 // ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
