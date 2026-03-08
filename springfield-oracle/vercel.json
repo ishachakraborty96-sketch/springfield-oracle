@@ -5,9 +5,9 @@
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/og-image", "dest": "/api/og-image.js" },
-    { "src": "/api/news", "dest": "/api/news.js" },
-    { "src": "/share", "dest": "/api/share.js" },
+    { "src": "/api/og-image(.*)", "dest": "/api/og-image.js" },
+    { "src": "/api/news(.*)", "dest": "/api/news.js" },
+    { "src": "/share(.*)", "dest": "/api/share.js" },
     { "src": "/_vercel/(.*)", "dest": "/_vercel/$1" },
     { "src": "/about", "dest": "/public/about.html" },
     { "src": "/faq", "dest": "/public/faq.html" },
