@@ -698,14 +698,14 @@
       "status": "pending",
       "viral_score": 8,
       "verified_source": "Fan databases; note — exact match disputed",
-      "likelihood_pct": 92,
+      "likelihood_pct": 2,
       "likelihood_components": {
         "supporting_links": 0,
         "counter_arguments": 0
       },
-      "heating_rank": 1,
-      "heating_level": 3,
-      "heating_note": "Tournament happening NOW (Jun-Jul 2026)",
+      "heating_rank": 5,
+      "heating_level": 1,
+      "heating_note": "Based on betting odds: Mexico expected to exit Round of 16 (86% group advance, then exit). Portugal at 8.3% to win tournament. Combined final probability: ~1-2%",
       "last_updated": "2026-03-08T00:00:00.000000"
     },
     {
