@@ -2,7 +2,7 @@
   "meta": {
     "last_updated": "2026-03-08",
     "total": 63,
-    "status_update": "Maintenance pass complete: DISPUTED→DEBUNKED, duplicates removed, likelihood scores updated with 2026 news velocity analysis",
+    "status_update": "Maintenance pass complete: DISPUTED\u2192DEBUNKED, duplicates removed, likelihood scores updated with 2026 news velocity analysis",
     "engine": "Data Analyst v2.1 - News Velocity Engine",
     "version": "3.0",
     "last_maintenance": "2026-03-08T00:00:00Z",
@@ -20,7 +20,8 @@
       "real_year": 2011,
       "category": "Science",
       "status": "CONFIRMED",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP002",
@@ -33,7 +34,8 @@
       "real_year": 2020,
       "category": "Science",
       "status": "CONFIRMED",
-      "viral_score": 10
+      "viral_score": 10,
+      "likelihood_pct": 100
     },
     {
       "id": "SP003",
@@ -44,7 +46,8 @@
       "prediction": "Proliferation of neighborhood-level surveillance via consumer optics.",
       "category": "Technology",
       "status": "CONFIRMED",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP004",
@@ -57,7 +60,8 @@
       "real_year": 2015,
       "category": "Technology",
       "status": "CONFIRMED",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP005",
@@ -70,7 +74,8 @@
       "real_year": 2023,
       "category": "Government",
       "status": "CONFIRMED",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP006",
@@ -81,7 +86,8 @@
       "prediction": "A flyer for New York shows the number 9 next to the Twin Towers.",
       "status": "DEBUNKED",
       "reason": "Show producers confirmed this was a visual coincidence.",
-      "viral_score": 3
+      "viral_score": 3,
+      "likelihood_pct": 0
     },
     {
       "id": "SP007",
@@ -89,12 +95,13 @@
       "episode_code": "S10E11",
       "title": "20th Century Fox Acquired by Disney",
       "year_aired": 1998,
-      "prediction": "A studio sign reads '20th Century Fox — A Division of Walt Disney Co.'",
+      "prediction": "A studio sign reads '20th Century Fox \u2014 A Division of Walt Disney Co.'",
       "real_event": "Disney acquired Fox for $71.3 billion in 2019.",
       "real_year": 2019,
       "category": "Business",
       "status": "CONFIRMED",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP008",
@@ -107,7 +114,8 @@
       "real_year": 2016,
       "category": "Politics",
       "status": "CONFIRMED",
-      "viral_score": 10
+      "viral_score": 10,
+      "likelihood_pct": 100
     },
     {
       "id": "SP009",
@@ -120,7 +128,8 @@
       "real_year": 2012,
       "category": "Science",
       "status": "CONFIRMED",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP010",
@@ -133,7 +142,7 @@
       "likelihood_pct": 92,
       "likelihood_components": {
         "category_base_rate": 0.85,
-        "plausibility_score": 0.90,
+        "plausibility_score": 0.9,
         "specificity_score": 0.88,
         "news_velocity_score": 0.98
       },
@@ -159,7 +168,8 @@
       "real_year": 2025,
       "category": "Business",
       "status": "CONFIRMED",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP012",
@@ -171,7 +181,7 @@
       "status": "PENDING",
       "likelihood_pct": 88,
       "likelihood_components": {
-        "category_base_rate": 0.80,
+        "category_base_rate": 0.8,
         "plausibility_score": 0.92,
         "specificity_score": 0.85,
         "news_velocity_score": 0.96
@@ -224,7 +234,7 @@
       "likelihood_pct": 78,
       "likelihood_components": {
         "category_base_rate": 0.72,
-        "plausibility_score": 0.80,
+        "plausibility_score": 0.8,
         "specificity_score": 0.76,
         "news_velocity_score": 0.82
       },
@@ -243,10 +253,10 @@
       "status": "PENDING",
       "likelihood_pct": 76,
       "likelihood_components": {
-        "category_base_rate": 0.70,
+        "category_base_rate": 0.7,
         "plausibility_score": 0.78,
         "specificity_score": 0.74,
-        "news_velocity_score": 0.80
+        "news_velocity_score": 0.8
       },
       "news_matches": 32,
       "last_updated": "2026-03-08",
@@ -263,7 +273,8 @@
       "status": "CONFIRMED",
       "real_year": 2022,
       "category": "Politics",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP017",
@@ -295,7 +306,8 @@
       "status": "CONFIRMED",
       "real_year": 2024,
       "category": "Technology",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP019",
@@ -307,7 +319,8 @@
       "status": "CONFIRMED",
       "real_year": 2012,
       "category": "Science",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP020",
@@ -319,7 +332,8 @@
       "status": "CONFIRMED",
       "real_year": 2025,
       "category": "Politics",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP021",
@@ -331,7 +345,8 @@
       "status": "CONFIRMED",
       "real_year": 2020,
       "category": "Business",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP022",
@@ -343,7 +358,8 @@
       "status": "CONFIRMED",
       "real_year": 2021,
       "category": "Business",
-      "viral_score": 6
+      "viral_score": 6,
+      "likelihood_pct": 100
     },
     {
       "id": "SP023",
@@ -355,7 +371,8 @@
       "status": "CONFIRMED",
       "real_year": 2016,
       "category": "Politics",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP024",
@@ -367,7 +384,8 @@
       "status": "CONFIRMED",
       "real_year": 2017,
       "category": "Culture",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP025",
@@ -379,7 +397,8 @@
       "status": "CONFIRMED",
       "real_year": 2018,
       "category": "Sports",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP026",
@@ -391,7 +410,8 @@
       "status": "CONFIRMED",
       "real_year": 2021,
       "category": "Science",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP027",
@@ -403,7 +423,8 @@
       "status": "CONFIRMED",
       "real_year": 2005,
       "category": "Culture",
-      "viral_score": 6
+      "viral_score": 6,
+      "likelihood_pct": 100
     },
     {
       "id": "SP028",
@@ -415,7 +436,8 @@
       "status": "CONFIRMED",
       "real_year": 2022,
       "category": "Technology",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP029",
@@ -429,7 +451,7 @@
       "likelihood_components": {
         "category_base_rate": 0.65,
         "plausibility_score": 0.74,
-        "specificity_score": 0.70,
+        "specificity_score": 0.7,
         "news_velocity_score": 0.76
       },
       "news_matches": 25,
@@ -447,8 +469,8 @@
       "status": "PENDING",
       "likelihood_pct": 45,
       "likelihood_components": {
-        "category_base_rate": 0.40,
-        "plausibility_score": 0.50,
+        "category_base_rate": 0.4,
+        "plausibility_score": 0.5,
         "specificity_score": 0.42,
         "news_velocity_score": 0.48
       },
@@ -467,7 +489,8 @@
       "status": "CONFIRMED",
       "real_year": 2024,
       "category": "Culture",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP032",
@@ -479,7 +502,8 @@
       "status": "CONFIRMED",
       "real_year": 2024,
       "category": "Politics",
-      "viral_score": 6
+      "viral_score": 6,
+      "likelihood_pct": 100
     },
     {
       "id": "SP033",
@@ -491,7 +515,8 @@
       "status": "CONFIRMED",
       "real_year": 2013,
       "category": "Healthcare",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP034",
@@ -506,7 +531,7 @@
         "category_base_rate": 0.68,
         "plausibility_score": 0.76,
         "specificity_score": 0.72,
-        "news_velocity_score": 0.80
+        "news_velocity_score": 0.8
       },
       "news_matches": 26,
       "last_updated": "2026-03-08",
@@ -543,7 +568,8 @@
       "status": "CONFIRMED",
       "real_year": 2025,
       "category": "Science",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP037",
@@ -555,7 +581,8 @@
       "status": "CONFIRMED",
       "real_year": 2003,
       "category": "Science",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP038",
@@ -567,7 +594,8 @@
       "status": "CONFIRMED",
       "real_year": 2025,
       "category": "Politics",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP039",
@@ -579,7 +607,8 @@
       "status": "CONFIRMED",
       "real_year": 2013,
       "category": "Politics",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP040",
@@ -591,7 +620,8 @@
       "status": "CONFIRMED",
       "real_year": 2020,
       "category": "Environment",
-      "viral_score": 6
+      "viral_score": 6,
+      "likelihood_pct": 100
     },
     {
       "id": "SP041",
@@ -603,7 +633,8 @@
       "status": "CONFIRMED",
       "real_year": 2020,
       "category": "Healthcare",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP042",
@@ -615,7 +646,8 @@
       "status": "CONFIRMED",
       "real_year": 2004,
       "category": "Technology",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP043",
@@ -627,7 +659,7 @@
       "status": "PENDING",
       "likelihood_pct": 85,
       "likelihood_components": {
-        "category_base_rate": 0.80,
+        "category_base_rate": 0.8,
         "plausibility_score": 0.87,
         "specificity_score": 0.83,
         "news_velocity_score": 0.92
@@ -647,7 +679,8 @@
       "status": "CONFIRMED",
       "real_year": 2020,
       "category": "Politics",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP045",
@@ -658,7 +691,8 @@
       "prediction": "Big Ben shown as digital clock display.",
       "status": "DEBUNKED",
       "reason": "No evidence of digital Big Ben conversion.",
-      "viral_score": 2
+      "viral_score": 2,
+      "likelihood_pct": 0
     },
     {
       "id": "SP046",
@@ -670,7 +704,8 @@
       "status": "CONFIRMED",
       "real_year": 2026,
       "category": "Science",
-      "viral_score": 9
+      "viral_score": 9,
+      "likelihood_pct": 100
     },
     {
       "id": "SP047",
@@ -682,7 +717,8 @@
       "status": "CONFIRMED",
       "real_year": 2026,
       "category": "Politics",
-      "viral_score": 10
+      "viral_score": 10,
+      "likelihood_pct": 100
     },
     {
       "id": "SP048",
@@ -694,7 +730,8 @@
       "status": "CONFIRMED",
       "real_year": 2026,
       "category": "Politics",
-      "viral_score": 10
+      "viral_score": 10,
+      "likelihood_pct": 100
     },
     {
       "id": "SP049",
@@ -707,7 +744,7 @@
       "likelihood_pct": 38,
       "likelihood_components": {
         "category_base_rate": 0.35,
-        "plausibility_score": 0.40,
+        "plausibility_score": 0.4,
         "specificity_score": 0.36,
         "news_velocity_score": 0.38
       },
@@ -727,7 +764,7 @@
       "likelihood_pct": 68,
       "likelihood_components": {
         "category_base_rate": 0.62,
-        "plausibility_score": 0.70,
+        "plausibility_score": 0.7,
         "specificity_score": 0.66,
         "news_velocity_score": 0.72
       },
@@ -746,7 +783,8 @@
       "status": "CONFIRMED",
       "real_year": 2017,
       "category": "Culture",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     },
     {
       "id": "SP052",
@@ -758,7 +796,8 @@
       "status": "CONFIRMED",
       "real_year": 2018,
       "category": "Sports",
-      "viral_score": 7
+      "viral_score": 7,
+      "likelihood_pct": 100
     },
     {
       "id": "SP053",
@@ -770,7 +809,8 @@
       "status": "CONFIRMED",
       "real_year": 2015,
       "category": "Sports",
-      "viral_score": 8
+      "viral_score": 8,
+      "likelihood_pct": 100
     }
   ]
 }
