@@ -2284,7 +2284,7 @@ function renderCurrentPage() {
     const blinkyFish = i === blinkyRowIndex ? '<svg class="blinky-icon" onclick="event.stopPropagation(); showBlinkyModal()" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; vertical-align:-2px; margin-left:6px;"><ellipse cx="100" cy="100" rx="50" ry="60" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="10" fill="#1a1a1a"/><circle cx="100" cy="70" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="70" r="10" fill="#1a1a1a"/><circle cx="120" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="120" cy="85" r="10" fill="#1a1a1a"/></svg>' : '';
     const episodeStr = (p.season || p.episode) ? `${p.season || 'S?'}${p.episode || 'E?'}` : '';
     tr.innerHTML = `
-      <td class="td-episode">${episodeStr}<span>${p.year} · ${p.name}</span></td>
+      <td class="td-episode">${episodeStr}<span>· ${p.name} (${p.year})</span></td>
       <td class="td-desc"><strong>${p.title}${blinkyFish}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
