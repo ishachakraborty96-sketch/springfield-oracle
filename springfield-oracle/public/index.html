@@ -2279,7 +2279,7 @@ function renderCurrentPage() {
       ? `<a href="${liveNews.link}" target="_blank" rel="noopener" onclick="event.stopPropagation(); trackEvent('link_click', {type: 'live_news', prediction_id: '${p.id}'})" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
       : '';
     const blinkyFish = i === blinkyRowIndex ? '<svg class="blinky-icon" onclick="event.stopPropagation(); showBlinkyModal()" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; vertical-align:-2px; margin-left:6px;"><ellipse cx="100" cy="100" rx="50" ry="60" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="10" fill="#1a1a1a"/><circle cx="100" cy="70" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="70" r="10" fill="#1a1a1a"/><circle cx="120" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="120" cy="85" r="10" fill="#1a1a1a"/></svg>' : '';
-    const episodeStr = (p.season || p.episode) ? `${p.season || 'S?'}${p.episode || 'E?'}` : '';
+    const episodeStr = (p.season && p.episode) ? `S${String(p.season).padStart(2, '0')}E${String(p.episode).padStart(2, '0')}` : '';
     tr.innerHTML = `
       <td class="td-episode">${episodeStr}<span>${p.year} · ${p.name}</span></td>
       <td class="td-desc"><strong>${p.title}${blinkyFish}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
@@ -2359,7 +2359,8 @@ function applyFilters() {
 function openModal(p) {
   currentModalPrediction = p;
   window._carouselShareMode = false;
-  document.getElementById('modal-episode').textContent = `${p.season}${p.episode} · ${p.name} (${p.year})`;
+  const modalEpisodeStr = (typeof p.season === 'number' && typeof p.episode === 'number') ? `S${String(p.season).padStart(2, '0')}E${String(p.episode).padStart(2, '0')}` : `${p.season}${p.episode}`;
+  document.getElementById('modal-episode').textContent = `${modalEpisodeStr} · ${p.name} (${p.year})`;
   document.getElementById('modal-title').textContent = p.title;
   document.getElementById('modal-body').textContent = p.desc;
   document.getElementById('modal-status').innerHTML = statusBadge(p.status);
