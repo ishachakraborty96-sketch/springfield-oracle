@@ -2703,20 +2703,24 @@ async function syncWithDatabase() {
     const data = await res.json();
     if (data.predictions && data.predictions.length > 0) {
       // Map JSON schema to display format
-      const mapped = data.predictions.map(p => ({
-        id:       p.id,
-        season:   `S${String(p.season).padStart(2,'0')}`,
-        episode:  `E${String(p.episode).padStart(2,'0')}`,
-        name:     p.episode_name,
-        year:     p.year_aired,
-        title:    p.title,
-        desc:     p.prediction + (p.real_event ? ` Real event: ${p.real_event}` : '') + (p.fact_check_note ? ` ⚠️ ${p.fact_check_note}` : ''),
-        category: p.category,
-        status:   p.status,
-        trueYear: p.real_year,
-        viral:    p.viral_score,
-        likelihood_pct: p.likelihood_pct
-      }));
+      const mapped = data.predictions.map(p => {
+        // Extract season/episode from episode_code (format: SXXEXX)
+        const episodeMatch = p.episode_code?.match(/S(\d+)E(\d+)/) || ['', '0', '0'];
+        return {
+          id:       p.id,
+          season:   parseInt(episodeMatch[1]),
+          episode:  parseInt(episodeMatch[2]),
+          name:     p.name || 'Unknown',
+          year:     p.year_aired,
+          title:    p.title,
+          desc:     p.prediction + (p.real_event ? ` Real: ${p.real_event}` : ''),
+          category: p.category,
+          status:   p.status,
+          trueYear: p.real_year,
+          viral:    p.viral_score,
+          likelihood_pct: p.likelihood_pct
+        };
+      });
       // JSON is now the active dataset — all filters and counts use it
       activeData = mapped;
       renderTable(mapped);
