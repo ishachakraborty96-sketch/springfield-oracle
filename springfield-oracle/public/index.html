@@ -2578,7 +2578,8 @@ async function syncWithDatabase() {
         category: p.category,
         status:   p.status,
         trueYear: p.real_year,
-        viral:    p.viral_score
+        viral:    p.viral_score,
+        likelihood_pct: p.likelihood_pct
       }));
       // JSON is now the active dataset — all filters and counts use it
       activeData = mapped;
