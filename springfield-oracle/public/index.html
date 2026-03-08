@@ -1635,10 +1635,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         <span class="stat-num" id="pending-count">4</span>
         <span class="stat-label">Still<br>Pending</span>
       </div>
-      <div class="stat-pill" onclick="scrollToTable('debunked')" style="cursor:pointer;" title="View debunked predictions">
-        <span class="stat-num" id="debunked-count">5</span>
-        <span class="stat-label">Debunked /<br>Disputed</span>
-      </div>
+
       </div>
     </div>
   </div>
@@ -2006,7 +2003,9 @@ function yearsEarly(year, trueYear) {
   return `<span class="gap-years">${diff}y</span>`;
 }
 
-function likelihoodBadge(likelihood) {
+function likelihoodBadge(likelihood, status) {
+  const s = status?.toLowerCase() || '';
+  if (s === 'confirmed' || s === 'debunked') return '';
   if (!likelihood && likelihood !== 0) return '<span class="likelihood-pill likelihood-low">—</span>';
   const pct = parseInt(likelihood);
   let className = 'likelihood-low';
@@ -2168,7 +2167,6 @@ function updateCounts() {
   document.getElementById('total-count').textContent = activeData.length;
   document.getElementById('confirmed-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'CONFIRMED').length;
   document.getElementById('pending-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'PENDING').length;
-  document.getElementById('debunked-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'DEBUNKED').length;
 }
 
 // ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
@@ -2286,11 +2284,11 @@ function renderCurrentPage() {
     const blinkyFish = i === blinkyRowIndex ? '<svg class="blinky-icon" onclick="event.stopPropagation(); showBlinkyModal()" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; vertical-align:-2px; margin-left:6px;"><ellipse cx="100" cy="100" rx="50" ry="60" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="10" fill="#1a1a1a"/><circle cx="100" cy="70" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="70" r="10" fill="#1a1a1a"/><circle cx="120" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="120" cy="85" r="10" fill="#1a1a1a"/></svg>' : '';
     const episodeStr = (p.season || p.episode) ? `${p.season || 'S?'}${p.episode || 'E?'}` : '';
     tr.innerHTML = `
-      <td class="td-episode">${episodeStr}<span>${p.year} · ${p.name}</span></td>
+      <td class="td-episode">${episodeStr}<span>· ${p.name} (${p.year})</span></td>
       <td class="td-desc"><strong>${p.title}${blinkyFish}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
-      <td>${likelihoodBadge(p.likelihood_pct)}</td>
+      <td>${likelihoodBadge(p.likelihood_pct, p.status)}</td>
       <td class="td-share" onclick="event.stopPropagation()">
         <div style="display:flex;flex-direction:row;gap:6px;flex-wrap:nowrap;">
         <button onclick="shareOnX(predictions.find(x=>x.id==='${p.id}'))" title="Share on X" style="background:none;border:1px solid rgba(255,255,255,0.15);color:#ddd;padding:6px 10px;border-radius:4px;cursor:pointer;font-size:0.75rem;transition:all 0.2s;white-space:nowrap;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#ddd'">𝕏</button>
@@ -2748,13 +2746,13 @@ async function syncWithDatabase() {
     if (data.predictions && data.predictions.length > 0) {
       // Map JSON schema to display format
       const mapped = data.predictions.map(p => {
-        // Extract season/episode from episode_code (format: SXXEXX)
-        const episodeMatch = p.episode_code?.match(/S(\d+)E(\d+)/) || ['', '0', '0'];
+        const seasonNum  = p.episode_code?.match(/S(\d+)/)?.[1] || '0';
+        const episodeNum = p.episode_code?.match(/E(\d+)/)?.[1] || '0';
         return {
           id:       p.id,
-          season:   parseInt(episodeMatch[1]),
-          episode:  parseInt(episodeMatch[2]),
-          name:     p.name || 'Unknown',
+          season:   `S${String(seasonNum).padStart(2,'0')}`,
+          episode:  `E${String(episodeNum).padStart(2,'0')}`,
+          name:     p.episode_name || '',
           year:     p.year_aired,
           title:    p.title,
           desc:     p.prediction + (p.real_event ? ` Real: ${p.real_event}` : ''),

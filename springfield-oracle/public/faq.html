@@ -307,7 +307,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     line-height: 1.9;
     opacity: 0.75;
   }
-  .status-tag {
+  .status-badge {
     display: inline-block;
     margin-top: 12px;
     padding: 4px 12px;
@@ -316,9 +316,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-transform: uppercase;
     font-weight: 700;
   }
-  .confirmed { background: rgba(255,213,32,0.15); color: var(--yellow); border: 1px solid rgba(255,213,32,0.3); }
-  .pending { background: rgba(112,200,224,0.1); color: #70C8E0; border: 1px solid rgba(112,200,224,0.2); }
-  .disputed { background: rgba(232,19,42,0.1); color: #ff6b7a; border: 1px solid rgba(232,19,42,0.2); }
+  .status-confirmed { background: rgba(255,213,32,0.15); color: var(--yellow); border: 1px solid rgba(255,213,32,0.3); }
+  .status-pending { background: rgba(112,200,224,0.1); color: #70C8E0; border: 1px solid rgba(112,200,224,0.2); }
+  .status-disputed { background: rgba(232,19,42,0.1); color: #ff6b7a; border: 1px solid rgba(232,19,42,0.2); }
   .ep-ref {
     display: inline-block;
     margin-bottom: 8px;
@@ -388,6 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="stat-num" id="pending-count">—</span>
           <span class="stat-label">Still<br>Pending</span>
         </a>
+
       </div>
     </div>
   </div>
@@ -405,77 +406,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="ep-ref">Viral False Claim &middot; March 2026</div>
     <div class="faq-q">Did the Simpsons predict Donald Trump's death in March 2026?</div>
     <div class="faq-a">No. A viral TikTok and X claim spread in March 2026 alleging that The Simpsons predicted Trump's death through a coffin scene set to occur on March 2026. This claim is entirely false. No such Simpsons episode or scene exists. The viral videos circulating are <strong>AI-generated deepfakes</strong> with no corresponding episode. Fact-checkers including Snopes and Wikipedia have thoroughly debunked this claim. Donald Trump remains alive. This entry is documented to track the spread of AI-generated misinformation and deepfake videos.</div>
-    <span class="status-tag disputed">Debunked</span>
+    <span class="status-badge status-disputed">Debunked</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S06E19 &middot; Lisa's Wedding &middot; 1995</div>
     <div class="faq-q">Did the Simpsons predict World War III?</div>
     <div class="faq-a">In &ldquo;Lisa's Wedding&rdquo; (1995), a British character tells an American: &ldquo;We saved your ass in World War III.&rdquo; The line is set in a future Springfield with no specific country or date named. On February 28, 2026, the US and Israel launched joint strikes on Iran. The UN Security Council convened an emergency session. The episode aired 31 years before the event. Note: most viral clips claiming the Simpsons &ldquo;predicted Iran&rdquo; are AI-generated deepfakes with no corresponding episode.</div>
-    <span class="status-tag pending">Pending</span>
+    <span class="status-badge status-pending">Pending</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S04E21 &middot; Marge in Chains &middot; 1993</div>
     <div class="faq-q">Did the Simpsons predict COVID-19?</div>
     <div class="faq-a">In &ldquo;Marge in Chains&rdquo; (1993), Springfield is struck by the &ldquo;Osaka Flu&rdquo; &mdash; a virus originating in Japan that spreads through international shipping, overwhelms hospitals, and triggers panic-buying across the town. COVID-19 emerged in 2020, 27 years later. The parallel is striking but the episode was written as satire of media-driven health panics, not as a specific prediction.</div>
-    <span class="status-tag confirmed">Confirmed</span>
+    <span class="status-badge status-confirmed">Confirmed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S11E05 &middot; Bart to the Future &middot; 2000</div>
     <div class="faq-q">Did the Simpsons predict Donald Trump becoming president?</div>
     <div class="faq-a">In &ldquo;Bart to the Future&rdquo; (2000), Lisa as US President tells her cabinet: &ldquo;We've inherited quite a budget crunch from President Trump.&rdquo; Donald Trump was elected the 45th US President in 2016 and re-elected the 47th in 2024 &mdash; 16 and 24 years after the episode aired respectively. Writer Dan Greaney confirmed it was intended as a warning about America's cultural direction.</div>
-    <span class="status-tag confirmed">Confirmed</span>
+    <span class="status-badge status-confirmed">Confirmed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S26E10 &middot; The Musk Who Fell to Earth &middot; 2015</div>
     <div class="faq-q">Did the Simpsons predict Elon Musk's political rise?</div>
     <div class="faq-a">In &ldquo;The Musk Who Fell to Earth&rdquo; (2015), Elon Musk appears as a tech billionaire who joins a local government, promises transformation, causes widespread chaos through efficiency-driven layoffs, and ultimately leaves. In 2025, Musk was appointed to lead DOGE inside the Trump administration, sparked significant political controversy, and was sidelined within months. The arc of the episode maps closely to what actually happened a decade later.</div>
-    <span class="status-tag confirmed">Confirmed</span>
+    <span class="status-badge status-confirmed">Confirmed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S10E11 &middot; When You Dish Upon a Star &middot; 1998</div>
     <div class="faq-q">Did the Simpsons predict Disney buying Fox?</div>
     <div class="faq-a">In &ldquo;When You Dish Upon a Star&rdquo; (1998), a studio sign reads &ldquo;20th Century Fox &mdash; A Division of Walt Disney Co.&rdquo; played as an absurd joke. Disney acquired 21st Century Fox for $71.3 billion in March 2019 &mdash; 21 years later. This is one of the most well-documented and verified predictions in the database.</div>
-    <span class="status-tag confirmed">Confirmed</span>
+    <span class="status-badge status-confirmed">Confirmed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S10E02 &middot; The Wizard of Evergreen Terrace &middot; 1998</div>
     <div class="faq-q">Did the Simpsons predict the Higgs Boson?</div>
     <div class="faq-a">In &ldquo;The Wizard of Evergreen Terrace&rdquo; (1998), Homer writes an equation on a chalkboard that approximates the mass of the Higgs Boson particle. CERN confirmed the Higgs Boson discovery in 2012 &mdash; 14 years later. Physicist and author Simon Singh independently verified that the equation Homer wrote was a genuine approximation of the particle's mass.</div>
-    <span class="status-tag confirmed">Confirmed</span>
+    <span class="status-badge status-confirmed">Confirmed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">The Simpsons Movie &middot; 2007</div>
     <div class="faq-q">Did the Simpsons predict NSA mass surveillance?</div>
     <div class="faq-a">In The Simpsons Movie (2007), the NSA operates a large surveillance room monitoring citizens' phone calls in real time with no visible legal oversight. Edward Snowden's 2013 leaks confirmed the NSA's PRISM program had been doing exactly this &mdash; collecting call records, internet activity, and personal data from millions of Americans without individual warrants. The film preceded the revelation by 6 years.</div>
-    <span class="status-tag confirmed">Confirmed</span>
+    <span class="status-badge status-confirmed">Confirmed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S23E17 &middot; Them, Robot &middot; 2012</div>
     <div class="faq-q">Did the Simpsons predict AI replacing jobs?</div>
     <div class="faq-a">In &ldquo;Them, Robot&rdquo; (2012), Mr Burns replaces his entire plant workforce with robots because it is cheaper and more efficient. Only Homer is kept on. From 2023 onward, companies including Google, Microsoft, Salesforce, and hundreds of others began replacing workers with AI at significant scale. Research suggests over 100 million US jobs could be impacted within a decade. The episode aired 11 years before the displacement wave began.</div>
-    <span class="status-tag confirmed">Confirmed</span>
+    <span class="status-badge status-confirmed">Confirmed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">S12E06 &middot; The Computer Wore Menace Shoes &middot; 2000</div>
     <div class="faq-q">Did the Simpsons predict the Epstein files?</div>
     <div class="faq-a">In &ldquo;The Computer Wore Menace Shoes&rdquo; (2000), Homer blogs as &ldquo;Mr. X&rdquo;, gets kidnapped to a secret island where powerful people silence those who know too much. He posts: &ldquo;Some crazy creeps on an island are secretly running the world.&rdquo; The Epstein Files were released in 2026, naming global elites and referencing private island activities. This entry is marked Disputed &mdash; the episode is a parody of the 1967 series The Prisoner, not a deliberate Epstein reference. The parallel is notable but the connection is not verified.</div>
-    <span class="status-tag disputed">Disputed</span>
+    <span class="status-badge status-disputed">Disputed</span>
   </div>
 
   <div class="faq-item">
     <div class="ep-ref">All predictions</div>
     <div class="faq-q">Are the viral Simpsons prediction clips on TikTok real?</div>
     <div class="faq-a">Many are not. A significant number of viral Simpsons prediction clips circulating on TikTok and social media in 2025-2026 are AI-generated deepfakes with no corresponding episode. Springfield Oracle verifies every prediction against a real season number, episode code, and air date before assigning any status. If a clip cannot be traced to a verified episode, it is flagged or excluded from the database entirely. This is the core reason Springfield Oracle was built.</div>
-    <span class="status-tag disputed">Fact-Checked</span>
+    <span class="status-badge status-disputed">Fact-Checked</span>
   </div>
 
 </div>
@@ -496,8 +497,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const data = await res.json();
     const active = (data.predictions || []).filter(p => !p.hidden);
     document.getElementById('total-count').textContent = active.length;
-    document.getElementById('confirmed-count').textContent = active.filter(p => p.status === 'confirmed').length;
-    document.getElementById('pending-count').textContent = active.filter(p => p.status === 'pending').length;
+    document.getElementById('confirmed-count').textContent = active.filter(p => p.status?.toUpperCase() === 'CONFIRMED').length;
+    document.getElementById('pending-count').textContent = active.filter(p => p.status?.toUpperCase() === 'PENDING').length;
   } catch(e) {}
 })();
 </script>

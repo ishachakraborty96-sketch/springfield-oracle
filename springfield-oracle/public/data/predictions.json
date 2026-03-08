@@ -21,7 +21,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Two Cars in Every Garage and Three Eyes on Every Fish"
     },
     {
       "id": "SP002",
@@ -35,7 +36,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 10,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Marge in Chains"
     },
     {
       "id": "SP003",
@@ -47,7 +49,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Bart of Darkness"
     },
     {
       "id": "SP004",
@@ -61,7 +64,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Lisa's Wedding"
     },
     {
       "id": "SP005",
@@ -75,7 +79,8 @@
       "category": "Government",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "The Springfield Files"
     },
     {
       "id": "SP006",
@@ -87,7 +92,8 @@
       "status": "DEBUNKED",
       "reason": "Show producers confirmed this was a visual coincidence.",
       "viral_score": 3,
-      "likelihood_pct": 0
+      "likelihood_pct": 0,
+      "episode_name": "The Wizard of Evergreen Terrace"
     },
     {
       "id": "SP007",
@@ -101,7 +107,8 @@
       "category": "Business",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "When You Dish Upon a Star"
     },
     {
       "id": "SP008",
@@ -115,7 +122,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 10,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Bart to the Future"
     },
     {
       "id": "SP009",
@@ -129,7 +137,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "The Computer Wore Menace Shoes"
     },
     {
       "id": "SP010",
@@ -155,7 +164,8 @@
       "last_updated": "2026-03-08",
       "analysis_notes": "HEATING UP: 85M jobs projected by 2026, 37% of business leaders planning workforce replacement",
       "category": "Technology",
-      "viral_score": 10
+      "viral_score": 10,
+      "episode_name": "Them, Robot"
     },
     {
       "id": "SP011",
@@ -169,7 +179,8 @@
       "category": "Business",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "The Musk Who Fell to Earth"
     },
     {
       "id": "SP012",
@@ -195,7 +206,8 @@
       "last_updated": "2026-03-08",
       "analysis_notes": "HEATING UP: Record 80 Gt mass loss in 2023 alone, ~4,000 glaciers vanishing annually by 2055 projection",
       "category": "Science",
-      "viral_score": 10
+      "viral_score": 10,
+      "episode_name": "Lisa's Wedding"
     },
     {
       "id": "SP013",
@@ -221,7 +233,8 @@
       "last_updated": "2026-03-08",
       "analysis_notes": "HEATING UP: Bitcoin ETFs projected $180-220B by 2026, 100+ new crypto ETFs launching, stablecoins hitting $1T",
       "category": "Business",
-      "viral_score": 10
+      "viral_score": 10,
+      "episode_name": "Frinkcoin"
     },
     {
       "id": "SP014",
@@ -241,7 +254,8 @@
       "news_matches": 34,
       "last_updated": "2026-03-08",
       "category": "Science",
-      "viral_score": 8
+      "viral_score": 8,
+      "episode_name": "King-Size Homer"
     },
     {
       "id": "SP015",
@@ -261,7 +275,8 @@
       "news_matches": 32,
       "last_updated": "2026-03-08",
       "category": "Technology",
-      "viral_score": 8
+      "viral_score": 8,
+      "episode_name": "The Twisted World of Marge Simpson"
     },
     {
       "id": "SP016",
@@ -274,7 +289,8 @@
       "real_year": 2022,
       "category": "Politics",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "The Cartridge Family"
     },
     {
       "id": "SP017",
@@ -294,7 +310,8 @@
       "news_matches": 28,
       "last_updated": "2026-03-08",
       "category": "Healthcare",
-      "viral_score": 7
+      "viral_score": 7,
+      "episode_name": "Midnight Rx"
     },
     {
       "id": "SP018",
@@ -307,7 +324,8 @@
       "real_year": 2024,
       "category": "Technology",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Bart Gets a 'Z'"
     },
     {
       "id": "SP019",
@@ -320,7 +338,8 @@
       "real_year": 2012,
       "category": "Science",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "The Wizard of Evergreen Terrace"
     },
     {
       "id": "SP020",
@@ -333,7 +352,8 @@
       "real_year": 2025,
       "category": "Politics",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Coming to Homerica"
     },
     {
       "id": "SP021",
@@ -346,7 +366,8 @@
       "real_year": 2020,
       "category": "Business",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Husbands and Knives"
     },
     {
       "id": "SP022",
@@ -359,7 +380,8 @@
       "real_year": 2021,
       "category": "Business",
       "viral_score": 6,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Homer vs. Patty and Selma"
     },
     {
       "id": "SP023",
@@ -372,7 +394,8 @@
       "real_year": 2016,
       "category": "Politics",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Sideshow Bob Roberts"
     },
     {
       "id": "SP024",
@@ -385,7 +408,8 @@
       "real_year": 2017,
       "category": "Culture",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Homer Badman"
     },
     {
       "id": "SP025",
@@ -398,7 +422,8 @@
       "real_year": 2018,
       "category": "Sports",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Lisa the Greek"
     },
     {
       "id": "SP026",
@@ -411,7 +436,8 @@
       "real_year": 2021,
       "category": "Science",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Deep Space Homer"
     },
     {
       "id": "SP027",
@@ -424,7 +450,8 @@
       "real_year": 2005,
       "category": "Culture",
       "viral_score": 6,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "One Fish, Two Fish, Blowfish, Blue Fish"
     },
     {
       "id": "SP028",
@@ -437,7 +464,8 @@
       "real_year": 2022,
       "category": "Technology",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Days of Future Future"
     },
     {
       "id": "SP029",
@@ -457,7 +485,8 @@
       "news_matches": 25,
       "last_updated": "2026-03-08",
       "category": "Technology",
-      "viral_score": 8
+      "viral_score": 8,
+      "episode_name": "The Star of the Backstage"
     },
     {
       "id": "SP030",
@@ -477,7 +506,8 @@
       "news_matches": 12,
       "last_updated": "2026-03-08",
       "category": "Science",
-      "viral_score": 7
+      "viral_score": 7,
+      "episode_name": "The Marge-ian Chronicles"
     },
     {
       "id": "SP031",
@@ -490,7 +520,8 @@
       "real_year": 2024,
       "category": "Culture",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Lisa the Treehugger"
     },
     {
       "id": "SP032",
@@ -503,7 +534,8 @@
       "real_year": 2024,
       "category": "Politics",
       "viral_score": 6,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Trash of the Titans"
     },
     {
       "id": "SP033",
@@ -516,7 +548,8 @@
       "real_year": 2013,
       "category": "Healthcare",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Sweet Seymour Skinner's Baadasssss Song"
     },
     {
       "id": "SP034",
@@ -536,7 +569,8 @@
       "news_matches": 26,
       "last_updated": "2026-03-08",
       "category": "Energy",
-      "viral_score": 8
+      "viral_score": 8,
+      "episode_name": "Who Shot Mr. Burns? Part II"
     },
     {
       "id": "SP035",
@@ -556,7 +590,8 @@
       "news_matches": 31,
       "last_updated": "2026-03-08",
       "category": "Technology",
-      "viral_score": 8
+      "viral_score": 8,
+      "episode_name": "Treehouse of Horror XII"
     },
     {
       "id": "SP036",
@@ -569,7 +604,8 @@
       "real_year": 2025,
       "category": "Science",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Treehouse of Horror XIX"
     },
     {
       "id": "SP037",
@@ -582,7 +618,8 @@
       "real_year": 2003,
       "category": "Science",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "E-I-E-I-(Annoyed Grunt)"
     },
     {
       "id": "SP038",
@@ -595,7 +632,8 @@
       "real_year": 2025,
       "category": "Politics",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "On a Clear Day I Can't See My Sister"
     },
     {
       "id": "SP039",
@@ -608,7 +646,8 @@
       "real_year": 2013,
       "category": "Politics",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Old Money"
     },
     {
       "id": "SP040",
@@ -621,7 +660,8 @@
       "real_year": 2020,
       "category": "Environment",
       "viral_score": 6,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Treehouse of Horror III"
     },
     {
       "id": "SP041",
@@ -634,7 +674,8 @@
       "real_year": 2020,
       "category": "Healthcare",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Poppa's Got a Brand New Badge"
     },
     {
       "id": "SP042",
@@ -647,7 +688,8 @@
       "real_year": 2004,
       "category": "Technology",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "I'm Spelling as Fast as I Can"
     },
     {
       "id": "SP043",
@@ -667,7 +709,8 @@
       "news_matches": 38,
       "last_updated": "2026-03-08",
       "category": "Technology",
-      "viral_score": 10
+      "viral_score": 10,
+      "episode_name": "Today, I Am a Clown"
     },
     {
       "id": "SP044",
@@ -680,7 +723,8 @@
       "real_year": 2020,
       "category": "Politics",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "They Saved Lisa's Brain"
     },
     {
       "id": "SP045",
@@ -692,7 +736,8 @@
       "status": "DEBUNKED",
       "reason": "No evidence of digital Big Ben conversion.",
       "viral_score": 2,
-      "likelihood_pct": 0
+      "likelihood_pct": 0,
+      "episode_name": "Sideshow Bob's Last Gleaming"
     },
     {
       "id": "SP046",
@@ -705,7 +750,8 @@
       "real_year": 2026,
       "category": "Science",
       "viral_score": 9,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "The Springfield Files"
     },
     {
       "id": "SP047",
@@ -718,7 +764,8 @@
       "real_year": 2026,
       "category": "Politics",
       "viral_score": 10,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "The Computer Wore Menace Shoes"
     },
     {
       "id": "SP048",
@@ -731,7 +778,8 @@
       "real_year": 2026,
       "category": "Politics",
       "viral_score": 10,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Lisa's Wedding"
     },
     {
       "id": "SP049",
@@ -751,7 +799,8 @@
       "news_matches": 8,
       "last_updated": "2026-03-08",
       "category": "Politics",
-      "viral_score": 6
+      "viral_score": 6,
+      "episode_name": "Every Man's Dream"
     },
     {
       "id": "SP050",
@@ -771,7 +820,8 @@
       "news_matches": 21,
       "last_updated": "2026-03-08",
       "category": "Politics",
-      "viral_score": 8
+      "viral_score": 8,
+      "episode_name": "Bart to the Future"
     },
     {
       "id": "SP051",
@@ -784,7 +834,8 @@
       "real_year": 2017,
       "category": "Culture",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Lisa Goes Gaga"
     },
     {
       "id": "SP052",
@@ -797,7 +848,8 @@
       "real_year": 2018,
       "category": "Sports",
       "viral_score": 7,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "Boy Meets Curl"
     },
     {
       "id": "SP053",
@@ -810,7 +862,8 @@
       "real_year": 2015,
       "category": "Sports",
       "viral_score": 8,
-      "likelihood_pct": 100
+      "likelihood_pct": 100,
+      "episode_name": "You Don't Have to Live Like a Referee"
     }
   ]
 }

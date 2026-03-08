@@ -306,9 +306,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 700;
     margin-bottom: 12px;
   }
-  .confirmed { background: rgba(255,213,32,0.15); color: var(--yellow); border: 1px solid rgba(255,213,32,0.3); }
-  .pending { background: rgba(112,200,224,0.1); color: #70C8E0; border: 1px solid rgba(112,200,224,0.2); }
-  .disputed { background: rgba(232,19,42,0.1); color: #ff6b7a; border: 1px solid rgba(232,19,42,0.2); }
+  .status-confirmed { background: rgba(255,213,32,0.15); color: var(--yellow); border: 1px solid rgba(255,213,32,0.3); }
+  .status-pending { background: rgba(112,200,224,0.1); color: #70C8E0; border: 1px solid rgba(112,200,224,0.2); }
+  .status-disputed { background: rgba(232,19,42,0.1); color: #ff6b7a; border: 1px solid rgba(232,19,42,0.2); }
   .status-card p {
     font-size: 11px;
     opacity: 0.55;
@@ -433,6 +433,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="stat-num" id="pending-count">—</span>
           <span class="stat-label">Still<br>Pending</span>
         </a>
+
       </div>
     </div>
   </div>
@@ -502,15 +503,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>What Each Status Means</h2>
     <div class="status-grid">
       <div class="status-card">
-        <span class="status-badge confirmed">Confirmed</span>
+        <span class="status-badge status-confirmed">Confirmed</span>
         <p>The episode depicted something that has since occurred in the real world. The connection is verifiable, sourced, and not a stretch.</p>
       </div>
       <div class="status-card">
-        <span class="status-badge pending">Pending</span>
+        <span class="status-badge status-pending">Pending</span>
         <p>The episode depicted something that has not yet occurred, or is currently unfolding. Status will be updated as events develop.</p>
       </div>
       <div class="status-card">
-        <span class="status-badge disputed">Disputed</span>
+        <span class="status-badge status-disputed">Disputed</span>
         <p>The connection is contested, the viral version misrepresents the source material, or the clip in circulation is unverified or fabricated.</p>
       </div>
     </div>
@@ -572,8 +573,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const data = await res.json();
     const active = (data.predictions || []).filter(p => !p.hidden);
     document.getElementById('total-count').textContent = active.length;
-    document.getElementById('confirmed-count').textContent = active.filter(p => p.status === 'confirmed').length;
-    document.getElementById('pending-count').textContent = active.filter(p => p.status === 'pending').length;
+    document.getElementById('confirmed-count').textContent = active.filter(p => p.status?.toUpperCase() === 'CONFIRMED').length;
+    document.getElementById('pending-count').textContent = active.filter(p => p.status?.toUpperCase() === 'PENDING').length;
   } catch(e) {}
 })();
 </script>
