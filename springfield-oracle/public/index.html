@@ -943,7 +943,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
     .carousel-wrapper { padding-right: 0; padding-bottom: 4px; overflow: hidden; }
 
-    .carousel-card { overflow: hidden; max-width: 100%; }
+    .carousel-card { width: 100vw; max-width: 100vw; box-sizing: border-box; overflow: visible; }
 
     .latest-card::before { display: none; }
 
@@ -953,8 +953,9 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       padding: 32px 18px 24px;
       align-content: start;
       box-sizing: border-box;
+      width: 100%;
       max-width: 100%;
-      overflow: hidden;
+      overflow: visible;
     }
     .latest-episode {
       display: flex;
@@ -967,7 +968,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
     .latest-content {
       min-width: 0;
-      max-width: 100%;
+      width: 100%;
+      max-width: calc(100vw - 36px);
       overflow: hidden;
     }
     .latest-content h2 {
