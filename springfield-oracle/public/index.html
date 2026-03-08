@@ -1990,9 +1990,10 @@ function viralDots(score) {
 }
 
 function statusBadge(status) {
+  const statusLower = status?.toLowerCase() || '';
   const map = { confirmed: 'status-confirmed', pending: 'status-pending', debunked: 'status-disputed' };
   const labels = { confirmed: 'Confirmed', pending: 'Pending', debunked: 'Debunked' };
-  return `<span class="status-badge ${map[status] || 'status-pending'}">${labels[status] || status}</span>`;
+  return `<span class="status-badge ${map[statusLower] || 'status-pending'}">${labels[statusLower] || status}</span>`;
 }
 
 function yearsEarly(year, trueYear) {
@@ -2066,7 +2067,7 @@ function getShareUrl(p) {
 }
 
 function buildShareText(p, format = 'x') {
-  const status     = p.status === 'confirmed' ? '✅ CONFIRMED' : p.status === 'debunked' ? '⚠️ DEBUNKED' : '👀 UNFOLDING NOW';
+  const status     = p.status?.toUpperCase() === 'CONFIRMED' ? '✅ CONFIRMED' : p.status?.toUpperCase() === 'DEBUNKED' ? '⚠️ DEBUNKED' : '👀 UNFOLDING NOW';
   const yearsEarly = p.year && p.trueYear ? ` — called it ${p.trueYear - p.year} years early` : '';
   const episode    = `${p.season}${p.episode} · ${p.name} (${p.year})`;
   const shareUrl   = getShareUrl(p);
@@ -2161,8 +2162,8 @@ let activeData = predictions;
 
 function updateCounts() {
   document.getElementById('total-count').textContent = activeData.length;
-  document.getElementById('confirmed-count').textContent = activeData.filter(p => p.status === 'confirmed').length;
-  document.getElementById('pending-count').textContent = activeData.filter(p => p.status === 'pending').length;
+  document.getElementById('confirmed-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'CONFIRMED').length;
+  document.getElementById('pending-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'PENDING').length;
 }
 
 // ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
@@ -2343,7 +2344,7 @@ function searchTable(val) {
 function applyFilters() {
   let data = activeData;
   if (currentFilter !== 'all') {
-    data = data.filter(p => p.status === currentFilter || p.category === currentFilter);
+    data = data.filter(p => p.status?.toUpperCase() === currentFilter.toUpperCase() || p.category === currentFilter);
   }
   if (currentSearch) {
     data = data.filter(p =>
@@ -2364,7 +2365,7 @@ function openModal(p) {
   document.getElementById('modal-status').innerHTML = statusBadge(p.status);
   document.getElementById('modal-category').textContent = p.category;
   document.getElementById('modal-airdate').textContent = p.year;
-  document.getElementById('modal-truedate').textContent = (p.status === 'pending' || !p.trueYear) ? 'Still waiting...' : p.trueYear;
+  document.getElementById('modal-truedate').textContent = (p.status?.toUpperCase() === 'PENDING' || !p.trueYear) ? 'Still waiting...' : p.trueYear;
   const liveNewsEl = document.getElementById('modal-live-news');
   const liveNews = window.liveNewsMatches?.[p.id];
   if (liveNews) {
