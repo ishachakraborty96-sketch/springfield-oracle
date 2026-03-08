@@ -2746,13 +2746,13 @@ async function syncWithDatabase() {
     if (data.predictions && data.predictions.length > 0) {
       // Map JSON schema to display format
       const mapped = data.predictions.map(p => {
-        // Extract season/episode from episode_code (format: SXXEXX)
-        const episodeMatch = p.episode_code?.match(/S(\d+)E(\d+)/) || ['', '0', '0'];
+        const seasonNum  = p.episode_code?.match(/S(\d+)/)?.[1] || '0';
+        const episodeNum = p.episode_code?.match(/E(\d+)/)?.[1] || '0';
         return {
           id:       p.id,
-          season:   parseInt(episodeMatch[1]),
-          episode:  parseInt(episodeMatch[2]),
-          name:     p.name || 'Unknown',
+          season:   `S${String(seasonNum).padStart(2,'0')}`,
+          episode:  `E${String(episodeNum).padStart(2,'0')}`,
+          name:     p.episode_name || '',
           year:     p.year_aired,
           title:    p.title,
           desc:     p.prediction + (p.real_event ? ` Real: ${p.real_event}` : ''),
