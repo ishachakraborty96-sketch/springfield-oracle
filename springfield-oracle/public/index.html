@@ -964,18 +964,25 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
     .latest-content {
       min-width: 0;
+      width: 100%;
+      overflow: hidden;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     .latest-content h2 {
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1.1;
-
       word-break: break-word;
+      margin-bottom: 8px;
     }
     .latest-content p {
       font-size: 12px;
-      line-height: 1.65;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 0;
     }
     .latest-badge { font-size: 10px; left: 16px; padding: 5px 10px; }
 
