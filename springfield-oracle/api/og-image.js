@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
   }
 
   const title    = p ? p.title    : 'The Simpsons Predicted It.';
-  const season   = p ? `S${String(p.season).padStart(2,'0')}E${String(p.episode).padStart(2,'0')}` : '';
+  const season   = p && p.season && p.episode ? `S${String(p.season).padStart(2,'0')}E${String(p.episode).padStart(2,'0')}` : '';
   const epName   = p ? (p.episode_name || '') : '';
   const year     = p ? p.year_aired : '';
   const status   = p ? p.status : 'confirmed';
