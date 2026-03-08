@@ -18,10 +18,12 @@ module.exports = async function handler(req, res) {
 
   let p = null;
   try {
-    const jsonPath = path.join(process.cwd(), 'public', 'data', 'predictions.json');
+    const jsonPath = path.join(__dirname, '../public/data/predictions.json');
     const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
     p = data.predictions.find(x => x.id === id) || null;
-  } catch (_) {}
+  } catch (e) {
+    // File not found or parse error - will use defaults
+  }
 
   const BASE = 'https://springfieldoracle.com';
 
