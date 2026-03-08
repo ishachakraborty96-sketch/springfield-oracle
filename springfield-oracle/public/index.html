@@ -1259,11 +1259,18 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     transition: all 0.2s;
   }
   .newsletter-btn:hover { background: #0a2070; border-color: #0a2070; }
+
+  /* Newsletter visibility control */
+  .newsletter-mobile { display: none; }
+  .newsletter-desktop { display: block; }
+
   @media (max-width: 768px) {
     .newsletter-section { padding: 24px 16px; }
     .newsletter-inner { flex-direction: column; gap: 16px; }
     .newsletter-right { width: 100%; }
     .newsletter-heading { font-size: 28px; }
+    .newsletter-mobile { display: block; }
+    .newsletter-desktop { display: none; }
   }
 
   .donut-easter-egg {
@@ -1763,6 +1770,21 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   </div>
 </div>
 
+<!-- EMAIL NEWSLETTER (shown above table on mobile) -->
+<div class="newsletter-section newsletter-mobile">
+  <div class="newsletter-inner">
+    <div class="newsletter-left">
+      <div class="newsletter-eyebrow">Springfield Oracle — Weekly Intel</div>
+      <h3 class="newsletter-heading">Get the Predictions. Before Anyone Else.</h3>
+      <p class="newsletter-sub">Every week: new Simpsons prophecies and real-world matches flagged directly to your inbox. No spam. Unsubscribe anytime.</p>
+    </div>
+    <div class="newsletter-right">
+      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+      <iframe src="https://subscribe-forms.beehiiv.com/aa2eb2bb-3726-45d7-a0e7-f1090777c91b" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 420px; height: 85px; margin: 0; border-radius: 8px 8px 8px 8px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
+    </div>
+  </div>
+</div>
+
 <!-- FILTERS -->
 <div class="search-bar-row">
   <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
@@ -1804,8 +1826,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   <div id="pagination-bar" class="pagination-bar"></div>
 </div>
 
-<!-- EMAIL NEWSLETTER -->
-<div class="newsletter-section">
+<!-- EMAIL NEWSLETTER (shown below table on desktop) -->
+<div class="newsletter-section newsletter-desktop">
   <div class="newsletter-inner">
     <div class="newsletter-left">
       <div class="newsletter-eyebrow">Springfield Oracle — Weekly Intel</div>
