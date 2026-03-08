@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-03-01",
+    "last_updated": "2026-03-08",
     "total": 75,
     "sources": [
       "https://en.wikipedia.org/wiki/The_Simpsons_future_predictions",
@@ -9,7 +9,10 @@
       "https://tvtropes.org/pmwiki/pmwiki.php/Recap/TheSimpsonsS6E19LisasWedding",
       "https://simpsons.fandom.com/wiki/The_Simpsons_future_predictions"
     ],
-    "show_status": "Renewed through Season 40 (2029). ~790 episodes as of March 2026."
+    "show_status": "Renewed through Season 40 (2029). ~790 episodes as of March 2026.",
+    "status_update": "All PENDING predictions updated with likelihood scores",
+    "last_automated_update": "2026-03-07T19:30:33.116527",
+    "total_heating_predictions": 3
   },
   "predictions": [
     {
@@ -198,7 +201,24 @@
       "status": "pending",
       "viral_score": 10,
       "verified_source": "TVTropes S06E19 recap; Simpsons Fandom wiki; Wikipedia 2026 Iran-US strikes; PBS News live updates Feb 28 2026",
-      "fact_check_note": "WW3 in episode has no Middle East specificity. Majority of viral TikTok clips claiming Simpsons 'predicted Iran war' are AI-generated deepfakes per Boatos.org fact-check (June 2025). This entry cites only the verified S06E19 dialogue."
+      "fact_check_note": "WW3 in episode has no Middle East specificity. Majority of viral TikTok clips claiming Simpsons 'predicted Iran war' are AI-generated deepfakes per Boatos.org fact-check (June 2025). This entry cites only the verified S06E19 dialogue.",
+      "likelihood_pct": 65,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "last_updated": "2026-03-07T19:33:14.543545",
+      "heating_rank": 1,
+      "heating_level": 3,
+      "heating_note": "CRITICAL: Russia-NATO tensions, Ukraine war escalation, Taiwan strait risks, Middle East conflicts - 50/50 major conflict chance in 2026",
+      "status_update": "REACTIVATED: Original timeline expired but core prediction mirrors current crises",
+      "current_context": {
+        "russia_nato_tensions": "Escalating - 50/50 even chance of armed clash in 2026",
+        "ukraine_war": "Ongoing with infrastructure destruction, no resolution path",
+        "taiwan_strait": "Tensions rising - rated high impact contingency",
+        "middle_east": "Multiple active conflicts",
+        "expert_assessment": "CFR/ICG: Multiple flashpoints creating WWIII-scale risk"
+      }
     },
     {
       "id": "SP012",
@@ -472,7 +492,16 @@
       "category": "Politics",
       "status": "pending",
       "viral_score": 8,
-      "verified_source": "Hollywood Reporter; TVLine"
+      "verified_source": "Hollywood Reporter; TVLine",
+      "likelihood_pct": 65,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "heating_rank": 2,
+      "heating_level": 2,
+      "heating_note": "2028 election cycle active",
+      "last_updated": "2026-03-07T19:30:33.116452"
     },
     {
       "id": "SP028",
@@ -608,7 +637,16 @@
       "category": "Politics",
       "status": "pending",
       "viral_score": 8,
-      "verified_source": "Hollywood Reporter"
+      "verified_source": "Hollywood Reporter",
+      "likelihood_pct": 65,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "heating_rank": 3,
+      "heating_level": 1,
+      "heating_note": "Ivanka stated \"out of politics\" (Dec 2024)",
+      "last_updated": "2026-03-07T19:30:33.116459"
     },
     {
       "id": "SP036",
@@ -659,7 +697,16 @@
       "category": "Sports",
       "status": "pending",
       "viral_score": 8,
-      "verified_source": "Fan databases; note \u2014 exact match disputed"
+      "verified_source": "Fan databases; note \u2014 exact match disputed",
+      "likelihood_pct": 70,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "heating_rank": 1,
+      "heating_level": 3,
+      "heating_note": "Tournament happening NOW (Jun-Jul 2026)",
+      "last_updated": "2026-03-07T19:30:33.116470"
     },
     {
       "id": "SP039",
@@ -745,6 +792,24 @@
       "status": "confirmed",
       "viral_score": 6,
       "verified_source": "Fan databases"
+    },
+    {
+      "id": "SP044",
+      "season": null,
+      "episode": null,
+      "episode_code": "UNKNOWN",
+      "title": "Trump Death Prediction / Coffin Scene Viral Hoax",
+      "episode_name": "Unknown (Viral False Claim)",
+      "year_aired": null,
+      "prediction": "A viral TikTok/X claim spreads in March 2026 alleging The Simpsons 'predicted' Donald Trump's death through a coffin scene. AI-generated deepfake videos and false episode clips circulate claiming the show 'predicted his death for March 2026'.",
+      "real_event": "No such Simpsons scene exists. Viral claim debunked by SnopesWikipedia, and fact-checkers. Likely AI-generated deepfakes. Trump remains alive as of March 2026.",
+      "real_year": 2026,
+      "years_early": null,
+      "category": "Politics",
+      "status": "debunked",
+      "viral_score": 9,
+      "verified_source": "Snopes (March 2026 fact-check pending); TikTok viral claim; identified as deepfake/AI-generated hoax",
+      "fact_check_note": "This is a meta-prediction about a FALSE viral claim, not a genuine Simpsons prediction. No verifiable episode or scene supports this claim. Documented to track misinformation and AI deepfake spread."
     }
   ],
   "update_log": [

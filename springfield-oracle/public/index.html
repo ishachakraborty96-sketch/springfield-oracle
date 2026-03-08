@@ -23,21 +23,21 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 <meta name="keywords" content="Simpsons predictions, The Simpsons predicted, Springfield Oracle, Simpsons tracker, Simpsons fact check, Simpsons came true, TV predictions, pop culture predictions">
 <meta name="author" content="Isha Godboley">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://springfield-oracle.vercel.app/">
+<link rel="canonical" href="https://springfieldoracle.com/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://springfield-oracle.vercel.app/">
+<meta property="og:url" content="https://springfieldoracle.com/">
 <meta property="og:title" content="Springfield Oracle — The Simpsons Prediction Tracker">
 <meta property="og:description" content="Every Simpsons prediction that came true — sourced, fact-checked, and tracked in real time. 54+ predictions verified with episode references and real-world citations.">
-<meta property="og:image" content="https://springfield-oracle.vercel.app/og-image.png">
+<meta property="og:image" content="https://springfieldoracle.com/og-image.png">
 <meta property="og:site_name" content="Springfield Oracle">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Springfield Oracle — The Simpsons Prediction Tracker">
 <meta name="twitter:description" content="Every Simpsons prediction that came true — sourced, fact-checked, and tracked in real time. No clickbait. No AI fakes. Just verified data.">
-<meta name="twitter:image" content="https://springfield-oracle.vercel.app/og-image.png">
+<meta name="twitter:image" content="https://springfieldoracle.com/og-image.png">
 <title>Springfield Oracle — The Simpsons Prediction Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -340,7 +340,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   }
   .carousel-track {
     display: flex;
-    width: 100%;
+    width: 600%;
     transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
     will-change: transform;
   }
@@ -590,6 +590,36 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     background: rgba(232, 19, 42, 0.1);
     color: #ff6b7a;
     border: 1px solid rgba(232, 19, 42, 0.2);
+  }
+
+  /* Likelihood Score Pills */
+  .likelihood-pill {
+    padding: 4px 12px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 4px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .likelihood-high {
+    background: rgba(154, 255, 61, 0.15);
+    color: #9AFF3D;
+    border: 1px solid rgba(154, 255, 61, 0.4);
+  }
+
+  .likelihood-medium {
+    background: rgba(255, 213, 32, 0.15);
+    color: #FFD520;
+    border: 1px solid rgba(255, 213, 32, 0.4);
+  }
+
+  .likelihood-low {
+    background: rgba(232, 19, 42, 0.15);
+    color: #ff6b7a;
+    border: 1px solid rgba(232, 19, 42, 0.4);
   }
 
   .category-tag {
@@ -1155,7 +1185,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   /* ── NEWSLETTER SECTION ── */
   .newsletter-section {
     background: var(--yellow);
-    padding: 48px 40px;
+    padding: 16px 40px;
     position: relative;
   }
   .newsletter-inner {
@@ -1229,13 +1259,23 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     transition: all 0.2s;
   }
   .newsletter-btn:hover { background: #0a2070; border-color: #0a2070; }
+
+  /* Newsletter visibility control */
+  .newsletter-mobile { display: none; }
+  .newsletter-desktop { display: block; }
+  .newsletter-mobile-hidden { display: none; }
+  .newsletter-desktop-hidden { display: block; }
+
   @media (max-width: 768px) {
-    .newsletter-section { padding: 32px 16px; }
-    .newsletter-inner { flex-direction: column; gap: 20px; }
+    .newsletter-section { padding: 12px 16px; }
+    .newsletter-inner { flex-direction: column; gap: 12px; }
     .newsletter-right { width: 100%; }
-    .newsletter-heading { font-size: 28px; }
-    .newsletter-input { font-size: 13px; padding: 12px 14px; }
-    .newsletter-btn { font-size: 16px; padding: 12px 16px; }
+    .newsletter-heading { font-size: 20px; line-height: 1.2; margin-bottom: 8px; }
+    .newsletter-tagline { font-family: 'Space Mono', monospace; font-size: 13px; color: #111; margin-bottom: 12px; opacity: 0.85; font-weight: 500; }
+    .newsletter-mobile { display: block; }
+    .newsletter-desktop { display: none; }
+    .newsletter-mobile-hidden { display: none; }
+    .newsletter-desktop-hidden { display: block; }
   }
 
   .donut-easter-egg {
@@ -1246,6 +1286,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     gap: 24px;
     padding: 60px 40px;
     text-align: center;
+    min-height: 70vh;
   }
 
   .donut-icon {
@@ -1463,6 +1504,82 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       right: 20px;
     }
   }
+
+  /* Blinky Easter Egg */
+  #blinky-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  #blinky-modal.show {
+    display: flex;
+  }
+  .blinky-box {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 3px solid #FFD520;
+    border-radius: 8px;
+    padding: 45px 40px;
+    max-width: 600px;
+    width: 95%;
+    text-align: center;
+    box-shadow: 0 10px 50px rgba(255, 215, 32, 0.2);
+  }
+  .blinky-title {
+    font-family: 'Courier New', monospace;
+    font-size: 36px;
+    font-weight: bold;
+    color: #FFD520;
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+  .blinky-subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #FF6B2B;
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .blinky-fish-svg {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+  }
+  .blinky-text {
+    font-family: 'Courier New', monospace;
+    color: #d0d0d0;
+    font-size: 17px;
+    line-height: 1.8;
+    margin: 0;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 3px solid #FFD520;
+  }
+  .blinky-hint {
+    font-size: 12px;
+    color: #555;
+    margin-top: 20px;
+    font-style: italic;
+  }
+  .blinky-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    cursor: pointer;
+    vertical-align: -2px;
+    transition: transform 0.2s;
+  }
+  .blinky-icon:hover {
+    transform: scale(1.3) rotate(-10deg);
+  }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
@@ -1471,7 +1588,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   "@type": "WebSite",
   "name": "Springfield Oracle",
   "alternateName": "The Simpsons Prediction Tracker",
-  "url": "https://springfield-oracle.vercel.app",
+  "url": "https://springfieldoracle.com",
   "description": "The definitive open-source tracker for every Simpsons prediction — sourced, fact-checked, and updated in real time.",
   "author": {
     "@type": "Person",
@@ -1485,7 +1602,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   "inLanguage": "en",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://springfield-oracle.vercel.app/?q={search_term_string}",
+    "target": "https://springfieldoracle.com/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -1562,7 +1679,21 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     <div class="carousel-track" id="carousel-track">
 
       <!-- CARD 1: WW3 / Iran -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(0)" style="cursor:pointer;">
+      <div class="latest-card carousel-card" onclick="openCarouselModal(0)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
+        <div class="latest-badge" style="background:#ff4444;">🚨 MAR 8, 2026 — DEBUNKED</div>
+        <div class="latest-episode" style="background: #2d2d5e;">
+          <div class="ep-season">UNKNOWN</div>
+          <div class="ep-label">Viral Hoax</div>
+          <div class="ep-year">March 2026</div>
+        </div>
+        <div class="latest-content">
+          <h2 style="color:#FFD520;">Trump Death Prediction Viral Hoax</h2>
+          <p style="color:#ccc;">A viral TikTok/X claim spreads in March 2026 alleging The Simpsons predicted Donald Trump's death through a coffin scene. AI-generated deepfake videos and false episode clips circulate online. Fact-checkers including Snopes identified these as deepfakes with no verifiable Simpsons scene supporting the claim. Trump remains alive as of March 2026. This debunk is documented to track misinformation spread and AI deepfake proliferation.</p>
+        </div>
+      </div>
+
+      <!-- CARD 2: World War III — Middle East -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(1)" style="cursor:pointer;">
         <div class="latest-badge" style="background:#555;">🟡 FEB 28, 2026 — PENDING</div>
         <div class="latest-episode">
           <div class="ep-season">S06E19</div>
@@ -1575,8 +1706,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 2: UFO Declassification -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(1)" style="cursor:pointer;">
+      <!-- CARD 3: UFO Declassification -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(2)" style="cursor:pointer;">
         <div class="latest-badge">🟡 FEB 19, 2026 — CONFIRMED</div>
         <div class="latest-episode">
           <div class="ep-season">S08E10</div>
@@ -1589,8 +1720,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 3: NSA Surveillance / Simpsons Movie -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(2)" style="cursor:pointer;">
+      <!-- CARD 4: NSA Surveillance / Simpsons Movie -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(3)" style="cursor:pointer;">
         <div class="latest-badge">🟡 2026 — CONFIRMED</div>
         <div class="latest-episode">
           <div class="ep-season">MOVIE</div>
@@ -1603,8 +1734,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 4: Great Awakening / QAnon -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(3)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
+      <!-- CARD 5: Great Awakening / QAnon -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(4)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
         <div class="latest-badge" style="background:#555;">⚠️ 2022 — DEBUNKED</div>
         <div class="latest-episode" style="background: #2d2d5e;">
           <div class="ep-season">S24E09</div>
@@ -1617,8 +1748,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 5: H3N2 Flu -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(4)" style="cursor:pointer;">
+      <!-- CARD 6: H3N2 Flu -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(5)" style="cursor:pointer;">
         <div class="latest-badge">🔴 2026 — CONFIRMED</div>
         <div class="latest-episode">
           <div class="ep-season">S04E21</div>
@@ -1640,6 +1771,23 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <button class="carousel-dot" onclick="carouselGoTo(2)" aria-label="Go to slide 3"></button>
       <button class="carousel-dot" onclick="carouselGoTo(3)" aria-label="Go to slide 4"></button>
       <button class="carousel-dot" onclick="carouselGoTo(4)" aria-label="Go to slide 5"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(5)" aria-label="Go to slide 6"></button>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL NEWSLETTER (shown above table on mobile) -->
+<div class="newsletter-section newsletter-mobile">
+  <div class="newsletter-inner">
+    <div class="newsletter-left">
+      <div class="newsletter-eyebrow newsletter-mobile-hidden">Springfield Oracle — Weekly Intel</div>
+      <h3 class="newsletter-heading">Get the Predictions. Before Anyone Else.</h3>
+      <p class="newsletter-tagline newsletter-desktop-hidden">New predictions to your inbox every week</p>
+      <p class="newsletter-sub newsletter-mobile-hidden">Every week: new Simpsons prophecies and real-world matches flagged directly to your inbox. No spam. Unsubscribe anytime.</p>
+    </div>
+    <div class="newsletter-right">
+      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+      <iframe src="https://subscribe-forms.beehiiv.com/aa2eb2bb-3726-45d7-a0e7-f1090777c91b" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 420px; height: 85px; margin: 0; border-radius: 8px 8px 8px 8px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
     </div>
   </div>
 </div>
@@ -1670,10 +1818,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   <table id="predictions-table">
     <thead>
       <tr>
-        <th>Episode</th>
-        <th>Prediction</th>
-        <th>Status</th>
-        <th>Category</th>
+        <th onclick="sortTable('episode')">Episode ↕</th>
+        <th onclick="sortTable('prediction')">Prediction ↕</th>
+        <th onclick="sortTable('status')">Status ↕</th>
+        <th onclick="sortTable('category')">Category ↕</th>
+        <th onclick="sortTable('likelihood')" style="cursor: pointer;">Likelihood ↕</th>
         <th>Share</th>
       </tr>
     </thead>
@@ -1684,17 +1833,17 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   <div id="pagination-bar" class="pagination-bar"></div>
 </div>
 
-<!-- EMAIL NEWSLETTER -->
-<div class="newsletter-section">
+<!-- EMAIL NEWSLETTER (shown below table on desktop) -->
+<div class="newsletter-section newsletter-desktop">
   <div class="newsletter-inner">
     <div class="newsletter-left">
       <div class="newsletter-eyebrow">Springfield Oracle — Weekly Intel</div>
-      <h3 class="newsletter-heading">New Predictions. Before Anyone Else.</h3>
-      <p class="newsletter-sub">Every week: new Simpsons predictions added, real-world matches flagged, and the ones currently unfolding — direct to your inbox. No spam. Unsubscribe anytime.</p>
+      <h3 class="newsletter-heading">Get the Predictions. Before Anyone Else.</h3>
+      <p class="newsletter-sub">Every week: new Simpsons prophecies and real-world matches flagged directly to your inbox. No spam. Unsubscribe anytime.</p>
     </div>
     <div class="newsletter-right">
       <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe src="https://subscribe-forms.beehiiv.com/aa2eb2bb-3726-45d7-a0e7-f1090777c91b" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 100%; max-width: 100%; height: 206px; margin: 0; border-radius: 0px 0px 0px 0px !important; background-color: transparent; box-shadow: 0 0 #0000;"></iframe>
+      <iframe src="https://subscribe-forms.beehiiv.com/aa2eb2bb-3726-45d7-a0e7-f1090777c91b" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 420px; height: 85px; margin: 0; border-radius: 8px 8px 8px 8px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
     </div>
   </div>
 </div>
@@ -1781,7 +1930,7 @@ const predictions = [
   { id: 'SP010', season: 'S05', episode: 'E19', name: "Sweet Seymour Skinner's Baadasssss Song", year: 1994, title: "Horse Meat in Food Supply", desc: "A school lunch label reveals horse meat content. Europe's horse meat scandal broke in 2013, shocking the food industry.", category: "Culture", status: "confirmed", trueYear: 2013, viral: 7 },
 
   // ── 2025 CONFIRMED ───────────────────────────────────────────────
-  { id: 'SP011', season: 'S26', episode: 'E10', name: "The Musk Who Fell to Earth", year: 2015, title: "Elon Musk's Political Rise & Fall", desc: "Musk befriends Homer, promises to transform Springfield, then causes mass layoffs before leaving on a SpaceX rocket. In 2025, Musk joined Trump's DOGE, sparked controversy, caused political chaos, then was dismissed. Writers nailed the arc a decade early.", category: "Politics", status: "pending", trueYear: 2025, viral: 10 },
+  { id: 'SP011', season: 'S26', episode: 'E10', name: "The Musk Who Fell to Earth", year: 2015, title: "Elon Musk's Political Rise & Fall", desc: "Musk befriends Homer, promises to transform Springfield, then causes mass layoffs before leaving on a SpaceX rocket. In 2025, Musk joined Trump's DOGE, sparked controversy, caused political chaos, then was dismissed. Writers nailed the arc a decade early.", category: "Politics", status: "pending", trueYear: 2025, viral: 10, likelihood_pct: 85 },
   { id: 'SP012', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Trump Budget Crisis / Government Shutdown", desc: "Lisa inherits a catastrophic budget mess from President Trump. In 2025, the US government shut down for 43 days as Congress repeatedly failed to pass appropriations legislation — exactly as depicted.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 10 },
   { id: 'SP013', season: 'S10', episode: 'E02', name: "The Wizard of Evergreen Terrace", year: 1998, title: "First American Pope — Pope Leo XIV", desc: "Kent Brockman announces a 'phony Pope' identified by 'high-top sneakers and an incredibly foul mouth' — traits Reddit identified as distinctly Chicago. Pope Leo XIV (Robert Prevost) was elected in 2025 as the first American-born pope, having attended university in Villanova — the same town mentioned in a connected episode.", category: "Culture", status: "debunked", trueYear: 2025, viral: 10 },
   { id: 'SP014', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "AI Mass Job Displacement", desc: "Mr Burns replaces all plant workers with robots because it's cheaper and more efficient. In 2025, AI automation began eliminating white-collar and blue-collar roles globally. Research suggests 100 million US jobs could be impacted within a decade.", category: "Technology", status: "confirmed", trueYear: 2025, viral: 9 },
@@ -1802,7 +1951,7 @@ const predictions = [
   { id: 'SP024', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "Full Robot Revolution / Physical Labour Automation", desc: "All of Springfield's human workers are fully replaced by robots. Beyond office AI, physical robotics (Boston Dynamics, Tesla Optimus) are advancing rapidly. Full blue-collar automation could hit a tipping point before 2028.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
   { id: 'SP025', season: 'S07', episode: 'E01', name: "Who Shot Mr. Burns? Part II", year: 1995, title: "Solar Energy / Oil Industry Collapse", desc: "Mr Burns builds a giant sun-blocker to force Springfield to buy his energy. A satirical take on fossil fuel monopolies fighting renewable energy. With solar hitting cost parity globally and oil lobbies fighting back, this power struggle is very real.", category: "Science", status: "confirmed", trueYear: null, viral: 7 },
   { id: 'SP026', season: 'S12', episode: 'E12', name: "Treehouse of Horror XII", year: 2001, title: "Fully Automated AI Smart Homes", desc: "The Simpson family moves into a home run entirely by AI — controlled by voice, making decisions autonomously. Smart home technology is rapidly approaching this level, with AI agents now able to control entire home ecosystems.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
-  { id: 'SP027', season: 'S08', episode: 'E14', name: "The Cartridge Family", year: 1997, title: "Mexico vs Portugal World Cup Final — 2026", desc: "The episode mentions a Mexico vs Portugal World Cup final. The 2026 World Cup is hosted in the USA, Mexico, and Canada. Both Mexico and Portugal are strong contenders. This could literally come true this year.", category: "Sports", status: "pending", trueYear: null, viral: 9 },
+  { id: 'SP027', season: 'S08', episode: 'E14', name: "The Cartridge Family", year: 1997, title: "Mexico vs Portugal World Cup Final — 2026", desc: "The episode mentions a Mexico vs Portugal World Cup final. The 2026 World Cup is hosted in the USA, Mexico, and Canada. Both Mexico and Portugal are strong contenders. This could literally come true this year.", category: "Sports", status: "pending", trueYear: null, viral: 9, likelihood_pct: 12 },
   { id: 'SP028', season: 'S20', episode: 'E04', name: "Treehouse of Horror XIX", year: 2008, title: "Voting Machine Fraud", desc: "Homer's vote switches candidates on a touch-screen voting machine. Election integrity concerns have dominated every US election cycle since, with machine audits and paper trail debates intensifying ahead of 2028.", category: "Politics", status: "confirmed", trueYear: null, viral: 8 },
   { id: 'SP029', season: 'S16', episode: 'E06', name: "Midnight Rx", year: 2005, title: "Large-Scale Environmental Disaster", desc: "Springfield faces an ecological catastrophe caused by corporate negligence. With climate events accelerating — wildfires, floods, chemical spills — a major man-made environmental disaster is statistically overdue before 2028.", category: "Science", status: "confirmed", trueYear: null, viral: 7 },
   { id: 'SP030', season: 'S33', episode: 'E01', name: "The Star of the Backstage", year: 2021, title: "AR Glasses Replace Smartphones", desc: "Characters use sleek augmented reality glasses as primary devices. Meta's Ray-Ban AI glasses and Apple Vision Pro are early iterations. Full AR glasses replacing the phone is the next hardware cycle — industry consensus puts this at 2027-2028.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
@@ -1810,10 +1959,10 @@ const predictions = [
   // ── MARCH–AUG 2026: HIGH-LIKELIHOOD NEWS MATCHES ─────────────────
   { id: 'SP033', season: 'S20', episode: 'E21', name: "Coming to Homerica", year: 2009, title: "Border Wall & Immigration Vigilantes", desc: "Springfield residents build a wall to keep out Ogdenvillians and form a volunteer vigilante border patrol with checkpoints. In 2025–2026, Trump's mass deportation operation, expanded border wall construction, and militia patrols on the Southern border mirror the episode beat for beat.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 9 },
   { id: 'SP034', season: 'S09', episode: 'E05', name: "The Cartridge Family", year: 1997, title: "Gun Proliferation / Open Carry Culture", desc: "Homer buys a handgun in five minutes flat, carries it everywhere, and joins the NRA. The episode satirises the ease of gun acquisition and open carry laws. US gun ownership hit record highs post-2020, open carry is now legal in 30+ states, and the gun control debate rages every news cycle.", category: "Politics", status: "confirmed", trueYear: 2022, viral: 8 },
-  { id: 'SP035', season: 'S16', episode: 'E06', name: "Midnight Rx", year: 2005, title: "Prescription Drug Pricing / Canadian Imports", desc: "After Springfield's drug plan is cancelled, Homer and Grampa smuggle cheap prescription drugs across the Canadian border. In 2025–2026, multiple US states moved to import drugs from Canada and Congress battled over the DRUG Act — exactly the scenario the episode depicted two decades prior.", category: "Business", status: "pending", trueYear: 2024, viral: 7 },
+  { id: 'SP035', season: 'S16', episode: 'E06', name: "Midnight Rx", year: 2005, title: "Prescription Drug Pricing / Canadian Imports", desc: "After Springfield's drug plan is cancelled, Homer and Grampa smuggle cheap prescription drugs across the Canadian border. In 2025–2026, multiple US states moved to import drugs from Canada and Congress battled over the DRUG Act — exactly the scenario the episode depicted two decades prior.", category: "Business", status: "pending", trueYear: 2024, viral: 7, likelihood_pct: 75 },
   { id: 'SP036', season: 'S21', episode: 'E02', name: "Bart Gets a 'Z'", year: 2009, title: "AI / Tablets Replacing Teachers", desc: "Mrs. Krabappel is fired and replaced by a tablet-based teaching system. By 2025, AI tutoring platforms like Khan Academy's Khanmigo began replacing classroom instruction in school districts across the US, with LA Unified and others piloting AI teacher aids — exactly as depicted.", category: "Technology", status: "confirmed", trueYear: 2024, viral: 7 },
   { id: 'SP037', season: 'S11', episode: 'E05', name: "E-I-E-I-(Annoyed Grunt)", year: 1999, title: "Tomacco — GMO Hybrid Crops", desc: "Homer uses plutonium rods to genetically engineer a tomato-tobacco hybrid plant — the tomacco. In 2003, New Zealand farmer Rob Baur grafted a real tomacco using the same principle. CRISPR gene-editing now routinely creates crop hybrids, and GMO food regulation is a major 2026 policy debate.", category: "Science", status: "confirmed", trueYear: 2003, viral: 7 },
-  { id: 'SP038', season: 'S16', episode: 'E02', name: "On a Clear Day I Can't See My Sister", year: 2005, title: "Glacier Melt / Climate Crisis Warning", desc: "Lisa gives a speech about a Springfield glacier rapidly disappearing due to climate change. Swiss Alps, Greenland, and Himalayan glaciers reached record melt rates in 2025–2026, with scientists warning the pace is outrunning every climate model.", category: "Science", status: "pending", trueYear: 2025, viral: 7 },
+  { id: 'SP038', season: 'S16', episode: 'E02', name: "On a Clear Day I Can't See My Sister", year: 2005, title: "Glacier Melt / Climate Crisis Warning", desc: "Lisa gives a speech about a Springfield glacier rapidly disappearing due to climate change. Swiss Alps, Greenland, and Himalayan glaciers reached record melt rates in 2025–2026, with scientists warning the pace is outrunning every climate model.", category: "Science", status: "pending", trueYear: 2025, viral: 7, likelihood_pct: 92 },
   { id: 'SP039', season: 'S13', episode: 'E22', name: "Poppa's Got a Brand New Badge", year: 2002, title: "Catastrophic Urban Heat Wave", desc: "Springfield is hit by a catastrophic heat wave — a butterfly melts, a sunflower catches fire. NOAA forecasts summer 2026 to break global temperature records for the fourth consecutive year. Heat domes and extreme urban heat events are now the dominant summer news story.", category: "Science", status: "confirmed", trueYear: null, viral: 8 },
   { id: 'SP040', season: 'S07', episode: 'E07', name: "King-Size Homer", year: 1995, title: "Obesity Epidemic & Working From Home", desc: "Homer deliberately gains weight to qualify as disabled and work from home via a computer terminal. US obesity rates hit record highs in 2025; ~28% of Americans now work from home post-COVID; and GLP-1 drugs like Ozempic and Wegovy dominate health news as the first mass market obesity treatment.", category: "Science", status: "confirmed", trueYear: 2020, viral: 8 },
   { id: 'SP041', season: 'S07', episode: 'E06', name: "Treehouse of Horror VI", year: 1995, title: "Homer Enters 3D Virtual World — The Metaverse", desc: "In the 'Homer³' segment, Homer falls into a photorealistic 3D computer-generated world — an immersive digital environment indistinguishable from reality. Meta launched its Metaverse in 2021; Apple Vision Pro launched in 2024. The episode nailed both the technology and the existential disorientation.", category: "Technology", status: "debunked", trueYear: 2021, viral: 9 },
@@ -1852,9 +2001,64 @@ function yearsEarly(year, trueYear) {
   return `<span class="gap-years">${diff}y</span>`;
 }
 
+function likelihoodBadge(likelihood) {
+  if (!likelihood && likelihood !== 0) return '<span class="likelihood-pill likelihood-low">—</span>';
+  const pct = parseInt(likelihood);
+  let className = 'likelihood-low';
+  if (pct >= 70) className = 'likelihood-high';
+  else if (pct >= 40) className = 'likelihood-medium';
+  return `<span class="likelihood-pill ${className}">${pct}%</span>`;
+}
+
+function applySortField(a, b, field, direction) {
+  let aVal, bVal;
+
+  switch(field) {
+    case 'episode':
+      aVal = a.season * 1000 + a.episode;
+      bVal = b.season * 1000 + b.episode;
+      break;
+    case 'likelihood':
+      aVal = (a.likelihood_pct || 0);
+      bVal = (b.likelihood_pct || 0);
+      break;
+    case 'status':
+      aVal = a.status || '';
+      bVal = b.status || '';
+      break;
+    case 'category':
+      aVal = (a.category || '').toLowerCase();
+      bVal = (b.category || '').toLowerCase();
+      break;
+    case 'prediction':
+      aVal = (a.title || '').toLowerCase();
+      bVal = (b.title || '').toLowerCase();
+      break;
+    default:
+      aVal = a[field];
+      bVal = b[field];
+  }
+
+  if (typeof aVal === 'string') {
+    return direction === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+  }
+
+  return direction === 'asc' ? aVal - bVal : bVal - aVal;
+}
+
+function sortTable(field) {
+  if (currentSort.field === field) {
+    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+  } else {
+    currentSort = { field, direction: 'desc' };
+  }
+  renderTable(predictions);
+  renderCurrentPage();
+}
+
 let currentModalPrediction = null;
 
-const BASE_URL = 'https://springfield-oracle.vercel.app';
+const BASE_URL = 'https://springfieldoracle.com';
 
 function getShareUrl(p) {
   if (!p || !p.id) return BASE_URL;
@@ -1909,15 +2113,17 @@ function copyShareLink(p, btn) {
 
 function modalShareX() {
   let text;
-  let predId = currentModalPrediction?.id || window._currentCarouselData?.predId;
+  let url;
   if (window._carouselShareMode) {
     text = buildCarouselShareText(window._currentCarouselData, 'x');
+    url = getCarouselShareUrl(window._currentCarouselData);
   } else {
     if (!currentModalPrediction) return;
     text = buildShareText(currentModalPrediction, 'x');
+    url = getShareUrl(currentModalPrediction);
   }
-  trackEvent('button_click', { action: 'modal_share', platform: 'x', prediction_id: predId });
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+  // Pass both text and URL - Twitter will show text + crawl URL for og:image
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
 }
 
 function modalShareLinkedIn() {
@@ -1966,11 +2172,17 @@ let currentFilteredData = [];
 let currentPage = 1;
 let currentFilter = 'all';
 let currentSearch = '';
+let currentSort = { field: 'recency', direction: 'desc' };
 
 // Sort + store the full filtered dataset, reset to page 1, then draw.
 // Sort by recency of news: still-developing (no trueYear) first, then by trueYear desc.
 function renderTable(data) {
   currentFilteredData = [...data].sort((a, b) => {
+    // Apply current sort if not default recency
+    if (currentSort.field !== 'recency') {
+      return applySortField(a, b, currentSort.field, currentSort.direction);
+    }
+    // Default recency sort
     if (!a.trueYear && !b.trueYear) return b.year - a.year;
     if (!a.trueYear) return -1;
     if (!b.trueYear) return 1;
@@ -2054,6 +2266,7 @@ function renderCurrentPage() {
 
   const pageSize = mobile ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE;
   const pageData = currentFilteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  blinkyRowIndex = pageData.length > 0 ? Math.floor(Math.random() * pageData.length) : -1;
 
   pageData.forEach((p, i) => {
     const tr = document.createElement('tr');
@@ -2064,11 +2277,14 @@ function renderCurrentPage() {
     const liveBadge = liveNews
       ? `<a href="${liveNews.link}" target="_blank" rel="noopener" onclick="event.stopPropagation(); trackEvent('link_click', {type: 'live_news', prediction_id: '${p.id}'})" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
       : '';
+    const blinkyFish = i === blinkyRowIndex ? '<svg class="blinky-icon" onclick="event.stopPropagation(); showBlinkyModal()" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; vertical-align:-2px; margin-left:6px;"><ellipse cx="100" cy="100" rx="50" ry="60" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="10" fill="#1a1a1a"/><circle cx="100" cy="70" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="70" r="10" fill="#1a1a1a"/><circle cx="120" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="120" cy="85" r="10" fill="#1a1a1a"/></svg>' : '';
+    const episodeStr = (p.season || p.episode) ? `${p.season || 'S?'}${p.episode || 'E?'}` : '';
     tr.innerHTML = `
-      <td class="td-episode">${p.season}${p.episode}<span>${p.year} · ${p.name}</span></td>
-      <td class="td-desc"><strong>${p.title}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
+      <td class="td-episode">${episodeStr}<span>${p.year} · ${p.name}</span></td>
+      <td class="td-desc"><strong>${p.title}${blinkyFish}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
+      <td>${likelihoodBadge(p.likelihood_pct)}</td>
       <td class="td-share" onclick="event.stopPropagation()">
         <div style="display:flex;flex-direction:row;gap:6px;flex-wrap:nowrap;">
         <button onclick="shareOnX(predictions.find(x=>x.id==='${p.id}'))" title="Share on X" style="background:none;border:1px solid rgba(255,255,255,0.15);color:#ddd;padding:6px 10px;border-radius:4px;cursor:pointer;font-size:0.75rem;transition:all 0.2s;white-space:nowrap;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#ddd'">𝕏</button>
@@ -2190,6 +2406,17 @@ function scrollToTable(filter) {
 // ── CAROUSEL CARD MODALS ──────────────────────────────────────────────
 const carouselData = [
   {
+    badge: '🚨 MAR 8, 2026 — DEBUNKED',
+    episode: 'VIRAL HOAX (2026)',
+    status: 'debunked',
+    category: 'Politics',
+    trueDate: '—',
+    predId: 'SP044',
+    title: 'Trump Death Prediction Viral Hoax — AI-Generated Deepfakes',
+    body: `A viral TikTok and X claim spread across social media in early March 2026, alleging that The Simpsons predicted Donald Trump's death through a "coffin scene." Screenshots and AI-generated deepfake video clips began circulating, claiming the show "predicted his death for March 2026."\n\nFact-checkers including Snopes, Wikipedia, and mainstream media investigations identified all viral clips as AI-generated deepfakes. No such Simpsons scene exists in any legitimate episode. Trump remained alive as of March 8, 2026.\n\nThis prediction is logged as a meta-entry to document viral misinformation and track the proliferation of AI deepfakes in the 2026 information environment. The claim illustrates how AI-generated video content can bypass initial verification, spreading false predictions at scale across social platforms before fact-checkers catch up.`,
+    shareTitle: 'Trump Death Prediction Viral Hoax: AI-generated deepfakes claim Simpsons predicted his death in March 2026. Debunked by fact-checkers. No such scene exists.'
+  },
+  {
     badge: '🟡 FEB 28, 2026 — PENDING',
     episode: 'S06E19 · Lisa\'s Wedding (1995)',
     status: 'pending',
@@ -2270,7 +2497,7 @@ function openCarouselModal(index) {
 
 // ── CAROUSEL ─────────────────────────────────────────────────────────────
 let carouselIndex = 0;
-const carouselTotal = 5;
+const carouselTotal = 6;
 let carouselTimer;
 
 function carouselGoTo(n) {
@@ -2514,19 +2741,24 @@ async function syncWithDatabase() {
     const data = await res.json();
     if (data.predictions && data.predictions.length > 0) {
       // Map JSON schema to display format
-      const mapped = data.predictions.map(p => ({
-        id:       p.id,
-        season:   `S${String(p.season).padStart(2,'0')}`,
-        episode:  `E${String(p.episode).padStart(2,'0')}`,
-        name:     p.episode_name,
-        year:     p.year_aired,
-        title:    p.title,
-        desc:     p.prediction + (p.real_event ? ` Real event: ${p.real_event}` : '') + (p.fact_check_note ? ` ⚠️ ${p.fact_check_note}` : ''),
-        category: p.category,
-        status:   p.status,
-        trueYear: p.real_year,
-        viral:    p.viral_score
-      }));
+      const mapped = data.predictions.map(p => {
+        // Extract season/episode from episode_code (format: SXXEXX)
+        const episodeMatch = p.episode_code?.match(/S(\d+)E(\d+)/) || ['', '0', '0'];
+        return {
+          id:       p.id,
+          season:   parseInt(episodeMatch[1]),
+          episode:  parseInt(episodeMatch[2]),
+          name:     p.name || 'Unknown',
+          year:     p.year_aired,
+          title:    p.title,
+          desc:     p.prediction + (p.real_event ? ` Real: ${p.real_event}` : ''),
+          category: p.category,
+          status:   p.status,
+          trueYear: p.real_year,
+          viral:    p.viral_score,
+          likelihood_pct: p.likelihood_pct
+        };
+      });
       // JSON is now the active dataset — all filters and counts use it
       activeData = mapped;
       renderTable(mapped);
@@ -2724,6 +2956,27 @@ window.addEventListener('load', function() {
     <button class="oracle-submit-btn" onclick="submitOracleQuestion()">Ask</button>
   </div>
 </div>
+
+<!-- Blinky Easter Egg Modal -->
+<div id="blinky-modal" onclick="if(event.target.id==='blinky-modal') window.closeBlinkyModal?.()">
+  <div class="blinky-box">
+    <div class="blinky-title">CLASSIFIED</div>
+    <div class="blinky-subtitle">LEVEL 7G - EYES ONLY</div>
+    <svg class="blinky-fish-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180"><ellipse cx="100" cy="100" rx="50" ry="60" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2"/><path d="M 40 140 Q 20 150 15 170" fill="none" stroke="#FFB81C" stroke-width="12" stroke-linecap="round"/><path d="M 45 135 Q 25 145 20 165" fill="none" stroke="#FFB81C" stroke-width="12" stroke-linecap="round"/><ellipse cx="65" cy="75" rx="15" ry="25" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2" transform="rotate(-30 65 75)"/><ellipse cx="135" cy="75" rx="15" ry="25" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2" transform="rotate(30 135 75)"/><ellipse cx="80" cy="155" rx="10" ry="20" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="120" cy="155" rx="10" ry="20" fill="#FFB81C" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="80" cy="85" r="10" fill="#1a1a1a"/><circle cx="100" cy="70" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="70" r="10" fill="#1a1a1a"/><circle cx="120" cy="85" r="18" fill="#B8D8FF" stroke="#1a1a1a" stroke-width="2"/><circle cx="120" cy="85" r="10" fill="#1a1a1a"/></svg>
+    <p class="blinky-text">S45E12: Homer accidentally invests in a time machine and becomes his own grandfather.</p>
+    <div class="blinky-hint">Click outside to dismiss...</div>
+  </div>
+</div>
+
+<script>
+let blinkyRowIndex = null;
+function showBlinkyModal() {
+  document.getElementById('blinky-modal').classList.add('show');
+}
+window.closeBlinkyModal = function() {
+  document.getElementById('blinky-modal').classList.remove('show');
+};
+</script>
 
 </body>
 </html>

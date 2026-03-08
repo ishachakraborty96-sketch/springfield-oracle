@@ -39,13 +39,15 @@ module.exports = async function handler(req, res) {
 
   let p = null;
   try {
-    const jsonPath = path.join(process.cwd(), 'public', 'data', 'predictions.json');
+    const jsonPath = path.join(__dirname, '../public/data/predictions.json');
     const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
     p = data.predictions.find(x => x.id === id) || null;
-  } catch (_) {}
+  } catch (e) {
+    // File not found or parse error - will use defaults
+  }
 
   const title    = p ? p.title    : 'The Simpsons Predicted It.';
-  const season   = p ? `S${String(p.season).padStart(2,'0')}E${String(p.episode).padStart(2,'0')}` : '';
+  const season   = p && p.season && p.episode ? `S${String(p.season).padStart(2,'0')}E${String(p.episode).padStart(2,'0')}` : '';
   const epName   = p ? (p.episode_name || '') : '';
   const year     = p ? p.year_aired : '';
   const status   = p ? p.status : 'confirmed';
@@ -109,7 +111,7 @@ module.exports = async function handler(req, res) {
 
   <!-- Divider before URL -->
   <line x1="60" y1="570" x2="640" y2="570" stroke="#0B2D8F" stroke-width="1" opacity="0.25"/>
-  <text x="60" y="598" font-family="Courier New,monospace" font-size="14" fill="#0B2D8F" opacity="0.55" letter-spacing="1">springfield-oracle.vercel.app</text>
+  <text x="60" y="598" font-family="Courier New,monospace" font-size="14" fill="#0B2D8F" opacity="0.55" letter-spacing="1">springfieldoracle.com</text>
 
   <!-- Right panel: decorative "CALLED IT." -->
   <text x="800" y="260" font-family="Arial Black,Impact,sans-serif" font-size="110" font-weight="900" fill="#FFD520" opacity="0.08" transform="rotate(-8,800,260)">CALLED</text>

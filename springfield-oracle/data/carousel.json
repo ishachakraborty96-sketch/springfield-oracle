@@ -1,0 +1,18 @@
+{
+  "carousel_cards": [
+    {
+      "position": 1,
+      "prediction_id": "SP044",
+      "title": "Trump Death Viral Hoax Debunked",
+      "display_from": "2026-03-08",
+      "display_until": "2026-04-01",
+      "badge": "DEBUNKED",
+      "priority": "high"
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-03-08T07:22:00Z",
+    "total_cards": 1,
+    "rotation_interval_days": 7
+  }
+}

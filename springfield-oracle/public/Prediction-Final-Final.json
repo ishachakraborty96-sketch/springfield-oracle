@@ -2,8 +2,10 @@
   "meta": {
     "last_updated": "2026-03-07",
     "total": 51,
-    "status_update": "DISPUTED records renamed to DEBUNKED",
-    "engine": "Gemini 3 Flash Scraper Ready"
+    "status_update": "PENDING predictions updated with 2024-2026 news velocity analysis",
+    "engine": "Gemini 3 Flash Scraper Ready",
+    "version": "2.0",
+    "last_maintenance": "2026-03-07T19:18:27.512262"
   },
   "predictions": [
     {
@@ -80,7 +82,7 @@
       "episode_code": "S10E11",
       "title": "20th Century Fox Acquired by Disney",
       "year_aired": 1998,
-      "prediction": "A studio sign reads '20th Century Fox — A Division of Walt Disney Co.'",
+      "prediction": "A studio sign reads '20th Century Fox \u2014 A Division of Walt Disney Co.'",
       "real_event": "Disney acquired Fox for $71.3 billion in 2019.",
       "real_year": 2019,
       "category": "Business",
@@ -106,13 +108,15 @@
       "year_aired": 2012,
       "prediction": "Mr. Burns replaces his workforce with robots.",
       "status": "PENDING",
-      "likelihood_pct": 85,
+      "likelihood_pct": 84,
       "likelihood_components": {
         "category_base_rate": 0.72,
         "plausibility_score": 0.85,
         "specificity_score": 0.8,
-        "news_velocity_score": 0.0
-      }
+        "news_velocity_score": 1.0
+      },
+      "last_updated": "2026-03-07T19:20:32.973220",
+      "analysis_notes": "Updated with 2026 news velocity. 20 matching articles found confirming AI/robot workforce displacement is accelerating."
     },
     {
       "id": "SP034",

@@ -18,15 +18,17 @@ module.exports = async function handler(req, res) {
 
   let p = null;
   try {
-    const jsonPath = path.join(process.cwd(), 'public', 'data', 'predictions.json');
+    const jsonPath = path.join(__dirname, '../public/data/predictions.json');
     const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
     p = data.predictions.find(x => x.id === id) || null;
-  } catch (_) {}
+  } catch (e) {
+    // File not found or parse error - will use defaults
+  }
 
-  const BASE = 'https://springfield-oracle.vercel.app';
+  const BASE = 'https://springfieldoracle.com';
 
   const title       = p ? p.title : 'Springfield Oracle — The Simpsons Prediction Tracker';
-  const season      = p ? `S${String(p.season).padStart(2,'0')}E${String(p.episode).padStart(2,'0')}` : '';
+  const season      = p && p.season && p.episode ? `S${String(p.season).padStart(2,'0')}E${String(p.episode).padStart(2,'0')}` : '';
   const epName      = p ? (p.episode_name || '') : '';
   const year        = p ? p.year_aired : '';
   const status      = p ? p.status : '';

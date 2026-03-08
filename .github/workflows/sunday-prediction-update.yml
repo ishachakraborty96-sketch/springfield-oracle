@@ -1,0 +1,49 @@
+name: Sunday Prediction Update
+
+on:
+  schedule:
+    # Every Sunday at 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-predictions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests feedparser
+
+      - name: Run prediction update script
+        run: |
+          python springfield-oracle/public/update-predictions.py
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "automation@springfield-oracle.dev"
+          git config --local user.name "Springfield Oracle Bot"
+
+      - name: Commit and push updated predictions
+        run: |
+          if git diff --quiet springfield-oracle/public/data/predictions.json; then
+            echo "No changes to predictions.json"
+          else
+            git add springfield-oracle/public/data/predictions.json
+            git commit -m "🔮 Sunday Prediction Update: News velocity analysis for $(date +'%Y-%m-%d')"
+            git push
+          fi
+
+      - name: Log update completion
+        run: |
+          echo "Prediction update completed at $(date -u)"
+          echo "Total PENDING predictions processed: $(grep -c '"status": "PENDING"' springfield-oracle/public/data/predictions.json)"
