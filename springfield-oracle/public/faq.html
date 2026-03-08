@@ -388,6 +388,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="stat-num" id="pending-count">—</span>
           <span class="stat-label">Still<br>Pending</span>
         </a>
+        <a href="/" class="stat-pill" title="View debunked predictions">
+          <span class="stat-num" id="debunked-count">—</span>
+          <span class="stat-label">Debunked /<br>Disputed</span>
+        </a>
       </div>
     </div>
   </div>
@@ -498,6 +502,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('total-count').textContent = active.length;
     document.getElementById('confirmed-count').textContent = active.filter(p => p.status === 'confirmed').length;
     document.getElementById('pending-count').textContent = active.filter(p => p.status === 'pending').length;
+    document.getElementById('debunked-count').textContent = active.filter(p => p.status === 'debunked').length;
   } catch(e) {}
 })();
 </script>
