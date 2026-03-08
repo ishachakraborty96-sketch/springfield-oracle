@@ -1185,7 +1185,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   /* ── NEWSLETTER SECTION ── */
   .newsletter-section {
     background: var(--yellow);
-    padding: 48px 40px;
+    padding: 32px 40px;
     position: relative;
   }
   .newsletter-inner {
@@ -1260,12 +1260,13 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   }
   .newsletter-btn:hover { background: #0a2070; border-color: #0a2070; }
   @media (max-width: 768px) {
-    .newsletter-section { padding: 32px 16px; }
-    .newsletter-inner { flex-direction: column; gap: 20px; }
+    .newsletter-section { padding: 24px 16px; }
+    .newsletter-inner { flex-direction: column; gap: 16px; }
     .newsletter-right { width: 100%; }
     .newsletter-heading { font-size: 28px; }
-    .newsletter-input { font-size: 14px; padding: 16px 18px; }
-    .newsletter-btn { font-size: 16px; padding: 16px 18px; }
+    .newsletter-form { flex-direction: column; gap: 12px; }
+    .newsletter-input { font-size: 14px; padding: 14px 16px; height: 48px; box-sizing: border-box; border-right: 2px solid var(--blue); }
+    .newsletter-btn { font-size: 16px; padding: 0 18px; height: 48px; }
   }
 
   .donut-easter-egg {
@@ -1815,8 +1816,13 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <p class="newsletter-sub">Every week: new Simpsons predictions added, real-world matches flagged, and the ones currently unfolding — direct to your inbox. No spam. Unsubscribe anytime.</p>
     </div>
     <div class="newsletter-right">
-      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe src="https://subscribe-forms.beehiiv.com/aa2eb2bb-3726-45d7-a0e7-f1090777c91b" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 100%; max-width: 100%; height: 206px; margin: 0; border-radius: 0px 0px 0px 0px !important; background-color: transparent; box-shadow: 0 0 #0000;"></iframe>
+      <form id="newsletter-form" class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Enter your email" required>
+        <button type="submit" class="newsletter-btn">Get Updates</button>
+      </form>
+      <div id="newsletter-success" style="display:none; text-align:center; padding:20px; font-family:'Space Mono',monospace; color:var(--blue);">
+        <p>✓ Thanks for subscribing!</p>
+      </div>
     </div>
   </div>
 </div>
