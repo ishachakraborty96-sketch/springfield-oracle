@@ -2266,6 +2266,17 @@ function scrollToTable(filter) {
 // ── CAROUSEL CARD MODALS ──────────────────────────────────────────────
 const carouselData = [
   {
+    badge: '🚨 MAR 8, 2026 — DEBUNKED',
+    episode: 'VIRAL HOAX (2026)',
+    status: 'debunked',
+    category: 'Politics',
+    trueDate: '—',
+    predId: 'SP044',
+    title: 'Trump Death Prediction Viral Hoax — AI-Generated Deepfakes',
+    body: `A viral TikTok and X claim spread across social media in early March 2026, alleging that The Simpsons predicted Donald Trump's death through a "coffin scene." Screenshots and AI-generated deepfake video clips began circulating, claiming the show "predicted his death for March 2026."\n\nFact-checkers including Snopes, Wikipedia, and mainstream media investigations identified all viral clips as AI-generated deepfakes. No such Simpsons scene exists in any legitimate episode. Trump remained alive as of March 8, 2026.\n\nThis prediction is logged as a meta-entry to document viral misinformation and track the proliferation of AI deepfakes in the 2026 information environment. The claim illustrates how AI-generated video content can bypass initial verification, spreading false predictions at scale across social platforms before fact-checkers catch up.`,
+    shareTitle: 'Trump Death Prediction Viral Hoax: AI-generated deepfakes claim Simpsons predicted his death in March 2026. Debunked by fact-checkers. No such scene exists.'
+  },
+  {
     badge: '🟡 FEB 28, 2026 — PENDING',
     episode: 'S06E19 · Lisa\'s Wedding (1995)',
     status: 'pending',
@@ -2342,7 +2353,7 @@ function openCarouselModal(index) {
 
 // ── CAROUSEL ─────────────────────────────────────────────────────────────
 let carouselIndex = 0;
-const carouselTotal = 5;
+const carouselTotal = 6;
 let carouselTimer;
 
 function carouselGoTo(n) {
