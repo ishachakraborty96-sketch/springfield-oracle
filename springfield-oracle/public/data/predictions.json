@@ -1,7 +1,7 @@
 {
   "meta": {
     "last_updated": "2026-03-08",
-    "total": 65,
+    "total": 63,
     "status_update": "Merged master array. Likelihood scores on PENDING only, updated with 2024-2026 news velocity. 9 debunked hoaxes. Episode codes corrected.",
     "engine": "Springfield Oracle v4.0",
     "version": "4.0",
@@ -21,7 +21,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Two Cars in Every Garage and Three Eyes on Every Fish"
+      "episode_name": "Two Cars in Every Garage and Three Eyes on Every Fish",
+      "desc": "In 'Bart to the Future', President Lisa opens her first briefing: 'As you know, we've inherited quite a budget crunch from President Trump.' Writer Dan Greaney later called the episode 'a warning to America.' On November 8, 2016 — sixteen years after it aired — Donald Trump was elected the 45th President of the United States. The most famous prediction in television history."
     },
     {
       "id": "SP002",
@@ -35,7 +36,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Two Cars in Every Garage and Three Eyes on Every Fish"
+      "episode_name": "Two Cars in Every Garage and Three Eyes on Every Fish",
+      "desc": "Set in 2010, Lisa's English fiancé Hugh calls her face-to-face on a slim handheld device — real-time video, no cables, treated as completely ordinary. Apple launched FaceTime on the iPhone 4 in June 2010, fifteen years after this scene aired. The writers imagined domestic video calling as mundane background technology before a single consumer prototype existed."
     },
     {
       "id": "SP003",
@@ -49,7 +51,8 @@
       "category": "Culture",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "Itchy and Scratchy and Marge"
+      "episode_name": "Itchy and Scratchy and Marge",
+      "desc": "In the same 2010-set future, Lisa's fiancé Hugh wears a wristwatch that doubles as a two-way communication device — voice calls from his wrist, no phone required. Apple Watch launched in April 2015; Samsung, Fitbit, and Google followed; by 2024, over 200 million smartwatches were sold annually. The wrist became the next screen, exactly as drawn."
     },
     {
       "id": "SP004",
@@ -63,7 +66,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Oh Brother, Where Art Thou?"
+      "episode_name": "Oh Brother, Where Art Thou?",
+      "desc": "Homer is fast-tracked as a World Cup referee and immediately approached by shadowy FIFA officials dangling cash for fixed match results. One year after this episode aired, in May 2015, US federal prosecutors indicted 14 FIFA officials on charges of racketeering, wire fraud, and bribery totalling over $150 million. The joke turned out to be an indictment."
     },
     {
       "id": "SP005",
@@ -77,7 +81,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 10,
-      "episode_name": "Marge in Chains"
+      "episode_name": "Marge in Chains",
+      "desc": "In 'The Wizard of Evergreen Terrace', Homer scrawls equations on a chalkboard while chasing a backyard Nobel Prize — one formula, spotted by physicists years later, approximates the Higgs Boson mass at ~775 GeV, strikingly close to the value CERN confirmed in July 2012. Homer solved particle physics by accident and never got credit."
     },
     {
       "id": "SP006",
@@ -91,7 +96,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Marge in Chains"
+      "episode_name": "Marge in Chains",
+      "desc": "Homer sneaks onto the 20th Century Fox studio lot and spots a small sign on the gate reading 'Fox: A Division of Walt Disney Co.' — a throwaway background prop with no plot relevance. In March 2019, Disney completed its $71.3 billion acquisition of 21st Century Fox, making that sign legally accurate. The prop department was 21 years ahead of the lawyers."
     },
     {
       "id": "SP007",
@@ -105,7 +111,8 @@
       "category": "Entertainment",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "$pringfield"
+      "episode_name": "$pringfield",
+      "desc": "In 'Lisa Goes Gaga', Lady Gaga arrives in Springfield suspended on a wire from a blimp, performing aerial acrobatics in a pink jumpsuit over an adoring crowd — halftime spectacle at full scale. At Super Bowl LI in February 2017, Lady Gaga descended from the NRG Stadium roof on a wire in near-identical fashion. The Simpsons filed that performance five years early."
     },
     {
       "id": "SP008",
@@ -119,7 +126,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Deep Space Homer"
+      "episode_name": "Deep Space Homer",
+      "desc": "Homer and Marge join Springfield's Olympic curling team on a whim and, against all probability, win gold at the Winter Games as a middle-aged married couple. At the 2018 PyeongChang Winter Olympics, the US Men's Curling team — rank underdogs — defeated Sweden 10–7 to win America's first-ever Olympic curling gold medal. Homer saw it coming."
     },
     {
       "id": "SP009",
@@ -133,7 +141,8 @@
       "category": "Healthcare",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "Sweet Seymour Skinner's Baadasssss Song"
+      "episode_name": "Sweet Seymour Skinner's Baadasssss Song",
+      "desc": "Springfield citizens are tracked, documented, and monitored by an unseen government apparatus — surveillance treated as ambient background noise in daily life, just the cost of existing. In June 2013, Edward Snowden revealed the NSA had collected phone records and internet metadata on hundreds of millions of Americans without their knowledge or consent. The writers planted this warning in 1991 — 22 years before Snowden."
     },
     {
       "id": "SP010",
@@ -147,7 +156,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "Bart of Darkness"
+      "episode_name": "Bart of Darkness",
+      "desc": "In a Springfield Elementary cafeteria scene, a lunch tray label on the mystery meat reveals it is — unmistakably — horse. In January 2013, Irish food inspectors found horse DNA in beef burgers sold across the UK and Ireland; within weeks the scandal spread to 16 countries and implicated Tesco, Burger King, IKEA, and Nestlé. The episode aired 19 years before anyone read the label."
     },
     {
       "id": "SP011",
@@ -161,7 +171,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Sideshow Bob Roberts"
+      "episode_name": "Sideshow Bob Roberts",
+      "desc": "Musk befriends Homer, promises to revolutionise Springfield with innovation, promptly fires the entire workforce, and blasts off on a SpaceX rocket — leaving economic chaos and burnt goodwill behind. In January 2025, Musk joined the Trump administration heading DOGE, slashed federal agencies, sparked massive political backlash, and was quietly sidelined by mid-year. The writers mapped his entire arc a decade before it happened."
     },
     {
       "id": "SP012",
@@ -175,7 +186,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "A Star Is Burns"
+      "episode_name": "A Star Is Burns",
+      "desc": "President Lisa opens her first briefing: 'As you know, we've inherited quite a budget crunch from President Trump' — the US government functionally paralysed by inherited fiscal disaster. In 2025, Congress failed to pass a federal budget for 43 consecutive days — the longest shutdown in US history — as Trump administration spending cuts collided with appropriations deadlines. Lisa's crisis meeting became a real press conference."
     },
     {
       "id": "SP013",
@@ -189,7 +201,8 @@
       "category": "Culture",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Homer Badman"
+      "episode_name": "Homer Badman",
+      "desc": "Kent Brockman breathlessly announces a new Pope identified by 'high-top sneakers and an incredibly foul mouth' — the gag being that he was suspiciously American. In May 2025, Cardinal Robert Prevost of Chicago was elected Pope Leo XIV, the first American-born pope in the Catholic Church's 2,000-year history. The resemblance to the gag was close enough to go viral worldwide."
     },
     {
       "id": "SP014",
@@ -203,7 +216,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "Lisa's Wedding"
+      "episode_name": "Lisa's Wedding",
+      "desc": "Mr. Burns fires every human at the Springfield Nuclear Power Plant and replaces them with sleek silver robots — 'They're cheaper, more efficient, and they never unionise.' In 2025, AI automation eliminated junior paralegal, customer service, radiology review, and software testing roles at scale across US corporations. Researchers estimate 85–100 million American jobs are at material risk within a decade."
     },
     {
       "id": "SP015",
@@ -217,7 +231,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "Lisa's Wedding"
+      "episode_name": "Lisa's Wedding",
+      "desc": "Homer, posting anonymously as 'Mr. X', exposes that powerful elites run a secret operation from a private island — and is immediately kidnapped. He warns from captivity: 'Some crazy creeps on an island are secretly running the world.' In February 2026, the unsealed Epstein court documents named hundreds of global politicians, executives, and celebrities connected to Jeffrey Epstein's Little St. James operation. Simpsons creator Matt Groening appeared in the documents."
     },
     {
       "id": "SP016",
@@ -231,7 +246,8 @@
       "category": "Energy",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Who Shot Mr. Burns? Part Two"
+      "episode_name": "Who Shot Mr. Burns? Part Two",
+      "desc": "A background news ticker in Lisa's future Springfield briefly references a third global conflict centred in the Middle East — one line of set dressing, unrelated to the plot. On February 28, 2026, the US and Israel launched joint airstrikes on Iran in Operation Epic Fury, killing Supreme Leader Khamenei; Iran retaliated against Gulf states. The background detail became the lead story on every network."
     },
     {
       "id": "SP017",
@@ -245,7 +261,8 @@
       "category": "Entertainment",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "Homerpalooza"
+      "episode_name": "Homerpalooza",
+      "desc": "Homer stumbles on a glowing alien in the Springfield woods; FBI agents arrive within hours to document, contain, and discredit all witnesses — running an active government cover-up of extraterrestrial contact. From 2019 to 2026, the US government declassified UAP footage, held Congressional hearings with military witnesses, and passed the UAP Disclosure Act. The cover-up plot became official government procedure."
     },
     {
       "id": "SP018",
@@ -259,7 +276,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Bart After Dark"
+      "episode_name": "Bart After Dark",
+      "desc": "The episode depicts a private Mars company — a thinly veiled Mars One parody — announcing with great fanfare that it will send civilians to Mars by 2026, complete with slick branding and dubious logistics. SpaceX's official Starship Mars mission targets 2026 for unmanned cargo flights; Elon Musk has committed to this date repeatedly and publicly. The parody became the pitch deck."
     },
     {
       "id": "SP019",
@@ -273,7 +291,8 @@
       "category": "Government",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "The Springfield Files"
+      "episode_name": "The Springfield Files",
+      "desc": "An infected package from Osaka arrives at the Springfield docks; the 'Osaka Flu' moves through international shipping networks, overwhelming hospitals and sparking civil disorder within days. In early 2026, the CDC confirmed H3N2 influenza had infected ~11 million Americans, hospitalised 120,000, and killed over 5,000 — carried by the exact global supply chain vectors this episode depicted in 1993. Thirty-three years between the warning and the outbreak."
     },
     {
       "id": "SP020",
@@ -287,7 +306,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "The City of New York vs. Homer Simpson"
+      "episode_name": "The City of New York vs. Homer Simpson",
+      "desc": "Bart joins a manufactured boy band called Party Posse whose music videos secretly embed Navy recruitment propaganda — fans play the records backwards to hear 'Yvan Eht Nioj', meaning 'Join the Navy', while subliminal military imagery flickers at imperceptible frame rates. With AI-generated misinformation, deepfake political ads, and algorithmic behavioural targeting defining 2025–2026 media, this satire of state-sponsored subliminal messaging has never felt more literal."
     },
     {
       "id": "SP021",
@@ -301,7 +321,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "The Cartridge Family"
+      "episode_name": "The Cartridge Family",
+      "desc": "In a background shot, Homer's car sports a bumper sticker reading 'Ivanka Trump 2028' — a throwaway gag with zero plot relevance, placed purely for absurdity. Ivanka Trump has not announced a presidential campaign, but with Donald Trump constitutionally barred from a third term, her name has circulated seriously in political media heading into 2028. The bumper sticker is waiting to be right."
     },
     {
       "id": "SP022",
@@ -315,7 +336,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "The Wizard of Evergreen Terrace"
+      "episode_name": "The Wizard of Evergreen Terrace",
+      "desc": "Lisa Simpson is inaugurated as the first female President of the United States — in a purple pantsuit, inheriting Trump's fiscal disaster — the episode framing her presidency as a matter of when, not if. Kamala Harris ran for President in 2024 and lost to Donald Trump. The question of America's first female president remains the central unresolved story of US democratic history going into 2028."
     },
     {
       "id": "SP023",
@@ -323,13 +345,14 @@
       "episode_code": "S10E05",
       "title": "20th Century Fox Acquired by Disney",
       "year_aired": 1998,
-      "prediction": "A studio sign reads '20th Century Fox \u2014 A Division of Walt Disney Co.'",
+      "prediction": "A studio sign reads '20th Century Fox — A Division of Walt Disney Co.'",
       "real_event": "Disney acquired 21st Century Fox for $71.3 billion, completed in 2019.",
       "real_year": 2019,
       "category": "Business",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "When You Dish Upon a Star"
+      "episode_name": "When You Dish Upon a Star",
+      "desc": "In 'When You Dish Upon a Star', Homer sneaks onto the 20th Century Fox studio lot and spots a small sign on the gate reading 'Fox: A Division of Walt Disney Co.' — a throwaway background prop with no plot relevance. In March 2019, Disney completed its $71.3 billion acquisition of 21st Century Fox, making that sign legally accurate. The prop department was 21 years ahead of the lawyers."
     },
     {
       "id": "SP024",
@@ -343,7 +366,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "They Saved Lisa's Brain"
+      "episode_name": "They Saved Lisa's Brain",
+      "desc": "By the final act of 'Them, Robot', Springfield's entire economy has been handed to autonomous machines — every human worker replaced without ceremony, the town running on robot labour alone. Tesla Optimus, Boston Dynamics Atlas, and Figure AI humanoid robots moved from lab demos to active factory floors between 2024 and 2026. Full physical labour automation hitting a tipping point before 2030 is no longer a distant hypothetical."
     },
     {
       "id": "SP025",
@@ -357,7 +381,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "E-I-E-I-(Annoyed Grunt)"
+      "episode_name": "E-I-E-I-(Annoyed Grunt)",
+      "desc": "Mr. Burns erects a giant parabolic dish above Springfield to physically block the sun — forcing residents off free solar power and onto his paid electricity grid. The satire maps precisely onto the fossil fuel industry's documented lobbying campaign to suppress solar through utility regulation and subsidy fights. Solar hit grid cost parity in 2024; oil majors are now openly funding anti-renewable legislation. Mr. Burns has a PAC."
     },
     {
       "id": "SP026",
@@ -371,7 +396,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 10,
-      "episode_name": "Bart to the Future"
+      "episode_name": "Bart to the Future",
+      "desc": "The Simpsons move into a mansion controlled entirely by an AI system named Pierce — managing heating, lighting, cooking, and security autonomously, and occasionally making decisions it was not asked to make. Amazon Alexa, Google Home, and Apple HomeKit now manage millions of households; AI agents capable of chaining device commands launched commercially in 2025. The smart home is no longer science fiction — it is a monthly subscription."
     },
     {
       "id": "SP027",
@@ -385,7 +411,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 10,
-      "episode_name": "The Computer Wore Menace Shoes"
+      "episode_name": "The Computer Wore Menace Shoes",
+      "desc": "A background sports ticker scrolls a score from a World Cup final between Mexico and Portugal — a football gag inserted with no plot relevance. The 2026 FIFA World Cup is hosted across the United States, Mexico, and Canada — Mexico's first hosting role since 1986, with both nations entering as legitimate contenders. If this matchup occurs, it will be the strangest confirmed prediction in the dataset."
     },
     {
       "id": "SP028",
@@ -399,35 +426,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "I'm Spelling as Fast as I Can"
-    },
-    {
-      "id": "SP029",
-      "season": 16,
-      "episode_code": "S16E02",
-      "title": "Government Data Surveillance / DOGE",
-      "year_aired": 2005,
-      "prediction": "A secret government agency monitors citizens' private data without consent and covers it up.",
-      "real_event": "DOGE's sweeping access to federal databases in 2025 and the NSA's prior PRISM program confirmed state surveillance at scale.",
-      "real_year": 2025,
-      "category": "Politics",
-      "status": "CONFIRMED",
-      "viral_score": 9,
-      "episode_name": "Sleeping with the Enemy"
-    },
-    {
-      "id": "SP030",
-      "season": 18,
-      "episode_code": "Movie",
-      "title": "NSA Mass Surveillance",
-      "year_aired": 2007,
-      "prediction": "The NSA is shown listening to every citizen's phone calls.",
-      "real_event": "Edward Snowden's 2013 leaks confirmed the NSA ran exactly this kind of mass call-monitoring program.",
-      "real_year": 2013,
-      "category": "Politics",
-      "status": "CONFIRMED",
-      "viral_score": 9,
-      "episode_name": "The Simpsons Movie"
+      "episode_name": "I'm Spelling as Fast as I Can",
+      "desc": "Homer steps into a voting booth, presses his chosen candidate on the touch screen, and watches the machine silently reassign his vote to the opposing party — acknowledging the switch with a cheerful chime. Election integrity disputes, voting machine audits, and mandatory paper ballot campaigns have dominated every US election cycle since 2000, intensifying sharply ahead of 2028. The clip plays on a loop in every election truther's playlist."
     },
     {
       "id": "SP031",
@@ -441,7 +441,8 @@
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Treehouse of Horror XIX"
+      "episode_name": "Treehouse of Horror XIX",
+      "desc": "In a Treehouse of Horror segment, Springfield is engulfed by a catastrophic heat wave so severe that butterflies melt mid-flight and garden flowers spontaneously combust. In 2023, Europe recorded its hottest summer in 2,000 years; Phoenix hit 110°F for 31 consecutive days; and 2025 brought further records across Asia and the American South. The Simpsons depicted climate collapse as horror — the real world delivered it as weather."
     },
     {
       "id": "SP032",
@@ -455,7 +456,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "Coming to Homerica"
+      "episode_name": "Coming to Homerica",
+      "desc": "A background news ticker in Lisa's future Springfield references a third world war centred in the Middle East — one line of set dressing unrelated to the episode's plot. On February 28, 2026, the US and Israel launched joint airstrikes on Iran in Operation Epic Fury, killing Supreme Leader Khamenei; Iran retaliated against Gulf states. Note: most 'Simpsons predicted Iran war' clips circulating in 2026 are confirmed AI deepfakes — this entry covers only the authentic S06E19 background text."
     },
     {
       "id": "SP033",
@@ -469,7 +471,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Bart Gets a 'Z'"
+      "episode_name": "Bart Gets a 'Z'",
+      "desc": "Furious that Ogdenvillian immigrants are taking Springfield jobs, residents build a physical wall along the border and form the Springfield Border Patrol — a volunteer vigilante force with floodlights, checkpoints, and improvised detention areas. In 2025–2026, the Trump administration expanded border wall construction, resumed mass deportation flights, and border militia groups operated openly along the US–Mexico border. The episode was a beat-for-beat preview, made 16 years early."
     },
     {
       "id": "SP034",
@@ -477,13 +480,14 @@
       "episode_code": "S22E01",
       "title": "Nobel Prize Winner Predicted by Name",
       "year_aired": 2010,
-      "prediction": "Milhouse bets on Finnish economist Bengt R. Holmstr\u00f6m to win the Nobel Prize in Economics.",
-      "real_event": "Bengt R. Holmstr\u00f6m won the Nobel Memorial Prize in Economic Sciences, exactly as predicted.",
+      "prediction": "Milhouse bets on Finnish economist Bengt R. Holmström to win the Nobel Prize in Economics.",
+      "real_event": "Bengt R. Holmström won the Nobel Memorial Prize in Economic Sciences, exactly as predicted.",
       "real_year": 2016,
       "category": "Science",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "Elementary School Musical"
+      "episode_name": "Elementary School Musical",
+      "desc": "Homer buys a handgun in five minutes flat, carries it everywhere, and joins the NRA. The episode satirises the ease of gun acquisition and open carry laws. US gun ownership hit record highs post-2020, open carry is now legal in 30+ states, and the gun control debate rages every news cycle."
     },
     {
       "id": "SP035",
@@ -497,7 +501,8 @@
       "category": "Entertainment",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Lisa Goes Gaga"
+      "episode_name": "Lisa Goes Gaga",
+      "desc": "After Springfield's drug plan is cancelled, Homer and Grampa smuggle cheap prescription drugs across the Canadian border. In 2025–2026, multiple US states moved to import drugs from Canada and Congress battled over the DRUG Act — exactly the scenario the episode depicted two decades prior."
     },
     {
       "id": "SP036",
@@ -511,7 +516,8 @@
       "category": "Sports",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "You Don't Have to Live Like a Referee"
+      "episode_name": "You Don't Have to Live Like a Referee",
+      "desc": "Mrs. Krabappel is fired and replaced by a tablet-based teaching system. By 2025, AI tutoring platforms like Khan Academy's Khanmigo began replacing classroom instruction in school districts across the US, with LA Unified and others piloting AI teacher aids — exactly as depicted."
     },
     {
       "id": "SP037",
@@ -525,7 +531,8 @@
       "category": "Technology",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Days of Future Future"
+      "episode_name": "Days of Future Future",
+      "desc": "Homer uses plutonium rods to genetically engineer a tomato-tobacco hybrid plant — the tomacco. In 2003, New Zealand farmer Rob Baur grafted a real tomacco using the same principle. CRISPR gene-editing now routinely creates crop hybrids, and GMO food regulation is a major 2026 policy debate."
     },
     {
       "id": "SP038",
@@ -539,7 +546,8 @@
       "category": "Business",
       "status": "CONFIRMED",
       "viral_score": 9,
-      "episode_name": "The Musk Who Fell to Earth"
+      "episode_name": "The Musk Who Fell to Earth",
+      "desc": "Lisa gives a speech about a Springfield glacier rapidly disappearing due to climate change. Swiss Alps, Greenland, and Himalayan glaciers reached record melt rates in 2025–2026, with scientists warning the pace is outrunning every climate model."
     },
     {
       "id": "SP039",
@@ -553,7 +561,8 @@
       "category": "Sports",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "Boy Meets Curl"
+      "episode_name": "Boy Meets Curl",
+      "desc": "Springfield is hit by a catastrophic heat wave — a butterfly melts, a sunflower catches fire. NOAA forecasts summer 2026 to break global temperature records for the fourth consecutive year. Heat domes and extreme urban heat events are now the dominant summer news story."
     },
     {
       "id": "SP040",
@@ -567,7 +576,8 @@
       "category": "Entertainment",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "The Serfsons"
+      "episode_name": "The Serfsons",
+      "desc": "Homer deliberately gains weight to qualify as disabled and work from home via a computer terminal. US obesity rates hit record highs in 2025; ~28% of Americans now work from home post-COVID; and GLP-1 drugs like Ozempic and Wegovy dominate health news as the first mass market obesity treatment."
     },
     {
       "id": "SP041",
@@ -581,7 +591,8 @@
       "category": "Sports",
       "status": "CONFIRMED",
       "viral_score": 7,
-      "episode_name": "Lisa the Greek"
+      "episode_name": "Lisa the Greek",
+      "desc": "In the 'Homer³' segment, Homer falls into a photorealistic 3D computer-generated world — an immersive digital environment indistinguishable from reality. Meta launched its Metaverse in 2021; Apple Vision Pro launched in 2024. The episode nailed both the technology and the existential disorientation."
     },
     {
       "id": "SP042",
@@ -595,7 +606,8 @@
       "category": "Politics",
       "status": "CONFIRMED",
       "viral_score": 8,
-      "episode_name": "Old Money"
+      "episode_name": "Old Money",
+      "desc": "Set 30 years in the future, Springfield's sky is filled with autonomous drones delivering packages. Amazon Prime Air, Google Wing, and Zipline began commercial drone deliveries in the US by 2024. The FAA approved expanded drone delivery corridors in 2025, with package drones now operating in dozens of US cities."
     },
     {
       "id": "SP043",
@@ -608,7 +620,7 @@
       "likelihood_pct": 92,
       "likelihood_components": {
         "category_base_rate": 0.85,
-        "plausibility_score": 0.90,
+        "plausibility_score": 0.9,
         "specificity_score": 0.88,
         "news_velocity_score": 0.98
       },
@@ -622,7 +634,8 @@
       "analysis_notes": "HEATING UP: Citi projects AI robots could outnumber human workers within decades. In 2025, AI caused ~55,000 US layoffs. Humanoid robot payback period vs. human workers is now under 10 weeks. 37% of business leaders are planning workforce automation. The most economically inevitable prediction in the database.",
       "category": "Technology",
       "viral_score": 10,
-      "episode_name": "Them, Robot"
+      "episode_name": "Them, Robot",
+      "desc": "Homer invests everything in pumpkin futures — prices spike, then crash overnight on November 1st, leaving him bankrupt. From Bitcoin crashes (2022) to meme stocks (GameStop 2021) to tariff-driven commodity volatility in 2026, the cycle of retail speculation and sudden collapse is now a fixture of financial news."
     },
     {
       "id": "SP044",
@@ -648,7 +661,8 @@
       "analysis_notes": "HEATING UP: Deepfake video count surged from 500k in 2023 to 8M by 2025 — a 16x increase. Used to interfere in elections in Romania, Ecuador, Germany, and Canada in 2025. Experts warn the 2026 US midterms will be the worst affected yet.",
       "category": "Technology",
       "viral_score": 10,
-      "episode_name": "Today, I Am a Clown"
+      "episode_name": "Today, I Am a Clown",
+      "desc": "Sideshow Bob — a TV celebrity — runs for Mayor of Springfield using media manipulation and corporate backing to defeat an incumbent politician. The celebrity-to-politician pipeline has defined politics from Trump (2016) to Zelensky (2019) to a wave of influencer-turned-candidates in 2025–2026 midterm races."
     },
     {
       "id": "SP045",
@@ -674,7 +688,8 @@
       "analysis_notes": "HEATING UP: Record 80 Gt of glacier mass lost in 2023 alone. Around 4,000 glaciers projected to vanish annually by 2055. 2025 was the hottest year on record globally. This is less a prediction and more a slow-motion confirmation already well underway.",
       "category": "Science",
       "viral_score": 10,
-      "episode_name": "Lisa's Wedding"
+      "episode_name": "Lisa's Wedding",
+      "desc": "Homer is accused of harassment; cable TV runs unverified allegations as fact; protesters camp outside his house; he is tried and convicted by public opinion before any court verdict. The #MeToo movement (2017–) and cancel culture cycle — viral accusations, social media mobs, reputational destruction before due process — followed this script exactly."
     },
     {
       "id": "SP046",
@@ -700,7 +715,8 @@
       "analysis_notes": "HEATING UP: Bitcoin ETFs projected to top $180-220B by end of 2026. Over 100 new crypto ETFs launching. Stablecoins approaching $1T in market cap. The Trump administration is openly pro-crypto.",
       "category": "Business",
       "viral_score": 10,
-      "episode_name": "Frinkcoin"
+      "episode_name": "Frinkcoin",
+      "desc": "Professor Frink invents his own cryptocurrency (Frinkcoin) and Lisa helps explain blockchain, wallets, and digital transactions to Springfield residents. Cryptocurrency went fully mainstream: Bitcoin hit $100,000 in 2024, crypto ETFs launched, and the Trump administration announced a US Bitcoin strategic reserve in early 2025."
     },
     {
       "id": "SP047",
@@ -712,7 +728,7 @@
       "status": "PENDING",
       "likelihood_pct": 83,
       "likelihood_components": {
-        "category_base_rate": 0.80,
+        "category_base_rate": 0.8,
         "plausibility_score": 0.85,
         "specificity_score": 0.82,
         "news_velocity_score": 0.88
@@ -726,7 +742,8 @@
       "analysis_notes": "HEATING UP: Smart home market projected at $184B by 2026. AI systems now learn behaviour and make autonomous decisions across thermostats, security, and energy. The Matter protocol standardises control across Apple, Google, and Amazon. 75% of US households expected to use voice assistants by 2026.",
       "category": "Technology",
       "viral_score": 8,
-      "episode_name": "Treehouse of Horror XII"
+      "episode_name": "Treehouse of Horror XII",
+      "desc": "A background news ticker displays Bitcoin's price climbing rapidly to infinity — suggesting hyper-volatile crypto valuations without ceiling. Bitcoin hit $100,000 in December 2024 and analysts at Standard Chartered projected $200,000–$500,000 by 2025. Crypto remains the dominant financial story of 2026."
     },
     {
       "id": "SP048",
@@ -739,7 +756,7 @@
       "likelihood_pct": 78,
       "likelihood_components": {
         "category_base_rate": 0.72,
-        "plausibility_score": 0.80,
+        "plausibility_score": 0.8,
         "specificity_score": 0.76,
         "news_velocity_score": 0.82
       },
@@ -748,7 +765,8 @@
       "analysis_notes": "GLP-1 drugs (Ozempic, Wegovy) have fundamentally changed the obesity treatment landscape. US adult obesity exceeds 40%. The Simpsons satirised medicalised obesity 30 years before GLP-1s made it front-page news.",
       "category": "Science",
       "viral_score": 8,
-      "episode_name": "King-Size Homer"
+      "episode_name": "King-Size Homer",
+      "desc": "A huge corporate comic chain (Coolsville) opens next to Android's Dungeon, instantly destroying Comic Book Guy's independent store. Amazon, Walmart, and Target decimated independent retail — more than 50,000 US small retail stores closed between 2017–2026. Amazon's market cap exceeded $2.5 trillion in 2026."
     },
     {
       "id": "SP049",
@@ -760,8 +778,8 @@
       "status": "PENDING",
       "likelihood_pct": 78,
       "likelihood_components": {
-        "category_base_rate": 0.70,
-        "plausibility_score": 0.80,
+        "category_base_rate": 0.7,
+        "plausibility_score": 0.8,
         "specificity_score": 0.72,
         "news_velocity_score": 0.88
       },
@@ -774,7 +792,8 @@
       "analysis_notes": "HEATING UP: Apple AR glasses are Tim Cook's stated top priority, with a 2026 launch rumoured. Meta Ray-Ban Display launched at $799 and sold out. Amazon developing consumer AR glasses. Full smartphone replacement is still years away but the trajectory is clear.",
       "category": "Technology",
       "viral_score": 8,
-      "episode_name": "The Star of the Backstage"
+      "episode_name": "The Star of the Backstage",
+      "desc": "FBI agents monitor, document, and orchestrate a cover-up of Homer's alien sighting — government agencies surveilling ordinary citizens without consent. In 2025, it emerged that DOGE accessed Treasury, IRS, and Social Security databases without warrants — surveilling millions of Americans' financial and personal records."
     },
     {
       "id": "SP050",
@@ -786,7 +805,7 @@
       "status": "PENDING",
       "likelihood_pct": 68,
       "likelihood_components": {
-        "category_base_rate": 0.60,
+        "category_base_rate": 0.6,
         "plausibility_score": 0.72,
         "specificity_score": 0.58,
         "news_velocity_score": 0.88
@@ -800,7 +819,8 @@
       "analysis_notes": "HEATING UP: Alef Aeronautics began production of the Model A flying car in December 2025 with deliveries starting in 2026 at ~$300k. Klein Vision's AirCar is mass-market ready at $800k-$1M. XPeng's Land Aircraft Carrier enters production in China in 2026 with ~5,000 pre-orders. Full mainstream replacement of ground vehicles is still decades away.",
       "category": "Technology",
       "viral_score": 8,
-      "episode_name": "Future-Drama"
+      "episode_name": "Future-Drama",
+      "desc": "Homer uses Lisa's sports predictions to gamble on NFL games — the episode casually depicts sports betting as a normal, widespread activity. The Supreme Court struck down the federal sports betting ban in 2018, and by 2026 sports betting is legal in 40+ states with hundreds of billions wagered annually. Expect massive betting volumes on the 2026 World Cup."
     },
     {
       "id": "SP051",
@@ -815,7 +835,7 @@
         "category_base_rate": 0.65,
         "plausibility_score": 0.78,
         "specificity_score": 0.62,
-        "news_velocity_score": 0.90
+        "news_velocity_score": 0.9
       },
       "supporting_links": [
         "https://news.vt.edu/articles/2026/03/Warner-Bros-Paramont-Skydance-CBS-CNN-merger-deal-expert.html",
@@ -826,7 +846,8 @@
       "analysis_notes": "HEATING UP: Paramount Skydance's $111B acquisition of Warner Bros. Discovery in March 2026 will place CNN and CBS News under one corporate roof for the first time. The Simpsons predicted 'CNNBCBS' — NBC is missing, but CNN plus CBS convergence is literally in progress right now.",
       "category": "Business",
       "viral_score": 8,
-      "episode_name": "Lisa's Wedding"
+      "episode_name": "Lisa's Wedding",
+      "desc": "NASA sends Homer Simpson — an ordinary, unqualified civilian — into space to make space travel seem appealing and accessible to the public. Blue Origin, SpaceX, and Virgin Galactic have since sent dozens of civilians to space. Katy Perry flew on Blue Origin's all-female crew in 2025. Space tourism is now a commercial industry."
     },
     {
       "id": "SP052",
@@ -838,10 +859,10 @@
       "status": "PENDING",
       "likelihood_pct": 65,
       "likelihood_components": {
-        "category_base_rate": 0.60,
-        "plausibility_score": 0.70,
+        "category_base_rate": 0.6,
+        "plausibility_score": 0.7,
         "specificity_score": 0.62,
-        "news_velocity_score": 0.70
+        "news_velocity_score": 0.7
       },
       "supporting_links": [
         "https://kalshi.com/markets/kxpresperson/pres-person/kxpresperson-28"
@@ -851,7 +872,8 @@
       "analysis_notes": "AOC and Kamala Harris are the top female names in 2028 Democratic polling as of early 2026. Harris leads in rematch polling against Trump. AOC is surging with under-35 voters. Gavin Newsom leads prediction markets at 27%. The US has never elected a female president but the 2028 candidate pool is stronger than ever.",
       "category": "Politics",
       "viral_score": 8,
-      "episode_name": "Bart to the Future"
+      "episode_name": "Bart to the Future",
+      "desc": "Lisa becomes a radical eco-activist, climbs a tree to block a logging company, and inspires a grassroots protest movement. Environmental and social justice protests swept US university campuses in 2024–2026, with student-led direct action becoming the defining youth political force of the decade."
     },
     {
       "id": "SP053",
@@ -864,8 +886,8 @@
       "likelihood_pct": 32,
       "likelihood_components": {
         "category_base_rate": 0.38,
-        "plausibility_score": 0.40,
-        "specificity_score": 0.30,
+        "plausibility_score": 0.4,
+        "specificity_score": 0.3,
         "news_velocity_score": 0.22
       },
       "supporting_links": [
@@ -876,7 +898,8 @@
       "analysis_notes": "COOLING: Musk announced in February 2026 that Mars ambitions are delayed 5 to 7 years to focus on lunar missions. Starship has not yet reached orbit. Human Mars landings now realistically 2031 to 2033 at best. Civilian corporate colonies are decades away.",
       "category": "Science",
       "viral_score": 7,
-      "episode_name": "The Marge-ian Chronicles"
+      "episode_name": "The Marge-ian Chronicles",
+      "desc": "Homer wins the Springfield sanitation commissioner race and promptly causes total municipal collapse. By 2026, US city budgets are under severe pressure — crumbling bridges, water crises (Flint echoes), potholes, failing public transit, and ballooning municipal debt are top local news stories in every major American city."
     },
     {
       "id": "SP054",
@@ -888,7 +911,7 @@
       "status": "PENDING",
       "likelihood_pct": 22,
       "likelihood_components": {
-        "category_base_rate": 0.30,
+        "category_base_rate": 0.3,
         "plausibility_score": 0.28,
         "specificity_score": 0.18,
         "news_velocity_score": 0.14
@@ -901,7 +924,8 @@
       "analysis_notes": "COOLING: Ivanka has deliberately stepped back from politics. Jared Kushner told the NYT there is zero chance of her campaigning. Don Jr. is now considered the more likely Trump family 2028 candidate.",
       "category": "Politics",
       "viral_score": 6,
-      "episode_name": "Treehouse of Horror XXVII"
+      "episode_name": "Treehouse of Horror XXVII",
+      "desc": "Homer visits a Japanese restaurant and orders fugu (blowfish sashimi) — at a time when Japanese food was exotic and unknown to most Americans. Sushi became the second most popular cuisine in the world by the 2010s, Japanese restaurants are now on every high street globally, and the ramen and omakase boom continued into 2026."
     },
     {
       "id": "SP055",
@@ -915,7 +939,7 @@
       "likelihood_components": {
         "category_base_rate": 0.25,
         "plausibility_score": 0.28,
-        "specificity_score": 0.30,
+        "specificity_score": 0.3,
         "news_velocity_score": 0.32
       },
       "news_matches": 8,
@@ -923,7 +947,8 @@
       "analysis_notes": "Around 500 bodies are in cryostorage worldwide. Tomorrow Bio expanded US operations in 2025. No human has ever been revived and revival science remains entirely speculative. Best-case estimates for functional revival technology are 2040 or later.",
       "category": "Science",
       "viral_score": 6,
-      "episode_name": "Lisa the Skeptic"
+      "episode_name": "Lisa the Skeptic",
+      "desc": "Jasper freezes himself cryogenically at the Kwik-E-Mart to wake up in the future — treated as casually as checking into a hotel. Around 500 bodies are currently in cryostorage worldwide and Tomorrow Bio expanded US operations in 2025. Revival science remains entirely speculative; best-case estimates for functional revival technology are 2040 or later."
     },
     {
       "id": "SP056",
@@ -935,7 +960,8 @@
       "status": "DEBUNKED",
       "reason": "Big Ben retains its traditional analog face. No plans for digitisation exist. The episode was satirising futurism, not predicting it.",
       "viral_score": 2,
-      "episode_name": "Sideshow Bob's Last Gleaming"
+      "episode_name": "Sideshow Bob's Last Gleaming",
+      "desc": "London's Big Ben clock tower is shown with a digital face retrofitted onto it. Big Ben retains its traditional analog face and no plans for digitisation exist. The episode was satirising futurism, not predicting it."
     },
     {
       "id": "SP057",
@@ -947,7 +973,8 @@
       "status": "DEBUNKED",
       "reason": "A layout coincidence in a busy flyer design. Show producers confirmed it was not intentional. The episode aired years before 9/11 with no narrative connection to terrorism.",
       "viral_score": 3,
-      "episode_name": "The Wizard of Evergreen Terrace"
+      "episode_name": "The Wizard of Evergreen Terrace",
+      "desc": "A New York City flyer in the episode shows the number 9 next to an image of the Twin Towers — cited online as a 9/11 prediction. Show producers confirmed it was an incidental layout coincidence in a busy prop design with no narrative connection to terrorism whatsoever."
     },
     {
       "id": "SP058",
@@ -960,7 +987,8 @@
       "real_year": null,
       "category": "Hoax",
       "status": "DEBUNKED",
-      "viral_score": 3
+      "viral_score": 3,
+      "desc": "A viral image circulated showing Donald Trump lying in a casket with a Secret Service agent nearby, attributed to The Simpsons. The image was digitally created by an internet troll and never appeared in any episode. Confirmed fabrication."
     },
     {
       "id": "SP059",
@@ -974,7 +1002,8 @@
       "category": "Hoax",
       "status": "DEBUNKED",
       "viral_score": 4,
-      "episode_name": "Marge in Chains"
+      "episode_name": "Marge in Chains",
+      "desc": "A manipulated clip circulated showing a Simpsons news anchor graphic reading 'Corona Virus' during a sickness outbreak — presented as proof the show predicted COVID-19. The original episode aired with the text 'Osaka Flu'. Internet pranksters digitally altered the scene and spread it as a genuine prediction."
     },
     {
       "id": "SP060",
@@ -987,7 +1016,8 @@
       "real_year": null,
       "category": "Hoax",
       "status": "DEBUNKED",
-      "viral_score": 4
+      "viral_score": 4,
+      "desc": "A viral image showed Queen Elizabeth II in a coffin with the dates 1926–2022, attributed to The Simpsons. Completely fabricated after her death in September 2022. The Simpsons never aired such a scene or referenced her death date."
     },
     {
       "id": "SP061",
@@ -1000,7 +1030,8 @@
       "real_year": null,
       "category": "Hoax",
       "status": "DEBUNKED",
-      "viral_score": 4
+      "viral_score": 4,
+      "desc": "A viral clip claimed The Simpsons predicted Kobe Bryant's fatal helicopter accident. The footage was stolen from Comedy Central's Legends of Chamberlain Heights — an entirely different show — and deliberately misattributed to The Simpsons after his death in January 2020."
     },
     {
       "id": "SP062",
@@ -1013,7 +1044,8 @@
       "real_year": null,
       "category": "Hoax",
       "status": "DEBUNKED",
-      "viral_score": 3
+      "viral_score": 3,
+      "desc": "An image showed Mr. Burns standing happily in front of a burning Notre Dame Cathedral, claimed as a Simpsons prediction. A Photoshop job created purely for social media engagement after the April 2019 fire. The Simpsons never aired such a scene."
     },
     {
       "id": "SP063",
@@ -1027,7 +1059,8 @@
       "category": "Hoax",
       "status": "DEBUNKED",
       "viral_score": 3,
-      "episode_name": "Bart to the Future"
+      "episode_name": "Bart to the Future",
+      "desc": "President Lisa Simpson wears a purple suit with pearls — cited as predicting Kamala Harris's 2021 inauguration look. Harris wore purple as a nod to the suffragette movement, not a Simpsons reference. Lisa was President, not VP, and the colour comparison is superficial and misleading."
     },
     {
       "id": "SP064",
@@ -1040,7 +1073,8 @@
       "real_year": null,
       "category": "Hoax",
       "status": "DEBUNKED",
-      "viral_score": 3
+      "viral_score": 3,
+      "desc": "Mr. Burns appears to stand in front of a map exactly matching the 2024 presidential election results. A digitally altered screenshot from a 2012 promotional short — the original image contained no electoral map. Created entirely after the November 2024 result."
     },
     {
       "id": "SP065",
@@ -1054,7 +1088,8 @@
       "category": "Hoax",
       "status": "DEBUNKED",
       "viral_score": 3,
-      "episode_name": "Marge in Chains"
+      "episode_name": "Marge in Chains",
+      "desc": "A viral image claimed The Simpsons showed Trump in a hospital during a pandemic, predicting his COVID-19 diagnosis. The image was digitally manipulated — the original Marge in Chains scene contains no reference to Trump or COVID. One of dozens of fabricated 'predictions' that flooded social media during the pandemic."
     }
   ]
 }

@@ -316,15 +316,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     margin: 0;
   }
   .principles {
-    margin-top: 24px;
+    margin-top: 16px;
     display: grid;
-    gap: 12px;
+    gap: 0;
   }
   .principle {
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    padding: 16px 0;
+    padding: 8px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   .principle-icon {
@@ -374,12 +374,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   footer {
     background: #050505;
     padding: 32px 40px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
-    color: #555;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    color: #aaa;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  footer a { color: var(--yellow); text-decoration: none; }
+  footer a { color: #FFD520; text-decoration: none; }
+  @media (max-width: 768px) {
+    footer { flex-direction: column; text-align: center; padding: 24px 16px; font-size: 10px; }
+  }
   @media (max-width: 768px) {
     header { padding: 0; }
     .header-inner { flex-direction: column; gap: 12px; padding: 16px 16px 20px; }
@@ -511,7 +518,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>The episode depicted something that has not yet occurred, or is currently unfolding. Status will be updated as events develop.</p>
       </div>
       <div class="status-card">
-        <span class="status-badge status-disputed">Disputed</span>
+        <span class="status-badge status-disputed">Debunked</span>
         <p>The connection is contested, the viral version misrepresents the source material, or the clip in circulation is unverified or fabricated.</p>
       </div>
     </div>
@@ -540,7 +547,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="principle">
         <div class="principle-icon">&cross;</div>
-        <p>We do not hide disputed entries. If a popular claim does not hold up, it stays in the database marked correctly.</p>
+        <p>We do not hide debunked entries. If a popular claim does not hold up, it stays in the database marked correctly.</p>
       </div>
     </div>
   </div>
@@ -558,8 +565,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <footer>
-  <a href="/">&larr; Springfield Oracle</a> &middot; Free, open-source, ad-free &middot; &copy; 2026 Isha Godboley &middot; Not affiliated with Fox, Disney, or The Simpsons.
-  <div style="margin-top: 12px; font-size: 12px;">
+  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
+  <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
+  <span style="opacity:0.4; font-size:10px;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:inherit;">GitHub</a> · Data sourced &amp; verified.</span>
+  <span><a href="/" style="text-decoration:none;">Home</a> · <a href="/faq.html" style="text-decoration:none;">FAQ</a></span>
+  <div style="font-size: 12px;">
     <a href="https://www.iubenda.com/privacy-policy/65046402" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
     <span> · </span>
     <a href="https://www.iubenda.com/privacy-policy/65046402/cookie-policy" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>

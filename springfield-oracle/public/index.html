@@ -614,6 +614,32 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     border: 1px solid rgba(232, 19, 42, 0.2);
   }
 
+  /* Priority badges */
+  .priority-badge {
+    display: inline-block;
+    padding: 2px 7px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    border-radius: 3px;
+    margin-left: 7px;
+    vertical-align: middle;
+  }
+
+  .priority-badge-updated {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+  }
+
+  .priority-badge-trending {
+    background: rgba(255, 107, 43, 0.15);
+    color: #FF6B2B;
+    border: 1px solid rgba(255, 107, 43, 0.4);
+  }
+
   /* Likelihood Score Pills */
   .likelihood-pill {
     padding: 4px 12px;
@@ -723,10 +749,10 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
   footer {
     background: #050505;
-    padding: 32px 40px;
+    padding: 24px 40px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 16px;
     border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
     color: #aaa;
@@ -735,6 +761,53 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   footer a {
     color: #FFD520;
     text-decoration: none;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .footer-github {
+    opacity: 0.4;
+    font-size: 10px;
+    color: #aaa;
+  }
+
+  .footer-github a {
+    color: inherit;
+  }
+
+  .footer-nav a {
+    color: #FFD520;
+    text-decoration: none;
+  }
+
+  .footer-policy-btn {
+    display: inline-block;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    color: #ddd;
+    font-size: 11px;
+    font-family: inherit;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .footer-policy-btn:hover {
+    border-color: rgba(255,255,255,0.6);
+    color: #fff;
   }
 
   .complaints-btn {
@@ -1188,11 +1261,19 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 
     footer {
+      padding: 24px 16px;
+      font-size: 10px;
+    }
+    .footer-row {
       flex-direction: column;
       gap: 10px;
       text-align: center;
-      padding: 24px 16px;
-      font-size: 10px;
+      align-items: center;
+    }
+    .footer-right {
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
     }
   }
 
@@ -1592,6 +1673,20 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     }
   }
 
+  /* Desktop-only: widget clears the tall footer */
+  @media (min-width: 1024px) {
+    .oracle-button {
+      bottom: 30px;
+      right: 30px;
+      transition: bottom 0.2s ease, right 0.2s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .oracle-chat-container {
+      bottom: 110px;
+      right: 30px;
+      transition: bottom 0.2s ease, right 0.2s ease;
+    }
+  }
+
   /* Blinky Easter Egg */
   #blinky-modal {
     position: fixed;
@@ -1711,15 +1806,15 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       </nav>
       <div class="header-stats">
       <div class="stat-pill" onclick="scrollToTable('all')" style="cursor:pointer;" title="View all predictions">
-        <span class="stat-num" id="total-count">43</span>
+        <span class="stat-num" id="total-count">63</span>
         <span class="stat-label">Predictions<br>Tracked</span>
       </div>
       <div class="stat-pill" onclick="scrollToTable('confirmed')" style="cursor:pointer;" title="View confirmed predictions">
-        <span class="stat-num" id="confirmed-count">34</span>
+        <span class="stat-num" id="confirmed-count">40</span>
         <span class="stat-label">Confirmed<br>True</span>
       </div>
       <div class="stat-pill" onclick="scrollToTable('pending')" style="cursor:pointer;" title="View pending predictions">
-        <span class="stat-num" id="pending-count">4</span>
+        <span class="stat-num" id="pending-count">13</span>
         <span class="stat-label">Still<br>Pending</span>
       </div>
 
@@ -1960,15 +2055,23 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 <!-- FOOTER -->
 <footer>
-  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
-  <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
-  <span style="opacity:0.4; font-size:10px;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:inherit;">GitHub</a> · Data sourced &amp; verified.</span>
-  <span><a href="/about.html" style="text-decoration:none;" onclick="trackEvent('link_click', {page: 'about'})">About</a> · <a href="/faq.html" style="text-decoration:none;" onclick="trackEvent('link_click', {page: 'faq'})">FAQ</a> · <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button></span>
-  <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Every Simpsons prediction. Sourced, scored, fact-checked. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
-  <div style="margin-top: 20px; font-size: 12px;">
-    <a href="https://www.iubenda.com/privacy-policy/65046402" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-    <span> · </span>
-    <a href="https://www.iubenda.com/privacy-policy/65046402/cookie-policy" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+  <!-- Row 1: branding | copyright | github + nav -->
+  <div class="footer-row">
+    <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
+    <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
+    <div class="footer-right">
+      <span class="footer-github"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a> · Data sourced &amp; verified.</span>
+      <span class="footer-nav"><a href="/about.html" onclick="trackEvent('link_click', {page: 'about'})">About</a> · <a href="/faq.html" onclick="trackEvent('link_click', {page: 'faq'})">FAQ</a></span>
+    </div>
+  </div>
+  <!-- Row 2: complaints (centered) | policy buttons -->
+  <div class="footer-row" style="align-items:center; justify-content:space-between;">
+    <button class="complaints-btn" onclick="releaseTheHounds()">Complain</button>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a href="https://www.iubenda.com/privacy-policy/65046402" class="footer-policy-btn iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+      <span style="color:#555;">·</span>
+      <a href="https://www.iubenda.com/privacy-policy/65046402/cookie-policy" class="footer-policy-btn iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Cookie Policy">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    </div>
   </div>
 </footer>
 
@@ -2009,46 +2112,45 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 <script>
 const predictions = [
   // ── CLASSICS (Confirmed) ──────────────────────────────────────────
-  { id: 'SP001', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Donald Trump Becomes President", desc: "Lisa inherits a budget mess from 'President Trump.' Aired 16 years before Trump's 2016 election win. Writer Dan Greaney called it 'a warning to America.'", category: "Politics", status: "confirmed", trueYear: 2016, viral: 10 },
-  { id: 'SP002', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "FaceTime / Video Calling", desc: "Characters use handheld devices to make video calls — 15 years before Apple launched FaceTime in 2010.", category: "Technology", status: "confirmed", trueYear: 2010, viral: 9 },
-  { id: 'SP003', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "Smartwatch", desc: "A wristwatch that functions as a communication device, predating the Apple Watch by 18 years.", category: "Technology", status: "confirmed", trueYear: 2013, viral: 8 },
-  { id: 'SP004', season: 'S25', episode: 'E16', name: "You Don't Have to Live Like a Referee", year: 2014, title: "FIFA Corruption Scandal", desc: "Homer becomes a World Cup referee bribed by corrupt FIFA officials. One year later, the real FIFA corruption scandal broke globally.", category: "Sports", status: "confirmed", trueYear: 2015, viral: 9 },
-  { id: 'SP005', season: 'S10', episode: 'E22', name: "They Saved Lisa's Brain", year: 1998, title: "Higgs Boson Mass Equation", desc: "Homer writes an equation on a chalkboard that correctly approximates the mass of the Higgs Boson particle, discovered in 2012.", category: "Science", status: "confirmed", trueYear: 2012, viral: 10 },
-  { id: 'SP006', season: 'S10', episode: 'E05', name: "When You Dish Upon a Star", year: 1998, title: "Disney Acquires 20th Century Fox", desc: "A sign reads 'Fox: A Division of Walt Disney Co.' — predicted 21 years before Disney actually acquired Fox for $71 billion in 2019.", category: "Business", status: "confirmed", trueYear: 2019, viral: 10 },
-  { id: 'SP007', season: 'S23', episode: 'E22', name: "Lisa Goes Gaga", year: 2012, title: "Lady Gaga Super Bowl Halftime Show", desc: "Lady Gaga performs a spectacular aerial Super Bowl halftime performance — depicted almost exactly as it happened in 2017.", category: "Culture", status: "confirmed", trueYear: 2017, viral: 9 },
-  { id: 'SP008', season: 'S21', episode: 'E12', name: "Boy Meets Curl", year: 2010, title: "USA Wins Olympic Curling Gold", desc: "Homer and Marge win gold in curling at the Winter Olympics. The US Men's Curling team won gold at PyeongChang 2018.", category: "Sports", status: "confirmed", trueYear: 2018, viral: 8 },
-  { id: 'SP009', season: 'S02', episode: 'E17', name: "Old Money", year: 1991, title: "Mass Government Surveillance", desc: "Citizens monitored and tracked by a surveillance state — predating Snowden's NSA revelations by over two decades.", category: "Politics", status: "confirmed", trueYear: 2013, viral: 8 },
-  { id: 'SP010', season: 'S05', episode: 'E19', name: "Sweet Seymour Skinner's Baadasssss Song", year: 1994, title: "Horse Meat in Food Supply", desc: "A school lunch label reveals horse meat content. Europe's horse meat scandal broke in 2013, shocking the food industry.", category: "Culture", status: "confirmed", trueYear: 2013, viral: 7 },
+  { id: 'SP001', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Donald Trump Becomes President", desc: "In 'Bart to the Future', President Lisa opens her first briefing: 'As you know, we've inherited quite a budget crunch from President Trump.' Writer Dan Greaney later called the episode 'a warning to America.' On November 8, 2016 — sixteen years after it aired — Donald Trump was elected the 45th President of the United States. The most famous prediction in television history.", category: "Politics", status: "confirmed", trueYear: 2016, viral: 10 },
+  { id: 'SP002', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "FaceTime / Video Calling", desc: "Set in 2010, Lisa's English fiancé Hugh calls her face-to-face on a slim handheld device — real-time video, no cables, treated as completely ordinary. Apple launched FaceTime on the iPhone 4 in June 2010, fifteen years after this scene aired. The writers imagined domestic video calling as mundane background technology before a single consumer prototype existed.", category: "Technology", status: "confirmed", trueYear: 2010, viral: 9 },
+  { id: 'SP003', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "Smartwatch", desc: "In the same 2010-set future, Lisa's fiancé Hugh wears a wristwatch that doubles as a two-way communication device — voice calls from his wrist, no phone required. Apple Watch launched in April 2015; Samsung, Fitbit, and Google followed; by 2024, over 200 million smartwatches were sold annually. The wrist became the next screen, exactly as drawn.", category: "Technology", status: "confirmed", trueYear: 2013, viral: 8 },
+  { id: 'SP004', season: 'S25', episode: 'E16', name: "You Don't Have to Live Like a Referee", year: 2014, title: "FIFA Corruption Scandal", desc: "Homer is fast-tracked as a World Cup referee and immediately approached by shadowy FIFA officials dangling cash for fixed match results. One year after this episode aired, in May 2015, US federal prosecutors indicted 14 FIFA officials on charges of racketeering, wire fraud, and bribery totalling over $150 million. The joke turned out to be an indictment.", category: "Sports", status: "confirmed", trueYear: 2015, viral: 9 },
+  { id: 'SP005', season: 'S10', episode: 'E22', name: "They Saved Lisa's Brain", year: 1998, title: "Higgs Boson Mass Equation", desc: "In 'The Wizard of Evergreen Terrace', Homer scrawls equations on a chalkboard while chasing a backyard Nobel Prize — one formula, spotted by physicists years later, approximates the Higgs Boson mass at ~775 GeV, strikingly close to the value CERN confirmed in July 2012. Homer solved particle physics by accident and never got credit.", category: "Science", status: "confirmed", trueYear: 2012, viral: 10 },
+  { id: 'SP006', season: 'S10', episode: 'E05', name: "When You Dish Upon a Star", year: 1998, title: "Disney Acquires 20th Century Fox", desc: "Homer sneaks onto the 20th Century Fox studio lot and spots a small sign on the gate reading 'Fox: A Division of Walt Disney Co.' — a throwaway background prop with no plot relevance. In March 2019, Disney completed its $71.3 billion acquisition of 21st Century Fox, making that sign legally accurate. The prop department was 21 years ahead of the lawyers.", category: "Business", status: "confirmed", trueYear: 2019, viral: 10 },
+  { id: 'SP007', season: 'S23', episode: 'E22', name: "Lisa Goes Gaga", year: 2012, title: "Lady Gaga Super Bowl Halftime Show", desc: "In 'Lisa Goes Gaga', Lady Gaga arrives in Springfield suspended on a wire from a blimp, performing aerial acrobatics in a pink jumpsuit over an adoring crowd — halftime spectacle at full scale. At Super Bowl LI in February 2017, Lady Gaga descended from the NRG Stadium roof on a wire in near-identical fashion. The Simpsons filed that performance five years early.", category: "Culture", status: "confirmed", trueYear: 2017, viral: 9 },
+  { id: 'SP008', season: 'S21', episode: 'E12', name: "Boy Meets Curl", year: 2010, title: "USA Wins Olympic Curling Gold", desc: "Homer and Marge join Springfield's Olympic curling team on a whim and, against all probability, win gold at the Winter Games as a middle-aged married couple. At the 2018 PyeongChang Winter Olympics, the US Men's Curling team — rank underdogs — defeated Sweden 10–7 to win America's first-ever Olympic curling gold medal. Homer saw it coming.", category: "Sports", status: "confirmed", trueYear: 2018, viral: 8 },
+  { id: 'SP009', season: 'S02', episode: 'E17', name: "Old Money", year: 1991, title: "Mass Government Surveillance", desc: "Springfield citizens are tracked, documented, and monitored by an unseen government apparatus — surveillance treated as ambient background noise in daily life, just the cost of existing. In June 2013, Edward Snowden revealed the NSA had collected phone records and internet metadata on hundreds of millions of Americans without their knowledge or consent. The writers planted this warning in 1991 — 22 years before Snowden.", category: "Politics", status: "confirmed", trueYear: 2013, viral: 8 },
+  { id: 'SP010', season: 'S05', episode: 'E19', name: "Sweet Seymour Skinner's Baadasssss Song", year: 1994, title: "Horse Meat in Food Supply", desc: "In a Springfield Elementary cafeteria scene, a lunch tray label on the mystery meat reveals it is — unmistakably — horse. In January 2013, Irish food inspectors found horse DNA in beef burgers sold across the UK and Ireland; within weeks the scandal spread to 16 countries and implicated Tesco, Burger King, IKEA, and Nestlé. The episode aired 19 years before anyone read the label.", category: "Culture", status: "confirmed", trueYear: 2013, viral: 7 },
 
   // ── 2025 CONFIRMED ───────────────────────────────────────────────
-  { id: 'SP011', season: 'S26', episode: 'E10', name: "The Musk Who Fell to Earth", year: 2015, title: "Elon Musk's Political Rise & Fall", desc: "Musk befriends Homer, promises to transform Springfield, then causes mass layoffs before leaving on a SpaceX rocket. In 2025, Musk joined Trump's DOGE, sparked controversy, caused political chaos, then was dismissed. Writers nailed the arc a decade early.", category: "Politics", status: "pending", trueYear: 2025, viral: 10, likelihood_pct: 85 },
-  { id: 'SP012', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Trump Budget Crisis / Government Shutdown", desc: "Lisa inherits a catastrophic budget mess from President Trump. In 2025, the US government shut down for 43 days as Congress repeatedly failed to pass appropriations legislation — exactly as depicted.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 10 },
-  { id: 'SP013', season: 'S10', episode: 'E02', name: "The Wizard of Evergreen Terrace", year: 1998, title: "First American Pope — Pope Leo XIV", desc: "Kent Brockman announces a 'phony Pope' identified by 'high-top sneakers and an incredibly foul mouth' — traits Reddit identified as distinctly Chicago. Pope Leo XIV (Robert Prevost) was elected in 2025 as the first American-born pope, having attended university in Villanova — the same town mentioned in a connected episode.", category: "Culture", status: "debunked", trueYear: 2025, viral: 10 },
-  { id: 'SP014', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "AI Mass Job Displacement", desc: "Mr Burns replaces all plant workers with robots because it's cheaper and more efficient. In 2025, AI automation began eliminating white-collar and blue-collar roles globally. Research suggests 100 million US jobs could be impacted within a decade.", category: "Technology", status: "confirmed", trueYear: 2025, viral: 9 },
+  { id: 'SP011', season: 'S26', episode: 'E10', name: "The Musk Who Fell to Earth", year: 2015, title: "Elon Musk's Political Rise & Fall", desc: "Musk befriends Homer, promises to revolutionise Springfield with innovation, promptly fires the entire workforce, and blasts off on a SpaceX rocket — leaving economic chaos and burnt goodwill behind. In January 2025, Musk joined the Trump administration heading DOGE, slashed federal agencies, sparked massive political backlash, and was quietly sidelined by mid-year. The writers mapped his entire arc a decade before it happened.", category: "Politics", status: "pending", trueYear: 2025, viral: 10, likelihood_pct: 85 },
+  { id: 'SP012', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Trump Budget Crisis / Government Shutdown", desc: "President Lisa opens her first briefing: 'As you know, we've inherited quite a budget crunch from President Trump' — the US government functionally paralysed by inherited fiscal disaster. In 2025, Congress failed to pass a federal budget for 43 consecutive days — the longest shutdown in US history — as Trump administration spending cuts collided with appropriations deadlines. Lisa's crisis meeting became a real press conference.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 10 },
+  { id: 'SP013', season: 'S10', episode: 'E02', name: "The Wizard of Evergreen Terrace", year: 1998, title: "First American Pope — Pope Leo XIV", desc: "Kent Brockman breathlessly announces a new Pope identified by 'high-top sneakers and an incredibly foul mouth' — the gag being that he was suspiciously American. In May 2025, Cardinal Robert Prevost of Chicago was elected Pope Leo XIV, the first American-born pope in the Catholic Church's 2,000-year history. The resemblance to the gag was close enough to go viral worldwide.", category: "Culture", status: "debunked", trueYear: 2025, viral: 10 },
+  { id: 'SP014', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "AI Mass Job Displacement", desc: "Mr. Burns fires every human at the Springfield Nuclear Power Plant and replaces them with sleek silver robots — 'They're cheaper, more efficient, and they never unionise.' In 2025, AI automation eliminated junior paralegal, customer service, radiology review, and software testing roles at scale across US corporations. Researchers estimate 85–100 million American jobs are at material risk within a decade.", category: "Technology", status: "confirmed", trueYear: 2025, viral: 9 },
 
   // ── 2026 HOT / CURRENTLY UNFOLDING ──────────────────────────────
-  { id: 'SP015', season: 'S12', episode: 'E06', name: "The Computer Wore Menace Shoes", year: 2000, title: "Epstein Files — Elite Island Running the World", desc: "Homer blogs as 'Mr. X', exposes powerful people, gets kidnapped to a secret island where those who 'know too much' are silenced. He warns: 'Some crazy creeps on an island are secretly running the world.' In Feb 2026, the Epstein Files dropped naming global elites. Creator Matt Groening was also named in Epstein court documents.", category: "Politics", status: "confirmed", trueYear: 2026, viral: 10 },
-  { id: 'SP032', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "US-Israel Strike on Iran / WW3 Escalation", desc: "A 1995 episode set in a future Springfield briefly references a third World War conflict in the Middle East. On Feb 28, 2026, the US and Israel launched 'Operation Epic Fury' — joint strikes on Iran killing Supreme Leader Khamenei. Iran retaliated against Gulf states (Qatar, UAE, Jordan, Kuwait). WW3 is trending globally. Caution: Most viral 'Simpsons predicted Iran war' clips circulating in 2026 are confirmed AI-generated deepfakes — this entry references only the legitimate S06E19 background detail.", category: "Politics", status: "confirmed", trueYear: null, viral: 10 },
-  { id: 'SP016', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "World War III / Global Conflict References", desc: "Lisa's future fiancé references a major world conflict after WWII. With US-Iran tensions, Israel strikes, and escalating global rhetoric in 2026, this is being widely re-examined. Pending confirmation.", category: "Politics", status: "confirmed", trueYear: null, viral: 10 },
-  { id: 'SP017', season: 'S08', episode: 'E10', name: "The Springfield Files", year: 1997, title: "UFO / UAP Disclosure Goes Mainstream", desc: "Homer spots an alien, triggering FBI investigation and mass public hysteria. The US government has since released declassified UAP footage, held congressional hearings, and the topic has moved from fringe to front page.", category: "Science", status: "confirmed", trueYear: 2026, viral: 9 },
-  { id: 'SP018', season: 'S27', episode: 'E16', name: "The Marge-ian Chronicles", year: 2016, title: "Mars Colonization Attempt by 2026", desc: "The episode shows a private company planning to send humans to Mars by 2026 — a direct parody of Mars One. SpaceX has published plans for Mars cargo flights, with Elon Musk setting 2026 as an early target date.", category: "Science", status: "confirmed", trueYear: null, viral: 9 },
-  { id: 'SP019', season: 'S04', episode: 'E21', name: "Marge in Chains", year: 1993, title: "H3N2 Flu Outbreak / The Osaka Flu", desc: "The 'Osaka Flu' spreads to Springfield through international shipping, causing mass panic, hospital overload and public disorder. In 2026, the CDC confirmed H3N2 has infected ~11 million Americans, killed 5,000, and hospitalised 120,000 — spreading through the exact global supply chain vectors depicted 33 years ago.", category: "Science", status: "confirmed", trueYear: 2026, viral: 10 },
-  { id: 'SP020', season: 'S12', episode: 'E01', name: "Treehouse of Horror XI", year: 2001, title: "Subliminal Media / Propaganda Psyop", desc: "In 'New Kids on the Blecch', Bart's boy band secretly embeds Navy recruitment messaging ('Yvan Eht Nioj' = Join the Navy backwards). With AI-generated propaganda, deepfake news, and algorithmic manipulation dominating 2025-2026 discourse, this feels prescient.", category: "Politics", status: "confirmed", trueYear: null, viral: 8 },
+  { id: 'SP015', season: 'S12', episode: 'E06', name: "The Computer Wore Menace Shoes", year: 2000, title: "Epstein Files — Elite Island Running the World", desc: "Homer, posting anonymously as 'Mr. X', exposes that powerful elites run a secret operation from a private island — and is immediately kidnapped. He warns from captivity: 'Some crazy creeps on an island are secretly running the world.' In February 2026, the unsealed Epstein court documents named hundreds of global politicians, executives, and celebrities connected to Jeffrey Epstein's Little St. James operation. Simpsons creator Matt Groening appeared in the documents.", category: "Politics", status: "confirmed", trueYear: 2026, viral: 10 },
+  { id: 'SP032', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "US-Israel Strike on Iran / WW3 Escalation", desc: "A background news ticker in Lisa's future Springfield references a third world war centred in the Middle East — one line of set dressing unrelated to the episode's plot. On February 28, 2026, the US and Israel launched joint airstrikes on Iran in Operation Epic Fury, killing Supreme Leader Khamenei; Iran retaliated against Gulf states. Note: most 'Simpsons predicted Iran war' clips circulating in 2026 are confirmed AI deepfakes — this entry covers only the authentic S06E19 background text.", category: "Politics", status: "confirmed", trueYear: null, viral: 10 },
+  { id: 'SP016', season: 'S06', episode: 'E19', name: "Lisa's Wedding", year: 1995, title: "World War III / Global Conflict References", desc: "A background news ticker in Lisa's future Springfield briefly references a third global conflict centred in the Middle East — one line of set dressing, unrelated to the plot. On February 28, 2026, the US and Israel launched joint airstrikes on Iran in Operation Epic Fury, killing Supreme Leader Khamenei; Iran retaliated against Gulf states. The background detail became the lead story on every network.", category: "Politics", status: "confirmed", trueYear: null, viral: 10 },
+  { id: 'SP017', season: 'S08', episode: 'E10', name: "The Springfield Files", year: 1997, title: "UFO / UAP Disclosure Goes Mainstream", desc: "Homer stumbles on a glowing alien in the Springfield woods; FBI agents arrive within hours to document, contain, and discredit all witnesses — running an active government cover-up of extraterrestrial contact. From 2019 to 2026, the US government declassified UAP footage, held Congressional hearings with military witnesses, and passed the UAP Disclosure Act. The cover-up plot became official government procedure.", category: "Science", status: "confirmed", trueYear: 2026, viral: 9 },
+  { id: 'SP018', season: 'S27', episode: 'E16', name: "The Marge-ian Chronicles", year: 2016, title: "Mars Colonization Attempt by 2026", desc: "The episode depicts a private Mars company — a thinly veiled Mars One parody — announcing with great fanfare that it will send civilians to Mars by 2026, complete with slick branding and dubious logistics. SpaceX's official Starship Mars mission targets 2026 for unmanned cargo flights; Elon Musk has committed to this date repeatedly and publicly. The parody became the pitch deck.", category: "Science", status: "confirmed", trueYear: null, viral: 9 },
+  { id: 'SP019', season: 'S04', episode: 'E21', name: "Marge in Chains", year: 1993, title: "H3N2 Flu Outbreak / The Osaka Flu", desc: "An infected package from Osaka arrives at the Springfield docks; the 'Osaka Flu' moves through international shipping networks, overwhelming hospitals and sparking civil disorder within days. In early 2026, the CDC confirmed H3N2 influenza had infected ~11 million Americans, hospitalised 120,000, and killed over 5,000 — carried by the exact global supply chain vectors this episode depicted in 1993. Thirty-three years between the warning and the outbreak.", category: "Science", status: "confirmed", trueYear: 2026, viral: 10 },
+  { id: 'SP020', season: 'S12', episode: 'E01', name: "Treehouse of Horror XI", year: 2001, title: "Subliminal Media / Propaganda Psyop", desc: "Bart joins a manufactured boy band called Party Posse whose music videos secretly embed Navy recruitment propaganda — fans play the records backwards to hear 'Yvan Eht Nioj', meaning 'Join the Navy', while subliminal military imagery flickers at imperceptible frame rates. With AI-generated misinformation, deepfake political ads, and algorithmic behavioural targeting defining 2025–2026 media, this satire of state-sponsored subliminal messaging has never felt more literal.", category: "Politics", status: "confirmed", trueYear: null, viral: 8 },
 
   // ── 2027-2028 PENDING ────────────────────────────────────────────
-  { id: 'SP021', season: 'S27', episode: 'E16', name: "Treehouse of Horror XXVII", year: 2016, title: "Ivanka Trump Runs for President — 2028", desc: "Homer's sticker reads 'Ivanka Trump 2028' — a throwaway gag that's gaining serious traction. Ivanka hasn't announced a run, but with Trump constitutionally barred from a third term, 2028 is wide open and her name is already circulating.", category: "Politics", status: "debunked", trueYear: null, viral: 10 },
-  { id: 'SP022', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Lisa Simpson Presidency — Woman President by 2030", desc: "Lisa becomes the first female president, inheriting Trump's budget disaster. The episode imagines a 2030 scenario. With Harris having run in 2024, the question of America's first female president remains alive into the 2028 cycle.", category: "Politics", status: "confirmed", trueYear: null, viral: 9 },
-  { id: 'SP023', season: 'S07', episode: 'E09', name: "Sideshow Bob's Last Gleaming", year: 1995, title: "Digital Big Ben / Landmark Tech Overhaul", desc: "Big Ben is shown as a digital clock display. The UK is currently undergoing debates about modernising national infrastructure. A seemingly absurd prediction that's getting closer to plausible.", category: "Culture", status: "debunked", trueYear: null, viral: 6 },
-  { id: 'SP024', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "Full Robot Revolution / Physical Labour Automation", desc: "All of Springfield's human workers are fully replaced by robots. Beyond office AI, physical robotics (Boston Dynamics, Tesla Optimus) are advancing rapidly. Full blue-collar automation could hit a tipping point before 2028.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
-  { id: 'SP025', season: 'S07', episode: 'E01', name: "Who Shot Mr. Burns? Part II", year: 1995, title: "Solar Energy / Oil Industry Collapse", desc: "Mr Burns builds a giant sun-blocker to force Springfield to buy his energy. A satirical take on fossil fuel monopolies fighting renewable energy. With solar hitting cost parity globally and oil lobbies fighting back, this power struggle is very real.", category: "Science", status: "confirmed", trueYear: null, viral: 7 },
-  { id: 'SP026', season: 'S12', episode: 'E12', name: "Treehouse of Horror XII", year: 2001, title: "Fully Automated AI Smart Homes", desc: "The Simpson family moves into a home run entirely by AI — controlled by voice, making decisions autonomously. Smart home technology is rapidly approaching this level, with AI agents now able to control entire home ecosystems.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
-  { id: 'SP027', season: 'S08', episode: 'E14', name: "The Cartridge Family", year: 1997, title: "Mexico vs Portugal World Cup Final — 2026", desc: "The episode mentions a Mexico vs Portugal World Cup final. The 2026 World Cup is hosted in the USA, Mexico, and Canada. Both Mexico and Portugal are strong contenders. This could literally come true this year.", category: "Sports", status: "pending", trueYear: null, viral: 9, likelihood_pct: 12 },
-  { id: 'SP028', season: 'S20', episode: 'E04', name: "Treehouse of Horror XIX", year: 2008, title: "Voting Machine Fraud", desc: "Homer's vote switches candidates on a touch-screen voting machine. Election integrity concerns have dominated every US election cycle since, with machine audits and paper trail debates intensifying ahead of 2028.", category: "Politics", status: "confirmed", trueYear: null, viral: 8 },
-  { id: 'SP029', season: 'S16', episode: 'E06', name: "Midnight Rx", year: 2005, title: "Large-Scale Environmental Disaster", desc: "Springfield faces an ecological catastrophe caused by corporate negligence. With climate events accelerating — wildfires, floods, chemical spills — a major man-made environmental disaster is statistically overdue before 2028.", category: "Science", status: "confirmed", trueYear: null, viral: 7 },
-  { id: 'SP030', season: 'S33', episode: 'E01', name: "The Star of the Backstage", year: 2021, title: "AR Glasses Replace Smartphones", desc: "Characters use sleek augmented reality glasses as primary devices. Meta's Ray-Ban AI glasses and Apple Vision Pro are early iterations. Full AR glasses replacing the phone is the next hardware cycle — industry consensus puts this at 2027-2028.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
+  { id: 'SP021', season: 'S27', episode: 'E16', name: "Treehouse of Horror XXVII", year: 2016, title: "Ivanka Trump Runs for President — 2028", desc: "In a background shot, Homer's car sports a bumper sticker reading 'Ivanka Trump 2028' — a throwaway gag with zero plot relevance, placed purely for absurdity. Ivanka Trump has not announced a presidential campaign, but with Donald Trump constitutionally barred from a third term, her name has circulated seriously in political media heading into 2028. The bumper sticker is waiting to be right.", category: "Politics", status: "debunked", trueYear: null, viral: 10 },
+  { id: 'SP022', season: 'S11', episode: 'E17', name: "Bart to the Future", year: 2000, title: "Lisa Simpson Presidency — Woman President by 2030", desc: "Lisa Simpson is inaugurated as the first female President of the United States — in a purple pantsuit, inheriting Trump's fiscal disaster — the episode framing her presidency as a matter of when, not if. Kamala Harris ran for President in 2024 and lost to Donald Trump. The question of America's first female president remains the central unresolved story of US democratic history going into 2028.", category: "Politics", status: "confirmed", trueYear: null, viral: 9 },
+  { id: 'SP024', season: 'S23', episode: 'E17', name: "Them, Robot", year: 2012, title: "Full Robot Revolution / Physical Labour Automation", desc: "By the final act of 'Them, Robot', Springfield's entire economy has been handed to autonomous machines — every human worker replaced without ceremony, the town running on robot labour alone. Tesla Optimus, Boston Dynamics Atlas, and Figure AI humanoid robots moved from lab demos to active factory floors between 2024 and 2026. Full physical labour automation hitting a tipping point before 2030 is no longer a distant hypothetical.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
+  { id: 'SP025', season: 'S07', episode: 'E01', name: "Who Shot Mr. Burns? Part II", year: 1995, title: "Solar Energy / Oil Industry Collapse", desc: "Mr. Burns erects a giant parabolic dish above Springfield to physically block the sun — forcing residents off free solar power and onto his paid electricity grid. The satire maps precisely onto the fossil fuel industry's documented lobbying campaign to suppress solar through utility regulation and subsidy fights. Solar hit grid cost parity in 2024; oil majors are now openly funding anti-renewable legislation. Mr. Burns has a PAC.", category: "Science", status: "confirmed", trueYear: null, viral: 7 },
+  { id: 'SP026', season: 'S12', episode: 'E12', name: "Treehouse of Horror XII", year: 2001, title: "Fully Automated AI Smart Homes", desc: "The Simpsons move into a mansion controlled entirely by an AI system named Pierce — managing heating, lighting, cooking, and security autonomously, and occasionally making decisions it was not asked to make. Amazon Alexa, Google Home, and Apple HomeKit now manage millions of households; AI agents capable of chaining device commands launched commercially in 2025. The smart home is no longer science fiction — it is a monthly subscription.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
+  { id: 'SP027', season: 'S08', episode: 'E14', name: "The Cartridge Family", year: 1997, title: "Mexico vs Portugal World Cup Final — 2026", desc: "A background sports ticker scrolls a score from a World Cup final between Mexico and Portugal — a football gag inserted with no plot relevance. The 2026 FIFA World Cup is hosted across the United States, Mexico, and Canada — Mexico's first hosting role since 1986, with both nations entering as legitimate contenders. If this matchup occurs, it will be the strangest confirmed prediction in the dataset.", category: "Sports", status: "pending", trueYear: null, viral: 9, likelihood_pct: 12 },
+  { id: 'SP028', season: 'S20', episode: 'E04', name: "Treehouse of Horror XIX", year: 2008, title: "Voting Machine Fraud", desc: "Homer steps into a voting booth, presses his chosen candidate on the touch screen, and watches the machine silently reassign his vote to the opposing party — acknowledging the switch with a cheerful chime. Election integrity disputes, voting machine audits, and mandatory paper ballot campaigns have dominated every US election cycle since 2000, intensifying sharply ahead of 2028. The clip plays on a loop in every election truther's playlist.", category: "Politics", status: "confirmed", trueYear: null, viral: 8 },
+  { id: 'SP029', season: 'S16', episode: 'E06', name: "Midnight Rx", year: 2005, title: "Large-Scale Environmental Disaster", desc: "Springfield faces environmental collapse caused by corporate negligence — the river turns toxic, wildlife dies on screen, and executives deny all liability while residents suffer the consequences. Ohio's East Palestine train derailment (February 2023), Maui wildfires (August 2023), and Los Angeles wildfires (January 2025) demonstrated how rapidly corporate negligence or climate events can trigger environmental catastrophe in American communities. The next major man-made disaster is not a matter of if — only where and when.", category: "Science", status: "confirmed", trueYear: null, viral: 7 },
+  { id: 'SP030', season: 'S33', episode: 'E01', name: "The Star of the Backstage", year: 2021, title: "AR Glasses Replace Smartphones", desc: "In a future-set Springfield, characters wear slim, lightweight glasses as their primary devices — streaming data, making calls, and overlaying information onto the physical world without ever reaching for a phone. Meta's Ray-Ban Smart Glasses and Apple Vision Pro represent the first consumer generation; industry analysts place full smartphone-replacing AR glasses in the 2027–2029 window. The prop department sketched the next hardware cycle in 2021.", category: "Technology", status: "confirmed", trueYear: null, viral: 8 },
 
   // ── MARCH–AUG 2026: HIGH-LIKELIHOOD NEWS MATCHES ─────────────────
-  { id: 'SP033', season: 'S20', episode: 'E21', name: "Coming to Homerica", year: 2009, title: "Border Wall & Immigration Vigilantes", desc: "Springfield residents build a wall to keep out Ogdenvillians and form a volunteer vigilante border patrol with checkpoints. In 2025–2026, Trump's mass deportation operation, expanded border wall construction, and militia patrols on the Southern border mirror the episode beat for beat.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 9 },
+  { id: 'SP033', season: 'S20', episode: 'E21', name: "Coming to Homerica", year: 2009, title: "Border Wall & Immigration Vigilantes", desc: "Furious that Ogdenvillian immigrants are taking Springfield jobs, residents build a physical wall along the border and form the Springfield Border Patrol — a volunteer vigilante force with floodlights, checkpoints, and improvised detention areas. In 2025–2026, the Trump administration expanded border wall construction, resumed mass deportation flights, and border militia groups operated openly along the US–Mexico border. The episode was a beat-for-beat preview, made 16 years early.", category: "Politics", status: "confirmed", trueYear: 2025, viral: 9 },
   { id: 'SP034', season: 'S09', episode: 'E05', name: "The Cartridge Family", year: 1997, title: "Gun Proliferation / Open Carry Culture", desc: "Homer buys a handgun in five minutes flat, carries it everywhere, and joins the NRA. The episode satirises the ease of gun acquisition and open carry laws. US gun ownership hit record highs post-2020, open carry is now legal in 30+ states, and the gun control debate rages every news cycle.", category: "Politics", status: "confirmed", trueYear: 2022, viral: 8 },
   { id: 'SP035', season: 'S16', episode: 'E06', name: "Midnight Rx", year: 2005, title: "Prescription Drug Pricing / Canadian Imports", desc: "After Springfield's drug plan is cancelled, Homer and Grampa smuggle cheap prescription drugs across the Canadian border. In 2025–2026, multiple US states moved to import drugs from Canada and Congress battled over the DRUG Act — exactly the scenario the episode depicted two decades prior.", category: "Business", status: "pending", trueYear: 2024, viral: 7, likelihood_pct: 75 },
   { id: 'SP036', season: 'S21', episode: 'E02', name: "Bart Gets a 'Z'", year: 2009, title: "AI / Tablets Replacing Teachers", desc: "Mrs. Krabappel is fired and replaced by a tablet-based teaching system. By 2025, AI tutoring platforms like Khan Academy's Khanmigo began replacing classroom instruction in school districts across the US, with LA Unified and others piloting AI teacher aids — exactly as depicted.", category: "Technology", status: "confirmed", trueYear: 2024, viral: 7 },
@@ -2120,6 +2222,25 @@ function likelihoodBadge(likelihood, status) {
   if (pct >= 70) className = 'likelihood-high';
   else if (pct >= 40) className = 'likelihood-medium';
   return `<span class="likelihood-pill ${className}">${pct}%${tooltipHtml}</span>${inlineNote}`;
+}
+
+function getPriorityTier(p) {
+  const status = (p.status || '').toUpperCase();
+  const lastUpdated = p.last_updated;
+  // Tier 1: CONFIRMED or DEBUNKED within the last 30 days
+  if ((status === 'CONFIRMED' || status === 'DEBUNKED') && lastUpdated) {
+    const updated = new Date(lastUpdated);
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    if (!isNaN(updated) && updated >= thirtyDaysAgo) return 1;
+  }
+  // Tier 2: PENDING with high likelihood or high news velocity
+  if (status === 'PENDING') {
+    const likelihood = p.likelihood_pct || 0;
+    const velocity = p.likelihood_components?.news_velocity_score || 0;
+    if (likelihood > 85 || velocity > 0.90) return 2;
+  }
+  return 3;
 }
 
 function applySortField(a, b, field, direction) {
@@ -2287,18 +2408,36 @@ let currentSearch = '';
 let currentSort = { field: 'recency', direction: 'desc' };
 
 // Sort + store the full filtered dataset, reset to page 1, then draw.
-// Sort by recency of news: still-developing (no trueYear) first, then by trueYear desc.
+// Default: Priority Sort — Tier 1 (recently updated) → Tier 2 (high-velocity pending) → Tier 3 (id desc).
 function renderTable(data) {
   currentFilteredData = [...data].sort((a, b) => {
-    // Apply current sort if not default recency
+    // Apply user-selected sort if not default
     if (currentSort.field !== 'recency') {
       return applySortField(a, b, currentSort.field, currentSort.direction);
     }
-    // Default recency sort
-    if (!a.trueYear && !b.trueYear) return b.year - a.year;
-    if (!a.trueYear) return -1;
-    if (!b.trueYear) return 1;
-    return b.trueYear - a.trueYear;
+    // Priority sort
+    const tierA = getPriorityTier(a);
+    const tierB = getPriorityTier(b);
+    if (tierA !== tierB) return tierA - tierB;
+    // Within Tier 1: most recently updated first
+    if (tierA === 1) {
+      const dA = new Date(a.last_updated || 0);
+      const dB = new Date(b.last_updated || 0);
+      return dB - dA;
+    }
+    // Within Tier 2: highest likelihood first, then velocity
+    if (tierA === 2) {
+      const lA = a.likelihood_pct || 0;
+      const lB = b.likelihood_pct || 0;
+      if (lB !== lA) return lB - lA;
+      const vA = a.likelihood_components?.news_velocity_score || 0;
+      const vB = b.likelihood_components?.news_velocity_score || 0;
+      return vB - vA;
+    }
+    // Tier 3: id descending (numeric suffix of SP###)
+    const idA = parseInt((a.id || '').replace(/\D/g, '')) || 0;
+    const idB = parseInt((b.id || '').replace(/\D/g, '')) || 0;
+    return idB - idA;
   });
   currentPage = 1;
   renderCurrentPage();
@@ -2385,6 +2524,12 @@ function renderCurrentPage() {
     tr.id = `pred-${p.id}`;
     tr.className = `${p.status} row-animate`;
     tr.style.animationDelay = `${i * 0.04}s`;
+    const priorityTier = getPriorityTier(p);
+    const priorityBadge = priorityTier === 1
+      ? `<span class="priority-badge priority-badge-updated">Just Updated</span>`
+      : priorityTier === 2
+        ? `<span class="priority-badge priority-badge-trending">Trending</span>`
+        : '';
     const liveNews = window.liveNewsMatches?.[p.id];
     const liveBadge = liveNews
       ? `<a href="${liveNews.link}" target="_blank" rel="noopener" onclick="event.stopPropagation(); trackEvent('link_click', {type: 'live_news', prediction_id: '${p.id}'})" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;background:rgba(255,107,43,0.15);border:1px solid rgba(255,107,43,0.5);border-radius:3px;font-family:'Space Mono',monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;" onmouseover="this.style.background='rgba(255,107,43,0.3)'" onmouseout="this.style.background='rgba(255,107,43,0.15)'">● LIVE NEWS ↗</a>`
@@ -2393,7 +2538,7 @@ function renderCurrentPage() {
     const episodeStr = (p.season || p.episode) ? `${p.season || 'S?'}${p.episode || 'E?'}` : '';
     tr.innerHTML = `
       <td class="td-episode">${episodeStr}<span>· ${p.name} (${p.year})</span></td>
-      <td class="td-desc"><strong>${p.title}${blinkyFish}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
+      <td class="td-desc"><strong>${p.title}${blinkyFish}${priorityBadge}</strong><p>${p.desc.substring(0,90)}...</p>${liveBadge}</td>
       <td>${statusBadge(p.status)}</td>
       <td><span class="category-tag">${p.category}</span></td>
       <td>${likelihoodBadge(p.likelihood_pct, p.status)}</td>
@@ -2542,6 +2687,49 @@ function scrollToTable(filter) {
 }
 
 // ── CAROUSEL CARD MODALS ──────────────────────────────────────────────
+// ── PREDICTION LOOKUP (supporting_links / analysis_notes) ────────────
+let predSupportingLinks = {};
+(async function loadPredSupportingLinks() {
+  try {
+    const resp = await fetch('/data/predictions.json');
+    const data = await resp.json();
+    const preds = Array.isArray(data) ? data : (data.predictions || []);
+    for (const p of preds) {
+      if (p.id && (p.supporting_links?.length || p.analysis_notes)) {
+        predSupportingLinks[p.id] = { links: p.supporting_links || [], notes: p.analysis_notes || '' };
+      }
+    }
+  } catch(e) {}
+})();
+
+function urlToHeadline(url) {
+  try {
+    const u = new URL(url);
+    const parts = u.pathname.split('/').filter(s => !/^\d{4}$/.test(s) && !/^\d{2}$/.test(s) && s);
+    const slug = parts[parts.length - 1].replace(/\.(html?|php|aspx?)$/i, '');
+    if (!slug || slug.length < 5) return null;
+    const title = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const domain = u.hostname.replace(/^www\./, '');
+    const source = domain.split('.')[0].charAt(0).toUpperCase() + domain.split('.')[0].slice(1);
+    return { title, source };
+  } catch(e) { return null; }
+}
+
+function getMostRecentLink(links) {
+  if (!links || !links.length) return null;
+  const withDates = links.map(url => {
+    const m = url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
+    return { url, date: m ? new Date(`${m[1]}-${m[2]}-${m[3]}`) : null };
+  });
+  withDates.sort((a, b) => {
+    if (a.date && b.date) return b.date - a.date;
+    if (a.date) return -1;
+    if (b.date) return 1;
+    return 0;
+  });
+  return withDates[0]?.url || null;
+}
+
 const carouselData = [
   {
     badge: '🚨 MAR 8, 2026 — DEBUNKED',
@@ -2612,13 +2800,23 @@ function openCarouselModal(index) {
   document.getElementById('modal-category').textContent = d.category || '—';
   document.getElementById('modal-airdate').textContent = d.episode.match(/\d{4}/)?.[0] || '—';
   document.getElementById('modal-truedate').textContent = d.trueDate || d.badge.match(/\d{4}/)?.[0] || 'Ongoing';
-  // Live news link from RSS feed
+  // Live news: prefer RSS match, fallback to supporting_links for PENDING cards
   const liveNewsEl = document.getElementById('modal-live-news');
   const liveNews = d.predId ? window.liveNewsMatches?.[d.predId] : null;
   if (liveNews) {
     const date = liveNews.pubDate ? new Date(liveNews.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
     liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${liveNews.link}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${liveNews.title}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${date}</span>` : ''}`;
     liveNewsEl.style.display = 'block';
+  } else if (d.status === 'pending' && d.predId) {
+    const pred = predSupportingLinks[d.predId];
+    const bestLink = getMostRecentLink(pred?.links);
+    const headline = bestLink ? urlToHeadline(bestLink) : null;
+    if (headline) {
+      liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${bestLink}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${headline.title} — ${headline.source}</a>`;
+      liveNewsEl.style.display = 'block';
+    } else {
+      liveNewsEl.style.display = 'none';
+    }
   } else {
     liveNewsEl.style.display = 'none';
   }
@@ -2892,7 +3090,7 @@ async function syncWithDatabase() {
           name:     p.episode_name || '',
           year:     p.year_aired,
           title:    p.title,
-          desc:     p.prediction + (p.real_event ? ` Real: ${p.real_event}` : ''),
+          desc:     p.desc || (p.prediction + (p.real_event ? ` Real: ${p.real_event}` : '')),
           category: p.category,
           status:   p.status,
           trueYear: p.real_year,
@@ -3097,6 +3295,49 @@ window.addEventListener('load', function() {
     <button class="oracle-submit-btn" onclick="submitOracleQuestion()">Ask</button>
   </div>
 </div>
+
+<script>
+(function () {
+  // Keep oracle widget at least 40px above the footer — desktop only
+  var DESKTOP_MIN_WIDTH = 1024;
+  var GAP = 40;          // min gap between widget bottom and footer top
+  var DEFAULT_BTN_BOTTOM  = 30;
+  var DEFAULT_CHAT_BOTTOM = 110;
+  var BTN_HEIGHT = 70;   // matches CSS
+
+  function adjustWidgetPosition() {
+    if (window.innerWidth < DESKTOP_MIN_WIDTH) return;
+    var footer = document.querySelector('footer');
+    var oracleBtn  = document.querySelector('.oracle-button');
+    var oracleChat = document.querySelector('.oracle-chat-container');
+    if (!footer || !oracleBtn) return;
+
+    var footerTop    = footer.getBoundingClientRect().top;   // px from viewport top
+    var viewportH    = window.innerHeight;
+    var footerVisible = footerTop < viewportH;
+
+    if (footerVisible) {
+      // How much of the footer is visible from the bottom of the viewport
+      var footerExposure = viewportH - footerTop;           // px of footer showing
+      var desiredBtnBottom = footerExposure + GAP;          // lift button this much
+      oracleBtn.style.bottom  = Math.max(DEFAULT_BTN_BOTTOM, desiredBtnBottom) + 'px';
+      oracleChat.style.bottom = Math.max(DEFAULT_CHAT_BOTTOM, desiredBtnBottom + BTN_HEIGHT + 10) + 'px';
+    } else {
+      oracleBtn.style.bottom  = DEFAULT_BTN_BOTTOM + 'px';
+      oracleChat.style.bottom = DEFAULT_CHAT_BOTTOM + 'px';
+    }
+  }
+
+  window.addEventListener('scroll', adjustWidgetPosition, { passive: true });
+  window.addEventListener('resize', adjustWidgetPosition, { passive: true });
+  // Run once on load in case page starts scrolled
+  if (document.readyState === 'complete') {
+    adjustWidgetPosition();
+  } else {
+    window.addEventListener('load', adjustWidgetPosition);
+  }
+})();
+</script>
 
 <!-- Blinky Easter Egg Modal -->
 <div id="blinky-modal" onclick="if(event.target.id==='blinky-modal') window.closeBlinkyModal?.()">

@@ -330,12 +330,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   footer {
     background: #050505;
     padding: 32px 40px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
-    color: #555;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    color: #aaa;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  footer a { color: var(--yellow); text-decoration: none; }
+  footer a { color: #FFD520; text-decoration: none; }
+  @media (max-width: 768px) {
+    footer { flex-direction: column; text-align: center; padding: 24px 16px; font-size: 10px; }
+  }
   @media (max-width: 768px) {
     header { padding: 0; }
     .header-inner { flex-direction: column; gap: 12px; padding: 16px 16px 20px; }
@@ -468,8 +475,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="faq-item">
     <div class="ep-ref">S12E06 &middot; The Computer Wore Menace Shoes &middot; 2000</div>
     <div class="faq-q">Did the Simpsons predict the Epstein files?</div>
-    <div class="faq-a">In &ldquo;The Computer Wore Menace Shoes&rdquo; (2000), Homer blogs as &ldquo;Mr. X&rdquo;, gets kidnapped to a secret island where powerful people silence those who know too much. He posts: &ldquo;Some crazy creeps on an island are secretly running the world.&rdquo; The Epstein Files were released in 2026, naming global elites and referencing private island activities. This entry is marked Disputed &mdash; the episode is a parody of the 1967 series The Prisoner, not a deliberate Epstein reference. The parallel is notable but the connection is not verified.</div>
-    <span class="status-badge status-disputed">Disputed</span>
+    <div class="faq-a">In &ldquo;The Computer Wore Menace Shoes&rdquo; (2000), Homer blogs as &ldquo;Mr. X&rdquo;, gets kidnapped to a secret island where powerful people silence those who know too much. He posts: &ldquo;Some crazy creeps on an island are secretly running the world.&rdquo; The Epstein Files were released in 2026, naming global elites and referencing private island activities. This entry is marked Debunked &mdash; the episode is a parody of the 1967 series The Prisoner, not a deliberate Epstein reference. The parallel is notable but the connection is not verified.</div>
+    <span class="status-badge status-disputed">Debunked</span>
   </div>
 
   <div class="faq-item">
@@ -482,8 +489,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <footer>
-  <a href="/">&larr; Springfield Oracle</a> &middot; Free, open-source, ad-free &middot; &copy; 2026 Isha Godboley
-  <div style="margin-top: 12px; font-size: 12px;">
+  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
+  <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
+  <span style="opacity:0.4; font-size:10px;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:inherit;">GitHub</a> · Data sourced &amp; verified.</span>
+  <span><a href="/" style="text-decoration:none;">Home</a> · <a href="/about.html" style="text-decoration:none;">About</a></span>
+  <div style="font-size: 12px;">
     <a href="https://www.iubenda.com/privacy-policy/65046402" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
     <span> · </span>
     <a href="https://www.iubenda.com/privacy-policy/65046402/cookie-policy" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
