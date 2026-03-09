@@ -8,7 +8,6 @@
 var _iub = _iub || [];
 _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","storage":{"useSiteId":true}};
 </script>
-<script type="text/javascript" src="https://cs.iubenda.com/autoblocking/4452742.js"></script>
 <script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
 <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
 
@@ -602,6 +601,49 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     border-radius: 4px;
     display: inline-block;
     white-space: nowrap;
+    position: relative;
+    cursor: default;
+  }
+
+  .likelihood-pill .likelihood-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    width: 300px;
+    white-space: normal;
+    word-wrap: break-word;
+    background: #0a0a0a;
+    border: 1px solid #FFD520;
+    color: rgba(245,240,232,0.9);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    line-height: 1.6;
+    padding: 10px 12px;
+    border-radius: 4px;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  }
+
+  .likelihood-pill .likelihood-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 12px;
+    border: 5px solid transparent;
+    border-top-color: #FFD520;
+  }
+
+  .likelihood-pill:hover .likelihood-tooltip {
+    display: block;
+  }
+
+  .likelihood-inline-note {
+    display: none;
   }
 
   .likelihood-high {
@@ -1067,6 +1109,16 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       margin-top: 2px;
     }
     .share-btns { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .likelihood-pill .likelihood-tooltip { display: none !important; }
+    .likelihood-inline-note {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: rgba(255, 213, 32, 0.6);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
     .share-btn { font-size: 10px; padding: 7px 12px; min-height: 34px; }
 
 
@@ -2018,12 +2070,15 @@ function yearsEarly(year, trueYear) {
 function likelihoodBadge(likelihood, status) {
   const s = status?.toLowerCase() || '';
   if (s === 'confirmed' || s === 'debunked') return '';
-  if (!likelihood && likelihood !== 0) return '<span class="likelihood-pill likelihood-low">—</span>';
+  const tooltipText = `We track how often the show's 'jokes' turn into 2026 'facts.' 100% means the writers officially broke the space-time continuum again.`;
+  const tooltipHtml = `<span class="likelihood-tooltip">${tooltipText}</span>`;
+  const inlineNote = `<span class="likelihood-inline-note">${tooltipText}</span>`;
+  if (!likelihood && likelihood !== 0) return `<span class="likelihood-pill likelihood-low">—${tooltipHtml}</span>${inlineNote}`;
   const pct = parseInt(likelihood);
   let className = 'likelihood-low';
   if (pct >= 70) className = 'likelihood-high';
   else if (pct >= 40) className = 'likelihood-medium';
-  return `<span class="likelihood-pill ${className}">${pct}%</span>`;
+  return `<span class="likelihood-pill ${className}">${pct}%${tooltipHtml}</span>${inlineNote}`;
 }
 
 function applySortField(a, b, field, direction) {
@@ -2352,6 +2407,11 @@ function searchTable(val) {
   // Track search/filter interactions
   if (currentSearch) {
     trackEvent('button_click', { action: 'search', query: currentSearch });
+  }
+  // Show easter eggs immediately on keystroke, bypassing the async filter/render pipeline
+  if (currentSearch === 'donut' || currentSearch === 'donuts' || currentSearch === 'bort') {
+    renderCurrentPage();
+    return;
   }
   applyFilters();
 }
@@ -2686,7 +2746,10 @@ async function loadNewsFromAPI() {
     }
   }
   window.liveNewsMatches = liveNewsMap;
-  renderCurrentPage(); // Refresh table rows to show/clear live badges
+  // Only refresh table rows if not showing an easter egg
+  if (currentSearch !== 'donut' && currentSearch !== 'donuts' && currentSearch !== 'bort') {
+    renderCurrentPage(); // Refresh table rows to show/clear live badges
+  }
 
   // ── RENDER NEWS FEED ───────────────────────────────────────────────
   feedEl.innerHTML = itemsWithMatch.map(item => {
