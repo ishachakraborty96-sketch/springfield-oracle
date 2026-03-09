@@ -402,6 +402,28 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     height: 44px;
     pointer-events: none; /* prevents ::after from stealing clicks from neighbouring dots */
   }
+  /* Embiggen / Cromulent easter egg banner */
+  #cromulent-banner {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: var(--yellow);
+    color: #0a0a0a;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 12px 20px;
+    letter-spacing: 0.03em;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    animation: cromulent-flash 0.3s ease-out;
+  }
+  @keyframes cromulent-flash {
+    from { opacity: 0; transform: translateY(-100%); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   .carousel-dot.active {
     background: var(--yellow);
     border-color: var(--yellow);
@@ -1858,6 +1880,9 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   </div>
 </div>
 
+<!-- Embiggen / Cromulent easter egg banner -->
+<div id="cromulent-banner">A noble spirit embiggens the smallest data set. Your search is perfectly cromulent.</div>
+
 <!-- FILTERS -->
 <div class="search-bar-row">
   <input class="search-box" type="text" placeholder="Search predictions..." oninput="searchTable(this.value)" />
@@ -2403,11 +2428,32 @@ function filterTable(filter, btn) {
   applyFilters();
 }
 
+let cromulentTimer;
+function showCromulentBanner() {
+  const banner = document.getElementById('cromulent-banner');
+  if (!banner) return;
+  clearTimeout(cromulentTimer);
+  banner.style.display = 'block';
+  // Re-trigger the slide-in animation on repeat searches
+  banner.style.animation = 'none';
+  banner.offsetHeight; // reflow
+  banner.style.animation = '';
+  cromulentTimer = setTimeout(() => {
+    banner.style.transition = 'opacity 0.5s';
+    banner.style.opacity = '0';
+    setTimeout(() => { banner.style.display = 'none'; banner.style.opacity = ''; banner.style.transition = ''; }, 500);
+  }, 3500);
+}
+
 function searchTable(val) {
   currentSearch = val.toLowerCase();
   // Track search/filter interactions
   if (currentSearch) {
     trackEvent('button_click', { action: 'search', query: currentSearch });
+  }
+  // Embiggen / Cromulent easter egg — flash banner, still show results
+  if (currentSearch === 'embiggen' || currentSearch === 'cromulent') {
+    showCromulentBanner();
   }
   // Show easter eggs immediately on keystroke, bypassing the async filter/render pipeline
   if (currentSearch === 'donut' || currentSearch === 'donuts' || currentSearch === 'bort') {
