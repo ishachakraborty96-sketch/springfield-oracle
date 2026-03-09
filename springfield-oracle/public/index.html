@@ -723,10 +723,10 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
   footer {
     background: #050505;
-    padding: 32px 40px;
+    padding: 24px 40px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 16px;
     border-top: 1px solid rgba(255,255,255,0.08);
     font-size: 11px;
     color: #aaa;
@@ -735,6 +735,53 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
   footer a {
     color: #FFD520;
     text-decoration: none;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .footer-github {
+    opacity: 0.4;
+    font-size: 10px;
+    color: #aaa;
+  }
+
+  .footer-github a {
+    color: inherit;
+  }
+
+  .footer-nav a {
+    color: #FFD520;
+    text-decoration: none;
+  }
+
+  .footer-policy-btn {
+    display: inline-block;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    color: #ddd;
+    font-size: 11px;
+    font-family: inherit;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .footer-policy-btn:hover {
+    border-color: rgba(255,255,255,0.6);
+    color: #fff;
   }
 
   .complaints-btn {
@@ -1188,11 +1235,19 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 
     footer {
+      padding: 24px 16px;
+      font-size: 10px;
+    }
+    .footer-row {
       flex-direction: column;
       gap: 10px;
       text-align: center;
-      padding: 24px 16px;
-      font-size: 10px;
+      align-items: center;
+    }
+    .footer-right {
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
     }
   }
 
@@ -1974,15 +2029,23 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
 <!-- FOOTER -->
 <footer>
-  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
-  <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
-  <span style="opacity:0.4; font-size:10px;"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener" style="color:inherit;">GitHub</a> · Data sourced &amp; verified.</span>
-  <span><a href="/about.html" style="text-decoration:none;" onclick="trackEvent('link_click', {page: 'about'})">About</a> · <a href="/faq.html" style="text-decoration:none;" onclick="trackEvent('link_click', {page: 'faq'})">FAQ</a> · <button class="complaints-btn" onclick="releaseTheHounds()">Complaints</button></span>
-  <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Every Simpsons prediction. Sourced, scored, fact-checked. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
-  <div style="margin-top: 20px; font-size: 12px;">
-    <a href="https://www.iubenda.com/privacy-policy/65046402" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-    <span> · </span>
-    <a href="https://www.iubenda.com/privacy-policy/65046402/cookie-policy" class="iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+  <!-- Row 1: branding | copyright | github + nav -->
+  <div class="footer-row">
+    <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
+    <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
+    <div class="footer-right">
+      <span class="footer-github"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a> · Data sourced &amp; verified.</span>
+      <span class="footer-nav"><a href="/about.html" onclick="trackEvent('link_click', {page: 'about'})">About</a> · <a href="/faq.html" onclick="trackEvent('link_click', {page: 'faq'})">FAQ</a></span>
+    </div>
+  </div>
+  <!-- Row 2: product hunt | policy buttons -->
+  <div class="footer-row">
+    <a href="https://www.producthunt.com/products/springfield-oracle?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-springfield-oracle" target="_blank" rel="noopener noreferrer"><img alt="Springfield Oracle - Every Simpsons prediction. Sourced, scored, fact-checked. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1088592&theme=light&t=1772473475762"></a>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a href="https://www.iubenda.com/privacy-policy/65046402" class="footer-policy-btn iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+      <span style="color:#555;">·</span>
+      <a href="https://www.iubenda.com/privacy-policy/65046402/cookie-policy" class="footer-policy-btn iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Cookie Policy">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    </div>
   </div>
 </footer>
 
