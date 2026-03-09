@@ -4,6 +4,14 @@
     { "src": "public/**", "use": "@vercel/static" },
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "springfieldoracle.com" }],
+      "destination": "https://www.springfieldoracle.com/$1",
+      "permanent": true
+    }
+  ],
   "routes": [
     { "src": "/api/og-image(.*)", "dest": "/api/og-image.js" },
     { "src": "/api/news(.*)", "dest": "/api/news.js" },
