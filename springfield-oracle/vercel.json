@@ -5,18 +5,6 @@
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "has": [{ "type": "host", "value": "springfieldoracle.com" }],
-      "headers": { "Location": "https://www.springfieldoracle.com/$1" },
-      "status": 301
-    },
-    {
-      "src": "/(.*)",
-      "has": [{ "type": "host", "value": "springfield-oracle.vercel.app" }],
-      "headers": { "Location": "https://www.springfieldoracle.com/$1" },
-      "status": 301
-    },
     { "src": "/api/og-image(.*)", "dest": "/api/og-image.js" },
     { "src": "/api/news(.*)", "dest": "/api/news.js" },
     { "src": "/share(.*)", "dest": "/api/share.js" },
