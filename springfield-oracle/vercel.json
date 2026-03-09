@@ -24,6 +24,9 @@
     { "src": "/about", "dest": "/public/about.html" },
     { "src": "/faq", "dest": "/public/faq.html" },
     { "src": "/sitemap.xml", "dest": "/public/sitemap.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
+    { "src": "/sitemap-home.xml", "dest": "/public/sitemap-home.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
+    { "src": "/sitemap-about.xml", "dest": "/public/sitemap-about.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
+    { "src": "/sitemap-faq.xml", "dest": "/public/sitemap-faq.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
     { "src": "/(.*)", "dest": "/public/$1" }
   ],
   "headers": [
@@ -52,7 +55,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://www.google-analytics.com https://ssl.google-analytics.com https://subscribe-forms.beehiiv.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://api.producthunt.com https://springfieldoracle.com; connect-src 'self' https://api.rss2json.com https://corsproxy.io https://api.allorigins.win https://formspree.io https://app.beehiiv.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net; frame-src https://www.googletagmanager.com https://subscribe-forms.beehiiv.com; frame-ancestors 'none';"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://www.google-analytics.com https://ssl.google-analytics.com https://subscribe-forms.beehiiv.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://springfieldoracle.com; connect-src 'self' https://api.rss2json.com https://corsproxy.io https://api.allorigins.win https://formspree.io https://app.beehiiv.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net; frame-src https://www.googletagmanager.com https://subscribe-forms.beehiiv.com; frame-ancestors 'none';"
         }
       ]
     }
