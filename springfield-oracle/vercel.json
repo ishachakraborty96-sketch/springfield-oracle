@@ -4,21 +4,19 @@
     { "src": "public/**", "use": "@vercel/static" },
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
-  "redirects": [
+  "routes": [
     {
-      "source": "/(.*)",
+      "src": "/(.*)",
       "has": [{ "type": "host", "value": "springfieldoracle.com" }],
-      "destination": "https://www.springfieldoracle.com/$1",
-      "permanent": true
+      "headers": { "Location": "https://www.springfieldoracle.com/$1" },
+      "status": 301
     },
     {
-      "source": "/(.*)",
+      "src": "/(.*)",
       "has": [{ "type": "host", "value": "springfield-oracle.vercel.app" }],
-      "destination": "https://www.springfieldoracle.com/$1",
-      "permanent": true
-    }
-  ],
-  "routes": [
+      "headers": { "Location": "https://www.springfieldoracle.com/$1" },
+      "status": 301
+    },
     { "src": "/api/og-image(.*)", "dest": "/api/og-image.js" },
     { "src": "/api/news(.*)", "dest": "/api/news.js" },
     { "src": "/share(.*)", "dest": "/api/share.js" },
