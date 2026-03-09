@@ -1,7 +1,7 @@
 {
   "meta": {
     "last_updated": "2026-03-08",
-    "total": 65,
+    "total": 63,
     "status_update": "Merged master array. Likelihood scores on PENDING only, updated with 2024-2026 news velocity. 9 debunked hoaxes. Episode codes corrected.",
     "engine": "Springfield Oracle v4.0",
     "version": "4.0",
@@ -402,34 +402,6 @@
       "episode_name": "I'm Spelling as Fast as I Can"
     },
     {
-      "id": "SP029",
-      "season": 16,
-      "episode_code": "S16E02",
-      "title": "Government Data Surveillance / DOGE",
-      "year_aired": 2005,
-      "prediction": "A secret government agency monitors citizens' private data without consent and covers it up.",
-      "real_event": "DOGE's sweeping access to federal databases in 2025 and the NSA's prior PRISM program confirmed state surveillance at scale.",
-      "real_year": 2025,
-      "category": "Politics",
-      "status": "CONFIRMED",
-      "viral_score": 9,
-      "episode_name": "Sleeping with the Enemy"
-    },
-    {
-      "id": "SP030",
-      "season": 18,
-      "episode_code": "Movie",
-      "title": "NSA Mass Surveillance",
-      "year_aired": 2007,
-      "prediction": "The NSA is shown listening to every citizen's phone calls.",
-      "real_event": "Edward Snowden's 2013 leaks confirmed the NSA ran exactly this kind of mass call-monitoring program.",
-      "real_year": 2013,
-      "category": "Politics",
-      "status": "CONFIRMED",
-      "viral_score": 9,
-      "episode_name": "The Simpsons Movie"
-    },
-    {
       "id": "SP031",
       "season": 20,
       "episode_code": "S20E04",
@@ -608,7 +580,7 @@
       "likelihood_pct": 92,
       "likelihood_components": {
         "category_base_rate": 0.85,
-        "plausibility_score": 0.90,
+        "plausibility_score": 0.9,
         "specificity_score": 0.88,
         "news_velocity_score": 0.98
       },
@@ -645,7 +617,7 @@
       ],
       "news_matches": 61,
       "last_updated": "2026-03-08",
-      "analysis_notes": "HEATING UP: Deepfake video count surged from 500k in 2023 to 8M by 2025 — a 16x increase. Used to interfere in elections in Romania, Ecuador, Germany, and Canada in 2025. Experts warn the 2026 US midterms will be the worst affected yet.",
+      "analysis_notes": "HEATING UP: Deepfake video count surged from 500k in 2023 to 8M by 2025 \u2014 a 16x increase. Used to interfere in elections in Romania, Ecuador, Germany, and Canada in 2025. Experts warn the 2026 US midterms will be the worst affected yet.",
       "category": "Technology",
       "viral_score": 10,
       "episode_name": "Today, I Am a Clown"
@@ -712,7 +684,7 @@
       "status": "PENDING",
       "likelihood_pct": 83,
       "likelihood_components": {
-        "category_base_rate": 0.80,
+        "category_base_rate": 0.8,
         "plausibility_score": 0.85,
         "specificity_score": 0.82,
         "news_velocity_score": 0.88
@@ -739,7 +711,7 @@
       "likelihood_pct": 78,
       "likelihood_components": {
         "category_base_rate": 0.72,
-        "plausibility_score": 0.80,
+        "plausibility_score": 0.8,
         "specificity_score": 0.76,
         "news_velocity_score": 0.82
       },
@@ -760,8 +732,8 @@
       "status": "PENDING",
       "likelihood_pct": 78,
       "likelihood_components": {
-        "category_base_rate": 0.70,
-        "plausibility_score": 0.80,
+        "category_base_rate": 0.7,
+        "plausibility_score": 0.8,
         "specificity_score": 0.72,
         "news_velocity_score": 0.88
       },
@@ -786,7 +758,7 @@
       "status": "PENDING",
       "likelihood_pct": 68,
       "likelihood_components": {
-        "category_base_rate": 0.60,
+        "category_base_rate": 0.6,
         "plausibility_score": 0.72,
         "specificity_score": 0.58,
         "news_velocity_score": 0.88
@@ -815,7 +787,7 @@
         "category_base_rate": 0.65,
         "plausibility_score": 0.78,
         "specificity_score": 0.62,
-        "news_velocity_score": 0.90
+        "news_velocity_score": 0.9
       },
       "supporting_links": [
         "https://news.vt.edu/articles/2026/03/Warner-Bros-Paramont-Skydance-CBS-CNN-merger-deal-expert.html",
@@ -823,7 +795,7 @@
       ],
       "news_matches": 19,
       "last_updated": "2026-03-08",
-      "analysis_notes": "HEATING UP: Paramount Skydance's $111B acquisition of Warner Bros. Discovery in March 2026 will place CNN and CBS News under one corporate roof for the first time. The Simpsons predicted 'CNNBCBS' — NBC is missing, but CNN plus CBS convergence is literally in progress right now.",
+      "analysis_notes": "HEATING UP: Paramount Skydance's $111B acquisition of Warner Bros. Discovery in March 2026 will place CNN and CBS News under one corporate roof for the first time. The Simpsons predicted 'CNNBCBS' \u2014 NBC is missing, but CNN plus CBS convergence is literally in progress right now.",
       "category": "Business",
       "viral_score": 8,
       "episode_name": "Lisa's Wedding"
@@ -838,10 +810,10 @@
       "status": "PENDING",
       "likelihood_pct": 65,
       "likelihood_components": {
-        "category_base_rate": 0.60,
-        "plausibility_score": 0.70,
+        "category_base_rate": 0.6,
+        "plausibility_score": 0.7,
         "specificity_score": 0.62,
-        "news_velocity_score": 0.70
+        "news_velocity_score": 0.7
       },
       "supporting_links": [
         "https://kalshi.com/markets/kxpresperson/pres-person/kxpresperson-28"
@@ -864,8 +836,8 @@
       "likelihood_pct": 32,
       "likelihood_components": {
         "category_base_rate": 0.38,
-        "plausibility_score": 0.40,
-        "specificity_score": 0.30,
+        "plausibility_score": 0.4,
+        "specificity_score": 0.3,
         "news_velocity_score": 0.22
       },
       "supporting_links": [
@@ -888,7 +860,7 @@
       "status": "PENDING",
       "likelihood_pct": 22,
       "likelihood_components": {
-        "category_base_rate": 0.30,
+        "category_base_rate": 0.3,
         "plausibility_score": 0.28,
         "specificity_score": 0.18,
         "news_velocity_score": 0.14
@@ -915,7 +887,7 @@
       "likelihood_components": {
         "category_base_rate": 0.25,
         "plausibility_score": 0.28,
-        "specificity_score": 0.30,
+        "specificity_score": 0.3,
         "news_velocity_score": 0.32
       },
       "news_matches": 8,
