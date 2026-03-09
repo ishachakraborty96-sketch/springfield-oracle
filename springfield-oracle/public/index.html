@@ -2891,7 +2891,7 @@ async function syncWithDatabase() {
           name:     p.episode_name || '',
           year:     p.year_aired,
           title:    p.title,
-          desc:     p.prediction + (p.real_event ? ` Real: ${p.real_event}` : ''),
+          desc:     p.desc || (p.prediction + (p.real_event ? ` Real: ${p.real_event}` : '')),
           category: p.category,
           status:   p.status,
           trueYear: p.real_year,
