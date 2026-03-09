@@ -10,6 +10,12 @@
       "has": [{ "type": "host", "value": "springfieldoracle.com" }],
       "destination": "https://www.springfieldoracle.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "springfield-oracle.vercel.app" }],
+      "destination": "https://www.springfieldoracle.com/$1",
+      "permanent": true
     }
   ],
   "routes": [
