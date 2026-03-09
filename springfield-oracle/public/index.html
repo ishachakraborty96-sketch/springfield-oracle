@@ -2688,6 +2688,49 @@ function scrollToTable(filter) {
 }
 
 // ── CAROUSEL CARD MODALS ──────────────────────────────────────────────
+// ── PREDICTION LOOKUP (supporting_links / analysis_notes) ────────────
+let predSupportingLinks = {};
+(async function loadPredSupportingLinks() {
+  try {
+    const resp = await fetch('/data/predictions.json');
+    const data = await resp.json();
+    const preds = Array.isArray(data) ? data : (data.predictions || []);
+    for (const p of preds) {
+      if (p.id && (p.supporting_links?.length || p.analysis_notes)) {
+        predSupportingLinks[p.id] = { links: p.supporting_links || [], notes: p.analysis_notes || '' };
+      }
+    }
+  } catch(e) {}
+})();
+
+function urlToHeadline(url) {
+  try {
+    const u = new URL(url);
+    const parts = u.pathname.split('/').filter(s => !/^\d{4}$/.test(s) && !/^\d{2}$/.test(s) && s);
+    const slug = parts[parts.length - 1].replace(/\.(html?|php|aspx?)$/i, '');
+    if (!slug || slug.length < 5) return null;
+    const title = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const domain = u.hostname.replace(/^www\./, '');
+    const source = domain.split('.')[0].charAt(0).toUpperCase() + domain.split('.')[0].slice(1);
+    return { title, source };
+  } catch(e) { return null; }
+}
+
+function getMostRecentLink(links) {
+  if (!links || !links.length) return null;
+  const withDates = links.map(url => {
+    const m = url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
+    return { url, date: m ? new Date(`${m[1]}-${m[2]}-${m[3]}`) : null };
+  });
+  withDates.sort((a, b) => {
+    if (a.date && b.date) return b.date - a.date;
+    if (a.date) return -1;
+    if (b.date) return 1;
+    return 0;
+  });
+  return withDates[0]?.url || null;
+}
+
 const carouselData = [
   {
     badge: '🚨 MAR 8, 2026 — DEBUNKED',
@@ -2758,13 +2801,23 @@ function openCarouselModal(index) {
   document.getElementById('modal-category').textContent = d.category || '—';
   document.getElementById('modal-airdate').textContent = d.episode.match(/\d{4}/)?.[0] || '—';
   document.getElementById('modal-truedate').textContent = d.trueDate || d.badge.match(/\d{4}/)?.[0] || 'Ongoing';
-  // Live news link from RSS feed
+  // Live news: prefer RSS match, fallback to supporting_links for PENDING cards
   const liveNewsEl = document.getElementById('modal-live-news');
   const liveNews = d.predId ? window.liveNewsMatches?.[d.predId] : null;
   if (liveNews) {
     const date = liveNews.pubDate ? new Date(liveNews.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
     liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${liveNews.link}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${liveNews.title}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${date}</span>` : ''}`;
     liveNewsEl.style.display = 'block';
+  } else if (d.status === 'pending' && d.predId) {
+    const pred = predSupportingLinks[d.predId];
+    const bestLink = getMostRecentLink(pred?.links);
+    const headline = bestLink ? urlToHeadline(bestLink) : null;
+    if (headline) {
+      liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${bestLink}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${headline.title} — ${headline.source}</a>`;
+      liveNewsEl.style.display = 'block';
+    } else {
+      liveNewsEl.style.display = 'none';
+    }
   } else {
     liveNewsEl.style.display = 'none';
   }
