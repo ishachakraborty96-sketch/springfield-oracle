@@ -2353,6 +2353,11 @@ function searchTable(val) {
   if (currentSearch) {
     trackEvent('button_click', { action: 'search', query: currentSearch });
   }
+  // Show easter eggs immediately on keystroke, bypassing the async filter/render pipeline
+  if (currentSearch === 'donut' || currentSearch === 'donuts' || currentSearch === 'bort') {
+    renderCurrentPage();
+    return;
+  }
   applyFilters();
 }
 
@@ -2686,7 +2691,10 @@ async function loadNewsFromAPI() {
     }
   }
   window.liveNewsMatches = liveNewsMap;
-  renderCurrentPage(); // Refresh table rows to show/clear live badges
+  // Only refresh table rows if not showing an easter egg
+  if (currentSearch !== 'donut' && currentSearch !== 'donuts' && currentSearch !== 'bort') {
+    renderCurrentPage(); // Refresh table rows to show/clear live badges
+  }
 
   // ── RENDER NEWS FEED ───────────────────────────────────────────────
   feedEl.innerHTML = itemsWithMatch.map(item => {
