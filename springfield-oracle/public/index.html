@@ -602,6 +602,45 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     border-radius: 4px;
     display: inline-block;
     white-space: nowrap;
+    position: relative;
+    cursor: default;
+  }
+
+  .likelihood-pill .likelihood-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: #0a0a0a;
+    border: 1px solid #FFD520;
+    color: rgba(245,240,232,0.9);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    line-height: 1.5;
+    padding: 8px 10px;
+    border-radius: 4px;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  }
+
+  .likelihood-pill .likelihood-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #FFD520;
+  }
+
+  .likelihood-pill:hover .likelihood-tooltip {
+    display: block;
   }
 
   .likelihood-high {
@@ -2018,12 +2057,13 @@ function yearsEarly(year, trueYear) {
 function likelihoodBadge(likelihood, status) {
   const s = status?.toLowerCase() || '';
   if (s === 'confirmed' || s === 'debunked') return '';
-  if (!likelihood && likelihood !== 0) return '<span class="likelihood-pill likelihood-low">—</span>';
+  const tooltipHtml = `<span class="likelihood-tooltip">We track how often the show&#39;s &#39;jokes&#39; turn into 2026 &#39;facts.&#39; 100% means the writers officially broke the space-time continuum again.</span>`;
+  if (!likelihood && likelihood !== 0) return `<span class="likelihood-pill likelihood-low">—${tooltipHtml}</span>`;
   const pct = parseInt(likelihood);
   let className = 'likelihood-low';
   if (pct >= 70) className = 'likelihood-high';
   else if (pct >= 40) className = 'likelihood-medium';
-  return `<span class="likelihood-pill ${className}">${pct}%</span>`;
+  return `<span class="likelihood-pill ${className}">${pct}%${tooltipHtml}</span>`;
 }
 
 function applySortField(a, b, field, direction) {
