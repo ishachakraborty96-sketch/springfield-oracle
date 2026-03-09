@@ -1592,6 +1592,20 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     }
   }
 
+  /* Desktop-only: widget clears the tall footer */
+  @media (min-width: 1024px) {
+    .oracle-button {
+      bottom: 30px;
+      right: 30px;
+      transition: bottom 0.2s ease, right 0.2s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .oracle-chat-container {
+      bottom: 110px;
+      right: 30px;
+      transition: bottom 0.2s ease, right 0.2s ease;
+    }
+  }
+
   /* Blinky Easter Egg */
   #blinky-modal {
     position: fixed;
@@ -3096,6 +3110,49 @@ window.addEventListener('load', function() {
     <button class="oracle-submit-btn" onclick="submitOracleQuestion()">Ask</button>
   </div>
 </div>
+
+<script>
+(function () {
+  // Keep oracle widget at least 40px above the footer — desktop only
+  var DESKTOP_MIN_WIDTH = 1024;
+  var GAP = 40;          // min gap between widget bottom and footer top
+  var DEFAULT_BTN_BOTTOM  = 30;
+  var DEFAULT_CHAT_BOTTOM = 110;
+  var BTN_HEIGHT = 70;   // matches CSS
+
+  function adjustWidgetPosition() {
+    if (window.innerWidth < DESKTOP_MIN_WIDTH) return;
+    var footer = document.querySelector('footer');
+    var oracleBtn  = document.querySelector('.oracle-button');
+    var oracleChat = document.querySelector('.oracle-chat-container');
+    if (!footer || !oracleBtn) return;
+
+    var footerTop    = footer.getBoundingClientRect().top;   // px from viewport top
+    var viewportH    = window.innerHeight;
+    var footerVisible = footerTop < viewportH;
+
+    if (footerVisible) {
+      // How much of the footer is visible from the bottom of the viewport
+      var footerExposure = viewportH - footerTop;           // px of footer showing
+      var desiredBtnBottom = footerExposure + GAP;          // lift button this much
+      oracleBtn.style.bottom  = Math.max(DEFAULT_BTN_BOTTOM, desiredBtnBottom) + 'px';
+      oracleChat.style.bottom = Math.max(DEFAULT_CHAT_BOTTOM, desiredBtnBottom + BTN_HEIGHT + 10) + 'px';
+    } else {
+      oracleBtn.style.bottom  = DEFAULT_BTN_BOTTOM + 'px';
+      oracleChat.style.bottom = DEFAULT_CHAT_BOTTOM + 'px';
+    }
+  }
+
+  window.addEventListener('scroll', adjustWidgetPosition, { passive: true });
+  window.addEventListener('resize', adjustWidgetPosition, { passive: true });
+  // Run once on load in case page starts scrolled
+  if (document.readyState === 'complete') {
+    adjustWidgetPosition();
+  } else {
+    window.addEventListener('load', adjustWidgetPosition);
+  }
+})();
+</script>
 
 <!-- Blinky Easter Egg Modal -->
 <div id="blinky-modal" onclick="if(event.target.id==='blinky-modal') window.closeBlinkyModal?.()">
