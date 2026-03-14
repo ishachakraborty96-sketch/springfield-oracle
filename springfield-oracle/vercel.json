@@ -17,6 +17,7 @@
       "headers": { "Location": "https://www.springfieldoracle.com/$1" },
       "status": 301
     },
+    { "src": "/api/subscribe", "dest": "/api/subscribe.js" },
     { "src": "/api/og-image(.*)", "dest": "/api/og-image.js" },
     { "src": "/api/news(.*)", "dest": "/api/news.js" },
     { "src": "/share(.*)", "dest": "/api/share.js" },

@@ -1427,6 +1427,14 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
     transition: all 0.2s;
   }
   .newsletter-btn:hover { background: #0a2070; border-color: #0a2070; }
+  .newsletter-success {
+    display: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--blue);
+    padding: 16px 0 4px;
+  }
 
   /* Newsletter visibility control */
   .newsletter-mobile { display: none; }
@@ -3454,8 +3462,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <p class="newsletter-sub newsletter-mobile-hidden">Every week: new Simpsons prophecies and real-world matches flagged directly to your inbox. No spam. Unsubscribe anytime.</p>
     </div>
     <div class="newsletter-right">
-      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe src="https://subscribe-forms.beehiiv.com/aa2eb2bb-3726-45d7-a0e7-f1090777c91b" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 420px; height: 85px; margin: 0; border-radius: 8px 8px 8px 8px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
+      <form class="newsletter-form" id="newsletter-form-mobile" onsubmit="handleSubscribe(event,'newsletter-form-mobile','newsletter-success-mobile')">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" required>
+        <button class="newsletter-btn" type="submit">Get Updates</button>
+      </form>
+      <div class="newsletter-success" id="newsletter-success-mobile">&#10003; You're in. We'll send the next one.</div>
     </div>
   </div>
 </div>
@@ -3513,8 +3524,11 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <p class="newsletter-sub">Every week: new Simpsons prophecies and real-world matches flagged directly to your inbox. No spam. Unsubscribe anytime.</p>
     </div>
     <div class="newsletter-right">
-      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe src="https://subscribe-forms.beehiiv.com/aa2eb2bb-3726-45d7-a0e7-f1090777c91b" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 420px; height: 85px; margin: 0; border-radius: 8px 8px 8px 8px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
+      <form class="newsletter-form" id="newsletter-form-desktop" onsubmit="handleSubscribe(event,'newsletter-form-desktop','newsletter-success-desktop')">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" required>
+        <button class="newsletter-btn" type="submit">Get Updates</button>
+      </form>
+      <div class="newsletter-success" id="newsletter-success-desktop">&#10003; You're in. We'll send the next one.</div>
     </div>
   </div>
 </div>
@@ -4533,48 +4547,36 @@ loadNewsFromAPI();
 setInterval(loadNewsFromAPI, 30 * 1000); // Refresh every 30 seconds
 
 // ── NEWSLETTER SIGNUP ─────────────────────────────────────────────────
-async function handleHeroSubscribe(e) {
+async function handleSubscribe(e, formId, successId) {
   e.preventDefault();
-  const email = document.getElementById('hero-email-input').value.trim();
+  const form = document.getElementById(formId);
+  const input = form.querySelector('input[type="email"]');
+  const btn = form.querySelector('button');
+  const email = input.value.trim();
   if (!email) return;
-  const btn = e.target.querySelector('.hero-subscribe-btn');
+  const originalLabel = btn.textContent;
   btn.textContent = '...';
   btn.disabled = true;
   try {
-    await fetch('https://app.beehiiv.com/api/v1/subscriptions', {
+    const res = await fetch('/api/subscribe', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email, publication_id: '62cfda32-7031-4c9d-9972-fb9b355cd4ec', double_opt_in: false })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
     });
-    document.getElementById('hero-subscribe-form').style.display = 'none';
-    document.getElementById('hero-subscribe-success').style.display = 'block';
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById(successId).style.display = 'block';
+    } else {
+      throw new Error();
+    }
   } catch {
-    btn.textContent = 'Notify me';
+    btn.textContent = originalLabel;
     btn.disabled = false;
   }
 }
 
-async function handleNewsletterSubmit(e) {
-  e.preventDefault();
-  const email = document.getElementById('newsletter-email').value.trim();
-  if (!email) return;
-  const btn = e.target.querySelector('.newsletter-btn');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  try {
-    const res = await fetch('https://app.beehiiv.com/api/v1/subscriptions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email, publication_id: '62cfda32-7031-4c9d-9972-fb9b355cd4ec', double_opt_in: false })
-    });
-    if (res.ok) {
-      document.getElementById('newsletter-form').style.display = 'none';
-      document.getElementById('newsletter-success').style.display = 'block';
-    } else { throw new Error(); }
-  } catch {
-    btn.textContent = 'Get Updates';
-    btn.disabled = false;
-  }
+function handleHeroSubscribe(e) {
+  return handleSubscribe(e, 'hero-subscribe-form', 'hero-subscribe-success');
 }
 
 // ── LOAD FROM JSON DATABASE (with fetch — works on Vercel) ────────────
