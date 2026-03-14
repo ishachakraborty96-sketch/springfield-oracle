@@ -1767,26 +1767,1445 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Springfield Oracle",
-  "alternateName": "The Simpsons Prediction Tracker",
-  "url": "https://springfieldoracle.com",
-  "description": "The definitive open-source tracker for every Simpsons prediction — sourced, fact-checked, and updated in real time.",
-  "author": {
-    "@type": "Person",
-    "name": "Isha Godboley",
-    "url": "https://www.linkedin.com/in/isha-godboley"
-  },
-  "publisher": {
-    "@type": "Person",
-    "name": "Isha Godboley"
-  },
-  "inLanguage": "en",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.springfieldoracle.com/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Springfield Oracle",
+      "alternateName": "The Simpsons Prediction Tracker",
+      "url": "https://www.springfieldoracle.com",
+      "description": "The definitive open-source tracker for every Simpsons prediction — sourced, fact-checked, and updated in real time.",
+      "author": {
+        "@type": "Person",
+        "name": "Isha Godboley",
+        "url": "https://www.linkedin.com/in/isha-godboley"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Isha Godboley"
+      },
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.springfieldoracle.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "name": "Springfield Oracle Predictions Database",
+      "description": "Open-source database of 63 Simpsons predictions tracked against real-world events. Every entry sourced, fact-checked, and scored.",
+      "url": "https://www.springfieldoracle.com",
+      "creator": {
+        "@type": "Person",
+        "name": "Isha Godboley",
+        "url": "https://www.linkedin.com/in/isha-godboley"
+      },
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "keywords": [
+        "Simpsons predictions",
+        "fact-check",
+        "open source",
+        "pop culture database",
+        "ClaimReview"
+      ],
+      "numberOfItems": 63
+    },
+    {
+      "@type": "ItemList",
+      "name": "Simpsons Predictions — Fact-Checked Database",
+      "description": "63 Simpsons predictions reviewed and fact-checked against real-world events.",
+      "url": "https://www.springfieldoracle.com",
+      "numberOfItems": 63,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP001",
+            "claimReviewed": "Blinky, a three-eyed mutant fish, lives near Springfield's nuclear plant.",
+            "name": "Three-Eyed Fish",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP002",
+            "claimReviewed": "Mr. Burns eats a three-eyed mutant fish to prove it is safe.",
+            "name": "Japanese PM Eats Radioactive Fish",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP003",
+            "claimReviewed": "Springfield campaigns to censor the nudity of Michelangelo's David statue.",
+            "name": "Censorship of Michelangelo's David",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP004",
+            "claimReviewed": "Homer designs an ugly, angular car nobody wants, ridiculed for its boxy industrial look.",
+            "name": "The Cybertruck",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP005",
+            "claimReviewed": "The 'Osaka Flu' arrives via packages from Japan, causing mass panic and demand for placebos.",
+            "name": "Osaka Flu / Pandemic Hysteria",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP006",
+            "claimReviewed": "A crate of killer bees is unleashed on the town during a pandemic.",
+            "name": "Murder Hornets During a Pandemic",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP007",
+            "claimReviewed": "Gunter and Ernst, a Las Vegas duo, are mauled by their own white tiger during a performance.",
+            "name": "Siegfried & Roy Tiger Attack",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP008",
+            "claimReviewed": "NASA sends Homer Simpson, an ordinary unqualified civilian, into space.",
+            "name": "Civilian Space Tourism",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP009",
+            "claimReviewed": "Lunchlady Doris uses 'assorted horse parts' in school meals.",
+            "name": "Horse Meat in the Food Supply",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP010",
+            "claimReviewed": "Proliferation of neighborhood-level surveillance via consumer cameras.",
+            "name": "Neighborhood Surveillance Networks",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP011",
+            "claimReviewed": "Sideshow Bob uses celebrity status and media manipulation to win elected office.",
+            "name": "Celebrity-to-Politician Pipeline",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP012",
+            "claimReviewed": "An Apple Newton translates 'Beat up Martin' into 'Eat up Martha', mocking predictive text.",
+            "name": "Autocorrect Fails",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP013",
+            "claimReviewed": "Homer is accused of harassment; cable TV and a public mob convict him before any court does.",
+            "name": "Cancel Culture / Trial by Media",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP014",
+            "claimReviewed": "Characters use wrist-based communicators years before modern smartwatches.",
+            "name": "Smartwatches",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP015",
+            "claimReviewed": "Lisa and Marge speak via a rotary phone with a FaceTime-style video screen in 2010.",
+            "name": "Video Chat Goes Mainstream",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP016",
+            "claimReviewed": "Mr. Burns builds a device to block the sun and protect fossil fuel monopolies from solar energy.",
+            "name": "Solar vs. Oil Monopoly",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP017",
+            "claimReviewed": "The rap group accidentally books the London Symphony Orchestra while high, and they perform together.",
+            "name": "Cypress Hill + London Symphony Orchestra",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP018",
+            "claimReviewed": "A high-tech intercom device features a circular scroll-wheel interface years before Apple's iPod.",
+            "name": "Early iPod / Scroll-Wheel Interface",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP019",
+            "claimReviewed": "Government agencies track and investigate alien encounters; mass public interest follows.",
+            "name": "UAP / UFO Congressional Hearings",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP020",
+            "claimReviewed": "Marge reads a children's book called 'Curious George and the Ebola Virus'.",
+            "name": "Ebola Outbreak",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP021",
+            "claimReviewed": "Homer buys a handgun in minutes, joins the NRA, and carries it openly everywhere.",
+            "name": "Gun Proliferation & Open Carry",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP022",
+            "claimReviewed": "Homer writes an equation on a chalkboard that accurately predicts the mass of the Higgs boson.",
+            "name": "The God Particle / Higgs Boson",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP023",
+            "claimReviewed": "A studio sign reads '20th Century Fox — A Division of Walt Disney Co.'",
+            "name": "20th Century Fox Acquired by Disney",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 24,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP024",
+            "claimReviewed": "A touch-screen voting machine malfunctions and switches votes to the wrong candidate.",
+            "name": "Voting Machine Switches Votes",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 25,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP025",
+            "claimReviewed": "Homer genetically engineers a tomato-tobacco hybrid plant using nuclear radiation.",
+            "name": "Tomacco / GMO Hybrid Crops",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 26,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP026",
+            "claimReviewed": "Lisa becomes president and mentions inheriting a massive budget deficit from President Trump.",
+            "name": "Donald Trump Presidency",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 27,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP027",
+            "claimReviewed": "Homer discovers a secret island where powerful elites run the world from the shadows.",
+            "name": "Epstein Island / Elite Secret Society",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 28,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP028",
+            "claimReviewed": "The internet enables mass social connection, information sharing, and online communities.",
+            "name": "Social Media / Mass Online Connection",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 29,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP031",
+            "claimReviewed": "Springfield is hit by a catastrophic heat wave where butterflies melt and flowers catch fire.",
+            "name": "Catastrophic Urban Heat Wave",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 30,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP032",
+            "claimReviewed": "Springfield builds a wall to keep out Ogdenvillians, complete with vigilante border patrols.",
+            "name": "Border Wall & Immigration Vigilantes",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 31,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP033",
+            "claimReviewed": "Mrs. Krabappel is fired and replaced by AI-powered teaching tablets.",
+            "name": "AI Tablets Replace Teachers",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 32,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP034",
+            "claimReviewed": "Milhouse bets on Finnish economist Bengt R. Holmström to win the Nobel Prize in Economics.",
+            "name": "Nobel Prize Winner Predicted by Name",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 33,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP035",
+            "claimReviewed": "Lady Gaga performs a spectacular halftime show, suspended by cables above the crowd.",
+            "name": "Lady Gaga Aerial Super Bowl Halftime",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 34,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP036",
+            "claimReviewed": "Homer becomes a World Cup referee bribed by corrupt FIFA officials.",
+            "name": "FIFA Corruption Scandal",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 35,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP037",
+            "claimReviewed": "The sky is filled with autonomous drones delivering packages.",
+            "name": "Autonomous Delivery Drones",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 36,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP038",
+            "claimReviewed": "Elon Musk arrives as a tech billionaire promising to solve all problems, then takes over.",
+            "name": "Elon Musk Political Takeover",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 37,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP039",
+            "claimReviewed": "Homer and Marge win Olympic gold in curling, beating Sweden.",
+            "name": "USA Wins Olympic Curling Gold",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 38,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP040",
+            "claimReviewed": "A fantasy parody depicts a dragon burning an entire city, ending a beloved show with mass fan outrage.",
+            "name": "Game of Thrones Divisive Finale",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 39,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP041",
+            "claimReviewed": "Homer uses Lisa's sports predictions to legally gamble on NFL games.",
+            "name": "Legal Sports Betting Goes Mainstream",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 40,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP042",
+            "claimReviewed": "Citizens are monitored and tracked by a hidden surveillance state.",
+            "name": "Mass Government Surveillance State",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "1",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "True"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 41,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP043",
+            "claimReviewed": "Mr. Burns replaces his entire nuclear plant workforce with robots and automation.",
+            "name": "AI / Robots Replace Human Workers",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 42,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP044",
+            "claimReviewed": "Realistic AI-generated media is used to deceive the public and manipulate opinion.",
+            "name": "Deepfakes / AI-Generated Disinformation",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 43,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP045",
+            "claimReviewed": "Lisa delivers a speech warning that glaciers are disappearing due to rapid climate change.",
+            "name": "Glacier Melt / Climate Crisis",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 44,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP046",
+            "claimReviewed": "Digital currencies and blockchain become mainstream financial instruments.",
+            "name": "Cryptocurrency Goes Mainstream",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 45,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP047",
+            "claimReviewed": "An AI-controlled smart home makes autonomous decisions, locking out residents and controlling their environment.",
+            "name": "Fully Autonomous AI Smart Homes",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 46,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP048",
+            "claimReviewed": "Homer deliberately gains extreme weight to qualify as disabled and work from home. Obesity becomes medicalised.",
+            "name": "Obesity Epidemic & Weight-Loss Drugs",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 47,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP049",
+            "claimReviewed": "Augmented reality glasses become the primary personal communication device, replacing the smartphone.",
+            "name": "AR Glasses Replace Smartphones",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 48,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP050",
+            "claimReviewed": "Standard vehicles are entirely replaced by floating hover cars.",
+            "name": "Flying Cars Go Mainstream",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 49,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP051",
+            "claimReviewed": "CNN, NBC, and CBS merge into one massive consolidated news monopoly.",
+            "name": "CNN + CBS Network Merger",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 50,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP052",
+            "claimReviewed": "Lisa Simpson becomes the first female President of the United States.",
+            "name": "First Female US President",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 51,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP053",
+            "claimReviewed": "Marge and Lisa volunteer to live in a corporate colony on Mars.",
+            "name": "Mars Colonisation",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 52,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP054",
+            "claimReviewed": "A background gag features an 'Ivanka 2028' campaign button.",
+            "name": "Ivanka Trump 2028 Presidential Run",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 53,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP055",
+            "claimReviewed": "Jasper freezes himself cryogenically to wake up in the future, as casually as checking into a hotel.",
+            "name": "Commercial Cryogenic Freezing",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "3",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "Unverified"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 54,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP056",
+            "claimReviewed": "London's Big Ben clock tower is shown with a digital face retrofitted onto it.",
+            "name": "Big Ben Goes Digital",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 55,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP057",
+            "claimReviewed": "A New York flyer shows the number 9 next to an image of the Twin Towers.",
+            "name": "9/11 Twin Towers Flyer",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 56,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP058",
+            "claimReviewed": "An image shows Donald Trump lying in a casket with a Secret Service agent standing nearby.",
+            "name": "Donald Trump in a Casket",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 57,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP059",
+            "claimReviewed": "A news anchor graphic reads 'Corona Virus' during a sickness outbreak.",
+            "name": "The 'Corona Virus' Graphic",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 58,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP060",
+            "claimReviewed": "An image shows Queen Elizabeth II in a coffin with the dates 1926 to 2022.",
+            "name": "Queen Elizabeth's Exact Death Year",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 59,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP061",
+            "claimReviewed": "A viral clip claimed the show predicted Kobe Bryant's fatal helicopter accident.",
+            "name": "Kobe Bryant's Helicopter Crash",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 60,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP062",
+            "claimReviewed": "Mr. Burns stands happily in front of a burning Notre Dame Cathedral.",
+            "name": "Notre Dame Cathedral Fire",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 61,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP063",
+            "claimReviewed": "President Lisa Simpson wears a purple outfit with pearls, said to predict Kamala Harris's inauguration look.",
+            "name": "Kamala Harris's Inauguration Outfit",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 62,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP064",
+            "claimReviewed": "Mr. Burns stands in front of a map that exactly matches the 2024 presidential election results.",
+            "name": "The 2024 US Electoral Map",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 63,
+          "item": {
+            "@type": "ClaimReview",
+            "url": "https://www.springfieldoracle.com/prediction/SP065",
+            "claimReviewed": "A viral image claimed The Simpsons showed Trump in a hospital during a pandemic, predicting his COVID diagnosis.",
+            "name": "Pandemic Predicts Trump Casket Image",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "1",
+              "worstRating": "5",
+              "alternateName": "False"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Springfield Oracle",
+              "url": "https://www.springfieldoracle.com"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 </head>
