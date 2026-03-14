@@ -810,6 +810,30 @@
       "viral_score": 9,
       "verified_source": "Snopes (March 2026 fact-check pending); TikTok viral claim; identified as deepfake/AI-generated hoax",
       "fact_check_note": "This is a meta-prediction about a FALSE viral claim, not a genuine Simpsons prediction. No verifiable episode or scene supports this claim. Documented to track misinformation and AI deepfake spread."
+    },
+    {
+      "id": "SP045",
+      "season": 37,
+      "episode": 10,
+      "episode_code": "S37E10",
+      "title": "The Death of Traditional Advertising",
+      "episode_name": "Seperance",
+      "year_aired": 2026,
+      "prediction": "Duffman's retirement is framed as a corporate shift away from 'passé' mascots and TV spots. Fans interpret this as a prediction of the total decline of traditional marketing in favour of hyper-targeted AI ads.",
+      "real_event": null,
+      "real_year": null,
+      "years_early": null,
+      "category": "Technology",
+      "status": "pending",
+      "viral_score": 6,
+      "verified_source": "Season 37 Episode 10 'Seperance' (aired January 4, 2026)",
+      "likelihood_pct": 72,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "last_updated": "2026-03-14T00:00:00.000000",
+      "desc": "In the January 4, 2026, episode 'Seperance', Duffman's retirement is framed as a corporate shift away from 'passé' mascots and TV spots. Fans see this as a prediction of the total decline of traditional marketing in favour of hyper-targeted AI ads."
     }
   ],
   "update_log": [

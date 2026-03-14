@@ -22,11 +22,22 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests feedparser
+          pip install requests feedparser anthropic
 
       - name: Run prediction update script
         run: |
           python springfield-oracle/public/update-predictions.py
+
+      - name: Run news monitor
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python springfield-oracle/scripts/news-monitor.py --apply
+        working-directory: springfield-oracle
+
+      - name: Rebuild static pages
+        run: |
+          node springfield-oracle/scripts/generate-static.js
 
       - name: Configure Git
         run: |
@@ -35,15 +46,18 @@ jobs:
 
       - name: Commit and push updated predictions
         run: |
-          if git diff --quiet springfield-oracle/public/data/predictions.json; then
-            echo "No changes to predictions.json"
+          git add springfield-oracle/data/predictions.json \
+                  springfield-oracle/public/data/predictions.json \
+                  springfield-oracle/public/simpsons-*.html \
+                  springfield-oracle/public/p/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
           else
-            git add springfield-oracle/public/data/predictions.json
-            git commit -m "🔮 Sunday Prediction Update: News velocity analysis for $(date +'%Y-%m-%d')"
+            git commit -m "data: weekly news monitor update ($(date +'%Y-%m-%d'))"
             git push
           fi
 
       - name: Log update completion
         run: |
-          echo "Prediction update completed at $(date -u)"
-          echo "Total PENDING predictions processed: $(grep -c '"status": "PENDING"' springfield-oracle/public/data/predictions.json)"
+          echo "Update completed at $(date -u)"
+          echo "Pending predictions: $(grep -c '"status": "pending"' springfield-oracle/public/data/predictions.json || echo 0)"
