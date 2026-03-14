@@ -38,54 +38,103 @@
   }
 
   /* ── SITE HEADER ── */
-  .site-header {
-    background: #050505;
-    border-bottom: 2px solid rgba(255,213,32,0.2);
-    padding: 0 40px;
-    height: 60px;
-    display: flex;
-    align-items: center;
+  header.site-header {
+    background: #FFD520;
+    border-bottom: 6px solid #0B2D8F;
+    position: relative;
+    overflow: hidden;
   }
-  .site-header-inner {
-    width: 100%;
+  .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 40px;
+    position: relative;
+    z-index: 2;
   }
-  .header-left {
+  .logo-block { display: flex; flex-direction: column; }
+  .logo-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #0B2D8F;
+  }
+  .logo-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 72px);
+    color: #0B2D8F;
+    line-height: 0.9;
+    letter-spacing: 2px;
+    text-decoration: none;
+    display: block;
+  }
+  .logo-title:hover { opacity: 0.85; }
+  .logo-sub {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    color: #FF6B2B;
+    margin-top: 4px;
+    transform: rotate(-1deg);
+  }
+  .header-right {
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+    align-items: flex-end;
     gap: 14px;
   }
-  .brand {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.08em;
-    color: var(--yellow);
-    text-decoration: none;
-  }
-  .brand:hover { opacity: 0.85; }
-  .header-tagline {
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,213,32,0.45);
-  }
-  .site-header .header-nav {
+  .header-nav {
     display: flex;
-    gap: 28px;
+    gap: 20px;
     align-items: center;
   }
-  .site-header .header-nav a {
+  .header-nav a {
     font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
+    font-size: 13px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: #0B2D8F;
     text-decoration: none;
-    transition: color 0.2s;
+    opacity: 0.7;
+    transition: opacity 0.2s;
   }
-  .site-header .header-nav a:hover { color: var(--yellow); }
+  .header-nav a:hover { opacity: 1; }
+  .header-stats {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+  }
+  .stat-pill {
+    background: #0B2D8F;
+    color: #FFD520;
+    padding: 12px 10px;
+    text-align: center;
+    position: relative;
+    width: 90px;
+    flex-shrink: 0;
+  }
+  .stat-pill::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px; right: -4px; bottom: -4px;
+    background: #FF6B2B;
+    z-index: -1;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    line-height: 1.4;
+    display: block;
+    margin-top: 2px;
+  }
 
   /* ── BREADCRUMB ── */
   .breadcrumb-bar {
@@ -217,14 +266,13 @@
 
   /* ── FULL STORY ── */
   .section-heading {
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #444;
-    font-weight: 700;
-    margin-bottom: 14px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,213,32,0.2);
   }
   .full-story-block {
     margin-bottom: 32px;
@@ -458,15 +506,18 @@
   }
 
   @media (max-width: 700px) {
-    .site-header { padding: 0 20px; }
+    .header-inner { padding: 16px 20px; }
+    .logo-title { font-size: 42px; }
+    .header-stats { gap: 10px; }
+    .stat-pill { width: 72px; padding: 10px 8px; }
+    .stat-num { font-size: 28px; }
     .breadcrumb-bar { padding: 9px 20px; }
     .page-wrap { padding: 28px 18px 60px; }
     .split-block { grid-template-columns: 1fr; }
     .split-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
     .meta-grid { grid-template-columns: 1fr 1fr; }
-    footer { padding: 20px 20px; }
+    footer { padding: 20px; }
     .footer-row { flex-direction: column; gap: 10px; text-align: center; }
-    .header-tagline { display: none; }
   }
 </style>
 </head>
@@ -474,15 +525,32 @@
 
 <!-- SITE HEADER -->
 <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a href="/" class="brand">Springfield Oracle</a>
-      <span class="header-tagline">They knew. We track it.</span>
+  <div class="header-inner">
+    <div class="logo-block">
+      <span class="logo-eyebrow">Open Source Intelligence</span>
+      <a href="/" class="logo-title">Springfield<br>Oracle</a>
+      <div class="logo-sub">They knew. We track it.</div>
     </div>
-    <nav class="header-nav">
-      <a href="/about.html">About</a>
-      <a href="/faq.html">FAQ</a>
-    </nav>
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="/about.html">About</a>
+        <a href="/faq.html">FAQ</a>
+      </nav>
+      <div class="header-stats">
+        <div class="stat-pill">
+          <span class="stat-num" id="h-total">63</span>
+          <span class="stat-label">Predictions<br>Tracked</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-num" id="h-confirmed">40</span>
+          <span class="stat-label">Confirmed<br>True</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-num" id="h-pending">13</span>
+          <span class="stat-label">Still<br>Pending</span>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
