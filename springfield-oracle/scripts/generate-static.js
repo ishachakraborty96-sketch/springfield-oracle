@@ -14,11 +14,25 @@ const fs   = require('fs');
 const path = require('path');
 
 const PREDICTIONS_PATH = path.join(__dirname, '../public/data/predictions.json');
-const OUTPUT_DIR       = path.join(__dirname, '../public/p');
+const OUTPUT_DIR       = path.join(__dirname, '../public');
+const LEGACY_DIR       = path.join(__dirname, '../public/p');
 const BASE_URL         = 'https://www.springfieldoracle.com';
 const OG_IMAGE         = `${BASE_URL}/og-image.png`;
 
 // ── helpers ────────────────────────────────────────────────────────────────
+
+function makeSlug(p) {
+  const code = (p.episode_code && p.episode_code !== 'N/A')
+    ? p.episode_code.toLowerCase().replace(/[^a-z0-9]/g, '') + '-'
+    : '';
+  const nameSource = p.title || p.id;
+  const namePart = nameSource
+    .toLowerCase()
+    .replace(/['"'\u2019]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return 'simpsons-' + code + namePart;
+}
 
 function esc(str) {
   return String(str || '')
@@ -52,7 +66,7 @@ let totalCount = 0, confirmedCount = 0, pendingCount = 0;
 
 function renderPage(p) {
   const status     = (p.status || '').toUpperCase();
-  const canonUrl   = `${BASE_URL}/p/${p.id}.html`;
+  const canonUrl   = `${BASE_URL}/${p.slug}`;
   const pageTitle  = `${esc(p.title)} — Springfield Oracle`;
   const desc       = esc(metaDesc(p));
   const gap        = timeGap(p);
@@ -398,14 +412,41 @@ confirmedCount = predictions.filter(p => (p.status || '').toUpperCase() === 'CON
 pendingCount   = predictions.filter(p => (p.status || '').toUpperCase() === 'PENDING').length;
 
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+if (!fs.existsSync(LEGACY_DIR)) fs.mkdirSync(LEGACY_DIR, { recursive: true });
 
 let count = 0;
 for (const p of predictions) {
+  const slug = makeSlug(p);
+  p.slug = slug;
+
   const html     = renderPage(p);
-  const outPath  = path.join(OUTPUT_DIR, `${p.id}.html`);
+  const outPath  = path.join(OUTPUT_DIR, `${slug}.html`);
   fs.writeFileSync(outPath, html, 'utf8');
+  process.stdout.write(`  ✓ /${slug}.html\n`);
+
+  const redirectHtml = `<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url=/${slug}">
+<link rel="canonical" href="https://www.springfieldoracle.com/${slug}">
+<title>Redirecting…</title>
+</head><body>
+<p>Redirecting to <a href="/${slug}">/${slug}</a></p>
+</body></html>`;
+  const legacyPath = path.join(LEGACY_DIR, `${p.id}.html`);
+  fs.writeFileSync(legacyPath, redirectHtml, 'utf8');
+  process.stdout.write(`    → redirect /p/${p.id}.html\n`);
+
   count++;
-  process.stdout.write(`  ✓ /p/${p.id}.html\n`);
 }
 
-console.log(`\nDone — ${count} pages written to public/p/\n`);
+// Write slug back to predictions.json
+const updatedRaw = JSON.parse(fs.readFileSync(PREDICTIONS_PATH, 'utf8'));
+updatedRaw.predictions = updatedRaw.predictions.map(p => {
+  const match = predictions.find(x => x.id === p.id);
+  if (match && match.slug) p.slug = match.slug;
+  return p;
+});
+fs.writeFileSync(PREDICTIONS_PATH, JSON.stringify(updatedRaw, null, 2), 'utf8');
+
+console.log(`\nDone — ${count} pages written to public/simpsons-*.html, redirects in public/p/\n`);

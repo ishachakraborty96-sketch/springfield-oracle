@@ -4178,7 +4178,7 @@ function openModal(p) {
   // Link to individual prediction page
   const wikiEl = document.getElementById('modal-wiki-link');
   if (wikiEl) {
-    wikiEl.href = `/p/${p.id}.html`;
+    wikiEl.href = `/simpsons-${p.slug || makeSlug(p.id, p.season + p.episode, p.name, p.title)}`;
     wikiEl.style.display = 'inline-block';
   }
 
@@ -4264,6 +4264,7 @@ const carouselData = [
     category: 'Politics',
     trueDate: '—',
     predId: 'SP030',
+    predSlug: 'simpsons-trump-death-prediction-viral-hoax-2026',
     title: 'Trump Death Prediction Viral Hoax — AI-Generated Deepfakes',
     body: `A viral TikTok and X claim spread across social media in early March 2026, alleging that The Simpsons predicted Donald Trump's death through a "coffin scene." Screenshots and AI-generated deepfake video clips began circulating, claiming the show "predicted his death for March 2026."\n\nFact-checkers including Snopes, Wikipedia, and mainstream media investigations identified all viral clips as AI-generated deepfakes. No such Simpsons scene exists in any legitimate episode. Trump remained alive as of March 8, 2026.\n\nThis prediction is logged as a meta-entry to document viral misinformation and track the proliferation of AI deepfakes in the 2026 information environment. The claim illustrates how AI-generated video content can bypass initial verification, spreading false predictions at scale across social platforms before fact-checkers catch up.`,
     shareTitle: 'Trump Death Prediction Viral Hoax: AI-generated deepfakes claim Simpsons predicted his death in March 2026. Debunked by fact-checkers. No such scene exists.'
@@ -4275,6 +4276,7 @@ const carouselData = [
     category: 'Politics',
     trueDate: 'Still Developing...',
     predId: 'SP029',
+    predSlug: 'simpsons-s06e19-world-war-iii-middle-east-escalation',
     title: 'S06E19 — Lisa\'s Wedding (1995) Referenced World War III in the Middle East',
     body: `In "Lisa's Wedding" (Season 6, Episode 19, 1995), a British character tells an American: "Well, we saved your ass in World War III." The line is set in a future version of Springfield, framed as a throwaway joke with no specific country or date named.\n\nOn February 28, 2026, the United States and Israel launched Operation Epic Fury — a coordinated series of strikes on Iran. Supreme Leader Khamenei was killed. Iran retaliated with missile strikes on Gulf states including Qatar, UAE, Jordan, and Kuwait. The UN Security Council convened an emergency session.\n\nThe episode aired 31 years before the event. The WW3 reference was incidental — a background detail in a story about Lisa's future wedding. It was never presented as a prediction.`,
     shareTitle: 'S06E19 Lisa\'s Wedding (1995) referenced World War III in the Middle East. On Feb 28 2026, US-Israel launched joint strikes on Iran.'
@@ -4284,6 +4286,7 @@ const carouselData = [
     episode: 'S08E10 · The Springfield Files (1997)',
     status: 'confirmed',
     predId: 'SP019',
+    predSlug: 'simpsons-s08e10-uap-ufo-congressional-hearings',
     title: 'S08E10 — The Springfield Files (1997) Depicted Government Suppression of UFO Evidence',
     body: `In "The Springfield Files" (Season 8, Episode 10, 1997), Homer witnesses an alien in the woods. FBI Agent Mulder and government officials arrive and systematically suppress and deny the evidence — warning Springfield residents that what they saw was not real.\n\nOn February 19, 2026, President Trump posted on Truth Social directing the Pentagon and all relevant federal agencies to begin identifying and releasing classified government files related to UFOs, UAPs, and extraterrestrial life. Defense Secretary Pete Hegseth confirmed his team was "digging in." The directive came one day after former President Obama stated in a podcast interview that aliens are "real."\n\nThe episode aired 29 years before the declassification directive. No confirmed extraterrestrial contact has been officially acknowledged.`,
     shareTitle: 'S08E10 The Springfield Files (1997) depicted government suppression of UFO evidence. On Feb 19 2026, Trump ordered Pentagon to declassify all UAP files.'
@@ -4293,6 +4296,7 @@ const carouselData = [
     episode: 'The Simpsons Movie (2007)',
     status: 'confirmed',
     predId: 'SP042',
+    predSlug: 'simpsons-s02e17-mass-government-surveillance-state',
     title: 'The Simpsons Movie (2007) Depicted Mass Government Surveillance of Citizens',
     body: `In The Simpsons Movie (2007), a scene depicts the NSA operating a large surveillance room, monitoring citizens' phone calls in real time. Marge and the family are spied on as part of a broad government operation with no oversight shown.\n\nIn 2013, Edward Snowden leaked classified NSA documents confirming that the US government had been running exactly this kind of mass domestic surveillance program — collecting call records, internet activity, and personal communications from millions of Americans without individual warrants.\n\nIn 2026, the Pentagon's negotiations with Anthropic revealed that the government sought unrestricted AI access to American citizens' data — including geolocation, browsing history, and financial records — with no safeguards required by contract. The film aired 6 years before Snowden's confirmation, and 19 years before the AI surveillance dispute.`,
     shareTitle: 'The Simpsons Movie (2007) depicted mass NSA surveillance of citizens. Snowden confirmed it in 2013. In 2026, the Pentagon demanded unrestricted AI access to citizen data.'
@@ -4302,6 +4306,7 @@ const carouselData = [
     episode: 'S24E09 · Homer Goes to Prep School (2013)',
     status: 'debunked',
     predId: 'SP066',
+    predSlug: 'simpsons-s24e09-the-great-awakening-qanon-storm',
     title: 'S24E09 — Homer Goes to Prep School (2013) Depicted Societal Collapse via EMP',
     body: `"Homer Goes to Prep School" (Season 24, Episode 9, 2013) features Homer joining a group of doomsday preppers who believe civilisation is about to collapse. The episode depicts an electromagnetic pulse (EMP) device triggering a breakdown of society and rule of law, referred to in survivalist circles as WROL — Without Rule of Law.\n\nIn September 2022, QAnon's Great Awakening forum cited this episode — noting that Season 24, Episode 9 numerically maps to "9/24" — as evidence that a government-orchestrated event called "The Storm" would occur on September 24, 2022. Followers predicted Trump's return to power, mass arrests, and "10 days of darkness."\n\nThe prediction was sourced from a misreading of a German politician's speech, combined with numerological interpretation of the episode number. Nothing occurred on September 24, 2022. The episode is real and accurately described. The prediction it supposedly contains was not in the episode.`,
     shareTitle: 'S24E09 Homer Goes to Prep School (2013) depicted doomsday preppers and EMP collapse. QAnon cited it as proof of a "Storm" on Sep 24 2022. Nothing happened. Logged as Debunked.'
@@ -4311,6 +4316,7 @@ const carouselData = [
     episode: 'S04E21 · Marge in Chains (1993)',
     status: 'confirmed',
     predId: 'SP005',
+    predSlug: 'simpsons-s04e21-osaka-flu-pandemic-hysteria',
     title: 'S04E21 — Marge in Chains (1993) Depicted a Flu Pandemic from Japan',
     body: `In "Marge in Chains" (Season 4, Episode 21, 1993), Springfield is struck by the "Osaka Flu" — a highly contagious influenza virus originating in Japan. The virus spreads rapidly through contact with contaminated packages, overwhelms the local hospital, and triggers panic-buying across the town.\n\nBy early 2026, the H3N2 influenza strain had infected over 11 million people globally, with more than 5,000 confirmed deaths. The outbreak was concentrated in Asia before spreading internationally, triggering hospital capacity alerts in multiple countries and renewed stockpiling of antiviral medications.\n\nThe episode aired in 1993 — 33 years before the H3N2 outbreak. The "Osaka Flu" was written as satire of media-driven health panics, not as a specific prediction of H3N2.`,
     shareTitle: 'S04E21 Marge in Chains (1993) depicted a flu pandemic from Japan overwhelming hospitals. In 2026, H3N2 infected 11M+ people globally.'
@@ -4336,7 +4342,7 @@ function openCarouselModal(index) {
   const wikiEl = document.getElementById('modal-wiki-link');
   if (wikiEl) {
     if (d.predId) {
-      wikiEl.href = `/p/${d.predId}.html`;
+      wikiEl.href = `/simpsons-${d.predSlug}`;
       wikiEl.style.display = 'inline-block';
     } else {
       wikiEl.style.display = 'none';
@@ -4586,6 +4592,19 @@ function handleHeroSubscribe(e) {
   return handleSubscribe(e, 'hero-subscribe-form', 'hero-subscribe-success');
 }
 
+function makeSlug(id, episodeCode, episodeName, title) {
+  const code = (episodeCode && episodeCode !== 'N/A')
+    ? episodeCode.toLowerCase().replace(/[^a-z0-9]/g, '') + '-'
+    : '';
+  const nameSource = title || id;
+  const namePart = nameSource
+    .toLowerCase()
+    .replace(/['"'\u2019]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return 'simpsons-' + code + namePart;
+}
+
 // ── LOAD FROM JSON DATABASE (with fetch — works on Vercel) ────────────
 // This keeps the JS predictions array in sync with /data/predictions.json
 // On Vercel, the JSON is served as a static asset
@@ -4610,7 +4629,8 @@ async function syncWithDatabase() {
           status:   p.status,
           trueYear: p.real_year,
           viral:    p.viral_score,
-          likelihood_pct: p.likelihood_pct
+          likelihood_pct: p.likelihood_pct,
+          slug:     makeSlug(p.id, p.episode_code, p.episode_name, p.title)
         };
       });
       // JSON is now the active dataset — all filters and counts use it
