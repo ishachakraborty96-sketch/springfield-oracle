@@ -120,7 +120,6 @@ function renderPage(p) {
     { label: 'Came True', value: status === 'CONFIRMED' ? esc(p.real_year ? String(p.real_year) : '—') : status === 'DEBUNKED' ? 'Debunked' : 'Still pending…' },
     { label: 'Season',    value: p.season ? `Season ${esc(p.season)}` : '—' },
   ];
-  if (p.viral_score) metaCells.push({ label: 'Viral Score', value: `${esc(p.viral_score)} / 10` });
   const metaGrid = metaCells.map(c =>
     `<div class="meta-cell"><label>${c.label}</label><span>${c.value}</span></div>`
   ).join('');

@@ -741,7 +741,6 @@ function renderPrediction(p) {
     { label: 'Came True',   value: status === 'CONFIRMED' ? (p.real_year ? String(p.real_year) : '—') : status === 'DEBUNKED' ? 'Debunked' : 'Still pending…' },
     { label: 'Season',      value: p.season ? `Season ${p.season}` : '—' },
   ];
-  if (p.viral_score) metaCells.push({ label: 'Viral Score', value: `${p.viral_score} / 10` });
   const metaHTML = metaCells.map(c =>
     `<div class="meta-cell"><label>${c.label}</label><span>${c.value}</span></div>`
   ).join('');
