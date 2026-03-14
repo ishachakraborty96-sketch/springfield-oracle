@@ -3312,6 +3312,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       </div>
 
       </div>
+      <div id="last-updated-label" style="font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.45);margin-top:6px;letter-spacing:0.04em;"></div>
     </div>
   </div>
   <div class="tv-graphic">📺</div>
@@ -3563,7 +3564,12 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <span class="footer-nav"><a href="/about.html" onclick="trackEvent('link_click', {page: 'about'})">About</a> · <a href="/faq.html" onclick="trackEvent('link_click', {page: 'faq'})">FAQ</a></span>
     </div>
   </div>
-  <!-- Row 2: complaints (centered) | policy buttons -->
+  <!-- Row 2: submit / report CTAs -->
+  <div class="footer-row" style="justify-content:center; gap:20px; padding:6px 0;">
+    <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener" onclick="trackEvent('link_click', {action: 'submit_prediction_footer'})" style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#FFD520;text-decoration:none;border:1px solid rgba(255,213,32,0.4);padding:5px 12px;border-radius:4px;" onmouseover="this.style.background='rgba(255,213,32,0.08)'" onmouseout="this.style.background=''">+ Submit a prediction</a>
+    <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener" onclick="trackEvent('link_click', {action: 'report_fake_footer'})" style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#aaa;text-decoration:none;border:1px solid rgba(255,255,255,0.15);padding:5px 12px;border-radius:4px;" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background=''">⚑ Report a fake</a>
+  </div>
+  <!-- Row 3: complaints (centered) | policy buttons -->
   <div class="footer-row" style="align-items:center; justify-content:space-between;">
     <button class="complaints-btn" onclick="releaseTheHounds()">Complain</button>
     <div style="display:flex; align-items:center; gap:8px;">
@@ -3577,7 +3583,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal">
-    <button class="modal-close" onclick="trackEvent('modal_close', {method: 'close_button'}); document.getElementById('modal').classList.remove('open')">✕</button>
+    <button class="modal-close" onclick="trackEvent('modal_close', {method: 'close_button'}); document.getElementById('modal').classList.remove('open'); history.pushState(null, '', location.pathname + location.search);">✕</button>
     <div class="modal-episode" id="modal-episode"></div>
     <div class="modal-title" id="modal-title"></div>
     <div class="modal-body" id="modal-body"></div>
@@ -3604,6 +3610,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <button id="modal-share-x" onclick="modalShareX()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">𝕏 Share on X</button>
       <button id="modal-share-li" onclick="modalShareLinkedIn()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#0A66C2';this.style.color='#0A66C2'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">in Share on LinkedIn</button>
       <button id="modal-share-copy" onclick="modalCopyLink(this)" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">🔗 Copy</button>
+      <a id="modal-wiki-link" href="#" target="_blank" rel="noopener" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;text-decoration:none;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='#aaa';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">📺 View Episode</a>
     </div>
   </div>
 </div>
@@ -3895,6 +3902,12 @@ function updateCounts() {
   document.getElementById('total-count').textContent = activeData.length;
   document.getElementById('confirmed-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'CONFIRMED').length;
   document.getElementById('pending-count').textContent = activeData.filter(p => p.status?.toUpperCase() === 'PENDING').length;
+  const dates = activeData.map(p => p.last_updated).filter(Boolean).map(d => new Date(d)).filter(d => !isNaN(d));
+  if (dates.length) {
+    const latest = new Date(Math.max(...dates));
+    const label = document.getElementById('last-updated-label');
+    if (label) label.textContent = 'Last updated ' + latest.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
 }
 
 // ── TABLE RENDERING + PAGINATION ──────────────────────────────────────
@@ -4011,6 +4024,22 @@ function renderCurrentPage() {
     // Hide pagination for easter egg
     const bar = document.getElementById('pagination-bar');
     if (bar) bar.style.display = 'none';
+    return;
+  }
+
+  // No-results empty state
+  if (currentFilteredData.length === 0) {
+    const bar = document.getElementById('pagination-bar');
+    if (bar) bar.style.display = 'none';
+    tbody.innerHTML = `
+      <tr style="border:none;background:none;">
+        <td colspan="6" style="border:none;padding:48px 20px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:12px;">🔍</div>
+          <div style="font-family:'Space Mono',monospace;font-size:1rem;color:#ddd;margin-bottom:8px;">No predictions found.</div>
+          <div style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#666;">Try a different search or filter — or <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener" style="color:#FFD520;text-decoration:underline;">submit a prediction</a> we might be missing.</div>
+        </td>
+      </tr>
+    `;
     return;
   }
 
@@ -4157,9 +4186,20 @@ function openModal(p) {
     liveNewsEl.style.display = 'none';
   }
 
+  // Wikipedia episode link
+  const wikiEl = document.getElementById('modal-wiki-link');
+  if (wikiEl) {
+    const seasonNum = parseInt((p.season || '').replace(/\D/g, '')) || 0;
+    const wikiUrl = seasonNum >= 21
+      ? 'https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes_(season_21%E2%80%93present)'
+      : `https://en.wikipedia.org/wiki/The_Simpsons_(season_${seasonNum})`;
+    wikiEl.href = wikiUrl;
+  }
+
   // Track prediction modal open
   trackEvent('general_click', { action: 'prediction_opened', prediction_id: p.id, status: p.status, category: p.category });
 
+  history.pushState(null, '', '#' + p.id);
   document.getElementById('modal').classList.add('open');
 }
 
@@ -4168,11 +4208,12 @@ function closeModal(e) {
     // Track modal close via overlay click
     trackEvent('modal_close', { method: 'overlay_click' });
     document.getElementById('modal').classList.remove('open');
+    history.pushState(null, '', location.pathname + location.search);
   }
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+  if (e.key === 'Escape') { document.getElementById('modal').classList.remove('open'); history.pushState(null, '', location.pathname + location.search); }
 });
 
 renderTable(predictions);
