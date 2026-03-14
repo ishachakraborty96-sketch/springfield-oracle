@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading... — Springfield Oracle</title>
+<meta name="description" content="Springfield Oracle — The definitive tracker for Simpsons predictions.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="canonical" id="canonical-url" href="https://www.springfieldoracle.com/prediction.html">
+
+<!-- Open Graph (populated by JS) -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Springfield Oracle">
+<meta id="og-url"   property="og:url"         content="https://www.springfieldoracle.com/prediction.html">
+<meta id="og-title" property="og:title"        content="Springfield Oracle">
+<meta id="og-desc"  property="og:description"  content="">
+<meta property="og:image" content="https://www.springfieldoracle.com/og-image.png">
+<meta name="twitter:card"  content="summary_large_image">
+<meta id="tw-title" name="twitter:title"       content="Springfield Oracle">
+<meta id="tw-desc"  name="twitter:description" content="">
+<meta name="twitter:image" content="https://www.springfieldoracle.com/og-image.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0a;
+    color: #e8e8e8;
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── NAV ── */
+  .top-nav {
+    background: #0d0d0d;
+    border-bottom: 1px solid rgba(255,213,32,0.15);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .top-nav a {
+    color: #FFD520;
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .top-nav a:hover { text-decoration: underline; }
+  .top-nav .sep { color: #444; }
+  .top-nav .brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: #FFD520;
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── STATUS BADGE ── */
+  .status-badge {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+  .status-confirmed { background: rgba(80,200,120,0.15); color: #50C878; border: 1px solid rgba(80,200,120,0.4); }
+  .status-pending   { background: rgba(255,213,32,0.1);  color: #FFD520; border: 1px solid rgba(255,213,32,0.35); }
+  .status-debunked  { background: rgba(255,80,80,0.12);  color: #ff6b6b; border: 1px solid rgba(255,80,80,0.35); }
+
+  /* ── EPISODE LINE ── */
+  .episode-line {
+    font-size: 0.72rem;
+    color: #888;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* ── TITLE ── */
+  h1.pred-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    letter-spacing: 0.04em;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  /* ── DESCRIPTION ── */
+  .pred-desc {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 28px;
+    border-left: 2px solid rgba(255,213,32,0.3);
+    padding-left: 16px;
+  }
+
+  /* ── META GRID ── */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .meta-cell {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 10px 14px;
+  }
+  .meta-cell label {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  .meta-cell span {
+    font-size: 0.82rem;
+    color: #ddd;
+  }
+
+  /* ── LIKELIHOOD BAR ── */
+  .likelihood-block {
+    background: rgba(255,213,32,0.05);
+    border: 1px solid rgba(255,213,32,0.2);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+  }
+  .likelihood-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .likelihood-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .likelihood-pct {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: #FFD520;
+  }
+  .likelihood-bar-track {
+    height: 5px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .likelihood-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFD520, #FF8C00);
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+  .analysis-notes {
+    font-size: 0.78rem;
+    color: #aaa;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  /* ── SUPPORTING LINKS ── */
+  .supporting-block {
+    margin-bottom: 28px;
+  }
+  .supporting-block h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .supporting-block a {
+    display: block;
+    font-size: 0.75rem;
+    color: #7aadff;
+    text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .supporting-block a:hover { color: #FFD520; }
+
+  /* ── ACTION BAR ── */
+  .action-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 40px;
+  }
+  .action-btn {
+    display: inline-block;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Space Mono', monospace;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .action-btn:hover { border-color: #FFD520; color: #FFD520; }
+  .action-btn.wiki:hover { border-color: #aaa; color: #fff; }
+
+  /* ── NOT FOUND ── */
+  .not-found {
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .not-found h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #FFD520; margin-bottom: 12px; }
+  .not-found p  { font-size: 0.85rem; color: #666; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 20px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #555;
+  }
+  footer a { color: #777; text-decoration: none; }
+  footer a:hover { color: #FFD520; }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 24px 16px 60px; }
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="/" class="brand">Springfield Oracle</a>
+  <span class="sep">›</span>
+  <a href="/">All Predictions</a>
+</nav>
+
+<div class="page-wrap">
+  <div id="content">
+    <p style="color:#555;font-size:0.8rem;">Loading...</p>
+  </div>
+</div>
+
+<footer>
+  <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
+  <span>·</span>
+  <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener">+ Submit a prediction</a>
+  <span>·</span>
+  <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener">⚑ Report a fake</a>
+  <span>·</span>
+  <span style="color:#333;">© 2026 Isha Godboley. Not affiliated with Fox or The Simpsons.</span>
+</footer>
+
+<script>
+(async () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id') || window.location.hash.slice(1);
+
+  if (!id) { renderNotFound('No prediction ID provided.'); return; }
+
+  let predictions;
+  try {
+    const res = await fetch('/data/predictions.json');
+    const data = await res.json();
+    predictions = data.predictions || [];
+  } catch (e) {
+    renderNotFound('Could not load prediction data.');
+    return;
+  }
+
+  const p = predictions.find(x => x.id === id);
+  if (!p) { renderNotFound(`Prediction "${id}" not found.`); return; }
+
+  renderPrediction(p);
+})();
+
+function statusClass(s) {
+  const u = (s || '').toUpperCase();
+  if (u === 'CONFIRMED') return 'status-confirmed';
+  if (u === 'DEBUNKED')  return 'status-debunked';
+  return 'status-pending';
+}
+
+function wikiUrl(season) {
+  const n = parseInt(season) || 0;
+  return n >= 21
+    ? 'https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes_(season_21%E2%80%93present)'
+    : `https://en.wikipedia.org/wiki/The_Simpsons_(season_${n})`;
+}
+
+function shareXUrl(p) {
+  const text = `The Simpsons predicted this in ${p.year_aired} — and it came true.\n\n"${p.title}"\n\n`;
+  const url = window.location.href;
+  return `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+}
+
+function shareLIUrl() {
+  return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
+}
+
+function copyLink(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.textContent = '✓ Copied';
+    setTimeout(() => { btn.textContent = '🔗 Copy Link'; }, 2000);
+  });
+}
+
+function renderPrediction(p) {
+  const status = (p.status || '').toUpperCase();
+  const canonicalUrl = `https://www.springfieldoracle.com/prediction.html?id=${p.id}`;
+
+  // Update head meta
+  const pageTitle = `${p.title} — Springfield Oracle`;
+  const pageDesc  = p.desc ? p.desc.slice(0, 160) + (p.desc.length > 160 ? '…' : '') : p.prediction || '';
+  document.title = pageTitle;
+  document.getElementById('og-url').content   = canonicalUrl;
+  document.getElementById('og-title').content = pageTitle;
+  document.getElementById('og-desc').content  = pageDesc;
+  document.getElementById('tw-title').content = pageTitle;
+  document.getElementById('tw-desc').content  = pageDesc;
+  document.getElementById('canonical-url').href = canonicalUrl;
+
+  // Likelihood block (PENDING only)
+  let likelihoodHTML = '';
+  if (status === 'PENDING' && p.likelihood_pct) {
+    const pct = p.likelihood_pct;
+    likelihoodHTML = `
+      <div class="likelihood-block">
+        <div class="likelihood-header">
+          <span class="likelihood-label">Likelihood Score</span>
+          <span class="likelihood-pct">${pct}%</span>
+        </div>
+        <div class="likelihood-bar-track">
+          <div class="likelihood-bar-fill" style="width:${pct}%"></div>
+        </div>
+        ${p.analysis_notes ? `<div class="analysis-notes">${p.analysis_notes}</div>` : ''}
+      </div>`;
+  }
+
+  // Supporting links
+  let linksHTML = '';
+  if (p.supporting_links && p.supporting_links.length) {
+    const items = p.supporting_links.map(url =>
+      `<a href="${url}" target="_blank" rel="noopener">${url}</a>`
+    ).join('');
+    linksHTML = `<div class="supporting-block"><h3>Sources &amp; News</h3>${items}</div>`;
+  }
+
+  // Meta cells
+  const metaCells = [
+    { label: 'Status',    value: `<span class="status-badge ${statusClass(p.status)}">${status}</span>` },
+    { label: 'Category',  value: p.category || '—' },
+    { label: 'Air Date',  value: p.year_aired || '—' },
+    { label: 'Came True', value: status === 'CONFIRMED' ? (p.real_year || '—') : (status === 'DEBUNKED' ? 'Debunked' : 'Still pending…') },
+  ];
+  if (p.real_event) metaCells.push({ label: 'Real Event', value: p.real_event });
+  const metaHTML = metaCells.map(c =>
+    `<div class="meta-cell"><label>${c.label}</label><span>${c.value}</span></div>`
+  ).join('');
+
+  const episodeLabel = [p.episode_code, p.episode_name, p.year_aired ? `(${p.year_aired})` : ''].filter(Boolean).join(' · ');
+
+  document.getElementById('content').innerHTML = `
+    <div class="episode-line">${episodeLabel}</div>
+    <h1 class="pred-title">${p.title}</h1>
+    <div class="pred-desc">${p.desc || p.prediction || ''}</div>
+    ${likelihoodHTML}
+    <div class="meta-grid">${metaHTML}</div>
+    ${linksHTML}
+    <div class="action-bar">
+      <a href="${shareXUrl(p)}" target="_blank" rel="noopener" class="action-btn">𝕏 Share on X</a>
+      <a href="${shareLIUrl()}" target="_blank" rel="noopener" class="action-btn">in Share on LinkedIn</a>
+      <button class="action-btn" onclick="copyLink(this)">🔗 Copy Link</button>
+      <a href="${wikiUrl(p.season)}" target="_blank" rel="noopener" class="action-btn wiki">📺 View on Wikipedia</a>
+    </div>
+    <a href="/" style="font-size:0.75rem;color:#555;text-decoration:none;">← Back to all predictions</a>
+  `;
+}
+
+function renderNotFound(msg) {
+  document.title = 'Not Found — Springfield Oracle';
+  document.getElementById('content').innerHTML = `
+    <div class="not-found">
+      <h1>Prediction Not Found</h1>
+      <p>${msg}</p>
+      <p style="margin-top:16px;"><a href="/" style="color:#FFD520;">← Back to all predictions</a></p>
+    </div>`;
+}
+</script>
+</body>
+</html>

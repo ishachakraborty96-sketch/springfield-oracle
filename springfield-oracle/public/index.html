@@ -3610,7 +3610,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <button id="modal-share-x" onclick="modalShareX()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">𝕏 Share on X</button>
       <button id="modal-share-li" onclick="modalShareLinkedIn()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#0A66C2';this.style.color='#0A66C2'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">in Share on LinkedIn</button>
       <button id="modal-share-copy" onclick="modalCopyLink(this)" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">🔗 Copy</button>
-      <a id="modal-wiki-link" href="#" target="_blank" rel="noopener" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;text-decoration:none;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='#aaa';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">📺 View Episode</a>
+      <a id="modal-wiki-link" href="#" target="_blank" rel="noopener" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;text-decoration:none;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='#aaa';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">↗ Full Page</a>
     </div>
   </div>
 </div>
@@ -4186,14 +4186,10 @@ function openModal(p) {
     liveNewsEl.style.display = 'none';
   }
 
-  // Wikipedia episode link
+  // Link to individual prediction page
   const wikiEl = document.getElementById('modal-wiki-link');
   if (wikiEl) {
-    const seasonNum = parseInt((p.season || '').replace(/\D/g, '')) || 0;
-    const wikiUrl = seasonNum >= 21
-      ? 'https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes_(season_21%E2%80%93present)'
-      : `https://en.wikipedia.org/wiki/The_Simpsons_(season_${seasonNum})`;
-    wikiEl.href = wikiUrl;
+    wikiEl.href = `/prediction.html?id=${p.id}`;
   }
 
   // Track prediction modal open
