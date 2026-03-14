@@ -545,6 +545,26 @@
       "desc": "In \"Lisa's Wedding\" (Season 6, Episode 19, 1995), a British character tells an American: \"Well, we saved your ass in World War III.\" The line is a throwaway joke set in a future Springfield with no region or date specified. On February 28, 2026, the United States and Israel launched coordinated strikes on Iran in what was codenamed Operation Epic Fury. Supreme Leader Khamenei was killed. Iran retaliated with missile barrages targeting Gulf states. The UN Security Council convened an emergency session. The episode aired 31 years before the event."
     },
     {
+      "id": "SP030",
+      "season": 0,
+      "episode_code": "N/A",
+      "episode_name": "Viral Hoax",
+      "title": "Trump Death Prediction Viral Hoax (2026)",
+      "year_aired": null,
+      "real_year": 2026,
+      "prediction": "No such Simpsons episode or scene exists. AI-generated deepfake videos and fabricated screenshots were circulated on TikTok and X in March 2026, falsely claiming The Simpsons predicted Donald Trump's death.",
+      "real_event": "Fact-checkers including Snopes confirmed all viral clips as AI-generated deepfakes. Trump remained alive as of March 8, 2026. No verifiable Simpsons scene supports the claim.",
+      "status": "DEBUNKED",
+      "category": "Hoax",
+      "viral_score": 9,
+      "last_updated": "2026-03-08",
+      "supporting_links": [
+        "https://www.snopes.com/fact-check/simpsons-predict-trumps-death/"
+      ],
+      "analysis_notes": "Logged as a meta-entry to document viral AI deepfake misinformation. Distinct from SP058 (the original 2020 fake casket image) — this is a 2026 wave of AI-generated video deepfakes, not a static image hoax.",
+      "desc": "In early March 2026, a wave of AI-generated deepfake videos and fabricated screenshots spread across TikTok and X, falsely claiming The Simpsons had predicted Donald Trump's death through a 'coffin scene'. No such scene exists in any episode. Fact-checkers at Snopes, Wikipedia, and mainstream media outlets confirmed all viral clips as AI-generated. Trump remained alive as of March 8, 2026. This entry is logged separately from SP058 (the 2020 fake casket image) because the 2026 event involved AI-generated video at scale, illustrating how deepfake technology has accelerated viral misinformation."
+    },
+    {
       "id": "SP031",
       "season": 20,
       "episode_code": "S20E04",
