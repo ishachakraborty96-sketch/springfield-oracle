@@ -8,8 +8,8 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'Valid email required' });
   }
 
-  const PUBLICATION_ID = 'pub_62cfda32-7031-4c9d-9972-fb9b355cd4ec';
-  const API_KEY = process.env.BEEHIIV_API_KEY_V2;
+  const PUBLICATION_ID = process.env.BEEHIIV_API_KEY_V2; // pub_xxxx value
+  const API_KEY = process.env.BEEHIIV_API_KEY;           // random string
 
   try {
     const beehiivRes = await fetch(
