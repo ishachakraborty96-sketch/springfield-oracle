@@ -516,6 +516,35 @@
       ]
     },
     {
+      "id": "SP029",
+      "season": 6,
+      "episode_code": "S06E19",
+      "episode_name": "Lisa's Wedding",
+      "title": "World War III — Middle East Escalation",
+      "year_aired": 1995,
+      "real_year": 2026,
+      "prediction": "A British character casually tells an American: \"Well, we saved your ass in World War III.\" The line is set in a future Springfield, with no specific region or date attached.",
+      "real_event": "On February 28, 2026, the United States and Israel launched Operation Epic Fury — coordinated strikes on Iran. Supreme Leader Khamenei was killed. Iran retaliated with missile strikes on Qatar, UAE, Jordan, and Kuwait. The UN Security Council convened an emergency session.",
+      "status": "PENDING",
+      "likelihood_pct": 62,
+      "likelihood_components": {
+        "category_base_rate": 0.55,
+        "plausibility_score": 0.65,
+        "specificity_score": 0.3,
+        "news_velocity_score": 0.8
+      },
+      "supporting_links": [
+        "https://en.wikipedia.org/wiki/Lisa%27s_Wedding",
+        "https://en.wikipedia.org/wiki/2026_Iran%E2%80%93United_States_conflict"
+      ],
+      "news_matches": 18,
+      "last_updated": "2026-03-14",
+      "analysis_notes": "The WW3 reference in \"Lisa's Wedding\" (1995) is a throwaway joke set in a near-future Springfield — never presented as a prediction. The Feb 28 2026 US-Israel strikes on Iran represent the most significant escalation toward a broader regional conflict since the Gulf War. Still developing — no global coalition war has been declared as of March 2026.",
+      "category": "Politics",
+      "viral_score": 9,
+      "desc": "In \"Lisa's Wedding\" (Season 6, Episode 19, 1995), a British character tells an American: \"Well, we saved your ass in World War III.\" The line is a throwaway joke set in a future Springfield with no region or date specified. On February 28, 2026, the United States and Israel launched coordinated strikes on Iran in what was codenamed Operation Epic Fury. Supreme Leader Khamenei was killed. Iran retaliated with missile barrages targeting Gulf states. The UN Security Council convened an emergency session. The episode aired 31 years before the event."
+    },
+    {
       "id": "SP031",
       "season": 20,
       "episode_code": "S20E04",
