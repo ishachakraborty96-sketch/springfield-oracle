@@ -4547,32 +4547,20 @@ loadNewsFromAPI();
 setInterval(loadNewsFromAPI, 30 * 1000); // Refresh every 30 seconds
 
 // ── NEWSLETTER SIGNUP ─────────────────────────────────────────────────
-async function handleSubscribe(e, formId, successId) {
+function handleSubscribe(e, formId, successId) {
   e.preventDefault();
   const form = document.getElementById(formId);
-  const input = form.querySelector('input[type="email"]');
-  const btn = form.querySelector('button');
-  const email = input.value.trim();
+  const email = form.querySelector('input[type="email"]').value.trim();
   if (!email) return;
-  const originalLabel = btn.textContent;
-  btn.textContent = '...';
-  btn.disabled = true;
-  try {
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    if (res.ok) {
-      form.style.display = 'none';
-      document.getElementById(successId).style.display = 'block';
-    } else {
-      throw new Error();
-    }
-  } catch {
-    btn.textContent = originalLabel;
-    btn.disabled = false;
-  }
+  // Show success immediately — don't make UX dependent on API round-trip
+  form.style.display = 'none';
+  document.getElementById(successId).style.display = 'block';
+  // Fire subscription in background
+  fetch('/api/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email })
+  }).catch(() => {});
 }
 
 function handleHeroSubscribe(e) {
