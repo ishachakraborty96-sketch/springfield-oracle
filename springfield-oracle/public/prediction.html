@@ -223,7 +223,6 @@
     transition: border-color 0.2s, color 0.2s;
   }
   .action-btn:hover { border-color: #FFD520; color: #FFD520; }
-  .action-btn.wiki:hover { border-color: #aaa; color: #fff; }
 
   /* ── NOT FOUND ── */
   .not-found {
@@ -308,12 +307,6 @@ function statusClass(s) {
   return 'status-pending';
 }
 
-function wikiUrl(season) {
-  const n = parseInt(season) || 0;
-  return n >= 21
-    ? 'https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes_(season_21%E2%80%93present)'
-    : `https://en.wikipedia.org/wiki/The_Simpsons_(season_${n})`;
-}
 
 function shareXUrl(p) {
   const text = `The Simpsons predicted this in ${p.year_aired} — and it came true.\n\n"${p.title}"\n\n`;
@@ -398,7 +391,6 @@ function renderPrediction(p) {
       <a href="${shareXUrl(p)}" target="_blank" rel="noopener" class="action-btn">𝕏 Share on X</a>
       <a href="${shareLIUrl()}" target="_blank" rel="noopener" class="action-btn">in Share on LinkedIn</a>
       <button class="action-btn" onclick="copyLink(this)">🔗 Copy Link</button>
-      <a href="${wikiUrl(p.season)}" target="_blank" rel="noopener" class="action-btn wiki">📺 View on Wikipedia</a>
     </div>
     <a href="/" style="font-size:0.75rem;color:#555;text-decoration:none;">← Back to all predictions</a>
   `;
