@@ -4189,7 +4189,8 @@ function openModal(p) {
   // Link to individual prediction page
   const wikiEl = document.getElementById('modal-wiki-link');
   if (wikiEl) {
-    wikiEl.href = `/prediction.html?id=${p.id}`;
+    wikiEl.href = `/p/${p.id}.html`;
+    wikiEl.style.display = 'inline-block';
   }
 
   // Track prediction modal open
@@ -4360,6 +4361,17 @@ function openCarouselModal(index) {
   window._currentCarouselData = d;
   window._carouselShareTitle = d.shareTitle;
   window._carouselShareMode = true;
+
+  // Full Page link
+  const wikiEl = document.getElementById('modal-wiki-link');
+  if (wikiEl) {
+    if (d.predId) {
+      wikiEl.href = `/p/${d.predId}.html`;
+      wikiEl.style.display = 'inline-block';
+    } else {
+      wikiEl.style.display = 'none';
+    }
+  }
 
   // Track carousel card click
   trackEvent('general_click', { action: 'carousel_card_clicked', card_index: index, prediction_id: d.predId });

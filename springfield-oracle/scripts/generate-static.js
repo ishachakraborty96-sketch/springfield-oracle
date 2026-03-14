@@ -1,0 +1,379 @@
+#!/usr/bin/env node
+/**
+ * Springfield Oracle — Static Prediction Page Generator
+ *
+ * Generates /public/p/{id}.html for every prediction in predictions.json.
+ * Each page has fully baked-in OG / Twitter card meta tags so social
+ * crawlers (which don't run JS) see the correct title, description, and image.
+ *
+ * Usage:  node scripts/generate-static.js
+ * Run this whenever predictions.json changes.
+ */
+
+const fs   = require('fs');
+const path = require('path');
+
+const PREDICTIONS_PATH = path.join(__dirname, '../public/data/predictions.json');
+const OUTPUT_DIR       = path.join(__dirname, '../public/p');
+const BASE_URL         = 'https://www.springfieldoracle.com';
+const OG_IMAGE         = `${BASE_URL}/og-image.png`;
+
+// ── helpers ────────────────────────────────────────────────────────────────
+
+function esc(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function statusClass(s) {
+  const u = (s || '').toUpperCase();
+  if (u === 'CONFIRMED') return 'status-confirmed';
+  if (u === 'DEBUNKED')  return 'status-debunked';
+  return 'status-pending';
+}
+
+function timeGap(p) {
+  if (!p.real_year || !p.year_aired) return null;
+  const g = parseInt(p.real_year) - parseInt(p.year_aired);
+  return g > 0 ? g : null;
+}
+
+function metaDesc(p) {
+  const raw = p.desc || p.prediction || '';
+  return raw.length > 220 ? raw.slice(0, 220) + '…' : raw;
+}
+
+// ── page renderer ──────────────────────────────────────────────────────────
+
+function renderPage(p) {
+  const status     = (p.status || '').toUpperCase();
+  const canonUrl   = `${BASE_URL}/p/${p.id}.html`;
+  const pageTitle  = `${esc(p.title)} — Springfield Oracle`;
+  const desc       = esc(metaDesc(p));
+  const gap        = timeGap(p);
+  const episodeLabel = [p.episode_code, p.episode_name, p.year_aired ? `(${p.year_aired})` : '']
+    .filter(Boolean).map(esc).join(' · ');
+
+  // ── split block ──
+  const splitBlock = (p.prediction || p.real_event) ? `
+  <div class="split-block">
+    <div class="split-col">
+      <div class="split-label">The Simpsons Episode · ${esc(p.year_aired || '?')}</div>
+      <div class="split-text">${esc(p.prediction || p.desc || '')}</div>
+    </div>
+    <div class="split-col">
+      <div class="split-label">What Really Happened · ${esc(p.real_year || (status === 'PENDING' ? 'Pending' : '?'))}</div>
+      <div class="split-text">${esc(p.real_event || (status === 'PENDING' ? 'Still developing — not yet confirmed.' : status === 'DEBUNKED' ? 'Debunked — this prediction did not come true.' : ''))}</div>
+      ${p.real_year ? `<span class="split-year">${esc(p.real_year)}</span>` : ''}
+    </div>
+  </div>` : '';
+
+  // ── time gap ──
+  const gapBlock = gap ? `
+  <div class="time-gap-block">
+    <div class="time-gap-num">${gap}</div>
+    <div class="time-gap-desc">
+      <strong>years</strong> between the episode airing and the real-world event.<br>
+      The Simpsons aired <strong>${esc(p.episode_code || 'this episode')}</strong> in <strong>${esc(p.year_aired)}</strong>.
+      ${p.real_year ? `The real event occurred in <strong>${esc(p.real_year)}</strong>.` : ''}
+    </div>
+  </div>` : '';
+
+  // ── full story ──
+  const storyBlock = p.desc ? `
+  <div class="full-story-block">
+    <h2 class="section-heading">The Full Story</h2>
+    <div class="pred-desc">${esc(p.desc)}</div>
+  </div>` : '';
+
+  // ── analysis ──
+  const analysisBlock = p.analysis_notes ? `
+  <div class="analysis-block">
+    <h2 class="section-heading">Analysis</h2>
+    <div class="analysis-notes">${esc(p.analysis_notes)}</div>
+  </div>` : '';
+
+  // ── likelihood ──
+  const likelihoodBlock = (status === 'PENDING' && p.likelihood_pct) ? `
+  <div class="likelihood-block">
+    <div class="likelihood-header">
+      <span class="likelihood-label">Likelihood Score</span>
+      <span class="likelihood-pct">${p.likelihood_pct}%</span>
+    </div>
+    <div class="likelihood-bar-track">
+      <div class="likelihood-bar-fill" style="width:${p.likelihood_pct}%"></div>
+    </div>
+    <div style="font-size:0.72rem;color:#666;margin-top:6px;">Based on current news velocity and publicly available signals.</div>
+  </div>` : '';
+
+  // ── meta grid ──
+  const metaCells = [
+    { label: 'Status',    value: `<span class="status-badge ${statusClass(p.status)}">${esc(status)}</span>` },
+    { label: 'Category',  value: esc(p.category || '—') },
+    { label: 'Episode',   value: esc(p.episode_code || '—') },
+    { label: 'Air Year',  value: esc(p.year_aired ? String(p.year_aired) : '—') },
+    { label: 'Came True', value: status === 'CONFIRMED' ? esc(p.real_year ? String(p.real_year) : '—') : status === 'DEBUNKED' ? 'Debunked' : 'Still pending…' },
+    { label: 'Season',    value: p.season ? `Season ${esc(p.season)}` : '—' },
+  ];
+  if (p.viral_score) metaCells.push({ label: 'Viral Score', value: `${esc(p.viral_score)} / 10` });
+  const metaGrid = metaCells.map(c =>
+    `<div class="meta-cell"><label>${c.label}</label><span>${c.value}</span></div>`
+  ).join('');
+
+  // ── supporting links ──
+  const linksBlock = (p.supporting_links && p.supporting_links.length) ? `
+  <div class="supporting-block">
+    <h2 class="section-heading">Sources &amp; Further Reading</h2>
+    ${p.supporting_links.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join('')}
+  </div>` : '';
+
+  // ── SEO context block ──
+  const seoContext = `
+  <div class="seo-context">
+    <strong style="color:#bbb;">${esc(p.title)}</strong> is one of <a href="/">63 verified Simpsons predictions</a>
+    tracked by Springfield Oracle — a public database of documented cases where The Simpsons
+    foreshadowed real-world events. ${p.episode_code ? `This prediction appeared in ${esc(p.episode_code)}${p.episode_name ? ` ("${esc(p.episode_name)}")` : ''}, ` : ''}${p.year_aired ? `which aired in ${esc(p.year_aired)}` : ''}.
+    ${status === 'CONFIRMED' && p.real_year ? `It was confirmed true in ${esc(p.real_year)}.` : status === 'PENDING' ? 'It has not yet been confirmed.' : ''}
+    <br><br>
+    Springfield Oracle collects and verifies every credible Simpsons prediction with primary source documentation.
+    <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener">Submit a prediction</a> or
+    <a href="/">browse all 63 entries</a>.
+  </div>`;
+
+  // ── JSON-LD ──
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": `${p.title} — Springfield Oracle`,
+    "description": metaDesc(p),
+    "url": canonUrl,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Springfield Oracle",
+      "url": BASE_URL
+    },
+    "about": {
+      "@type": "TVEpisode",
+      "name": p.episode_name || p.title,
+      "partOfSeries": { "@type": "TVSeries", "name": "The Simpsons" },
+      "episodeNumber": p.episode_code
+    }
+  });
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${pageTitle}</title>
+<meta name="description" content="${desc}">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="canonical" href="${canonUrl}">
+
+<meta property="og:type"        content="article">
+<meta property="og:site_name"   content="Springfield Oracle">
+<meta property="og:url"         content="${canonUrl}">
+<meta property="og:title"       content="${pageTitle}">
+<meta property="og:description" content="${desc}">
+<meta property="og:image"       content="${OG_IMAGE}">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="${pageTitle}">
+<meta name="twitter:description" content="${desc}">
+<meta name="twitter:image"       content="${OG_IMAGE}">
+
+<script type="application/ld+json">${jsonLd}</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --yellow: #FFD520; --bg: #0a0a0a; --border: rgba(255,255,255,0.08); }
+  body { background: var(--bg); color: #e8e8e8; font-family: 'Space Mono', monospace; min-height: 100vh; }
+
+  /* header */
+  .site-header { background: #050505; border-bottom: 2px solid rgba(255,213,32,0.2); padding: 0 40px; height: 60px; display: flex; align-items: center; }
+  .site-header-inner { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .header-left { display: flex; align-items: baseline; gap: 14px; }
+  .brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.08em; color: var(--yellow); text-decoration: none; }
+  .brand:hover { opacity: 0.85; }
+  .header-tagline { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,213,32,0.45); }
+  .site-header .header-nav { display: flex; gap: 28px; align-items: center; }
+  .site-header .header-nav a { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; }
+  .site-header .header-nav a:hover { color: var(--yellow); }
+
+  /* breadcrumb */
+  .breadcrumb-bar { background: #0d0d0d; border-bottom: 1px solid var(--border); padding: 9px 40px; display: flex; align-items: center; gap: 10px; font-size: 0.68rem; color: #555; }
+  .breadcrumb-bar a { color: rgba(255,213,32,0.6); text-decoration: none; }
+  .breadcrumb-bar a:hover { color: var(--yellow); }
+  .bc-sep { color: #333; }
+  .bc-current { color: #777; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px; }
+
+  .page-wrap { max-width: 820px; margin: 0 auto; padding: 44px 24px 80px; }
+
+  /* status badges */
+  .status-badge { display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 3px; margin-bottom: 14px; }
+  .status-confirmed { background: rgba(80,200,120,0.12); color: #50C878; border: 1px solid rgba(80,200,120,0.35); }
+  .status-pending   { background: rgba(255,213,32,0.08); color: #FFD520; border: 1px solid rgba(255,213,32,0.3); }
+  .status-debunked  { background: rgba(255,80,80,0.1);   color: #ff6b6b; border: 1px solid rgba(255,80,80,0.3); }
+
+  .episode-line { font-size: 0.7rem; color: #666; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  h1.pred-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 6vw, 3.2rem); letter-spacing: 0.03em; color: #fff; line-height: 1.05; margin-bottom: 32px; }
+
+  /* split */
+  .split-block { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 32px; }
+  .split-col { padding: 20px 22px; }
+  .split-col:first-child { border-right: 1px solid var(--border); background: rgba(255,213,32,0.03); }
+  .split-col:last-child  { background: rgba(80,200,120,0.03); }
+  .split-label { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+  .split-col:first-child .split-label { color: rgba(255,213,32,0.6); }
+  .split-col:last-child  .split-label { color: rgba(80,200,120,0.7); }
+  .split-text { font-size: 0.83rem; line-height: 1.7; color: #ccc; }
+  .split-year { display: inline-block; margin-top: 10px; font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 3px; background: rgba(80,200,120,0.08); color: #50C878; border: 1px solid rgba(80,200,120,0.2); }
+
+  /* time gap */
+  .time-gap-block { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin-bottom: 32px; }
+  .time-gap-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: var(--yellow); white-space: nowrap; }
+  .time-gap-desc { font-size: 0.75rem; color: #888; line-height: 1.6; }
+  .time-gap-desc strong { color: #bbb; }
+
+  .section-heading { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: #444; font-weight: 700; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .full-story-block { margin-bottom: 32px; }
+  .pred-desc { font-size: 0.875rem; line-height: 1.85; color: #bbb; border-left: 2px solid rgba(255,213,32,0.25); padding-left: 18px; }
+
+  .analysis-block { background: rgba(255,213,32,0.04); border: 1px solid rgba(255,213,32,0.15); border-radius: 6px; padding: 18px 22px; margin-bottom: 32px; }
+  .analysis-notes { font-size: 0.82rem; color: #aaa; line-height: 1.7; }
+
+  .likelihood-block { background: rgba(255,213,32,0.04); border: 1px solid rgba(255,213,32,0.18); border-radius: 6px; padding: 18px 22px; margin-bottom: 32px; }
+  .likelihood-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .likelihood-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: #777; }
+  .likelihood-pct { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--yellow); }
+  .likelihood-bar-track { height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+  .likelihood-bar-fill { height: 100%; background: linear-gradient(90deg, #FFD520, #FF8C00); border-radius: 3px; }
+
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 32px; }
+  .meta-cell { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 4px; padding: 10px 14px; }
+  .meta-cell label { display: block; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: #555; margin-bottom: 4px; }
+  .meta-cell span { font-size: 0.82rem; color: #ddd; }
+
+  .supporting-block { margin-bottom: 32px; }
+  .supporting-block a { display: block; font-size: 0.75rem; color: #7aadff; text-decoration: none; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .supporting-block a:hover { color: var(--yellow); }
+
+  .seo-context { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin-bottom: 32px; font-size: 0.8rem; line-height: 1.8; color: #888; }
+  .seo-context a { color: rgba(255,213,32,0.7); text-decoration: none; }
+  .seo-context a:hover { color: var(--yellow); }
+
+  .action-bar { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid var(--border); margin-bottom: 40px; }
+  .action-btn { display: inline-block; background: none; border: 1px solid rgba(255,255,255,0.18); color: #ddd; padding: 9px 18px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: 'Space Mono', monospace; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .action-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+
+  /* footer */
+  footer { background: #050505; padding: 24px 40px; display: flex; flex-direction: column; gap: 16px; border-top: 1px solid var(--border); font-size: 11px; color: #aaa; }
+  footer a { color: var(--yellow); text-decoration: none; }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+  .footer-right { display: flex; align-items: center; gap: 32px; }
+  .footer-github { opacity: 0.4; font-size: 10px; color: #aaa; }
+  .footer-github a { color: inherit; }
+  .footer-nav a { color: var(--yellow); text-decoration: none; }
+  .footer-policy-btn { display: inline-block; padding: 5px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; color: #ddd; font-size: 11px; font-family: inherit; text-decoration: none; background: transparent; cursor: pointer; }
+  .complaints-btn { background: linear-gradient(135deg, #FF6B3D 0%, #FF4500 100%); color: #fff; border: 2px solid #FF6B3D; padding: 10px 18px; font-family: 'Bebas Neue', cursive; font-size: 13px; letter-spacing: 1px; cursor: pointer; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
+
+  @media (max-width: 700px) {
+    .site-header { padding: 0 20px; }
+    .breadcrumb-bar { padding: 9px 20px; }
+    .page-wrap { padding: 28px 18px 60px; }
+    .split-block { grid-template-columns: 1fr; }
+    .split-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 20px; }
+    .footer-row { flex-direction: column; gap: 10px; text-align: center; }
+    .header-tagline { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-left">
+      <a href="/" class="brand">Springfield Oracle</a>
+      <span class="header-tagline">They knew. We track it.</span>
+    </div>
+    <nav class="header-nav">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <a href="/">← All Predictions</a>
+  <span class="bc-sep">›</span>
+  <span class="bc-current">${esc(p.title)}</span>
+</div>
+
+<div class="page-wrap">
+  <div class="episode-line">${episodeLabel}</div>
+  <h1 class="pred-title">${esc(p.title)}</h1>
+  ${splitBlock}
+  ${gapBlock}
+  ${storyBlock}
+  ${analysisBlock}
+  ${likelihoodBlock}
+  <h2 class="section-heading">By the Numbers</h2>
+  <div class="meta-grid">${metaGrid}</div>
+  ${linksBlock}
+  ${seoContext}
+  <div class="action-bar">
+    <a href="https://x.com/intent/tweet?text=${encodeURIComponent(`The Simpsons predicted this in ${p.year_aired} — and it came true.\n\n"${p.title}"\n\n`)}&url=${encodeURIComponent(canonUrl)}" target="_blank" rel="noopener" class="action-btn">𝕏 Share on X</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonUrl)}" target="_blank" rel="noopener" class="action-btn">in Share on LinkedIn</a>
+    <a href="${canonUrl}" class="action-btn" onclick="navigator.clipboard.writeText('${canonUrl}');this.textContent='✓ Copied';setTimeout(()=>this.textContent='🔗 Copy Link',2000);return false;">🔗 Copy Link</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-row">
+    <span>Springfield Oracle · Built by <strong style="color:#FFD520;">Isha &amp; Tejas</strong></span>
+    <span style="color:#999; font-size:10px; text-align:center;">© 2026 Isha Godboley. All rights reserved. Reproduction or redistribution without credit is prohibited.<br>Not affiliated with Fox, Disney, or The Simpsons.</span>
+    <div class="footer-right">
+      <span class="footer-github"><a href="https://github.com/ishachakraborty96-sketch/springfield-oracle" target="_blank" rel="noopener">GitHub</a> · Data sourced &amp; verified.</span>
+      <span class="footer-nav"><a href="/about.html">About</a> · <a href="/faq.html">FAQ</a></span>
+    </div>
+  </div>
+  <div class="footer-row" style="justify-content:center; gap:20px; padding:6px 0;">
+    <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#FFD520;text-decoration:none;border:1px solid rgba(255,213,32,0.4);padding:5px 12px;border-radius:4px;">+ Submit a prediction</a>
+    <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#aaa;text-decoration:none;border:1px solid rgba(255,255,255,0.15);padding:5px 12px;border-radius:4px;">⚑ Report a fake</a>
+  </div>
+  <div class="footer-row" style="align-items:center; justify-content:space-between;">
+    <button class="complaints-btn" onclick="(function(){const a=new Audio('/release-the-hounds-release-the-hounds-attack-dogs-simpsons-mr-burns-get-em.mp3');a.play().catch(()=>{});const n=document.createElement('div');n.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(255,107,61,0.95);color:#fff;padding:14px 28px;border-radius:8px;font-family:Bebas Neue,sans-serif;font-size:1.1rem;letter-spacing:2px;z-index:9999;pointer-events:none';n.textContent='Releasing the hounds...';document.body.appendChild(n);setTimeout(()=>n.remove(),3400)})()">Complain</button>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a href="https://www.iubenda.com/privacy-policy/65046402" class="footer-policy-btn iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+      <span style="color:#555;">·</span>
+      <a href="https://www.iubenda.com/privacy-policy/65046402/cookie-policy" class="footer-policy-btn iubenda-white no-brand iubenda-noiframe iubenda-embed" title="Cookie Policy">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>`;
+}
+
+// ── main ───────────────────────────────────────────────────────────────────
+
+const raw         = JSON.parse(fs.readFileSync(PREDICTIONS_PATH, 'utf8'));
+const predictions = raw.predictions || [];
+
+if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+
+let count = 0;
+for (const p of predictions) {
+  const html     = renderPage(p);
+  const outPath  = path.join(OUTPUT_DIR, `${p.id}.html`);
+  fs.writeFileSync(outPath, html, 'utf8');
+  count++;
+  process.stdout.write(`  ✓ /p/${p.id}.html\n`);
+}
+
+console.log(`\nDone — ${count} pages written to public/p/\n`);
