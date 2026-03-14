@@ -1384,6 +1384,31 @@
       "analysis_notes": "The episode is real and accurately described. The prediction attributed to it was not in the episode — it was derived from numerological misreading of the episode number (S24E09 → 9/24). The QAnon claim was sourced from a misreading of a German politician's speech combined with episode number coincidence. Logged as Debunked.",
       "desc": "\"Homer Goes to Prep School\" (Season 24, Episode 9, 2013) features Homer joining a group of doomsday preppers who believe civilisation is about to collapse. The episode depicts an electromagnetic pulse (EMP) device triggering a breakdown of society and rule of law, referred to in survivalist circles as WROL — Without Rule of Law.\n\nIn September 2022, QAnon's Great Awakening forum cited this episode — noting that Season 24, Episode 9 numerically maps to '9/24' — as evidence that a government-orchestrated event called 'The Storm' would occur on September 24, 2022. Followers predicted Trump's return to power, mass arrests, and '10 days of darkness.'\n\nThe prediction was sourced from a misreading of a German politician's speech, combined with numerological interpretation of the episode number. Nothing occurred on September 24, 2022. The episode is real and accurately described. The prediction it supposedly contains was not in the episode.",
       "slug": "simpsons-s24e09-the-great-awakening-qanon-storm"
+    },
+    {
+      "id": "SP045",
+      "season": 37,
+      "episode": 10,
+      "episode_code": "S37E10",
+      "title": "The Death of Traditional Advertising",
+      "episode_name": "Seperance",
+      "year_aired": 2026,
+      "prediction": "Duffman's retirement is framed as a corporate shift away from 'passé' mascots and TV spots. Fans interpret this as a prediction of the total decline of traditional marketing in favour of hyper-targeted AI ads.",
+      "real_event": null,
+      "real_year": null,
+      "years_early": null,
+      "category": "Technology",
+      "status": "pending",
+      "viral_score": 6,
+      "verified_source": "Season 37 Episode 10 'Seperance' (aired January 4, 2026)",
+      "likelihood_pct": 72,
+      "likelihood_components": {
+        "supporting_links": 0,
+        "counter_arguments": 0
+      },
+      "last_updated": "2026-03-14T00:00:00.000000",
+      "desc": "In the January 4, 2026, episode 'Seperance', Duffman's retirement is framed as a corporate shift away from 'passé' mascots and TV spots. Fans see this as a prediction of the total decline of traditional marketing in favour of hyper-targeted AI ads.",
+      "slug": "simpsons-s06e19-glacier-melt-climate-crisis"
     }
   ]
 }
