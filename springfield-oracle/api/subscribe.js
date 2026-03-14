@@ -28,13 +28,13 @@ module.exports = async (req, res) => {
       }
     );
 
+    const body = await beehiivRes.text();
     if (beehiivRes.ok) {
       return res.status(200).json({ ok: true });
     }
 
-    const body = await beehiivRes.text();
-    console.error('Beehiiv error', beehiivRes.status, body);
-    return res.status(502).json({ error: 'Subscription failed' });
+    // Temporarily expose Beehiiv's error for debugging
+    return res.status(502).json({ beehiivStatus: beehiivRes.status, beehiivBody: body });
   } catch (err) {
     console.error('Subscribe error', err);
     return res.status(500).json({ error: 'Server error' });
