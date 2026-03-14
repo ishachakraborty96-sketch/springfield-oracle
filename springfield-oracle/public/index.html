@@ -3605,7 +3605,6 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         <span id="modal-truedate"></span>
       </div>
     </div>
-    <div id="modal-live-news" style="display:none;margin-top:16px;padding:10px 14px;background:rgba(255,107,43,0.1);border:1px solid rgba(255,107,43,0.4);border-radius:4px;"></div>
     <div id="modal-share" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.08); display:flex; gap:10px; flex-wrap:wrap;">
       <button id="modal-share-x" onclick="modalShareX()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#FFD520';this.style.color='#FFD520'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">𝕏 Share on X</button>
       <button id="modal-share-li" onclick="modalShareLinkedIn()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Space Mono',monospace;transition:all 0.2s;" onmouseover="this.style.borderColor='#0A66C2';this.style.color='#0A66C2'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#ddd'">in Share on LinkedIn</button>
@@ -4176,16 +4175,6 @@ function openModal(p) {
   document.getElementById('modal-category').textContent = p.category;
   document.getElementById('modal-airdate').textContent = p.year;
   document.getElementById('modal-truedate').textContent = (p.status?.toUpperCase() === 'PENDING' || !p.trueYear) ? 'Still waiting...' : p.trueYear;
-  const liveNewsEl = document.getElementById('modal-live-news');
-  const liveNews = window.liveNewsMatches?.[p.id];
-  if (liveNews) {
-    const date = liveNews.pubDate ? new Date(liveNews.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
-    liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${liveNews.link}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${liveNews.title}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${date}</span>` : ''}`;
-    liveNewsEl.style.display = 'block';
-  } else {
-    liveNewsEl.style.display = 'none';
-  }
-
   // Link to individual prediction page
   const wikiEl = document.getElementById('modal-wiki-link');
   if (wikiEl) {
@@ -4338,25 +4327,6 @@ function openCarouselModal(index) {
   document.getElementById('modal-airdate').textContent = d.episode.match(/\d{4}/)?.[0] || '—';
   document.getElementById('modal-truedate').textContent = d.trueDate || d.badge.match(/\d{4}/)?.[0] || 'Ongoing';
   // Live news: prefer RSS match, fallback to supporting_links for PENDING cards
-  const liveNewsEl = document.getElementById('modal-live-news');
-  const liveNews = d.predId ? window.liveNewsMatches?.[d.predId] : null;
-  if (liveNews) {
-    const date = liveNews.pubDate ? new Date(liveNews.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
-    liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${liveNews.link}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${liveNews.title}</a>${date ? `<span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:#888;margin-left:8px;">${date}</span>` : ''}`;
-    liveNewsEl.style.display = 'block';
-  } else if (d.status === 'pending' && d.predId) {
-    const pred = predSupportingLinks[d.predId];
-    const bestLink = getMostRecentLink(pred?.links);
-    const headline = bestLink ? urlToHeadline(bestLink) : null;
-    if (headline) {
-      liveNewsEl.innerHTML = `<span style="font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:1px;color:#FF6B2B;">● LIVE IN THE NEWS</span><br><a href="${bestLink}" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:0.78rem;color:#fff;text-decoration:underline;">${headline.title} — ${headline.source}</a>`;
-      liveNewsEl.style.display = 'block';
-    } else {
-      liveNewsEl.style.display = 'none';
-    }
-  } else {
-    liveNewsEl.style.display = 'none';
-  }
   // store share data
   window._currentCarouselData = d;
   window._carouselShareTitle = d.shareTitle;
