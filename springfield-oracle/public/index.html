@@ -4178,7 +4178,7 @@ function openModal(p) {
   // Link to individual prediction page
   const wikiEl = document.getElementById('modal-wiki-link');
   if (wikiEl) {
-    wikiEl.href = `/simpsons-${p.slug || makeSlug(p.id, p.season + p.episode, p.name, p.title)}`;
+    wikiEl.href = `/${p.slug || makeSlug(p.id, p.season + p.episode, p.name, p.title)}`;
     wikiEl.style.display = 'inline-block';
   }
 
@@ -4342,7 +4342,7 @@ function openCarouselModal(index) {
   const wikiEl = document.getElementById('modal-wiki-link');
   if (wikiEl) {
     if (d.predId) {
-      wikiEl.href = `/simpsons-${d.predSlug}`;
+      wikiEl.href = `/${d.predSlug}`;
       wikiEl.style.display = 'inline-block';
     } else {
       wikiEl.style.display = 'none';
