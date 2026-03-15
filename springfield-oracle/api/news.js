@@ -3,7 +3,7 @@
 // Used as primary news source by the frontend live-match feature
 
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.springfieldoracle.com');
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
 
   const rssUrl = 'https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en';
@@ -35,6 +35,7 @@ module.exports = async function handler(req, res) {
 
     res.status(200).json({ items, cached_at: new Date().toISOString() });
   } catch (err) {
-    res.status(500).json({ error: err.message, items: [] });
+    console.error('News fetch error', err);
+    res.status(500).json({ error: 'News feed temporarily unavailable.', items: [] });
   }
 }
