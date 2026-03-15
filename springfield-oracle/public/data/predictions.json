@@ -1,7 +1,7 @@
 {
   "meta": {
-    "last_updated": "2026-03-08",
-    "total": 63,
+    "last_updated": "2026-03-15",
+    "total": 68,
     "status_update": "Merged master array. Likelihood scores on PENDING only, updated with 2024-2026 news velocity. 9 debunked hoaxes. Episode codes corrected.",
     "engine": "Springfield Oracle v4.0",
     "version": "4.0",
@@ -1409,6 +1409,29 @@
       "last_updated": "2026-03-14T00:00:00.000000",
       "desc": "In the January 4, 2026, episode 'Seperance', Duffman's retirement is framed as a corporate shift away from 'passé' mascots and TV spots. Fans see this as a prediction of the total decline of traditional marketing in favour of hyper-targeted AI ads.",
       "slug": "simpsons-s06e19-glacier-melt-climate-crisis"
+    },
+    {
+      "id": "SP067",
+      "season": 9,
+      "episode_code": "S09E05",
+      "episode_name": "The Cartridge Family",
+      "title": "Portugal vs Mexico World Cup 2026 Final",
+      "year_aired": 1997,
+      "real_year": 2026,
+      "prediction": "A fictional TV commercial within the episode promotes a soccer match between Mexico and Portugal, billed as determining \"which nation is the greatest on earth: Mexico or Portugal!\" The match takes place in Springfield and triggers a citywide riot — the catalyst for Homer buying a gun.",
+      "real_event": "Screenshots of the fictional commercial circulated virally across TikTok, X, and Facebook in 2026, with users claiming The Simpsons had predicted a Mexico vs Portugal World Cup 2026 final. The identical claim had already gone viral during the 2018 and 2022 World Cups. The episode never names a year, never references a World Cup, and never shows a result. Multiple fact-checkers debunked the claim.",
+      "status": "DEBUNKED",
+      "category": "Sports",
+      "viral_score": 9,
+      "last_updated": "2026-03-15",
+      "supporting_links": [
+        "https://factly.in/the-simpsons-did-not-predict-a-mexico-vs-portugal-final-for-the-2026-world-cup/",
+        "https://simpsons.fandom.com/wiki/The_Cartridge_Family",
+        "https://deadline.com/2018/06/the-simpsons-world-cup-prediction-portugal-mexico-video-1202418026/"
+      ],
+      "analysis_notes": "The episode is real (S09E05, \"The Cartridge Family\", 1997) and the fictional commercial is accurately described. However, the \"prediction\" framing is entirely fabricated. The commercial is a joke set in Springfield — it promotes an exhibition match to determine which nation is \"the greatest on earth,\" not a World Cup final. No year, no competition, and no result are ever specified. The same screenshot circulated identically during the 2018 and 2022 World Cups. This is a recurring viral hoax, not a prediction.",
+      "desc": "\"The Cartridge Family\" (Season 9, Episode 5, 1997) opens with the Simpson family watching a television commercial that promotes an upcoming soccer match between Mexico and Portugal — billed as deciding \"which nation is the greatest on earth.\" Pelé appears in a product placement ad for Crestfield Wax Paper, handed a comically large bag of cash as he walks off the pitch. The match takes place in Springfield, triggers a citywide riot, and serves as the inciting event for the episode's real plot: Homer buying a gun over Marge's objections.\n\nThe episode never specifies a year. It never references a World Cup. It never shows a result.\n\nDespite this, the same screenshot of the fictional commercial went viral during the 2018 World Cup, again in 2022, and again in 2026 — each time with users claiming The Simpsons had \"predicted\" that Mexico and Portugal would meet in that cycle's World Cup final. In 2018, Mexico was eliminated in the Round of 16; no such final was ever played.\n\nSimpsons showrunner Al Jean has addressed the general phenomenon: \"If you write 700 episodes, and you don't predict anything, then you're pretty bad. If you throw enough darts, you're going to get some bullseyes.\" The cartoon's vast episode library means coincidences are statistically inevitable — but this case does not even meet the bar of coincidence. The episode simply depicts a fictional soccer match in a fictional town. The \"prediction\" label was applied entirely by social media users, not by the show.",
+      "slug": "simpsons-s09e05-portugal-vs-mexico-world-cup-2026-final"
     }
   ]
 }
