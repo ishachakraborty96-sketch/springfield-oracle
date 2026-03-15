@@ -4458,60 +4458,20 @@ async function loadNewsFromAPI() {
   const feedEl = document.getElementById('news-feed');
   const tsEl   = document.getElementById('news-timestamp');
 
-  // Global top news — server-side proxy first (avoids CORS), then fallbacks
-  const rssUrl = `https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en`;
-  const proxies = [
-    `/api/news`,
-    `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`,
-    `https://corsproxy.io/?url=${encodeURIComponent(rssUrl + '&ts=' + Date.now())}`,
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
-  ];
-
+  // Global top news — server-side proxy (avoids CORS, keeps third-party proxies off the page)
   let items = [];
 
-  for (const endpoint of proxies) {
-    try {
-      const res  = await fetch(endpoint, { signal: AbortSignal.timeout(6000) });
-      const text = await res.text();
-
-      // rss2json returns JSON with items array directly
-      try {
-        const json = JSON.parse(text);
-        if (json.items && json.items.length) {
-          items = json.items.slice(0, 15).map(i => ({
-            title:   i.title || '',
-            link:    i.link || '#',
-            pubDate: i.pubDate || ''
-          })).filter(i => i.title);
-          if (items.length) break;
-        }
-        if (json.contents) {
-          // allorigins wrapped JSON
-          const parser = new DOMParser();
-          const xmlDoc = parser.parseFromString(json.contents, 'text/xml');
-          const entries = Array.from(xmlDoc.querySelectorAll('item')).slice(0, 15);
-          items = entries.map(el => ({
-            title:   el.querySelector('title')?.textContent || '',
-            link:    el.querySelector('link')?.textContent || el.querySelector('guid')?.textContent || '#',
-            pubDate: el.querySelector('pubDate')?.textContent || ''
-          })).filter(i => i.title);
-          if (items.length) break;
-        }
-      } catch(e) { /* raw XML */ }
-
-      // Try parse as raw XML
-      const parser  = new DOMParser();
-      const xmlDoc  = parser.parseFromString(text, 'text/xml');
-      const entries = Array.from(xmlDoc.querySelectorAll('item')).slice(0, 15);
-      const parsed  = entries.map(el => ({
-        title:   el.querySelector('title')?.textContent || '',
-        link:    el.querySelector('link')?.textContent || el.querySelector('guid')?.textContent || '#',
-        pubDate: el.querySelector('pubDate')?.textContent || ''
+  try {
+    const res  = await fetch('/api/news', { signal: AbortSignal.timeout(8000) });
+    const json = await res.json();
+    if (json.items && json.items.length) {
+      items = json.items.slice(0, 15).map(i => ({
+        title:   i.title || '',
+        link:    i.link || '#',
+        pubDate: i.pubDate || ''
       })).filter(i => i.title);
-
-      if (parsed.length) { items = parsed; break; }
-    } catch (e) { /* try next proxy */ }
-  }
+    }
+  } catch (e) { /* network error — items stays empty, fallback UI shown below */ }
 
   if (!items.length) {
     feedEl.innerHTML = '<p style="color:#888;font-family:\'Space Mono\',monospace;font-size:0.8rem;">News feed unavailable. <a href="https://news.google.com/search?q=simpsons+prediction" target="_blank" onclick="trackEvent(\'link_click\', {type: \'google_news_search\'})" style="color:#FFD520">Search Google News →</a></p>';
