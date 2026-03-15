@@ -113,6 +113,7 @@ Then return your JSON assessment."""
             max_tokens=512,
             system=SYSTEM_PROMPT,
             tools=[{"type": "web_search_20250305", "name": "web_search"}],
+            betas=["web-search-2025-03-05"],
             messages=[{"role": "user", "content": prompt}],
         )
 

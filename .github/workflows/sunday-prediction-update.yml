@@ -32,7 +32,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          python springfield-oracle/scripts/news-monitor.py --apply
+          python scripts/news-monitor.py --apply
         working-directory: springfield-oracle
 
       - name: Rebuild static pages
