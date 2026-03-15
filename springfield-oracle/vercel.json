@@ -30,6 +30,8 @@
     { "src": "/sitemap-about.xml", "dest": "/public/sitemap-about.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
     { "src": "/sitemap-faq.xml", "dest": "/public/sitemap-faq.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
     { "src": "/sitemap-predictions.xml", "dest": "/public/sitemap-predictions.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
+    { "src": "/sitemap-blog.xml", "dest": "/public/sitemap-blog.xml", "headers": { "Content-Type": "application/xml; charset=utf-8" } },
+    { "src": "/blog/([^/]+)", "dest": "/public/blog/$1" },
     { "src": "/simpsons-([^/]+)", "dest": "/public/simpsons-$1.html" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ],
