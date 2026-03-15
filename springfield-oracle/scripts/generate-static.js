@@ -303,12 +303,16 @@ function renderPage(p) {
   .complaints-btn { background: linear-gradient(135deg, #FF6B3D 0%, #FF4500 100%); color: #fff; border: 2px solid #FF6B3D; padding: 10px 18px; font-family: 'Bebas Neue', cursive; font-size: 13px; letter-spacing: 1px; cursor: pointer; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
 
   @media (max-width: 700px) {
-    .header-inner { padding: 16px 20px; }
-    .logo-title { font-size: 42px; }
-    .header-stats { gap: 10px; }
-    .stat-pill { width: 72px; padding: 10px 8px; }
-    .stat-num { font-size: 28px; }
-    .breadcrumb-bar { padding: 9px 20px; }
+    .header-inner { padding: 14px 18px; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .logo-title { font-size: 38px; }
+    .logo-sub { font-size: 14px; }
+    .header-right { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; }
+    .header-nav { gap: 14px; }
+    .header-stats { gap: 8px; }
+    .stat-pill { width: 62px; padding: 8px 6px; }
+    .stat-num { font-size: 22px; }
+    .stat-label { font-size: 7px; letter-spacing: 1px; }
+    .breadcrumb-bar { padding: 9px 18px; }
     .page-wrap { padding: 28px 18px 60px; }
     .split-block { grid-template-columns: 1fr; }
     .split-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
