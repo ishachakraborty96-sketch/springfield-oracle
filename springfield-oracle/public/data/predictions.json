@@ -1,7 +1,7 @@
 {
   "meta": {
     "last_updated": "2026-03-15",
-    "total": 68,
+    "total": 70,
     "status_update": "Merged master array. Likelihood scores on PENDING only, updated with 2024-2026 news velocity. 9 debunked hoaxes. Episode codes corrected.",
     "engine": "Springfield Oracle v4.0",
     "version": "4.0",
@@ -1432,6 +1432,58 @@
       "analysis_notes": "The episode is real (S09E05, \"The Cartridge Family\", 1997) and the fictional commercial is accurately described. However, the \"prediction\" framing is entirely fabricated. The commercial is a joke set in Springfield — it promotes an exhibition match to determine which nation is \"the greatest on earth,\" not a World Cup final. No year, no competition, and no result are ever specified. The same screenshot circulated identically during the 2018 and 2022 World Cups. This is a recurring viral hoax, not a prediction.",
       "desc": "\"The Cartridge Family\" (Season 9, Episode 5, 1997) opens with the Simpson family watching a television commercial that promotes an upcoming soccer match between Mexico and Portugal — billed as deciding \"which nation is the greatest on earth.\" Pelé appears in a product placement ad for Crestfield Wax Paper, handed a comically large bag of cash as he walks off the pitch. The match takes place in Springfield, triggers a citywide riot, and serves as the inciting event for the episode's real plot: Homer buying a gun over Marge's objections.\n\nThe episode never specifies a year. It never references a World Cup. It never shows a result.\n\nDespite this, the same screenshot of the fictional commercial went viral during the 2018 World Cup, again in 2022, and again in 2026 — each time with users claiming The Simpsons had \"predicted\" that Mexico and Portugal would meet in that cycle's World Cup final. In 2018, Mexico was eliminated in the Round of 16; no such final was ever played.\n\nSimpsons showrunner Al Jean has addressed the general phenomenon: \"If you write 700 episodes, and you don't predict anything, then you're pretty bad. If you throw enough darts, you're going to get some bullseyes.\" The cartoon's vast episode library means coincidences are statistically inevitable — but this case does not even meet the bar of coincidence. The episode simply depicts a fictional soccer match in a fictional town. The \"prediction\" label was applied entirely by social media users, not by the show.",
       "slug": "simpsons-s09e05-portugal-vs-mexico-world-cup-2026-final"
+    },
+    {
+      "id": "SP068",
+      "season": 11,
+      "episode_code": "S11E17",
+      "episode_name": "Bart to the Future",
+      "title": "Hologram Concerts Go Mainstream",
+      "year_aired": 2000,
+      "real_year": 2027,
+      "prediction": "Future Bart receives a hologram message from Nelson — a casual, matter-of-fact use of holographic communication technology as an everyday medium.",
+      "real_event": "In 2026, KISS officially confirmed a full digital-avatar concert tour debuting in 2027, with all four original members recreated as photorealistic digital personas performing live to stadium audiences — the first major mainstream deployment of holographic concert technology at scale.",
+      "status": "CONFIRMED",
+      "category": "Technology",
+      "viral_score": 7,
+      "last_updated": "2026-03-15",
+      "analysis_notes": "S11E17 is already logged under SP026 (Trump Presidency), SP052 (First Female US President), and SP063 (Kamala's Inauguration Outfit). This is an entirely separate prediction — holographic communication and performance as a mainstream medium — derived from a different scene in the same episode. The KISS announcement is the first large-scale commercial confirmation that holographic performer technology has crossed from novelty to mainstream live entertainment. All four S11E17 entries are independent claims.",
+      "desc": "In \"Bart to the Future\" (Season 11, Episode 17, 2000), adult Bart receives a hologram message from Nelson — a brief but telling detail that positions holographic communication as entirely routine in the show's future Springfield. No plot significance is attached to the technology; it is simply ambient.\n\nIn early 2026, KISS confirmed a landmark digital-avatar concert tour set to debut in 2027. All four original members — Paul Stanley, Gene Simmons, Ace Frehley, and Peter Criss — were scanned and rebuilt as photorealistic digital personas capable of real-time performance to stadium crowds. The tour marks the first time a globally recognisable legacy act has committed to replacing live human performance with holographic avatars at full commercial scale.\n\nThe episode aired 27 years before the KISS confirmation. Hologram concerts had been teased since the 2012 Tupac Coachella appearance, but the KISS tour represents the transition from viral stunt to mainstream concert format.\n\nNote: This entry is independent of SP026 (Trump Presidency, S11E17), SP052 (First Female US President, S11E17), and SP063 (Kamala's Inauguration Outfit, S11E17). All four derive from different scenes within the same episode and carry no shared prediction logic.",
+      "supporting_links": [
+        "https://simpsons.fandom.com/wiki/Bart_to_the_Future",
+        "https://www.nme.com/news/music/kiss-announce-plans-for-digital-avatar-concerts-3553094"
+      ],
+      "slug": "simpsons-s11e17-hologram-concerts-go-mainstream"
+    },
+    {
+      "id": "SP069",
+      "season": 25,
+      "episode_code": "S25E18",
+      "episode_name": "Days of Future Future",
+      "title": "Digital Consciousness / Mind Uploading",
+      "year_aired": 2014,
+      "prediction": "Homer dies and is reborn as a digital clone — his consciousness is uploaded to a computer, with multiple simultaneous copies of his mind existing and operating independently at the same time.",
+      "real_event": "No confirmed consumer or clinical milestone for mind uploading has occurred. Neuralink announced scaling of its human implant trials in 2025. Nectome secured additional funding for brain preservation research. MIT published accelerated timelines on consciousness mapping. These represent directional research signals only, not realisation of the prediction.",
+      "status": "PENDING",
+      "category": "Science",
+      "viral_score": 6,
+      "likelihood_pct": 31,
+      "likelihood_components": {
+        "specificity_score": 0.2,
+        "plausibility_score": 0.35,
+        "news_velocity_score": 0.45,
+        "category_base_rate": 0.4
+      },
+      "news_matches": 3,
+      "last_updated": "2026-03-15",
+      "analysis_notes": "S25E18 is already in the database as SP037 (Autonomous Delivery Drones). This entry covers an entirely separate prediction from the same episode — digital consciousness uploading — which operates on a different scientific timeline and category. Likelihood of 31% reflects early-stage research signals (Neuralink scaling 2025, Nectome brain preservation funding) but no concrete clinical or consumer milestone. The 2026-2028 window may produce partial breakthroughs in neural mapping but full consciousness uploading remains decades away under current scientific consensus. Revisit for upgrade if a concrete mind-uploading or full brain-emulation milestone is announced.",
+      "desc": "In \"Days of Future Future\" (Season 25, Episode 18, 2014), Homer Simpson dies — and is seamlessly reborn as a digital clone. His consciousness has been uploaded to a computer, and multiple simultaneous copies of his mind exist and operate independently, each believing themselves to be the original. The episode treats the technology as routine, with Homer's digital resurrection causing more domestic inconvenience than existential crisis.\n\nAs of early 2026, no consumer or clinical realisation of mind uploading exists. However, several research trajectories point in the direction the episode depicts:\n\nNeuralink announced accelerated scaling of its human brain-computer interface trials in 2025, moving from single-patient implants toward multi-participant data collection. Nectome secured fresh funding for its brain preservation programme, which aims to chemically fix a brain's connectome structure for potential future reconstruction. MIT published updated timelines for whole-brain neural mapping, projecting partial connectome completion within the decade.\n\nNone of these constitute confirmation. Full digital consciousness — the ability to upload, run, and duplicate a human mind — is not achievable with current or near-term technology. Likelihood is estimated at 31%, reflecting genuine directional momentum without a concrete milestone. The prediction window extends to 2028, with the most likely near-term event being a proof-of-concept partial emulation rather than full mind transfer.\n\nNote: This entry is independent of SP037 (Autonomous Delivery Drones, S25E18). Both derive from different narrative elements within the same episode.",
+      "supporting_links": [
+        "https://simpsons.fandom.com/wiki/Days_of_Future_Future",
+        "https://neuralink.com",
+        "https://nectome.com"
+      ],
+      "slug": "simpsons-s25e18-digital-consciousness-mind-uploading"
     }
   ]
 }
