@@ -148,14 +148,14 @@ function renderPage(p) {
   // ── SEO context block ──
   const seoContext = `
   <div class="seo-context">
-    <strong style="color:#bbb;">${esc(p.title)}</strong> is one of <a href="/">63 verified Simpsons predictions</a>
+    <strong style="color:#bbb;">${esc(p.title)}</strong> is one of <a href="/">70 verified Simpsons predictions</a>
     tracked by Springfield Oracle — a public database of documented cases where The Simpsons
     foreshadowed real-world events. ${p.episode_code ? `This prediction appeared in ${esc(p.episode_code)}${p.episode_name ? ` ("${esc(p.episode_name)}")` : ''}, ` : ''}${p.year_aired ? `which aired in ${esc(p.year_aired)}` : ''}.
     ${status === 'CONFIRMED' && p.real_year ? `It was confirmed true in ${esc(p.real_year)}.` : status === 'PENDING' ? 'It has not yet been confirmed.' : ''}
     <br><br>
     Springfield Oracle collects and verifies every credible Simpsons prediction with primary source documentation.
     <a href="https://form.typeform.com/to/lGew8DE7" target="_blank" rel="noopener">Submit a prediction</a> or
-    <a href="/">browse all 63 entries</a>.
+    <a href="/">browse all 70 entries</a>.
   </div>`;
 
   // ── JSON-LD ──
