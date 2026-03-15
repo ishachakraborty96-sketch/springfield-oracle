@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
     // File not found or parse error - will use defaults
   }
 
-  const BASE = 'https://springfieldoracle.com';
+  const BASE = 'https://www.springfieldoracle.com';
 
   const title       = p ? p.title : 'Springfield Oracle — The Simpsons Prediction Tracker';
   const season      = p && p.season && p.episode ? `S${String(p.season).padStart(2,'0')}E${String(p.episode).padStart(2,'0')}` : '';
