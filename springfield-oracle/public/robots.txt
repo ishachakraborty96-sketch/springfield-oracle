@@ -34,3 +34,4 @@ User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://www.springfieldoracle.com/sitemap.xml
+LLMs: https://www.springfieldoracle.com/llms.txt

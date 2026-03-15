@@ -1,0 +1,92 @@
+# Springfield Oracle
+
+> Springfield Oracle is a free, open-source, fact-checked database tracking every meaningful Simpsons prediction against real-world events. Each entry cites the original episode, air date, and a sourced real-world event — verified against four criteria before being listed. The site exists to combat viral misinformation about Simpsons predictions by replacing unverified claims with traceable evidence.
+
+Created by Isha Godboley. Licensed CC BY-NC 4.0. No ads, no commercial interests.
+
+Prediction statuses: **Confirmed** (verifiably occurred), **Pending** (unfolding or unresolved), **Debunked** (AI-generated, misattributed, or fabricated).
+
+Methodology: every entry must have (1) a traceable episode reference, (2) an external real-world source, (3) an assigned status, and (4) a deepfake/misinformation flag if applicable.
+
+## Core Pages
+
+- [Home — Full Prediction Database](https://www.springfieldoracle.com/): Searchable, filterable index of all 70+ verified Simpsons predictions with episode codes, air dates, real-world sources, and confirmation status.
+- [About — Methodology & Mission](https://www.springfieldoracle.com/about): Explains the verification methodology, status definitions, ethical boundaries, and why this database was built.
+- [FAQ](https://www.springfieldoracle.com/faq): Answers to the most-asked questions including COVID-19, Trump presidency, Disney/Fox, Higgs Boson, NSA surveillance, AI job replacement, and the March 2026 Trump death deepfake hoax.
+- [Blog — Simpsons Predictions That Came True](https://www.springfieldoracle.com/blog/simpsons-predictions-that-came-true.html): Long-form editorial covering the most significant confirmed predictions with analysis.
+
+## Notable Predictions
+
+- [Donald Trump Presidency (S11E17, 2000)](https://www.springfieldoracle.com/simpsons-s11e17-donald-trump-presidency): Confirmed — episode aired March 2000, Trump elected November 2016.
+- [Higgs Boson / God Particle (S10E02, 1998)](https://www.springfieldoracle.com/simpsons-s10e02-the-god-particle-higgs-boson): Confirmed — Homer's blackboard equation foreshadows the Higgs Boson mass, confirmed by CERN in 2012.
+- [Disney Acquires Fox (S10E05, 1998)](https://www.springfieldoracle.com/simpsons-s10e05-20th-century-fox-acquired-by-disney): Confirmed — Disney acquired 21st Century Fox in 2019.
+- [Nobel Prize Winner Predicted by Name (S22E01, 2010)](https://www.springfieldoracle.com/simpsons-s22e01-nobel-prize-winner-predicted-by-name): Confirmed — Bengt Holmström named by name, won Nobel Prize in Economics 2016.
+- [COVID-19 / Osaka Flu (S04E21, 1993)](https://www.springfieldoracle.com/simpsons-s04e21-osaka-flu-pandemic-hysteria): Confirmed — viral pandemic originating in Asia depicted in 1993.
+- [NSA Mass Government Surveillance (S02E17, 1991)](https://www.springfieldoracle.com/simpsons-s02e17-mass-government-surveillance-state): Confirmed — depicted mass domestic surveillance, confirmed by Snowden revelations in 2013.
+- [Smartwatches (S06E19, 1995)](https://www.springfieldoracle.com/simpsons-s06e19-smartwatches): Confirmed — wrist-based video communication device depicted 20 years before the Apple Watch.
+- [Autocorrect Fails (S06E08, 1994)](https://www.springfieldoracle.com/simpsons-s06e08-autocorrect-fails): Confirmed — parodied handwriting-to-text failure matching modern autocorrect behaviour.
+- [Elon Musk Political Takeover (S26E10, 2015)](https://www.springfieldoracle.com/simpsons-s26e10-elon-musk-political-takeover): Confirmed — depicted Musk acquiring government influence, manifested in DOGE role in 2025.
+- [AI Robots Replace Human Workers (S23E17, 2012)](https://www.springfieldoracle.com/simpsons-s23e17-ai-robots-replace-human-workers): Confirmed — depicted widespread automation displacing workers.
+- [Cypress Hill + London Symphony Orchestra (S07E24, 1996)](https://www.springfieldoracle.com/simpsons-s07e24-cypress-hill-london-symphony-orchestra): Confirmed — collab performed at Lollapalooza 2019.
+- [FIFA Corruption Scandal (S25E16, 2014)](https://www.springfieldoracle.com/simpsons-s25e16-fifa-corruption-scandal): Confirmed — FIFA bribery scandal broke in 2015.
+- [Lady Gaga Aerial Super Bowl Halftime (S23E22, 2012)](https://www.springfieldoracle.com/simpsons-s23e22-lady-gaga-aerial-super-bowl-halftime): Confirmed — aerial performance depicted in 2012, occurred at Super Bowl LI in 2017.
+- [Trump Death Prediction (Viral Hoax, 2026)](https://www.springfieldoracle.com/simpsons-trump-death-prediction-viral-hoax-2026): **Debunked** — AI-generated deepfake; no such episode exists. Full fact-check here.
+
+## Optional
+
+- [Three-Eyed Fish (S02E04, 1990)](https://www.springfieldoracle.com/simpsons-s02e04-three-eyed-fish)
+- [Japanese PM Eats Radioactive Fish (S02E04, 1990)](https://www.springfieldoracle.com/simpsons-s02e04-japanese-pm-eats-radioactive-fish)
+- [Censorship of Michelangelo's David (S02E09, 1990)](https://www.springfieldoracle.com/simpsons-s02e09-censorship-of-michelangelos-david)
+- [Cybertruck (S02E15, 1991)](https://www.springfieldoracle.com/simpsons-s02e15-the-cybertruck)
+- [Legal Sports Betting (S03E14, 1992)](https://www.springfieldoracle.com/simpsons-s03e14-legal-sports-betting-goes-mainstream)
+- [Murder Hornets During a Pandemic (S04E21, 1993)](https://www.springfieldoracle.com/simpsons-s04e21-murder-hornets-during-a-pandemic)
+- [Corona Virus Graphic (S04E21, 1993)](https://www.springfieldoracle.com/simpsons-s04e21-the-corona-virus-graphic)
+- [Trump Casket Image (S04E21, 1993)](https://www.springfieldoracle.com/simpsons-s04e21-pandemic-predicts-trump-casket-image)
+- [Siegfried & Roy Tiger Attack (S05E10, 1993)](https://www.springfieldoracle.com/simpsons-s05e10-siegfried-roy-tiger-attack)
+- [Civilian Space Tourism (S05E15, 1994)](https://www.springfieldoracle.com/simpsons-s05e15-civilian-space-tourism)
+- [Horse Meat in Food Supply (S05E19, 1994)](https://www.springfieldoracle.com/simpsons-s05e19-horse-meat-in-the-food-supply)
+- [Neighborhood Surveillance Networks (S06E01, 1994)](https://www.springfieldoracle.com/simpsons-s06e01-neighborhood-surveillance-networks)
+- [Celebrity-to-Politician Pipeline (S06E05, 1994)](https://www.springfieldoracle.com/simpsons-s06e05-celebrity-to-politician-pipeline)
+- [Cancel Culture / Trial by Media (S06E09, 1994)](https://www.springfieldoracle.com/simpsons-s06e09-cancel-culture-trial-by-media)
+- [CNN/CBS Network Merger (S06E19, 1995)](https://www.springfieldoracle.com/simpsons-s06e19-cnn-cbs-network-merger)
+- [Glacier Melt / Climate Crisis (S06E19, 1995)](https://www.springfieldoracle.com/simpsons-s06e19-glacier-melt-climate-crisis)
+- [Video Chat Goes Mainstream (S06E19, 1995)](https://www.springfieldoracle.com/simpsons-s06e19-video-chat-goes-mainstream)
+- [World War III / Middle East Escalation (S06E19, 1995)](https://www.springfieldoracle.com/simpsons-s06e19-world-war-iii-middle-east-escalation)
+- [Solar vs. Oil Monopoly (S07E01, 1995)](https://www.springfieldoracle.com/simpsons-s07e01-solar-vs-oil-monopoly)
+- [Obesity Epidemic / Weight-Loss Drugs (S07E07, 1995)](https://www.springfieldoracle.com/simpsons-s07e07-obesity-epidemic-weight-loss-drugs)
+- [Big Ben Goes Digital (S07E09, 1995)](https://www.springfieldoracle.com/simpsons-s07e09-big-ben-goes-digital)
+- [Early iPod Scroll Wheel Interface (S08E05, 1996)](https://www.springfieldoracle.com/simpsons-s08e05-early-ipod-scroll-wheel-interface)
+- [UAP / UFO Congressional Hearings (S08E10, 1996)](https://www.springfieldoracle.com/simpsons-s08e10-uap-ufo-congressional-hearings)
+- [Ebola Outbreak (S09E03, 1997)](https://www.springfieldoracle.com/simpsons-s09e03-ebola-outbreak)
+- [Gun Proliferation / Open Carry (S09E05, 1997)](https://www.springfieldoracle.com/simpsons-s09e05-gun-proliferation-open-carry)
+- [Portugal vs. Mexico World Cup 2026 Final (S09E05, 1997)](https://www.springfieldoracle.com/simpsons-s09e05-portugal-vs-mexico-world-cup-2026-final)
+- [Commercial Cryogenic Freezing (S09E17, 1998)](https://www.springfieldoracle.com/simpsons-s09e17-commercial-cryogenic-freezing)
+- [9/11 Twin Towers Flyer (S10E02, 1998)](https://www.springfieldoracle.com/simpsons-s10e02-9-11-twin-towers-flyer)
+- [Voting Machine Switches Votes (S10E22, 1999)](https://www.springfieldoracle.com/simpsons-s10e22-voting-machine-switches-votes)
+- [Tomacco / GMO Hybrid Crops (S11E05, 1999)](https://www.springfieldoracle.com/simpsons-s11e05-tomacco-gmo-hybrid-crops)
+- [First Female US President (S11E17, 2000)](https://www.springfieldoracle.com/simpsons-s11e17-first-female-us-president)
+- [Hologram Concerts (S11E17, 2000)](https://www.springfieldoracle.com/simpsons-s11e17-hologram-concerts-go-mainstream)
+- [Kamala Harris Inauguration Outfit (S11E17, 2000)](https://www.springfieldoracle.com/simpsons-s11e17-kamala-harriss-inauguration-outfit)
+- [Epstein Island / Elite Secret Society (S12E06, 2001)](https://www.springfieldoracle.com/simpsons-s12e06-epstein-island-elite-secret-society)
+- [Fully Autonomous AI Smart Homes (S12E12, 2001)](https://www.springfieldoracle.com/simpsons-s12e12-fully-autonomous-ai-smart-homes)
+- [Social Media / Mass Online Connection (S14E12, 2003)](https://www.springfieldoracle.com/simpsons-s14e12-social-media-mass-online-connection)
+- [Deepfakes / AI-Generated Disinformation (S15E06, 2004)](https://www.springfieldoracle.com/simpsons-s15e06-deepfakes-ai-generated-disinformation)
+- [Flying Cars Go Mainstream (S16E15, 2005)](https://www.springfieldoracle.com/simpsons-s16e15-flying-cars-go-mainstream)
+- [Catastrophic Urban Heat Wave (S20E04, 2008)](https://www.springfieldoracle.com/simpsons-s20e04-catastrophic-urban-heat-wave)
+- [Border Wall / Immigration Vigilantes (S20E21, 2009)](https://www.springfieldoracle.com/simpsons-s20e21-border-wall-immigration-vigilantes)
+- [AI Tablets Replace Teachers (S21E02, 2009)](https://www.springfieldoracle.com/simpsons-s21e02-ai-tablets-replace-teachers)
+- [USA Wins Olympic Curling Gold (S21E12, 2010)](https://www.springfieldoracle.com/simpsons-s21e12-usa-wins-olympic-curling-gold)
+- [QAnon / The Great Awakening (S24E09, 2013)](https://www.springfieldoracle.com/simpsons-s24e09-the-great-awakening-qanon-storm)
+- [Autonomous Delivery Drones (S25E18, 2014)](https://www.springfieldoracle.com/simpsons-s25e18-autonomous-delivery-drones)
+- [Digital Consciousness / Mind Uploading (S25E18, 2014)](https://www.springfieldoracle.com/simpsons-s25e18-digital-consciousness-mind-uploading)
+- [Mars Colonisation (S27E16, 2016)](https://www.springfieldoracle.com/simpsons-s27e16-mars-colonisation)
+- [Ivanka Trump 2028 Presidential Run (S28E04, 2016)](https://www.springfieldoracle.com/simpsons-s28e04-ivanka-trump-2028-presidential-run)
+- [Game of Thrones Divisive Finale (S29E01, 2017)](https://www.springfieldoracle.com/simpsons-s29e01-game-of-thrones-divisive-finale)
+- [Cryptocurrency Goes Mainstream (S31E13, 2020)](https://www.springfieldoracle.com/simpsons-s31e13-cryptocurrency-goes-mainstream)
+- [AR Glasses Replace Smartphones (S33E01, 2021)](https://www.springfieldoracle.com/simpsons-s33e01-ar-glasses-replace-smartphones)
+- [Death of Traditional Advertising (S37E10, 2025)](https://www.springfieldoracle.com/simpsons-s37e10-the-death-of-traditional-advertising)
+- [The 2024 US Electoral Map](https://www.springfieldoracle.com/simpsons-the-2024-us-electoral-map)
+- [Donald Trump in a Casket](https://www.springfieldoracle.com/simpsons-donald-trump-in-a-casket)
+- [Kobe Bryant Helicopter Crash](https://www.springfieldoracle.com/simpsons-kobe-bryants-helicopter-crash)
+- [Notre Dame Cathedral Fire](https://www.springfieldoracle.com/simpsons-notre-dame-cathedral-fire)
+- [Queen Elizabeth's Exact Death Year](https://www.springfieldoracle.com/simpsons-queen-elizabeths-exact-death-year)
