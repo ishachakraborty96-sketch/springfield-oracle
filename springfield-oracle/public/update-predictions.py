@@ -130,6 +130,8 @@ def update_predictions_database(json_path='springfield-oracle/public/data/predic
 
             # Update prediction
             prediction['likelihood_pct'] = new_likelihood
+            if 'likelihood_components' not in prediction:
+                prediction['likelihood_components'] = {}
             prediction['likelihood_components']['news_velocity_score'] = velocity
             prediction['news_matches'] = match_count
             prediction['last_updated'] = datetime.now().isoformat()
