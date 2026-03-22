@@ -1,11 +1,11 @@
 {
   "meta": {
-    "last_updated": "2026-03-15",
+    "last_updated": "2026-03-22",
     "total": 70,
-    "status_update": "Merged master array. Likelihood scores on PENDING only, updated with 2024-2026 news velocity. 9 debunked hoaxes. Episode codes corrected.",
+    "status_update": "PENDING predictions updated with real-time news velocity analysis",
     "engine": "Springfield Oracle v4.0",
     "version": "4.0",
-    "last_maintenance": "2026-03-08T00:00:00Z",
+    "last_maintenance": "2026-03-22T05:13:01.114155",
     "analysis_notes": "Top heating-up: AI/Robots (92%), Deepfakes (90%), Glacier Melt (88%), Crypto (87%), Smart Homes (83%)"
   },
   "predictions": [
@@ -554,19 +554,19 @@
       "prediction": "A British character casually tells an American: \"Well, we saved your ass in World War III.\" The line is set in a future Springfield, with no specific region or date attached.",
       "real_event": "On February 28, 2026, the United States and Israel launched Operation Epic Fury — coordinated strikes on Iran. Supreme Leader Khamenei was killed. Iran retaliated with missile strikes on Qatar, UAE, Jordan, and Kuwait. The UN Security Council convened an emergency session.",
       "status": "PENDING",
-      "likelihood_pct": 62,
+      "likelihood_pct": 64,
       "likelihood_components": {
         "category_base_rate": 0.55,
         "plausibility_score": 0.65,
         "specificity_score": 0.3,
-        "news_velocity_score": 0.8
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://en.wikipedia.org/wiki/Lisa%27s_Wedding",
         "https://en.wikipedia.org/wiki/2026_Iran%E2%80%93United_States_conflict"
       ],
-      "news_matches": 18,
-      "last_updated": "2026-03-14",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:49.249422",
       "analysis_notes": "The WW3 reference in \"Lisa's Wedding\" (1995) is a throwaway joke set in a near-future Springfield — never presented as a prediction. The Feb 28 2026 US-Israel strikes on Iran represent the most significant escalation toward a broader regional conflict since the Gulf War. Still developing — no global coalition war has been declared as of March 2026.",
       "category": "Politics",
       "viral_score": 9,
@@ -831,20 +831,20 @@
       "year_aired": 2012,
       "prediction": "Mr. Burns replaces his entire nuclear plant workforce with robots and automation.",
       "status": "PENDING",
-      "likelihood_pct": 92,
+      "likelihood_pct": 91,
       "likelihood_components": {
         "category_base_rate": 0.85,
         "plausibility_score": 0.9,
         "specificity_score": 0.88,
-        "news_velocity_score": 0.98
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://www.cnbc.com/2026/02/23/ai-robots-outnumber-workers-agents-few-decades-citi.html",
         "https://www.winssolutions.org/humanoid-robots-2025-2026-reality-hype/",
         "https://www.nexford.edu/insights/how-will-ai-affect-jobs"
       ],
-      "news_matches": 47,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:50.446006",
       "analysis_notes": "HEATING UP: Citi projects AI robots could outnumber human workers within decades. In 2025, AI caused ~55,000 US layoffs. Humanoid robot payback period vs. human workers is now under 10 weeks. 37% of business leaders are planning workforce automation. The most economically inevitable prediction in the database.",
       "category": "Technology",
       "viral_score": 10,
@@ -860,19 +860,19 @@
       "year_aired": 2003,
       "prediction": "Realistic AI-generated media is used to deceive the public and manipulate opinion.",
       "status": "PENDING",
-      "likelihood_pct": 90,
+      "likelihood_pct": 91,
       "likelihood_components": {
         "category_base_rate": 0.85,
         "plausibility_score": 0.92,
         "specificity_score": 0.88,
-        "news_velocity_score": 0.96
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://www.witf.org/2025/12/20/voters-to-face-unprecedented-levels-of-ai-generated-misinformation-in-2026/",
         "https://cetas.turing.ac.uk/publications/deepfake-scams-poisoned-chatbots"
       ],
-      "news_matches": 61,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:51.232818",
       "analysis_notes": "HEATING UP: Deepfake video count surged from 500k in 2023 to 8M by 2025 — a 16x increase. Used to interfere in elections in Romania, Ecuador, Germany, and Canada in 2025. Experts warn the 2026 US midterms will be the worst affected yet.",
       "category": "Technology",
       "viral_score": 10,
@@ -888,19 +888,19 @@
       "year_aired": 1995,
       "prediction": "Lisa delivers a speech warning that glaciers are disappearing due to rapid climate change.",
       "status": "PENDING",
-      "likelihood_pct": 88,
+      "likelihood_pct": 90,
       "likelihood_components": {
         "category_base_rate": 0.82,
         "plausibility_score": 0.92,
         "specificity_score": 0.85,
-        "news_velocity_score": 0.96
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://www.climate.gov/news-features/understanding-climate/climate-change-mountain-glaciers",
         "https://www.euronews.com/2026/02/26/could-glacier-melt-slow-climate-change-scientists-thought-so-until-now"
       ],
-      "news_matches": 43,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:52.309575",
       "analysis_notes": "HEATING UP: Record 80 Gt of glacier mass lost in 2023 alone. Around 4,000 glaciers projected to vanish annually by 2055. 2025 was the hottest year on record globally. This is less a prediction and more a slow-motion confirmation already well underway.",
       "category": "Science",
       "viral_score": 10,
@@ -916,19 +916,19 @@
       "year_aired": 2020,
       "prediction": "Digital currencies and blockchain become mainstream financial instruments.",
       "status": "PENDING",
-      "likelihood_pct": 87,
+      "likelihood_pct": 89,
       "likelihood_components": {
         "category_base_rate": 0.82,
         "plausibility_score": 0.88,
         "specificity_score": 0.86,
-        "news_velocity_score": 0.94
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://www.dlnews.com/articles/markets/bitcoin-etfs-to-top-180-billion-usd-in-2026-say-analysts/",
         "https://research.grayscale.com/reports/2026-digital-asset-outlook-dawn-of-the-institutional-era"
       ],
-      "news_matches": 39,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:53.346207",
       "analysis_notes": "HEATING UP: Bitcoin ETFs projected to top $180-220B by end of 2026. Over 100 new crypto ETFs launching. Stablecoins approaching $1T in market cap. The Trump administration is openly pro-crypto.",
       "category": "Business",
       "viral_score": 10,
@@ -944,19 +944,19 @@
       "year_aired": 2001,
       "prediction": "An AI-controlled smart home makes autonomous decisions, locking out residents and controlling their environment.",
       "status": "PENDING",
-      "likelihood_pct": 83,
+      "likelihood_pct": 87,
       "likelihood_components": {
         "category_base_rate": 0.8,
         "plausibility_score": 0.85,
         "specificity_score": 0.82,
-        "news_velocity_score": 0.88
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://digitalholics.com/the-future-of-smart-home-technology/",
         "https://cloudq.net/smart-homes-in-2025-ai-powered-automation-and-energy-efficiency/"
       ],
-      "news_matches": 38,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:54.443102",
       "analysis_notes": "HEATING UP: Smart home market projected at $184B by 2026. AI systems now learn behaviour and make autonomous decisions across thermostats, security, and energy. The Matter protocol standardises control across Apple, Google, and Amazon. 75% of US households expected to use voice assistants by 2026.",
       "category": "Technology",
       "viral_score": 8,
@@ -972,15 +972,15 @@
       "year_aired": 1995,
       "prediction": "Homer deliberately gains extreme weight to qualify as disabled and work from home. Obesity becomes medicalised.",
       "status": "PENDING",
-      "likelihood_pct": 78,
+      "likelihood_pct": 59,
       "likelihood_components": {
         "category_base_rate": 0.72,
         "plausibility_score": 0.8,
         "specificity_score": 0.76,
-        "news_velocity_score": 0.82
+        "news_velocity_score": 0.1
       },
-      "news_matches": 34,
-      "last_updated": "2026-03-08",
+      "news_matches": 1,
+      "last_updated": "2026-03-22T05:12:55.123616",
       "analysis_notes": "GLP-1 drugs (Ozempic, Wegovy) have fundamentally changed the obesity treatment landscape. US adult obesity exceeds 40%. The Simpsons satirised medicalised obesity 30 years before GLP-1s made it front-page news.",
       "category": "Science",
       "viral_score": 8,
@@ -999,19 +999,19 @@
       "year_aired": 2021,
       "prediction": "Augmented reality glasses become the primary personal communication device, replacing the smartphone.",
       "status": "PENDING",
-      "likelihood_pct": 78,
+      "likelihood_pct": 80,
       "likelihood_components": {
         "category_base_rate": 0.7,
         "plausibility_score": 0.8,
         "specificity_score": 0.72,
-        "news_velocity_score": 0.88
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://www.techtimes.com/articles/314643/20260214/apple-glasses-2026-ar-vr-smart-glasses-features-release-date-what-expect.htm",
         "https://glassalmanac.com/7-ar-glasses-and-moves-shaping-2026-heres-what-changes/"
       ],
-      "news_matches": 29,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:56.177384",
       "analysis_notes": "HEATING UP: Apple AR glasses are Tim Cook's stated top priority, with a 2026 launch rumoured. Meta Ray-Ban Display launched at $799 and sold out. Amazon developing consumer AR glasses. Full smartphone replacement is still years away but the trajectory is clear.",
       "category": "Technology",
       "viral_score": 8,
@@ -1027,19 +1027,19 @@
       "year_aired": 2005,
       "prediction": "Standard vehicles are entirely replaced by floating hover cars.",
       "status": "PENDING",
-      "likelihood_pct": 68,
+      "likelihood_pct": 73,
       "likelihood_components": {
         "category_base_rate": 0.6,
         "plausibility_score": 0.72,
         "specificity_score": 0.58,
-        "news_velocity_score": 0.88
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://www.zmescience.com/science/news-science/the-worlds-first-mass-produced-flying-car-is-here-and-it-costs-1-million/",
         "https://www.dogonews.com/2026/1/23/alef-begins-production-of-worlds-first-flying-car"
       ],
-      "news_matches": 22,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:56.861495",
       "analysis_notes": "HEATING UP: Alef Aeronautics began production of the Model A flying car in December 2025 with deliveries starting in 2026 at ~$300k. Klein Vision's AirCar is mass-market ready at $800k-$1M. XPeng's Land Aircraft Carrier enters production in China in 2026 with ~5,000 pre-orders. Full mainstream replacement of ground vehicles is still decades away.",
       "category": "Technology",
       "viral_score": 8,
@@ -1055,19 +1055,19 @@
       "year_aired": 1995,
       "prediction": "CNN, NBC, and CBS merge into one massive consolidated news monopoly.",
       "status": "PENDING",
-      "likelihood_pct": 73,
+      "likelihood_pct": 76,
       "likelihood_components": {
         "category_base_rate": 0.65,
         "plausibility_score": 0.78,
         "specificity_score": 0.62,
-        "news_velocity_score": 0.9
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://news.vt.edu/articles/2026/03/Warner-Bros-Paramont-Skydance-CBS-CNN-merger-deal-expert.html",
         "https://www.cnn.com/2026/02/27/media/cnn-paramount-ellison-bari-weiss-wbd-merger"
       ],
-      "news_matches": 19,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:57.763285",
       "analysis_notes": "HEATING UP: Paramount Skydance's $111B acquisition of Warner Bros. Discovery in March 2026 will place CNN and CBS News under one corporate roof for the first time. The Simpsons predicted 'CNNBCBS' — NBC is missing, but CNN plus CBS convergence is literally in progress right now.",
       "category": "Business",
       "viral_score": 8,
@@ -1083,18 +1083,18 @@
       "year_aired": 2000,
       "prediction": "Lisa Simpson becomes the first female President of the United States.",
       "status": "PENDING",
-      "likelihood_pct": 65,
+      "likelihood_pct": 73,
       "likelihood_components": {
         "category_base_rate": 0.6,
         "plausibility_score": 0.7,
         "specificity_score": 0.62,
-        "news_velocity_score": 0.7
+        "news_velocity_score": 1
       },
       "supporting_links": [
         "https://kalshi.com/markets/kxpresperson/pres-person/kxpresperson-28"
       ],
-      "news_matches": 21,
-      "last_updated": "2026-03-08",
+      "news_matches": 10,
+      "last_updated": "2026-03-22T05:12:58.611366",
       "analysis_notes": "AOC and Kamala Harris are the top female names in 2028 Democratic polling as of early 2026. Harris leads in rematch polling against Trump. AOC is surging with under-35 voters. Gavin Newsom leads prediction markets at 27%. The US has never elected a female president but the 2028 candidate pool is stronger than ever.",
       "category": "Politics",
       "viral_score": 8,
@@ -1110,18 +1110,18 @@
       "year_aired": 2016,
       "prediction": "Marge and Lisa volunteer to live in a corporate colony on Mars.",
       "status": "PENDING",
-      "likelihood_pct": 32,
+      "likelihood_pct": 35,
       "likelihood_components": {
         "category_base_rate": 0.38,
         "plausibility_score": 0.4,
         "specificity_score": 0.3,
-        "news_velocity_score": 0.22
+        "news_velocity_score": 0.3
       },
       "supporting_links": [
         "https://www.futura-sciences.com/en/elon-musk-promises-a-trip-to-mars-by-2026-but-is-starship-really-ready_23574/"
       ],
-      "news_matches": 10,
-      "last_updated": "2026-03-08",
+      "news_matches": 3,
+      "last_updated": "2026-03-22T05:12:59.223721",
       "analysis_notes": "COOLING: Musk announced in February 2026 that Mars ambitions are delayed 5 to 7 years to focus on lunar missions. Starship has not yet reached orbit. Human Mars landings now realistically 2031 to 2033 at best. Civilian corporate colonies are decades away.",
       "category": "Science",
       "viral_score": 7,
@@ -1137,18 +1137,18 @@
       "year_aired": 2016,
       "prediction": "A background gag features an 'Ivanka 2028' campaign button.",
       "status": "PENDING",
-      "likelihood_pct": 22,
+      "likelihood_pct": 30,
       "likelihood_components": {
         "category_base_rate": 0.3,
         "plausibility_score": 0.28,
         "specificity_score": 0.18,
-        "news_velocity_score": 0.14
+        "news_velocity_score": 0.4
       },
       "supporting_links": [
         "https://polymarket.com/event/republican-presidential-nominee-2028/will-ivanka-trump-win-the-2028-republican-presidential-nomination"
       ],
-      "news_matches": 6,
-      "last_updated": "2026-03-08",
+      "news_matches": 4,
+      "last_updated": "2026-03-22T05:12:59.973855",
       "analysis_notes": "COOLING: Ivanka has deliberately stepped back from politics. Jared Kushner told the NYT there is zero chance of her campaigning. Don Jr. is now considered the more likely Trump family 2028 candidate.",
       "category": "Politics",
       "viral_score": 6,
@@ -1164,15 +1164,15 @@
       "year_aired": 1998,
       "prediction": "Jasper freezes himself cryogenically to wake up in the future, as casually as checking into a hotel.",
       "status": "PENDING",
-      "likelihood_pct": 28,
+      "likelihood_pct": 23,
       "likelihood_components": {
         "category_base_rate": 0.25,
         "plausibility_score": 0.28,
         "specificity_score": 0.3,
-        "news_velocity_score": 0.32
+        "news_velocity_score": 0.1
       },
-      "news_matches": 8,
-      "last_updated": "2026-03-08",
+      "news_matches": 1,
+      "last_updated": "2026-03-22T05:13:00.580998",
       "analysis_notes": "Around 500 bodies are in cryostorage worldwide. Tomorrow Bio expanded US operations in 2025. No human has ever been revived and revival science remains entirely speculative. Best-case estimates for functional revival technology are 2040 or later.",
       "category": "Science",
       "viral_score": 6,
@@ -1467,15 +1467,15 @@
       "status": "PENDING",
       "category": "Science",
       "viral_score": 6,
-      "likelihood_pct": 31,
+      "likelihood_pct": 30,
       "likelihood_components": {
         "specificity_score": 0.2,
         "plausibility_score": 0.35,
-        "news_velocity_score": 0.45,
+        "news_velocity_score": 0.2,
         "category_base_rate": 0.4
       },
-      "news_matches": 3,
-      "last_updated": "2026-03-15",
+      "news_matches": 2,
+      "last_updated": "2026-03-22T05:13:01.114122",
       "analysis_notes": "S25E18 is already in the database as SP037 (Autonomous Delivery Drones). This entry covers an entirely separate prediction from the same episode — digital consciousness uploading — which operates on a different scientific timeline and category. Likelihood of 31% reflects early-stage research signals (Neuralink scaling 2025, Nectome brain preservation funding) but no concrete clinical or consumer milestone. The 2026-2028 window may produce partial breakthroughs in neural mapping but full consciousness uploading remains decades away under current scientific consensus. Revisit for upgrade if a concrete mind-uploading or full brain-emulation milestone is announced.",
       "desc": "In \"Days of Future Future\" (Season 25, Episode 18, 2014), Homer Simpson dies — and is seamlessly reborn as a digital clone. His consciousness has been uploaded to a computer, and multiple simultaneous copies of his mind exist and operate independently, each believing themselves to be the original. The episode treats the technology as routine, with Homer's digital resurrection causing more domestic inconvenience than existential crisis.\n\nAs of early 2026, no consumer or clinical realisation of mind uploading exists. However, several research trajectories point in the direction the episode depicts:\n\nNeuralink announced accelerated scaling of its human brain-computer interface trials in 2025, moving from single-patient implants toward multi-participant data collection. Nectome secured fresh funding for its brain preservation programme, which aims to chemically fix a brain's connectome structure for potential future reconstruction. MIT published updated timelines for whole-brain neural mapping, projecting partial connectome completion within the decade.\n\nNone of these constitute confirmation. Full digital consciousness — the ability to upload, run, and duplicate a human mind — is not achievable with current or near-term technology. Likelihood is estimated at 31%, reflecting genuine directional momentum without a concrete milestone. The prediction window extends to 2028, with the most likely near-term event being a proof-of-concept partial emulation rather than full mind transfer.\n\nNote: This entry is independent of SP037 (Autonomous Delivery Drones, S25E18). Both derive from different narrative elements within the same episode.",
       "supporting_links": [
