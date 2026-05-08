@@ -103,6 +103,21 @@
   .action-btn { display: inline-block; background: none; border: 1px solid rgba(255,255,255,0.18); color: #ddd; padding: 9px 18px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: 'Space Mono', monospace; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
   .action-btn:hover { border-color: var(--yellow); color: var(--yellow); }
 
+  /* live news section */
+  .live-news-block { background: rgba(255,213,32,0.03); border: 1px solid rgba(255,213,32,0.15); border-radius: 6px; padding: 20px 22px; margin-bottom: 32px; }
+  .live-news-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff4444; box-shadow: 0 0 0 0 rgba(255,68,68,0.6); animation: livepulse 1.6s ease-out infinite; flex-shrink: 0; }
+  @keyframes livepulse { 0%{box-shadow:0 0 0 0 rgba(255,68,68,0.6)} 70%{box-shadow:0 0 0 8px rgba(255,68,68,0)} 100%{box-shadow:0 0 0 0 rgba(255,68,68,0)} }
+  .live-news-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.08em; color: var(--yellow); }
+  .live-news-ts { margin-left: auto; font-size: 0.62rem; color: #555; letter-spacing: 0.06em; white-space: nowrap; }
+  .live-news-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid rgba(255,213,32,0.08); text-decoration: none; }
+  .live-news-item:last-child { border-bottom: none; }
+  .live-news-item:hover .live-news-headline { color: var(--yellow); }
+  .live-news-date { font-family: 'Bebas Neue', sans-serif; font-size: 0.68rem; color: #FF6B2B; white-space: nowrap; padding-top: 2px; min-width: 48px; }
+  .live-news-headline { font-size: 0.78rem; color: #ddd; line-height: 1.5; }
+  .live-news-empty { font-size: 0.8rem; color: #666; font-style: italic; }
+  .live-news-note { font-size: 0.62rem; color: #555; margin-top: 14px; line-height: 1.6; }
+
   /* footer */
   footer { background: #050505; padding: 24px 40px; display: flex; flex-direction: column; gap: 16px; border-top: 1px solid var(--border); font-size: 11px; color: #aaa; }
   footer a { color: var(--yellow); text-decoration: none; }
@@ -228,6 +243,18 @@ Springfield Oracle has reviewed every known Simpsons episode that features illne
     <a href="https://www.who.int/news-room/fact-sheets/detail/hantavirus-disease" target="_blank" rel="noopener">WHO — Hantavirus disease fact sheet</a>
   </div>
 
+  <div class="live-news-block">
+    <div class="live-news-header">
+      <span class="live-dot"></span>
+      <span class="live-news-title">Live: Hantavirus in the News</span>
+      <span class="live-news-ts" id="hanta-news-ts"></span>
+    </div>
+    <div id="hanta-news-feed">
+      <p class="live-news-empty">Loading latest Hantavirus headlines...</p>
+    </div>
+    <p class="live-news-note">Auto-refreshes every 60 seconds · Matches headlines containing "hantavirus", "HMPV", "HPS", or related terms · External links open in a new tab</p>
+  </div>
+
   <div class="seo-context">
     <strong style="color:#bbb;">Hantavirus "Predicted as HMPV" Viral Hoax</strong> is one of several debunked hoaxes tracked by <a href="/">Springfield Oracle</a> — a public database of documented cases where The Simpsons foreshadowed real-world events, alongside verified fabrications and misinformation.
 
@@ -267,5 +294,58 @@ Springfield Oracle has reviewed every known Simpsons episode that features illne
   </div>
 </footer>
 
+<script>
+const HANTA_KEYS = [
+  'hantavirus','hanta virus','hanta-virus',
+  'hmpv','human metapneumovirus',
+  'hantavirus pulmonary','hemorrhagic fever renal','sin nombre',
+  'rodent-borne virus','deer mouse virus',
+  'hps outbreak','hantavirus case','hantavirus death','hantavirus spread',
+  'hantavirus simpsons','simpsons hantavirus','simpsons hmpv'
+];
+
+function isHantaRelated(headline) {
+  const h = headline.toLowerCase();
+  return HANTA_KEYS.some(k => h.includes(k));
+}
+
+async function loadHantaNews() {
+  const feed = document.getElementById('hanta-news-feed');
+  const ts   = document.getElementById('hanta-news-ts');
+
+  let items = [];
+  try {
+    const res  = await fetch('/api/news', { signal: AbortSignal.timeout(8000) });
+    const json = await res.json();
+    if (json.items && json.items.length) {
+      items = json.items
+        .filter(i => i.title && isHantaRelated(i.title))
+        .slice(0, 8)
+        .map(i => ({ title: i.title, link: i.link || '#', pubDate: i.pubDate || '' }));
+    }
+  } catch (_) {}
+
+  ts.textContent = 'Updated ' + new Date().toLocaleTimeString();
+
+  if (!items.length) {
+    feed.innerHTML = '<p class="live-news-empty">No Hantavirus headlines in the current news cycle. <a href="https://news.google.com/search?q=hantavirus" target="_blank" rel="noopener" style="color:rgba(255,213,32,0.7);">Search Google News →</a></p>';
+    return;
+  }
+
+  feed.innerHTML = items.map(item => {
+    const date = item.pubDate
+      ? new Date(item.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+      : '';
+    return `<a href="${item.link}" target="_blank" rel="noopener" class="live-news-item">
+      <span class="live-news-date">${date}</span>
+      <span class="live-news-headline">${item.title}</span>
+      <span style="color:#555;font-size:0.7rem;padding-top:2px;flex-shrink:0;">↗</span>
+    </a>`;
+  }).join('');
+}
+
+loadHantaNews();
+setInterval(loadHantaNews, 60 * 1000);
+</script>
 </body>
 </html>
