@@ -3356,8 +3356,22 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
 
     <div class="carousel-track" id="carousel-track">
 
-      <!-- CARD 1: Portugal vs Mexico World Cup 2026 Hoax -->
+      <!-- CARD 1: Hantavirus / HMPV Viral Hoax -->
       <div class="latest-card carousel-card" onclick="openCarouselModal(0)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
+        <div class="latest-badge" style="background:#8b0000;">🦠 2025 — DEBUNKED</div>
+        <div class="latest-episode" style="background: #2d2d5e;">
+          <div class="ep-season">N/A</div>
+          <div class="ep-label">Viral Hoax</div>
+          <div class="ep-year">2025</div>
+        </div>
+        <div class="latest-content">
+          <h2 style="color:#FFD520;">Hantavirus "Predicted as HMPV" Viral Hoax</h2>
+          <p style="color:#ccc;">Fan edits spreading across TikTok and X falsely claim The Simpsons predicted the Hantavirus outbreak — and incorrectly label it as HMPV (Human Metapneumovirus). No such episode exists. Hantavirus and HMPV are completely different viruses with different transmission routes and biology. The source clips are fabricated or deceptively spliced. Double debunked.</p>
+        </div>
+      </div>
+
+      <!-- CARD 2: Portugal vs Mexico World Cup 2026 Hoax -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(1)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
         <div class="latest-badge" style="background:#555;">⚠️ 2026 — DEBUNKED</div>
         <div class="latest-episode" style="background: #2d2d5e;">
           <div class="ep-season">S09E05</div>
@@ -3370,8 +3384,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 2: Trump Death Hoax -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(1)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
+      <!-- CARD 3: Trump Death Hoax -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(2)" style="cursor:pointer; background: #1a1a2e; color: #eee;">
         <div class="latest-badge" style="background:#ff4444;">🚨 MAR 8, 2026 — DEBUNKED</div>
         <div class="latest-episode" style="background: #2d2d5e;">
           <div class="ep-season">UNKNOWN</div>
@@ -3384,8 +3398,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 3: World War III — Middle East -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(2)" style="cursor:pointer;">
+      <!-- CARD 4: World War III — Middle East -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(3)" style="cursor:pointer;">
         <div class="latest-badge" style="background:#555;">🟡 FEB 28, 2026 — PENDING</div>
         <div class="latest-episode">
           <div class="ep-season">S06E19</div>
@@ -3398,8 +3412,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 4: UFO Declassification -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(3)" style="cursor:pointer;">
+      <!-- CARD 5: UFO Declassification -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(4)" style="cursor:pointer;">
         <div class="latest-badge">🟡 FEB 19, 2026 — CONFIRMED</div>
         <div class="latest-episode">
           <div class="ep-season">S08E10</div>
@@ -3412,8 +3426,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 5: NSA Surveillance / Simpsons Movie -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(4)" style="cursor:pointer;">
+      <!-- CARD 6: NSA Surveillance / Simpsons Movie -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(5)" style="cursor:pointer;">
         <div class="latest-badge">🟡 2026 — CONFIRMED</div>
         <div class="latest-episode">
           <div class="ep-season">MOVIE</div>
@@ -3426,8 +3440,8 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
         </div>
       </div>
 
-      <!-- CARD 6: H3N2 Flu -->
-      <div class="latest-card carousel-card" onclick="openCarouselModal(5)" style="cursor:pointer;">
+      <!-- CARD 7: H3N2 Flu -->
+      <div class="latest-card carousel-card" onclick="openCarouselModal(6)" style="cursor:pointer;">
         <div class="latest-badge">🔴 2026 — CONFIRMED</div>
         <div class="latest-episode">
           <div class="ep-season">S04E21</div>
@@ -3450,6 +3464,7 @@ _iub.csConfiguration = {"siteId":4452742,"cookiePolicyId":65046402,"lang":"en","
       <button class="carousel-dot" onclick="carouselGoTo(3)" aria-label="Go to slide 4"></button>
       <button class="carousel-dot" onclick="carouselGoTo(4)" aria-label="Go to slide 5"></button>
       <button class="carousel-dot" onclick="carouselGoTo(5)" aria-label="Go to slide 6"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(6)" aria-label="Go to slide 7"></button>
     </div>
   </div>
 </div>
@@ -4259,6 +4274,18 @@ function getMostRecentLink(links) {
 
 const carouselData = [
   {
+    badge: '🦠 2025 — DEBUNKED',
+    episode: 'VIRAL HOAX (2025)',
+    status: 'debunked',
+    category: 'Hoax',
+    trueDate: '—',
+    predId: 'SP070',
+    predSlug: 'simpsons-hantavirus-hmpv-viral-hoax',
+    title: 'Hantavirus "Predicted as HMPV" Viral Hoax — Double Debunked',
+    body: `Fan edits spreading across TikTok and X claim The Simpsons predicted a Hantavirus outbreak — and then make a second error by labelling the disease as HMPV (Human Metapneumovirus). Both claims are false.\n\nNo Simpsons episode depicts, names, or references Hantavirus. The clips circulating online are fabricated or use deceptive editing that splices unrelated illness-themed scenes — most often from "Marge in Chains" (S04E21, 1993) — with AI-generated chyrons or voice-overs inserting the word "Hantavirus" or "HMPV."\n\nHantavirus and HMPV are entirely different pathogens. Hantavirus is a rodent-borne hemorrhagic fever virus, transmitted through contact with infected rodent droppings or urine — not person-to-person. It causes Hantavirus Pulmonary Syndrome (HPS) or Hemorrhagic Fever with Renal Syndrome (HFRS), both severe and potentially fatal. HMPV (Human Metapneumovirus) is a common respiratory virus in the Pneumoviridae family — the same family as RSV — that spreads via respiratory droplets and causes upper and lower respiratory illness, particularly in the very young and elderly.\n\nThese viruses share no meaningful biological, clinical, or epidemiological overlap. Calling one by the other's name is a foundational factual error. Springfield Oracle has reviewed every illness-themed Simpsons episode in the canonical record. None contain material that can credibly be connected to Hantavirus. This entry is logged to correct the scientific record and document the spread of fabricated "prediction" content.`,
+    shareTitle: 'The Simpsons did NOT predict Hantavirus — and it\'s not HMPV either. Viral fan edits get both the episode and the disease wrong. Double debunked by Springfield Oracle.'
+  },
+  {
     badge: '⚠️ 2026 — DEBUNKED',
     episode: 'S09E05 · The Cartridge Family (1997)',
     status: 'debunked',
@@ -4360,7 +4387,7 @@ function openCarouselModal(index) {
 
 // ── CAROUSEL ─────────────────────────────────────────────────────────────
 let carouselIndex = 0;
-const carouselTotal = 6;
+const carouselTotal = 7;
 let carouselTimer;
 
 function carouselGoTo(n) {
