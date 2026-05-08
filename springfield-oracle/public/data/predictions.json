@@ -1,7 +1,7 @@
 {
   "meta": {
-    "last_updated": "2026-05-03",
-    "total": 70,
+    "last_updated": "2026-05-08",
+    "total": 71,
     "status_update": "PENDING predictions updated with real-time news velocity analysis",
     "engine": "Springfield Oracle v4.0",
     "version": "4.0",
@@ -1484,6 +1484,31 @@
         "https://nectome.com"
       ],
       "slug": "simpsons-s25e18-digital-consciousness-mind-uploading"
+    },
+    {
+      "id": "SP070",
+      "season": 0,
+      "episode_code": "N/A",
+      "episode_name": "Never Aired",
+      "title": "Hantavirus \"Predicted as HMPV\" Viral Hoax",
+      "year_aired": null,
+      "prediction": "Fan edits spreading on TikTok and X claim The Simpsons predicted a Hantavirus outbreak and mislabel it as HMPV (Human Metapneumovirus). No such episode exists in the Simpsons canon.",
+      "real_event": "Hantavirus and HMPV are entirely different pathogens with different transmission routes, biology, and clinical profiles. No Simpsons episode depicts either virus. The circulating clips are fabricated or deceptively edited. This is a double falsehood: wrong episode, wrong disease.",
+      "status": "DEBUNKED",
+      "category": "Hoax",
+      "viral_score": 7,
+      "likelihood_pct": null,
+      "likelihood_components": null,
+      "news_matches": 0,
+      "last_updated": "2026-05-08T00:00:00",
+      "analysis_notes": "Notable for its double layer of misinformation: a fabricated Simpsons source clip combined with a factual error about the disease itself. Hantavirus is rodent-borne (HPS/HFRS); HMPV is a respiratory virus in the Pneumoviridae family like RSV. No biological overlap. Follows the fabricated-clip playbook of SP059 (Corona Virus graphic) and SP065 (Trump pandemic casket). Logged to document viral misinformation and correct the scientific record.",
+      "desc": "Fan edits spreading across TikTok and X falsely claim The Simpsons predicted a Hantavirus outbreak — and then compound the error by mislabelling it as HMPV (Human Metapneumovirus). No Simpsons episode depicts, names, or references Hantavirus. The clips circulating online splice unrelated illness-themed scenes (most often from \"Marge in Chains,\" S04E21, 1993) with fabricated chyrons or AI-generated voice-overs. Hantavirus is rodent-borne and causes HPS or HFRS — not spread person-to-person. HMPV is a respiratory virus in the Pneumoviridae family. They are biologically unrelated, clinically distinct, and treated differently. A double debunk: the episode does not exist and the disease name is wrong.",
+      "supporting_links": [
+        "https://www.cdc.gov/hantavirus/index.html",
+        "https://www.cdc.gov/rsv/about/hmpv.html",
+        "https://www.who.int/news-room/fact-sheets/detail/hantavirus-disease"
+      ],
+      "slug": "simpsons-hantavirus-hmpv-viral-hoax"
     }
   ]
 }

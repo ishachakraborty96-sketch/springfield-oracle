@@ -4418,6 +4418,33 @@ resetCarouselTimer();
     if (Math.abs(diff) > 40) carouselMove(diff > 0 ? 1 : -1);
   }, {passive:true});
 })();
+// Injects a live news badge into a carousel card when a news match exists for predId.
+function updateCarouselLiveBadge(predId, cardIndex) {
+  const news = window.liveNewsMatches?.[predId];
+  const card = document.querySelectorAll('.carousel-card')[cardIndex];
+  if (!card) return;
+  const existing = card.querySelector('.carousel-live-badge');
+  if (news) {
+    if (!existing) {
+      const badge = document.createElement('a');
+      badge.href = news.link;
+      badge.target = '_blank';
+      badge.rel = 'noopener';
+      badge.className = 'carousel-live-badge';
+      badge.onclick = e => { e.stopPropagation(); trackEvent('link_click', { type: 'carousel_live_news', prediction_id: predId }); };
+      badge.style.cssText = 'display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:4px 10px;background:rgba(255,107,43,0.18);border:1px solid rgba(255,107,43,0.55);border-radius:3px;font-family:"Space Mono",monospace;font-size:0.62rem;color:#FF6B2B;text-decoration:none;letter-spacing:0.5px;font-weight:700;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;';
+      badge.innerHTML = `<span style="width:6px;height:6px;border-radius:50%;background:#FF6B2B;flex-shrink:0;"></span> LIVE NEWS ↗ <span style="font-weight:400;opacity:0.8;overflow:hidden;text-overflow:ellipsis;">${news.title.substring(0, 60)}${news.title.length > 60 ? '…' : ''}</span>`;
+      const content = card.querySelector('.latest-content');
+      if (content) content.appendChild(badge);
+    } else {
+      existing.innerHTML = `<span style="width:6px;height:6px;border-radius:50%;background:#FF6B2B;flex-shrink:0;"></span> LIVE NEWS ↗ <span style="font-weight:400;opacity:0.8;">${news.title.substring(0, 60)}${news.title.length > 60 ? '…' : ''}</span>`;
+      existing.href = news.link;
+    }
+  } else if (existing) {
+    existing.remove();
+  }
+}
+
 // Maps keywords in news headlines → prediction IDs
 const predictionKeywords = [
   { keys: ['iran','khamenei','operation epic fury','tehran','persian','irgc'], id: 'SP032' },
@@ -4526,6 +4553,8 @@ async function loadNewsFromAPI() {
   if (currentSearch !== 'donut' && currentSearch !== 'donuts' && currentSearch !== 'bort') {
     renderCurrentPage(); // Refresh table rows to show/clear live badges
   }
+  // Update carousel card #1 (Hantavirus/SP070) with live news badge if matched
+  updateCarouselLiveBadge('SP070', 0);
 
   // ── RENDER NEWS FEED ───────────────────────────────────────────────
   feedEl.innerHTML = itemsWithMatch.map(item => {
